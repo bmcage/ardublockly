@@ -40,10 +40,8 @@ Blockly.Blocks.DropdownListInstances = function(InstanceFunction) {
   var blocks = Blockly.mainWorkspace.getAllBlocks();
   for (var x = 0; x < blocks.length; x++) {
     var getSetupInstance = blocks[x][InstanceFunction];
-    console.log('test', x, getSetupInstance,InstanceFunction);
     if (getSetupInstance) {
       var Instances = getSetupInstance.call(blocks[x]);
-        console.log('test2', Instances);
         if (Instances) {
           if (Instances[0] != Blockly.Blocks.noName)
             List.push(Instances[0]);
