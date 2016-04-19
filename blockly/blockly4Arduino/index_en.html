@@ -35,6 +35,7 @@
   <script src="../blocks/arduino/md_control.js"></script>
   <script src="../blocks/arduino/md_actuator.js"></script>
   <script src="../blocks/arduino/md_audio.js"></script>
+  <script src="../blocks/arduino/md_light.js"></script>
   <script src="../generators/arduino.js"></script>
   <script src="../generators/arduino/boards.js"></script>
   <script src="../generators/arduino/declare.js"></script>
@@ -57,7 +58,8 @@
   <script src="../generators/arduino/md_core.js"></script>
   <script src="../generators/arduino/md_control.js"></script>
   <script src="../generators/arduino/md_actuator.js"></script>
-  <script src="../generators/arduino/md_audio.js"></script-->
+  <script src="../generators/arduino/md_audio.js"></script>
+  <script src="../generators/arduino/md_light.js"></script-->
   
   <!-- Language of the interface -->
   <script type="text/javascript" src="../msg/js/en.js"></script>
@@ -467,6 +469,37 @@ CoreUSB</a></li>
         <block type="mcookie_button_setup"></block>
         <block type="mcookie_button_digitalread"></block>
         <block type="mcookie_button_input"></block>
+      </category>
+      <category id="catMDControl" name="MDLight">
+        <block type="mcookie_led_setup"></block>
+        <block type="mcookie_neopixel_setup"></block>
+        <block type="mcookie_led_digitalwrite">
+          <value name="STATE">
+            <shadow type="io_highlow"></shadow>
+          </value>
+        </block>
+        <block type="mcookie_neopixel_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="RED">
+            <block type="math_number">
+              <field name="NUM">255</field>
+            </block>
+          </value>
+          <value name="GREEN">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+          </value>
+          <value name="BLUE">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+          </value>
+        </block>
       </category>
     </category>
     <category id="catAllBot" name="AllBot">

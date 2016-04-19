@@ -64,11 +64,10 @@ Blockly.Arduino['mcookie_button_digitalread'] = function(block) {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['mcookie_button_input'] = function(block) {
-  
   var MDClickBranch = Blockly.Arduino.statementToCode(block, 'CLICKINPUT');
   var MDLongPressBranch = Blockly.Arduino.statementToCode(block, 'LONGPRESSINPUT');
   var MDPressBranch = Blockly.Arduino.statementToCode(block, 'PRESSINPUT');
-  
+
   var btnName = block.getFieldValue('BUTTONNAME');
   var checkbox_name = (block.getFieldValue('WAIT_INPUT') == 'TRUE');
   
@@ -89,7 +88,7 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
 '#define myBtn_' + btnName + 'SHORTPRESS 1\n' +
 '#define myBtn_' + btnName + 'LONGPRESS  2\n' +
 'int myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'NOPRESS;';
-  
+
   Blockly.Arduino.addDeclaration('btn_' + btnName + '_button_input', decl_code);
   
   var code = whilecode_start +
@@ -130,8 +129,8 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
     MDPressBranch +
 '  //END  STATEMENTS PRESS \n' +
 '  }';
-      
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  
+  return code;
 };
 
 
