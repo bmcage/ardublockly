@@ -79,8 +79,8 @@ Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
         
   Blockly.Arduino.addDeclaration(NeoName, decl_code);
   
-  var setupCode = 'strip.begin();\n' +
-                  '  strip.show();';
+  var setupCode = NeoName + '.begin();\n' +
+                  '  ' + NeoName + '.show();';
   Blockly.Arduino.addSetup('io_' + pintop, setupCode, false);
   
   return '';
@@ -103,10 +103,9 @@ Blockly.Arduino['mcookie_neopixel_write'] = function(block) {
       block, 'GREEN', Blockly.Arduino.ORDER_ATOMIC) || '255';
   var Blue = Blockly.Arduino.valueToCode(
       block, 'BLUE', Blockly.Arduino.ORDER_ATOMIC) || '255';
-  Blockly.Arduino.valueToCode(this, 'blue', Blockly.Arduino.ORDER_ATOMIC)
 
-  var code = 'myNeo_' + LEDName + '.setPixelColor('+LEDPixel+'-1, strip.Color('+Red+','+Green+','+Blue+'));\n';
-  code += 'strip.show();\n'
+  var code = 'myNeo_' + LEDName + '.setPixelColor(' + LEDPixel + '-1, myNeo_' + LEDName + '.Color(' + Red + ',' + Green + ',' + Blue + '));\n';
+  code += 'myNeo_' + LEDName + '.show();\n';
 
   return code;
 };
