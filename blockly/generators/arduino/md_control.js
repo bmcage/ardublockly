@@ -124,7 +124,7 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
     MDLongPressBranch +
 '  //END  STATEMENTS LONG PRESS \n' +
 '    myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'NOPRESS;\n' +
-'  } else if (digitalRead(myBtn_' + btnName + ') == HIGH) {\n' +
+'  } else if (!myBtn_' + btnName + 'longPressActive && digitalRead(myBtn_' + btnName + ') == HIGH) {\n' +
 '  //START STATEMENTS PRESS \n' +
     MDPressBranch +
 '  //END  STATEMENTS PRESS \n' +
