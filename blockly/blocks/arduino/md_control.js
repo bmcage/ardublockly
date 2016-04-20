@@ -85,7 +85,7 @@ Blockly.Blocks['mcookie_button_setup'] = {
         .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME");
     this.setOutput(true, 'MD_HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
-    this.setTooltip('Een drukkknop welke AAN of UIT kan zijn.');
+    this.setTooltip('Een drukknop die AAN of UIT kan zijn');
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
   },
   /**
@@ -205,7 +205,7 @@ Blockly.Blocks['mcookie_button_input'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldCheckbox("TRUE"), "WAIT_INPUT")
-        .appendField("wacht tot een klik gebeurd");
+        .appendField("wacht tot een klik gebeurt");
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(120);
