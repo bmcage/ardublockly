@@ -418,9 +418,9 @@
     <block type="spi_transfer_return"></block>
   </category>
   <sep></sep>
-  <category id="catExp" name="Expansions">
-    <category id="catMD" name="MicroDuino">
-      <category id="catMDCore" name="MDCore">
+  <category id="catExp" name="Extra Sets">
+    <category id="catMD" name="Microduino">
+      <category id="catMDCore" name="Modules">
         <block type="md_modules"></block>
         <block type="mcookie_coreusb"></block>
         <block type="mcookie_hub"></block>
@@ -434,11 +434,11 @@
         </block>
         <block type="mcookie_audio_amplifier"></block>
       </category>
-      <category id="catMDAudio" name="MDAudio">
+      <category id="catMDAudio" name="Audio">
         <block type="mcookie_audio_play"></block>
         <block type="mcookie_audio_pause"></block>      
       </category>
-      <category id="catMDAct" name="MDBeweging">
+      <category id="catMDAct" name="Beweging">
         <block type="mcookie_servo_setup">
           <value name="SERVOTOPTYPE">
             <shadow type="mcookie_servo_type"></shadow>
@@ -465,12 +465,12 @@
         </block>
         <block type="mcookie_servo_read"></block>
       </category>
-      <category id="catMDControl" name="MDKnoppen">
+      <category id="catMDControl" name="Knoppen">
         <block type="mcookie_button_setup"></block>
         <block type="mcookie_button_digitalread"></block>
         <block type="mcookie_button_input"></block>
       </category>
-      <category id="catMDControl" name="MDLicht">
+      <category id="catMDControl" name="Licht">
         <block type="mcookie_led_setup"></block>
         <block type="mcookie_neopixel_setup"></block>
         <block type="mcookie_led_digitalwrite">
@@ -479,7 +479,7 @@
           </value>
         </block>
         <block type="mcookie_neopixel_write">
-          <value name="LEDPIXEL">
+          <value name="NUMBER">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>
