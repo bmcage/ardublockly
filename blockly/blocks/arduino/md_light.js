@@ -215,19 +215,19 @@ Blockly.Blocks['mcookie_neopixel_write'] = {
         .appendField(new Blockly.Blocks.md_light.FieldNeoPixelInstance(),
             'NEONAME')
         .appendField('pixel')
-    this.appendValueInput("LEDPIXEL", Number)
-        .setCheck(Number)
+    this.appendValueInput("LEDPIXEL")
+        .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
-    this.appendValueInput("RED", Number)
-        .setCheck(Number)
+    this.appendValueInput("RED")
+        .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField('op kleur (0-255) rood:');
-    this.appendValueInput("GREEN", Number)
-        .setCheck(Number)
+    this.appendValueInput("GREEN")
+        .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField('groen:');
-    this.appendValueInput("BLUE", Number)
-        .setCheck(Number)
+    this.appendValueInput("BLUE")
+        .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField('blauw:');
 

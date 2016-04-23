@@ -436,7 +436,13 @@
         <block type="mcookie_audio_amplifier"></block>
       </category>
       <category id="catMDAudio" name="Audio">
-        <block type="mcookie_audio_play"></block>
+        <block type="mcookie_audio_play">
+          <value name="AUDIONAME">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
         <block type="mcookie_audio_pause"></block>      
       </category>
       <category id="catMDAct" name="Beweging">

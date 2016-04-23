@@ -20,11 +20,13 @@ Blockly.Blocks.md_audio.HUE = 250;
 
 Blockly.Blocks['mcookie_audio_play'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("AUDIONAME")
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
         .appendField("Geluidsfragment")
-        .appendField(new Blockly.FieldTextInput("nummer"), "AUDIONAME")
+        .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
         .appendField("afspelen");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(Blockly.Blocks.md_audio.HUE);
