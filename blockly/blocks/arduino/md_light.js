@@ -96,7 +96,7 @@ Blockly.Blocks['mcookie_led_setup'] = {
 /** Attach a LED block to the hub*/
 Blockly.Blocks['mcookie_neopixel_setup'] = {
   init: function() {
-    this.appendValueInput('AANTAL')
+    this.appendValueInput('NUMBER')
         .appendField(new Blockly.FieldImage("../media/MD/MDLed.png", 19, 19, "*"))
         .appendField("NeoPixel LED licht")
         .appendField(new Blockly.FieldTextInput("NeoPixel1"), "LEDNAME")

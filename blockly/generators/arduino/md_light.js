@@ -60,8 +60,8 @@ Blockly.Arduino['mcookie_led_digitalwrite'] = function(block) {
  */
 Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
   var NeoPixelNames = block.getNeoPixelSetupInstance();
-  var aantal = Blockly.Arduino.valueToCode(
-      block, 'AANTAL', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var number = Blockly.Arduino.valueToCode(
+      block, 'NUMBER', Blockly.Arduino.ORDER_ATOMIC) || '1';
   
   //the hub saved the connector in the attached block
   var hubconnector = block['connector']
@@ -75,7 +75,8 @@ Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
   var NeoName = 'myNeo_' + NeoPixelNames[0];
   
   var decl_code = '#include <Adafruit_NeoPixel.h>\n' +
-        'Adafruit_NeoPixel ' + NeoName + ' = Adafruit_NeoPixel('+aantal+', '+pintop+', NEO_GRB + NEO_KHZ800);';
+        'Adafruit_NeoPixel ' + NeoName + ' = Adafruit_NeoPixel(' + number +
+        ', ' +pintop + ', NEO_GRB + NEO_KHZ800);';
         
   Blockly.Arduino.addDeclaration(NeoName, decl_code);
   
