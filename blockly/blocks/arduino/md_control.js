@@ -82,7 +82,11 @@ Blockly.Blocks['mcookie_button_setup'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
         .appendField("Drukknop")
-        .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME");
+        .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME")
+        .appendField("met voltage ingedrukt = ")
+        .appendField(
+            new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
+           'STATE');;
     this.setOutput(true, 'MD_HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.setTooltip('Een drukknop die AAN of UIT kan zijn');
