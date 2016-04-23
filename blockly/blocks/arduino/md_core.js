@@ -196,10 +196,10 @@ Blockly.Blocks['mcookie_audio_setup'] = {
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
         .appendField("Geluidsmodules (Audio). Mode:")
         .appendField(new Blockly.FieldDropdown([
-	    ["Loop all the time", "MODE_ALL"], 
-	    ["Loop once",         "MODE_FOL"], 
-	    ["Single cycle",      "MODE_ONE"], 
-	    ["Play once",         "MODE_ONE_STOP"]]), "MODE")
+	    ["Herhaal alles",      "MODE_ALL"], //Loop all the time
+	    ["Speel alles 1 keer", "MODE_FOL"], //Loop once
+	    ["Herhaal 1 track",    "MODE_ONE"], 
+	    ["Speel 1 track",      "MODE_ONE_STOP"]]), "MODE")
         .appendField("Volume:");
     this.appendValueInput('VOLUME')
         .setCheck(Blockly.Types.NUMBER.checkList);
