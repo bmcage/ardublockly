@@ -28,7 +28,7 @@ Blockly.Blocks['mcookie_audio_play'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(Blockly.Blocks.md_audio.HUE);
-    this.setTooltip('Schrijf de naam of nummer van het geluidsfragmentje dat je wilt afspelen. Op de SD kaart moet dit nummer in de map met naam "1" staan.');
+    this.setTooltip('Schrijf het nummer (eerste, tweede, ... aanduiden met 1,2,...) van het geluidsfragmentje dat je wilt afspelen. Op de SD kaart moet dit nummer in de map met naam "1" staan!');
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Audio');
   },
   /**
