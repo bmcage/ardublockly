@@ -471,16 +471,21 @@
         <block type="mcookie_button_digitalread"></block>
         <block type="mcookie_button_input"></block>
       </category>
-      <category id="catMDControl" name="Licht">
+      <category id="catMDLight" name="Licht">
         <block type="mcookie_led_setup"></block>
-        <block type="mcookie_neopixel_setup"></block>
+        <block type="mcookie_neopixel_setup">
+          <value name="NUMBER">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value></block>
         <block type="mcookie_led_digitalwrite">
           <value name="STATE">
             <shadow type="io_highlow"></shadow>
           </value>
         </block>
         <block type="mcookie_neopixel_write">
-          <value name="NUMBER">
+          <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>

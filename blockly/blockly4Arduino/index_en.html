@@ -472,8 +472,13 @@ CoreUSB</a></li>
         <block type="mcookie_button_digitalread"></block>
         <block type="mcookie_button_input"></block>
       </category>
-      <category id="catMDControl" name="Light">
-        <block type="mcookie_led_setup"></block>
+      <category id="catMDLight" name="Light">
+        <block type="mcookie_led_setup">
+          <value name="NUMBER">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value></block>
         <block type="mcookie_neopixel_setup"></block>
         <block type="mcookie_led_digitalwrite">
           <value name="STATE">
@@ -481,7 +486,7 @@ CoreUSB</a></li>
           </value>
         </block>
         <block type="mcookie_neopixel_write">
-          <value name="NUMBER">
+          <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>
