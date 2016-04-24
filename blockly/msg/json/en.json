@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-04-19 22:06:57.931254",
+		"lastupdated": "2016-04-24 18:48:11.637126",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -500,6 +500,16 @@
 	"ARD_TONE_WARNING": "Frequency must be in range 31 - 65535",
 	"ARD_NOTONE": "Turn off tone on pin #",
 	"ARD_NOTONE_TIP": "Turns the tone off on the selected pin",
+	"ARD_CONTROLS_EFFECT_TOOLTIP_1": "Aan de start van een effect doen we enkele opdrachten",
+	"ARD_CONTROLS_EFFECT_TOOLTIP_2": "Aan de start van een effect doen we enkele opdrachten, en aan het einde ook",
+	"ARD_CONTROLS_EFFECT_TOOLTIP_3": "Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd.",
+	"ARD_CONTROLS_EFFECT_TOOLTIP_4": "Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd. Aan het einde worden de laatste opdrachten uitgevoerd.",
+	"ARD_CONTROLS_EFFECT_MSG_FIRST": "Effect met totale duurtijd (ms) =",
+	"ARD_CONTROLS_EFFECT_MSG_IF": "bij start doe",
+	"ARD_CONTROLS_EFFECT_MSG_ELSEIF": "als effect tijd groter wordt dan",
+	"ARD_CONTROLS_EFFECT_MSG_ELSE": "op einde doe",
+	"ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP": "Voeg een extra effect tijd toe om opdrachten bij uit te voeren",
+	"ARD_CONTROLS_EFFECT_ELSE_TOOLTIP": "Voeg een blok toe voor als effect gedaan is",
 	"UPLOAD_CLICK_1": "To Upload your code to Arduino:",
 	"UPLOAD_CLICK_2": "  1. click on the Arduino tab",
 	"UPLOAD_CLICK_3": "  2. select all the code, and copy (CTRL+A and CTRL+C)",
