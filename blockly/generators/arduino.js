@@ -225,6 +225,15 @@ Blockly.Arduino.addDeclaration = function(declarationTag, code) {
 };
 
 /**
+ * Returns if a declarationTag is already used.
+ * @param {!string} declarationTag Identifier for this declaration code.
+ * @return {!boolean} Indicates if the declaration exists
+ */
+Blockly.Arduino.hasDeclaration = function(declarationTag, code) {
+  return !(Blockly.Arduino.definitions_[declarationTag] === undefined);
+};
+
+/**
  * Adds a string of code to declare a variable globally to the sketch.
  * Only if overwrite option is set to true it will overwrite whatever
  * value the identifier held before.

@@ -1257,6 +1257,24 @@ Blockly.Msg.ARD_TONE_WARNING = 'Frequency must be in range 31 - 65535';
 Blockly.Msg.ARD_NOTONE = 'Turn off tone on pin #';
 Blockly.Msg.ARD_NOTONE_TIP = 'Turns the tone off on the selected pin';
 
+//effect block
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = 'Aan de start van een effect doen we enkele opdrachten';
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_2 = 'Aan de start van een effect doen we enkele opdrachten, en aan het einde ook';
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_3 = 'Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd.';
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_4 = 'Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd. Aan het einde worden de laatste opdrachten uitgevoerd.';
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST = 'Effect met totale duurtijd (ms) =';
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF = 'bij start doe';
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF = 'als effect tijd groter wordt dan';
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE = 'op einde doe';
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_THEN = Blockly.Msg.CONTROLS_REPEAT_INPUT_DO;
+Blockly.Msg.ARD_CONTROLS_EFFECT_IF_TITLE_IF = Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF;
+Blockly.Msg.ARD_CONTROLS_EFFECT_IF_TOOLTIP = Blockly.Msg.CONTROLS_IF_IF_TOOLTIP;
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TITLE_ELSEIF = Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF;
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP = 'Voeg een extra effect tijd toe om opdrachten bij uit te voeren';
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TITLE_ELSE = Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE;
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TOOLTIP = 'Voeg een blok toe voor als effect gedaan is';
+
+
 //GUI specific translations
 Blockly.Msg.UPLOAD_CLICK_1 = 'To Upload your code to Arduino:';
 Blockly.Msg.UPLOAD_CLICK_2 = '  1. click on the Arduino tab';
