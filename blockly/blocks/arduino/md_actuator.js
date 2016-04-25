@@ -116,7 +116,7 @@ Blockly.Blocks['mcookie_servo_setup'] = {
         .setCheck("SERVOTYPE")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_BOTTOM)
-        .appendField(new Blockly.FieldTextInput("BottomServo"), "NAMEBOTTOMSERVO")
+        .appendField(new Blockly.FieldTextInput("BodemServo"), "NAMEBOTTOMSERVO")
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_TYPE);
     this.setInputsInline(false);
     this.setOutput(true, "MD_SERVO");
