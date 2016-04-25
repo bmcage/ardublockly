@@ -84,7 +84,7 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
 
   var decl_code = '' +
 'long myBtn_' + btnName + 'buttonTimer = 0;\n' +
-'long myBtn_' + btnName + 'longPressTime = 250;\n' +
+'long myBtn_' + btnName + 'longPressTime = 750;\n' +
 'boolean myBtn_' + btnName + 'buttonActive = false;\n' +
 'boolean myBtn_' + btnName + 'longPressActive = false;\n' +
 '#define myBtn_' + btnName + 'NOPRESS    0\n' +
@@ -96,27 +96,28 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
   
   //now a function to handle the button
   
-  var decl_code_fun = '\nvoid handlemyBtn_' + btnName + 'Press() {\n' 
-  + whilecode_start +
-'       if (digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n'+
-'               if (myBtn_' + btnName + 'buttonActive == false) {\n'+
-'                       myBtn_' + btnName + 'buttonActive = true;\n'+
-'                       myBtn_' + btnName + 'buttonTimer = millis();\n'+
-'               }\n'+
-'               if ((millis() - myBtn_' + btnName + 'buttonTimer > myBtn_' + btnName + 'longPressTime) && (myBtn_' + btnName + 'longPressActive == false)) {\n'+
-'                       myBtn_' + btnName + 'longPressActive = true;\n'+
-'                       myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'LONGPRESS;\n'+
-'               }\n'+
-'       } else {\n'+
-'               if (myBtn_' + btnName + 'buttonActive == true) {\n'+
-'                       if (myBtn_' + btnName + 'longPressActive == true) {\n'+
-'                               myBtn_' + btnName + 'longPressActive = false;\n'+
-'                       } else {\n'+
-'                       myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'SHORTPRESS;\n'+
-'                       }\n'+
-'                       myBtn_' + btnName + 'buttonActive = false;\n'+
-'               }\n'+
-'       }\n' + whilecode_end +
+  var decl_code_fun = '\nvoid handlemyBtn_' + btnName + 'Press() {\n' +
+'  myBtn_Knop1PressType = myBtn_Knop1NOPRESS;\n' + 
+    whilecode_start +
+'      if (digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n'+
+'        if (myBtn_' + btnName + 'buttonActive == false) {\n'+
+'          myBtn_' + btnName + 'buttonActive = true;\n'+
+'          myBtn_' + btnName + 'buttonTimer = millis();\n'+
+'        }\n'+
+'        if ((millis() - myBtn_' + btnName + 'buttonTimer > myBtn_' + btnName + 'longPressTime) && (myBtn_' + btnName + 'longPressActive == false)) {\n'+
+'          myBtn_' + btnName + 'longPressActive = true;\n'+
+'          myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'LONGPRESS;\n'+
+'        }\n'+
+'      } else {\n'+
+'        if (myBtn_' + btnName + 'buttonActive == true) {\n'+
+'          if (myBtn_' + btnName + 'longPressActive == true) {\n'+
+'            myBtn_' + btnName + 'longPressActive = false;\n'+
+'          } else {\n'+
+'            myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'SHORTPRESS;\n'+
+'          }\n'+
+'          myBtn_' + btnName + 'buttonActive = false;\n'+
+'        }\n'+
+'      }\n' + whilecode_end +
 '}\n'
     Blockly.Arduino.addDeclaration('btn_' + btnName + '_handlefun', decl_code_fun);
   
@@ -124,21 +125,19 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
   //Execute the code block for the status found
   var code = 'handlemyBtn_' + btnName + 'Press();\n' + 
 '\n' +
-'  if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'SHORTPRESS) {\n' +
+'if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'SHORTPRESS) {\n' +
 '  //START STATEMENTS SHORT PRESS \n' +
     MDClickBranch +
 '  //END  STATEMENTS SHORT PRESS \n' +
-'    myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'NOPRESS;\n' +
-'  } else if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'LONGPRESS) {\n' +
+'} else if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'LONGPRESS) {\n' +
 '  //START STATEMENTS LONG PRESS \n' +
     MDLongPressBranch +
 '  //END  STATEMENTS LONG PRESS \n' +
-'    myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'NOPRESS;\n' +
-'  } else if (!myBtn_' + btnName + 'longPressActive && digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n' +
+'} else if (!myBtn_' + btnName + 'longPressActive && digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n' +
 '  //START STATEMENTS PRESS \n' +
     MDPressBranch +
 '  //END  STATEMENTS PRESS \n' +
-'  }\n \n';
+'}\n \n';
   
   return code;
 };
