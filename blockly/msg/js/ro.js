@@ -33,16 +33,17 @@ Blockly.Msg.ARD_AS_ULONG_NUMBER = "as long positive integer number";  // untrans
 Blockly.Msg.ARD_AS_ULONG_NUMBER_TIP = "Declare a variable as a long positive integer, 0 to 4,294,967,295";  // untranslated
 Blockly.Msg.ARD_BUILTIN_LED = "set built-in LED";  // untranslated
 Blockly.Msg.ARD_BUILTIN_LED_TIP = "Light on or off for the built-in LED of the Arduino";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP = "Voeg een extra effect tijd toe om opdrachten bij uit te voeren";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TOOLTIP = "Voeg een blok toe voor als effect gedaan is";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE = "op einde doe";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF = "als effect tijd groter wordt dan";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST = "Effect met totale duurtijd (ms) =";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF = "bij start doe";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = "Aan de start van een effect doen we enkele opdrachten";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_2 = "Aan de start van een effect doen we enkele opdrachten, en aan het einde ook";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_3 = "Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd.";  // untranslated
-Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_4 = "Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd. Aan het einde worden de laatste opdrachten uitgevoerd.";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP = "Add an extra effect time at which statements must be done";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TOOLTIP = "Add a block for statements when the effect is finished.";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE = "at the end do";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF = "if effect time becomes greater than";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST1 = "Effect";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST2 = "with total duration (ms) =";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF = "at the start do";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = "At the start of an effect, do some statements";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_2 = "At the start of an effect, do some statements, and at the end of the effect too";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_3 = "At the start of an effect, do some statements, if the effect time becomes larger than the given time, do the next statements.";  // untranslated
+Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_4 = "At the start of an effect, do some statements, if the effect time becomes larger than the given time, do the next statements. Ath end of the effect the final statements are done.";  // untranslated
 Blockly.Msg.ARD_DEFINE = "Define";  // untranslated
 Blockly.Msg.ARD_DIGITALREAD = "read digital pin#";  // untranslated
 Blockly.Msg.ARD_DIGITALREAD_TIP = "Read digital value on a pin: HIGH or LOW";  // untranslated

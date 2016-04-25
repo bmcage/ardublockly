@@ -37,7 +37,8 @@ Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP = "Voeg een extra effect tijd toe
 Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TOOLTIP = "Voeg een blok toe voor als effect gedaan is";
 Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE = "op einde doe";
 Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF = "als effect tijd groter wordt dan";
-Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST = "Effect met totale duurtijd (ms) =";
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST1 = "Effect";
+Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST2 = "met totale duurtijd (ms) =";
 Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF = "bij start doe";
 Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = "Aan de start van een effect doen we enkele opdrachten";
 Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_2 = "Aan de start van een effect doen we enkele opdrachten, en aan het einde ook";
@@ -437,7 +438,7 @@ Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT = "Deze functie beschrijven...";
 Blockly.Msg.PROCEDURES_DEFNORETURN_DO = "";  // untranslated
 Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL = "https://nl.wikipedia.org/wiki/Subprogramma";
 Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = "doe iets";
-Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "om";
+Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "opdracht";
 Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP = "Maakt een functie zonder uitvoer.";
 Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL = "https://nl.wikipedia.org/wiki/Subprogramma";
 Blockly.Msg.PROCEDURES_DEFRETURN_RETURN = "uitvoeren";
