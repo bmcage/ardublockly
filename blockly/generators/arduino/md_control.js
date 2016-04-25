@@ -84,7 +84,8 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
 
   var decl_code = '' +
 'long myBtn_' + btnName + 'buttonTimer = 0;\n' +
-'long myBtn_' + btnName + 'longPressTime = 750;\n' +
+'#define myBtn_' + btnName + 'minShortPressTime 80\n' +
+'#define myBtn_' + btnName + 'longPressTime 750\n' +
 'boolean myBtn_' + btnName + 'buttonActive = false;\n' +
 'boolean myBtn_' + btnName + 'longPressActive = false;\n' +
 '#define myBtn_' + btnName + 'NOPRESS    0\n' +
@@ -113,7 +114,9 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
 '          if (myBtn_' + btnName + 'longPressActive == true) {\n'+
 '            myBtn_' + btnName + 'longPressActive = false;\n'+
 '          } else {\n'+
-'            myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'SHORTPRESS;\n'+
+'            //avoid fast fluctuations to be identified as a click\n' +
+'            if (millis() - myBtn_' + btnName + 'buttonTimer > myBtn_' + btnName + 'minShortPressTime)\n' +
+'              myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'SHORTPRESS;\n' +
 '          }\n'+
 '          myBtn_' + btnName + 'buttonActive = false;\n'+
 '        }\n'+
