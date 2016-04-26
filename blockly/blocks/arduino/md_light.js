@@ -200,10 +200,79 @@ Blockly.Blocks['mcookie_led_digitalwrite'] = {
   }
 };
 
+/**
+ * The neopixel set block with dropdown of color to show
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Blocks['mcookie_neopixel_colourpick_write'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.md_light.HUE);
+    this.appendDummyInput("")
+        .appendField('Zet Neopixel')
+        .appendField(new Blockly.Blocks.md_light.FieldNeoPixelInstance(),
+            'NEONAME')
+        .appendField('pixel')
+    
+    this.appendValueInput("LEDPIXEL")
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setAlign(Blockly.ALIGN_RIGHT)
+    
+    var colour = new Blockly.FieldColour('#ff0000');
+    colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
+    
+    this.appendDummyInput("")
+        .appendField('op kleur')
+        .appendField(colour, 'COLOUR');
 
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
+    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
+
+    },
+};
 
 /**
- * The neopixel set block
+ * The neopixel set block with dropdown of color to show and dim value
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Blocks['mcookie_neopixel_colourpick_dim_write'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.md_light.HUE);
+    this.appendDummyInput("")
+        .appendField('Zet Neopixel')
+        .appendField(new Blockly.Blocks.md_light.FieldNeoPixelInstance(),
+            'NEONAME')
+        .appendField('pixel')
+    
+    this.appendValueInput("LEDPIXEL")
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setAlign(Blockly.ALIGN_RIGHT)
+    
+    var colour = new Blockly.FieldColour('#ff0000');
+    colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
+    
+    this.appendDummyInput("")
+        .appendField('op kleur')
+        .appendField(colour, 'COLOUR');
+    this.appendValueInput("BRIGHTNESS")
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(' helderheid (%)')
+
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
+    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
+
+    },
+};
+
+/**
+ * The neopixel set block with full control
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
@@ -239,4 +308,3 @@ Blockly.Blocks['mcookie_neopixel_write'] = {
 
     },
 };
-

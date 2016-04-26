@@ -5,11 +5,11 @@
   <title>Blockly4Arduino: Blockly for Arduino and Genuino</title>
 
   <!-- Blockly4Arduino - These three files contain the compress version -->
-  <script src="../blockly_compressed.js"></script>
+  <!--script src="../blockly_compressed.js"></script>
   <script src="../blocks_compressed.js"></script>
-  <script src="../arduino_compressed.js"></script>
+  <script src="../arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="../blockly_uncompressed.js"></script>
+  <script src="../blockly_uncompressed.js"></script>
   <script src="../../closure-library/closure/goog/base.js"></script>
   <script src="../blocks/logic.js"></script>
   <script src="../blocks/loops.js"></script>
@@ -60,7 +60,7 @@
   <script src="../generators/arduino/md_control.js"></script>
   <script src="../generators/arduino/md_actuator.js"></script>
   <script src="../generators/arduino/md_audio.js"></script>
-  <script src="../generators/arduino/md_light.js"></script-->
+  <script src="../generators/arduino/md_light.js"></script>
 
   <!-- Language of the interface -->
   <script type="text/javascript" src="../msg/js/nl.js"></script>
@@ -490,6 +490,25 @@
         <block type="mcookie_led_digitalwrite">
           <value name="STATE">
             <shadow type="io_highlow"></shadow>
+          </value>
+        </block>
+        <block type="mcookie_neopixel_colourpick_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+        <block type="mcookie_neopixel_colourpick_dim_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="BRIGHTNESS">
+            <block type="math_number">
+              <field name="NUM">100</field>
+            </block>
           </value>
         </block>
         <block type="mcookie_neopixel_write">

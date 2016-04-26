@@ -13,6 +13,31 @@ goog.provide('Blockly.Arduino.md_light');
 
 goog.require('Blockly.Arduino');
 
+
+function hexToRgb(hex) {
+  if (hex.lastIndexOf('rgb', 0) === 0) {
+    var rgb = hex.substring(4, hex.length-1)
+         .replace(/ /g, '')
+         .split(',');
+    return {r: parseInt(rgb[0], 10),
+            g: parseInt(rgb[1], 10),
+            b: parseInt(rgb[2], 10),
+           }
+  } else {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : {
+        r: 0,
+        g: 0,
+        b: 0
+    };
+  }
+}
+
+
 /**
  * The button setup block
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -88,7 +113,6 @@ Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
 
 };
 
-
 /**
  * Function for writing to a neopixel strip.
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -111,3 +135,55 @@ Blockly.Arduino['mcookie_neopixel_write'] = function(block) {
   return code;
 };
 
+/**
+ * Function for writing to a neopixel strip.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['mcookie_neopixel_colourpick_write'] = function(block) {
+  var LEDName = block.getFieldValue('NEONAME');
+  var LEDPixel = Blockly.Arduino.valueToCode(
+      block, 'LEDPIXEL', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var Colour = block.getFieldValue('COLOUR');
+  //Colour = Colour.substring(4, Colour.length-1)
+  //               .replace(/ /g, '')
+  //               .split(',');
+  Colour = hexToRgb(Colour);
+  var Red = Colour.r;
+  var Green = Colour.g;
+  var Blue = Colour.b;
+
+  var code = 'myNeo_' + LEDName + '.setPixelColor(' + LEDPixel + '-1, myNeo_' + LEDName + '.Color(' + Red + ',' + Green + ',' + Blue + '));\n';
+  code += 'myNeo_' + LEDName + '.show();\n';
+
+  return code;
+};
+
+/**
+ * Function for writing to a neopixel strip.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['mcookie_neopixel_colourpick_dim_write'] = function(block) {
+  var LEDName = block.getFieldValue('NEONAME');
+  var LEDPixel = Blockly.Arduino.valueToCode(
+      block, 'LEDPIXEL', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var Brightness = Blockly.Arduino.valueToCode(
+      block, 'BRIGHTNESS', Blockly.Arduino.ORDER_ATOMIC) || '100';
+  
+  var Colour = block.getFieldValue('COLOUR');
+  //Colour = Colour.substring(4, Colour.length-1)
+  //               .replace(/ /g, '')
+  //               .split(',');
+  Colour = hexToRgb(Colour);
+  var Red = Colour.r;
+  var Green = Colour.g;
+  var Blue = Colour.b;
+
+  var code = 'myNeo_' + LEDName + '.setPixelColor(' + LEDPixel + '-1, myNeo_' + LEDName + '.Color(constrain(int(' + Red   + '*'+Brightness+'/100.0),0,255), ' + 
+                   'constrain(int(' + Green + '*'+Brightness+'/100.0),0,255), ' + 
+                   'constrain(int(' + Blue  + '*'+Brightness+'/100.0),0,255) ));\n';
+  code += 'myNeo_' + LEDName + '.show();\n';
+
+  return code;
+};
