@@ -20,8 +20,7 @@ goog.require('Blockly.Arduino');
  */
 Blockly.Arduino['mcookie_button_setup'] = function(block) {
   var btnNames = block.getbtnSetupInstance();
-  var stateOutput = Blockly.Arduino.valueToCode(
-      block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
+  var stateOutput = block.getFieldValue('STATE');
   
   //the hub saved the connector in the attached block
   var hubconnector = block['connector']
@@ -57,7 +56,7 @@ Blockly.Arduino['mcookie_button_setup'] = function(block) {
 Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
   var btnNames = block.getbtnSetupInstance();
   //microduino crash button is HIGH when pressed
-  var stateOutput = 'HIGH';
+  var stateOutput = 'LOW';
   
   //the hub saved the connector in the attached block
   var hubconnector = block['connector']
