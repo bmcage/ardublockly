@@ -83,14 +83,46 @@ Blockly.Blocks['mcookie_button_setup'] = {
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
         .appendField("Drukknop")
         .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME")
-        .appendField("met voltage ingedrukt = ")
+        .appendField("Als ingedrukt meten we waarde")
         .appendField(
             new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
-           'STATE');;
+           'STATE');
     this.setOutput(true, 'MD_HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.setTooltip('Een drukknop die AAN of UIT kan zijn');
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
+  },
+  /**
+   * Returns the button instance names, defined in the 'BUTTONNAME' input
+   * String block attached to this block.
+   * @return {!string} List with the instance name.
+   * @this Blockly.Block
+   */
+  getbtnSetupInstance: function() {
+    var InstanceName = this.getFieldValue('BUTTONNAME');
+    if (!InstanceName) {
+      InstanceName = Blockly.Blocks.md_control.noName;
+    }
+    // Replace all spaces with underscores
+    return [InstanceName.replace(/ /g, '_')];
+  },
+  setHubConnector: function(connector) {
+    this['connector'] = connector;
+  }
+};
+
+
+/** Attach a microduino crashbutton block to the hub*/
+Blockly.Blocks['mcookie_crashbutton_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
+        .appendField("Microduino Crash-knop")
+        .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME");
+    this.setOutput(true, 'MD_HUB_DIG');
+    this.setColour(Blockly.Blocks.md_control.HUE);
+    this.setTooltip('De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken');
+    this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino-Crash');
   },
   /**
    * Returns the button instance names, defined in the 'BUTTONNAME' input

@@ -50,6 +50,42 @@ Blockly.Arduino['mcookie_button_setup'] = function(block) {
 };
 
 /**
+ * The microduino crashbutton setup block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
+  var btnNames = block.getbtnSetupInstance();
+  //microduino crash button is HIGH when pressed
+  var stateOutput = 'HIGH';
+  
+  //the hub saved the connector in the attached block
+  var hubconnector = block['connector']
+  //compute the pins, normally only possible to attach at valid pins
+  var pintop = (parseInt(hubconnector,10) -3) *2;
+  var pinbottom = pintop + 1;
+  // the analog pins can be configured as digital input:
+  if (hubconnector == '10') {
+    pintop = 'A6'; pinbottom = 'A7';
+  } else if (hubconnector == '11') {
+    pintop = 'A2'; pinbottom = 'A3';
+  } else if (hubconnector == '12') {
+    pintop = 'A0'; pinbottom = 'A1';
+  }
+  
+  Blockly.Arduino.reservePin(
+      block, pintop, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+
+  var btnName = 'myBtn_' + btnNames[0];
+  Blockly.Arduino.addDeclaration('btn_' + btnName, 'int ' + btnName + ' = ' + pintop + ';\n' +
+                                 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
+  var pinSetupCode = 'pinMode(' + btnName + ', INPUT);';
+  Blockly.Arduino.addSetup('io_' + pintop, pinSetupCode, false);
+
+  return '';
+};
+
+/**
  * Function for reading a button.
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {array} Completed code with order of operation.
