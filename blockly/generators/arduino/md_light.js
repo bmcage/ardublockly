@@ -44,10 +44,10 @@ function hexToRgb(hex) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['mcookie_led_setup'] = function(block) {
-  var LEDNames = block.getLEDSetupInstance();
+  var LEDName = block.getFieldValue('LEDNAME');
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector']
+  var hubconnector = block['connector'] || 0
   //compute the pins, normally only possible to attach at valid pins
   var pintop = (parseInt(hubconnector,10) -3) *2;
   var pinbottom = pintop + 1;
@@ -55,8 +55,10 @@ Blockly.Arduino['mcookie_led_setup'] = function(block) {
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
 
-  var LEDName = 'myLED_' + LEDNames[0];
-  Blockly.Arduino.addDeclaration('LED_' + LEDName, 'int ' + LEDName + ' = ' + pintop +';');
+  //LEDName is a variable containing the used pins
+  Blockly.Arduino.addVariable(LEDName,
+      'int ' + LEDName + ' = ' + pintop + ';', true);
+  
   var pinSetupCode = 'pinMode(' + LEDName + ', OUTPUT);';
   Blockly.Arduino.addSetup('io_' + pintop, pinSetupCode, false);
 
@@ -73,7 +75,7 @@ Blockly.Arduino['mcookie_led_digitalwrite'] = function(block) {
   var stateOutput = Blockly.Arduino.valueToCode(
       block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
   
-  var code = 'digitalWrite(myLED_' + LEDName + ', ' + stateOutput + ');\n';
+  var code = 'digitalWrite(' + LEDName + ', ' + stateOutput + ');\n';
   return code;
 };
 
@@ -84,7 +86,7 @@ Blockly.Arduino['mcookie_led_digitalwrite'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
-  var NeoPixelNames = block.getNeoPixelSetupInstance();
+  var NeoPixelName = block.getFieldValue('LEDNAME');
   var number = Blockly.Arduino.valueToCode(
       block, 'NUMBER', Blockly.Arduino.ORDER_ATOMIC) || '1';
   
@@ -97,7 +99,11 @@ Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
 
-  var NeoName = 'myNeo_' + NeoPixelNames[0];
+  //NeoPixelName is a variable containing the used pins
+  Blockly.Arduino.addVariable(NeoPixelName,
+      'int ' + NeoPixelName + ' = ' + pintop + ';', true);
+  
+  var NeoName = 'myNeo_' + NeoPixelName;
   
   var decl_code = '#include <Adafruit_NeoPixel.h>\n' +
         'Adafruit_NeoPixel ' + NeoName + ' = Adafruit_NeoPixel(' + number +

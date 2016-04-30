@@ -1257,6 +1257,11 @@ Blockly.Msg.ARD_TONE_WARNING = 'Frequency must be in range 31 - 65535';
 Blockly.Msg.ARD_NOTONE = 'Turn off tone on pin #';
 Blockly.Msg.ARD_NOTONE_TIP = 'Turns the tone off on the selected pin';
 
+Blockly.Msg.ARD_LEDLEG_COMPONENT = 'LED';
+Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME = 'Led_1';
+Blockly.Msg.ARD_NEOPIXEL_COMPONENT = 'Neopixel strip';
+Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME = 'NeoPixel_1';
+
 //effect block
 Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = 'At the start of an effect, do some statements';
 Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_2 = 'At the start of an effect, do some statements, and at the end of the effect too';
