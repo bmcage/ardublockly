@@ -32,6 +32,11 @@ Blockly.Blocks['mcookie_led_setup'] = {
     this.setTooltip('Een LED licht welke AAN of UIT kan zijn.');
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
   },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
   setHubConnector: function(connector) {
     this['connector'] = connector;
   },
@@ -90,6 +95,11 @@ Blockly.Blocks['mcookie_neopixel_setup'] = {
     this.setTooltip('Een LED licht welke AAN of UIT kan zijn.');
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
   },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
   setHubConnector: function(connector) {
     this['connector'] = connector;
   },

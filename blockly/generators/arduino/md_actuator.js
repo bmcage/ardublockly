@@ -38,10 +38,10 @@ Blockly.Arduino['mcookie_servo_setup'] = function(block) {
       block, 'SERVOBOTTOMTYPE', Blockly.Arduino.ORDER_ATOMIC) || 'NOSERVO';
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector']
+  var hubconnector = block['connector'] || ['0', '1']
   //compute the pins, normally only possible to attach at valid pins
-  var pintop = (parseInt(hubconnector,10) -3) *2;
-  var pinbottom = pintop + 1;
+  var pintop = hubconnector[0];
+  var pinbottom = hubconnector[1];
   
   if (topType != 'NOSERVO') {
     var servoName = 'myServo' + servoTop;

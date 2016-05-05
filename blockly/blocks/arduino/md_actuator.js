@@ -66,6 +66,11 @@ Blockly.Blocks['mcookie_servo_setup'] = {
     this.setTooltip(Blockly.Msg.ARD_MD_SERVOCON_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Servo');
   },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
   setHubConnector: function(connector) {
     this['connector'] = connector;
   },

@@ -23,18 +23,9 @@ Blockly.Arduino['mcookie_button_setup'] = function(block) {
   var stateOutput = block.getFieldValue('STATE');
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector']
+  var hubconnector = block['connector'] || ['0', '1']
   //compute the pins, normally only possible to attach at valid pins
-  var pintop = (parseInt(hubconnector,10) -3) *2;
-  var pinbottom = pintop + 1;
-  // the analog pins can be configured as digital input:
-  if (hubconnector == '10') {
-    pintop = 'A6'; pinbottom = 'A7';
-  } else if (hubconnector == '11') {
-    pintop = 'A2'; pinbottom = 'A3';
-  } else if (hubconnector == '12') {
-    pintop = 'A0'; pinbottom = 'A1';
-  }
+  var pintop = hubconnector[0];
   
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
@@ -61,19 +52,10 @@ Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
   var stateOutput = 'LOW';
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector']
+  var hubconnector = block['connector'] || ['0', '1']
   //compute the pins, normally only possible to attach at valid pins
-  var pintop = (parseInt(hubconnector,10) -3) *2;
-  var pinbottom = pintop + 1;
-  // the analog pins can be configured as digital input:
-  if (hubconnector == '10') {
-    pintop = 'A6'; pinbottom = 'A7';
-  } else if (hubconnector == '11') {
-    pintop = 'A2'; pinbottom = 'A3';
-  } else if (hubconnector == '12') {
-    pintop = 'A0'; pinbottom = 'A1';
-  }
-  
+  var pintop = hubconnector[0];
+
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
 

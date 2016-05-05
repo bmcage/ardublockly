@@ -47,10 +47,9 @@ Blockly.Arduino['mcookie_led_setup'] = function(block) {
   var LEDName = block.getFieldValue('LEDNAME');
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector'] || 0
+  var hubconnector = block['connector'] || ['0', '1']
   //compute the pins, normally only possible to attach at valid pins
-  var pintop = (parseInt(hubconnector,10) -3) *2;
-  var pinbottom = pintop + 1;
+  var pintop = hubconnector[0];
 
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
@@ -91,10 +90,9 @@ Blockly.Arduino['mcookie_neopixel_setup'] = function(block) {
       block, 'NUMBER', Blockly.Arduino.ORDER_ATOMIC) || '1';
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector']
+  var hubconnector = block['connector'] || ['0', '1']
   //compute the pins, normally only possible to attach at valid pins
-  var pintop = (parseInt(hubconnector,10) -3) *2;
-  var pinbottom = pintop + 1;
+  var pintop = hubconnector[0];
 
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
