@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-04-30 14:38:48.762355",
+		"lastupdated": "2016-05-05 15:24:00.676684",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -446,6 +446,7 @@
 	"ARD_STEPPER_STEPS": "steps",
 	"ARD_STEPPER_STEP_TIP": "Turns the stepper motor a specific number of steps.",
 	"ARD_STEPPER_COMPONENT": "stepper",
+	"ARD_SERVO_COMPONENT": "servo",
 	"ARD_COMPONENT_WARN1": "A %1 configuration block with the same %1 name must be added to use this block!",
 	"ARD_TIME_DELAY": "wait",
 	"ARD_TIME_MS": "milliseconds",
@@ -501,9 +502,13 @@
 	"ARD_NOTONE": "Turn off tone on pin #",
 	"ARD_NOTONE_TIP": "Turns the tone off on the selected pin",
 	"ARD_LEDLEG_COMPONENT": "LED",
-	"ARD_LEDLEG_DEFAULT_NAME": "Led_1",
+	"ARD_LEDLEG_DEFAULT_NAME": "Led1",
 	"ARD_NEOPIXEL_COMPONENT": "Neopixel strip",
-	"ARD_NEOPIXEL_DEFAULT_NAME": "NeoPixel_1",
+	"ARD_NEOPIXEL_DEFAULT_NAME": "NeoPixel1",
+	"ARD_BUTTON_COMPONENT": "Push Button",
+	"ARD_BUTTON_DEFAULT_NAME": "PushButton1",
+	"ARD_BUTTON_IFPUSHED": "If pushed we measure value",
+	"ARD_BUTTON_TIP": "Een drukknop die AAN of UIT kan zijn",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_1": "At the start of an effect, do some statements",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_2": "At the start of an effect, do some statements, and at the end of the effect too",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_3": "At the start of an effect, do some statements, if the effect time becomes larger than the given time, do the next statements.",
@@ -533,5 +538,10 @@
 	"ARD_MD_SERVO_STEP_WARN2": "A Name input must be added to the Servo configuration block!",
 	"ARD_MD_SERVO_STEP_WARN3": "Selected servo does not exist any more, please select a new one.",
 	"ARD_MD_SERVO_WRITE": "set 180 degree Servo ",
-	"ARD_MD_SERVO_READ": "read Servo "
+	"ARD_MD_SERVO_READ": "read Servo ",
+	"ARD_MD_CRASHBUTTON_COMPONENT": "Microduino Crash Button",
+	"ARD_MD_CRASHBUTTON_DEFAULT_NAME": "Crashbutton1",
+	"ARD_MD_CRASHBUTTON_TIP": "The microduino crash-button with which you can detect if you hit something, or that you can use as a push button.",
+	"ARD_MD_SERVOTOP_DEFAULT_NAME": "TopServo1",
+	"ARD_MD_SERVOBOT_DEFAULT_NAME": "BottomServo1"
 }
