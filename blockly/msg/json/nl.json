@@ -523,6 +523,7 @@
 	"UPLOAD_CLICK_4": "  3. In de Arduino IDE of online via een http://codebender.cc sketch, plak je gecopieerde code (CTRL+V)",
 	"UPLOAD_CLICK_5": "  4. Laad de code op naar je geconnecteerde Arduino",
 	"ARD_MD_NOSERVO": "Geen Servo gekoppeld",
+        "ARD_MD_COOKIEBUTTON_COMPONENT": "Microduino MCookie CoreUSB",
 	"ARD_MD_180SERVO": "0~180 graden Servo",
 	"ARD_MD_360SERVO": "0~360 graden Servo",
 	"ARD_MD_SERVOTYPE_TIP": "Selecteer het type Servo die je koppelt aan de Servo connnector",

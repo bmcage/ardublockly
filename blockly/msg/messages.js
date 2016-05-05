@@ -1295,6 +1295,7 @@ Blockly.Msg.UPLOAD_CLICK_4 = '  3. In the Arduino IDE or in a http://codebender.
 Blockly.Msg.UPLOAD_CLICK_5 = '  4. Upload to your connected Arduino';
 
 //MICRODUINO BLOCKS
+Blockly.Msg.ARD_MD_COOKIEBUTTON_COMPONENT = 'Microduino MCookie CoreUSB';
 Blockly.Msg.ARD_MD_NOSERVO = 'Geen Servo gekoppeld';
 Blockly.Msg.ARD_MD_180SERVO = '0~180 graden Servo';
 Blockly.Msg.ARD_MD_360SERVO = '0~360 graden Servo';

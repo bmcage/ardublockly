@@ -67,15 +67,8 @@ Blockly.Blocks['md_modules'] = {
         }
       }
     }
-    
-    // Get the Board instance from this block
-    var board = Blockly.Arduino.Boards.selected;
 
-    if (!(board['name'] == 'Microduino CoreUSB 32U4' || 
-        board['name'] == 'MCookie-CoreUSB')) {
-      //this.setWarningText('You need to select board MD-CoreUSB to use MD components', 'md_board');
-      this.setWarningText('Je moet chip MD-CoreUSB kiezen in de settings om Microduino componenten te gebruiken.', 'md_modules');
-    } else if (blockInstanceTwicePresent) {
+    if (blockInstanceTwicePresent) {
       this.setWarningText('Je hebt twee keer dit blok staan. Dat is 1 keer teveel!', 'md_modules');
     } else {
       this.setWarningText(null, 'md_modules');
@@ -96,12 +89,50 @@ Blockly.Blocks['mcookie_coreusb'] = {
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-CoreUSB');
   },
   /**
+   * Returns the Arduino Board name that is required for this block.
+   * @return {!string} Board name.
+   * @this Blockly.Block
+   */
+  getBoardName: function() {
+    return 'mdcookiecoreusb';
+  },
+  /**
    * Returns the MD block name.
    * @return {!string} MD block name.
    * @this Blockly.Block
    */
   getMDBlockName: function() {
     return 'mcookie_coreusb';
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks if the board selected corresponds to the what it should be
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function() {
+    if (!this.workspace) { return; }  // Block has been deleted.
+
+    // Iterate through top level blocks to find if there are other board modules
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var otherBoardPresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getBoardName;
+      if (func) {
+        var BoardName = func.call(blocks[x]);
+        if (BoardName != this.getBoardName()) {
+          otherBoardPresent = true;
+        }
+      }
+    }
+    
+    if (otherBoardPresent) {
+      // Set a warning to select a valid stepper config
+      this.setWarningText(Blockly.Msg.ARD_BOARD_WARN.replace('%1', Blockly.Msg.ARD_MD_COOKIEBUTTON_COMPONENT));
+    } else {
+      Blockly.Arduino.Boards.changeBoard(Blockly.mainWorkspace, this.getBoardName());
+      this.setWarningText(null);
+    }
   }
 };
 
