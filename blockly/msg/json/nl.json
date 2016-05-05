@@ -440,6 +440,7 @@
 	"ARD_STEPPER_STEPS": "stappen",
 	"ARD_STEPPER_STEP_TIP": "Draait de stappenmotor een opgegeven aantal stappen",
         "ARD_STEPPER_COMPONENT": "stappenmotor",
+        "ARD_SERVO_COMPONENT": "servo",
 	"ARD_COMPONENT_WARN1": "Een %1 Definieer blok met dezelfde %1 naam moet toegevoegd worden om dit blok te gebruiken!",
 	"ARD_TIME_DELAY": "wacht",
 	"ARD_TIME_MS": "milliseconden",
@@ -536,5 +537,7 @@
 	"ARD_MD_SERVO_READ": "lees Servo ",
         "ARD_MD_CRASHBUTTON_COMPONENT": "Microduino Crash Knop",
         "ARD_MD_CRASHBUTTON_DEFAULT_NAME": "Crashknop1",
-        "ARD_MD_CRASHBUTTON_TIP": "De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken"
+        "ARD_MD_CRASHBUTTON_TIP": "De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken",
+        "ARD_MD_SERVOTOP_DEFAULT_NAME": "TopServo1",
+        "ARD_MD_SERVOBOT_DEFAULT_NAME": "BodemServo1"
 }

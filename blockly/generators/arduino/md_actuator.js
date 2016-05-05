@@ -30,7 +30,8 @@ Blockly.Arduino['mcookie_servo_type'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['mcookie_servo_setup'] = function(block) {
-  var servoNames = block.getServoSetupInstance();
+  var servoTop = block.getFieldValue('NAMETOPSERVO');
+  var servoBot = block.getFieldValue('NAMEBOTTOMSERVO');
   var topType = Blockly.Arduino.valueToCode(
       block, 'SERVOTOPTYPE', Blockly.Arduino.ORDER_ATOMIC) || 'NOSERVO';
   var bottomType = Blockly.Arduino.valueToCode(
@@ -43,8 +44,11 @@ Blockly.Arduino['mcookie_servo_setup'] = function(block) {
   var pinbottom = pintop + 1;
   
   if (topType != 'NOSERVO') {
-    var servoName = 'myServo' + servoNames[0];
+    var servoName = 'myServo' + servoTop;
     var pin = pintop;
+    //servoTop is a variable containing the used pins
+    Blockly.Arduino.addVariable(servoTop,
+      'int ' + servoTop + ' = ' + pin + ';', true);
     //Blockly.Arduino.reservePin(block, pintop, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
     Blockly.Arduino.addInclude('servo', '#include <Servo.h>');
     Blockly.Arduino.addDeclaration('servo_' + servoName, 'Servo ' + servoName + ';');
@@ -54,8 +58,11 @@ Blockly.Arduino['mcookie_servo_setup'] = function(block) {
     Blockly.Arduino.addSetup('servo_' + servoName, setupCode, true);
   }
   if (bottomType != 'NOSERVO') {
-    var servoName = 'myServo' + servoNames[1];
+    var servoName = 'myServo' + servoBot;
     var pin = pinbottom;
+    //servoTop is a variable containing the used pins
+    Blockly.Arduino.addVariable(servoBot,
+      'int ' + servoBot + ' = ' + pin + ';', true);
     //Blockly.Arduino.reservePin(block, pintop, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
     Blockly.Arduino.addInclude('servo', '#include <Servo.h>');
     Blockly.Arduino.addDeclaration('servo_' + servoName, 'Servo ' + servoName + ';');
