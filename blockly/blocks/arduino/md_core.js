@@ -163,7 +163,7 @@ Blockly.Blocks['mcookie_hub'] = {
     this.setNextStatement(true, "MD_BLOCK");
     this.setColour('#47EBCF');
     this.setTooltip('De Hub laat je toe 12 sensoren te koppelen aan je Microduino');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Hub');
   }
 };
 
