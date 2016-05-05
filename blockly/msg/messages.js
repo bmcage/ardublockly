@@ -1258,9 +1258,13 @@ Blockly.Msg.ARD_NOTONE = 'Turn off tone on pin #';
 Blockly.Msg.ARD_NOTONE_TIP = 'Turns the tone off on the selected pin';
 
 Blockly.Msg.ARD_LEDLEG_COMPONENT = 'LED';
-Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME = 'Led_1';
+Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME = 'Led1';
 Blockly.Msg.ARD_NEOPIXEL_COMPONENT = 'Neopixel strip';
-Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME = 'NeoPixel_1';
+Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME = 'NeoPixel1';
+Blockly.Msg.ARD_BUTTONNAME_COMPONENT = 'Push Button';
+Blockly.Msg.ARD_BUTTONNAME_DEFAULT_NAME = 'PushButton1';
+Blockly.Msg.ARD_BUTTON_IFPUSHED = 'If pushed we measure value';
+Blockly.Msg.ARD_BUTTON_TIP = 'Een drukknop die AAN of UIT kan zijn';
 
 //effect block
 Blockly.Msg.ARD_CONTROLS_EFFECT_TOOLTIP_1 = 'At the start of an effect, do some statements';
@@ -1303,3 +1307,6 @@ Blockly.Msg.ARD_MD_SERVO_STEP_WARN2 = 'A Name input must be added to the Servo c
 Blockly.Msg.ARD_MD_SERVO_STEP_WARN3 = 'Selected servo does not exist any more, please select a new one.';
 Blockly.Msg.ARD_MD_SERVO_WRITE = 'set 180 degree Servo ';
 Blockly.Msg.ARD_MD_SERVO_READ = 'read Servo ';
+Blockly.Msg.ARD_MD_CRASHBUTTONNAME_COMPONENT = 'Microduino Crash Button';
+Blockly.Msg.ARD_MD_CRASHBUTTONNAME_DEFAULT_NAME = 'Crashbutton1';
+Blockly.Msg.ARD_MD_CRASHBUTTON_TIP = 'The microduino crash-button with which you can detect if you hit something, or that you can use as a push button.';

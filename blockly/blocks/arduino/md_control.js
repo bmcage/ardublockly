@@ -14,63 +14,6 @@ goog.provide('Blockly.Blocks.md_control');
 
 goog.require('Blockly.Blocks');
 
-Blockly.Blocks.md_control.noInstance = 'No_Instances';
-Blockly.Blocks.md_control.noName = 'Empty_input_name';
-
-/**
- * Finds all user-created instances of the Button block config.
- * @return {!Array.<string>} Array of instance names.
- */
-Blockly.Blocks.md_control.btnInstances = function() {
-  var btnList = [];
-  var blocks = Blockly.mainWorkspace.getAllBlocks();
-  for (var x = 0; x < blocks.length; x++) {
-    var getbtnSetupInstance = blocks[x].getbtnSetupInstance;
-    if (getbtnSetupInstance) {
-      var btnInstances = getbtnSetupInstance.call(blocks[x]);
-        if (btnInstances) {
-          if (btnInstances[0] != Blockly.Blocks.md_control.noName)
-            btnList.push(btnInstances[0]);
-        }
-    }
-  }
-  return btnList;
-};
-
-/**
- * Return a sorted list of instances names for set dropdown menu.
- * @return {!Array.<string>} Array of btn instances names.
- */
-Blockly.Blocks.md_control.btnDropdownList = function() {
-  var btnList = Blockly.Blocks.md_control.btnInstances();
-  var options = [];
-  if (btnList.length > 0) {
-    btnList.sort(goog.string.caseInsensitiveCompare);
-    // Variables are not language-specific, use the name as both the
-    // user-facing text and the internal representation.
-    for (var x = 0; x < btnList.length; x++) {
-      options[x] = [btnList[x], btnList[x]];
-    }
-  } else {
-    // There are no config blocks in the work area
-    options[0] = [Blockly.Blocks.md_control.noInstance,
-                  Blockly.Blocks.md_control.noInstance];
-  }
-  return options;
-};
-
-/**
- * Class for a variable's dropdown field.
- * @extends {Blockly.FieldDropdown}
- * @constructor
- */
-Blockly.Blocks.md_control.FieldbtnInstance = function() {
-  Blockly.Blocks.md_control.FieldbtnInstance.superClass_.constructor
-      .call(this, Blockly.Blocks.md_control.btnDropdownList);
-};
-goog.inherits(
-    Blockly.Blocks.md_control.FieldbtnInstance, Blockly.FieldDropdown);
-
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.md_control.HUE = 120;
@@ -81,33 +24,57 @@ Blockly.Blocks['mcookie_button_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
-        .appendField("Drukknop")
-        .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME")
-        .appendField("Als ingedrukt meten we waarde")
+        .appendField(Blockly.Msg.ARD_BUTTON_DEFAULT_NAME)
+        .appendField(new Blockly.Blocks.ComponentFieldVariable(
+        Blockly.Msg.ARD_BUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
+        .appendField(Blockly.Msg.ARD_BUTTON_IFPUSHED)
         .appendField(
             new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
            'STATE');
     this.setOutput(true, 'MD_HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
-    this.setTooltip('Een drukknop die AAN of UIT kan zijn');
-    this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
-  },
-  /**
-   * Returns the button instance names, defined in the 'BUTTONNAME' input
-   * String block attached to this block.
-   * @return {!string} List with the instance name.
-   * @this Blockly.Block
-   */
-  getbtnSetupInstance: function() {
-    var InstanceName = this.getFieldValue('BUTTONNAME');
-    if (!InstanceName) {
-      InstanceName = Blockly.Blocks.md_control.noName;
-    }
-    // Replace all spaces with underscores
-    return [InstanceName.replace(/ /g, '_')];
+    this.setTooltip(Blockly.Msg.ARD_BUTTON_TIP);
+    this.setHelpUrl('https://www.arduino.cc/en/Tutorial/Button');
   },
   setHubConnector: function(connector) {
     this['connector'] = connector;
+  },
+  /**
+   * Return the name of the component defined in this block
+   * @return {!<string>} The name of the component
+   * @this Blockly.Block
+   */
+  getComponentName: function() {
+    return 'Button';
+  },
+  /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('BUTTONNAME')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
+      this.setFieldValue(newName, 'BUTTONNAME');
+    }
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
   }
 };
 
@@ -117,29 +84,53 @@ Blockly.Blocks['mcookie_crashbutton_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
-        .appendField("Microduino Crash-knop")
-        .appendField(new Blockly.FieldTextInput("Knop1"), "BUTTONNAME");
+        .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME)
+        .appendField(new Blockly.Blocks.ComponentFieldVariable(
+        Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
     this.setOutput(true, 'MD_HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
-    this.setTooltip('De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken');
+    this.setTooltip(Blockly.Msg.ARD_MD_CRASHBUTTON_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino-Crash');
-  },
-  /**
-   * Returns the button instance names, defined in the 'BUTTONNAME' input
-   * String block attached to this block.
-   * @return {!string} List with the instance name.
-   * @this Blockly.Block
-   */
-  getbtnSetupInstance: function() {
-    var InstanceName = this.getFieldValue('BUTTONNAME');
-    if (!InstanceName) {
-      InstanceName = Blockly.Blocks.md_control.noName;
-    }
-    // Replace all spaces with underscores
-    return [InstanceName.replace(/ /g, '_')];
   },
   setHubConnector: function(connector) {
     this['connector'] = connector;
+  },
+  /**
+   * Return the name of the component defined in this block
+   * @return {!<string>} The name of the component
+   * @this Blockly.Block
+   */
+  getComponentName: function() {
+    return 'Button';
+  },
+  /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('BUTTONNAME')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
+      this.setFieldValue(newName, 'BUTTONNAME');
+    }
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
   }
 };
 
@@ -153,8 +144,8 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.appendDummyInput()
         .appendField('Lees waarde knop')
-        .appendField(new Blockly.Blocks.md_control.FieldbtnInstance(),
-            'BUTTONNAME');
+        .appendField(new Blockly.Blocks.ComponentFieldVariable(
+        Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
@@ -163,8 +154,37 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     return Blockly.Types.BOOLEAN;
   },
   /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('BUTTONNAME')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
+      this.setFieldValue(newName, 'BUTTONNAME');
+    }
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  },
+  /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of buttons and attaches a warning to this
+   * It checks the instances of the config block and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
@@ -172,46 +192,11 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('BUTTONNAME');
-    var instances = Blockly.Blocks.md_control.btnDropdownList();
-
-    // Check for configuration block presence
-    if (instances[0][0] === Blockly.Blocks.md_control.noInstance) {
-      // Ensure dropdown menu says there is no config block
-      if (currentDropdown !== Blockly.Blocks.md_control.noInstance) {
-        this.setFieldValue(Blockly.Blocks.md_control.noInstance, 'BUTTONNAME');
-      }
-      this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN1);
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Button')) {
+      this.setWarningText(null);
     } else {
-      // Configuration blocks present, check if any selected and contains name
-      var existingConfigSelected = false;
-      for (var x = 0; x < instances.length; x++) {
-        // Check if any of the config blocks does not have a name
-        if (instances[x][0] === Blockly.Blocks.md_control.noName) {
-          // If selected config has no name either, set warning and exit func
-          if (currentDropdown === Blockly.Blocks.md_control.noName) {
-            this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN2);
-            return;
-          }
-        } else if (instances[x][0] === currentDropdown) {
-          existingConfigSelected = true;
-        }
-      }
-
-      // At this point select config has a name, check if it exist
-      if (existingConfigSelected) {
-        // All good, just remove any warnings and exit the function
-        this.setWarningText(null);
-      } else {
-        if ((currentDropdown === Blockly.Blocks.md_control.noName) ||
-            (currentDropdown === Blockly.Blocks.md_control.noInstance)) {
-          // Just pick the first config block
-          this.setFieldValue(instances[0][0], 'BUTTONNAME');
-          this.setWarningText(null);
-        } else {
-          // Al this point just set a warning to select a valid btn config
-          this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN3);
-        }
-      }
+      // Set a warning to select a valid stepper config
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT));
     }
   }
 };
@@ -220,8 +205,8 @@ Blockly.Blocks['mcookie_button_input'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Als knop")
-        .appendField(new Blockly.Blocks.md_control.FieldbtnInstance(),
-            'BUTTONNAME')
+        .appendField(new Blockly.Blocks.ComponentFieldVariable(
+        Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
         .appendField(" geklikt wordt");
     this.appendStatementInput("CLICKINPUT")
         .setCheck('ARD_BLOCK')
@@ -249,8 +234,37 @@ Blockly.Blocks['mcookie_button_input'] = {
     this.setHelpUrl('');
   },
   /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('BUTTONNAME')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
+      this.setFieldValue(newName, 'BUTTONNAME');
+    }
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  },
+  /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of buttons and attaches a warning to this
+   * It checks the instances of the config block and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
@@ -258,46 +272,11 @@ Blockly.Blocks['mcookie_button_input'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('BUTTONNAME');
-    var instances = Blockly.Blocks.md_control.btnDropdownList();
-
-    // Check for configuration block presence
-    if (instances[0][0] === Blockly.Blocks.md_control.noInstance) {
-      // Ensure dropdown menu says there is no config block
-      if (currentDropdown !== Blockly.Blocks.md_control.noInstance) {
-        this.setFieldValue(Blockly.Blocks.md_control.noInstance, 'BUTTONNAME');
-      }
-      this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN1);
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Button')) {
+      this.setWarningText(null);
     } else {
-      // Configuration blocks present, check if any selected and contains name
-      var existingConfigSelected = false;
-      for (var x = 0; x < instances.length; x++) {
-        // Check if any of the config blocks does not have a name
-        if (instances[x][0] === Blockly.Blocks.md_control.noName) {
-          // If selected config has no name either, set warning and exit func
-          if (currentDropdown === Blockly.Blocks.md_control.noName) {
-            this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN2);
-            return;
-          }
-        } else if (instances[x][0] === currentDropdown) {
-          existingConfigSelected = true;
-        }
-      }
-
-      // At this point select config has a name, check if it exist
-      if (existingConfigSelected) {
-        // All good, just remove any warnings and exit the function
-        this.setWarningText(null);
-      } else {
-        if ((currentDropdown === Blockly.Blocks.md_control.noName) ||
-            (currentDropdown === Blockly.Blocks.md_control.noInstance)) {
-          // Just pick the first config block
-          this.setFieldValue(instances[0][0], 'BUTTONNAME');
-          this.setWarningText(null);
-        } else {
-          // Al this point just set a warning to select a valid btn config
-          this.setWarningText(Blockly.Msg.ARD_MD_SERVO_STEP_WARN3);
-        }
-      }
+      // Set a warning to select a valid config
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT));
     }
   }
 };

@@ -19,7 +19,7 @@ goog.require('Blockly.Arduino');
  * @return {string} Completed code.
  */
 Blockly.Arduino['mcookie_button_setup'] = function(block) {
-  var btnNames = block.getbtnSetupInstance();
+  var btnName = block.getFieldValue('BUTTONNAME');
   var stateOutput = block.getFieldValue('STATE');
   
   //the hub saved the connector in the attached block
@@ -39,9 +39,11 @@ Blockly.Arduino['mcookie_button_setup'] = function(block) {
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
 
-  var btnName = 'myBtn_' + btnNames[0];
-  Blockly.Arduino.addDeclaration('btn_' + btnName, 'int ' + btnName + ' = ' + pintop + ';\n' +
-                                 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
+  //btnName is a variable containing the used pins
+  Blockly.Arduino.addVariable(btnName,
+      'int ' + btnName + ' = ' + pintop + ';', true);
+  
+  Blockly.Arduino.addDeclaration(btnName, 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
   var pinSetupCode = 'pinMode(' + btnName + ', INPUT);';
   Blockly.Arduino.addSetup('io_' + pintop, pinSetupCode, false);
 
@@ -54,7 +56,7 @@ Blockly.Arduino['mcookie_button_setup'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
-  var btnNames = block.getbtnSetupInstance();
+  var btnName = block.getFieldValue('BUTTONNAME');
   //microduino crash button is HIGH when pressed
   var stateOutput = 'LOW';
   
@@ -75,9 +77,11 @@ Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
   Blockly.Arduino.reservePin(
       block, pintop, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
 
-  var btnName = 'myBtn_' + btnNames[0];
-  Blockly.Arduino.addDeclaration('btn_' + btnName, 'int ' + btnName + ' = ' + pintop + ';\n' +
-                                 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
+  //btnName is a variable containing the used pins
+  Blockly.Arduino.addVariable(btnName,
+      'int ' + btnName + ' = ' + pintop + ';', true);
+
+  Blockly.Arduino.addDeclaration(btnName, 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
   var pinSetupCode = 'pinMode(' + btnName + ', INPUT);';
   Blockly.Arduino.addSetup('io_' + pintop, pinSetupCode, false);
 
@@ -92,7 +96,7 @@ Blockly.Arduino['mcookie_crashbutton_setup'] = function(block) {
 Blockly.Arduino['mcookie_button_digitalread'] = function(block) {
   var btnName = block.getFieldValue('BUTTONNAME');
   
-  var code = 'digitalRead(myBtn_' + btnName + ')';
+  var code = 'digitalRead(' + btnName + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -110,7 +114,7 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
   var checkbox_name = (block.getFieldValue('WAIT_INPUT') == 'TRUE');
   
   if (checkbox_name) {
-    var whilecode_start = '    while (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'NOPRESS) { \n';
+    var whilecode_start = '    while (' + btnName + 'PressType == ' + btnName + 'NOPRESS) { \n';
     var whilecode_end = '    }\n';
   } else {
     var whilecode_start = '';
@@ -118,60 +122,60 @@ Blockly.Arduino['mcookie_button_input'] = function(block) {
   }
 
   var decl_code = '' +
-'long myBtn_' + btnName + 'buttonTimer = 0;\n' +
-'#define myBtn_' + btnName + 'minShortPressTime 80\n' +
-'#define myBtn_' + btnName + 'longPressTime 750\n' +
-'boolean myBtn_' + btnName + 'buttonActive = false;\n' +
-'boolean myBtn_' + btnName + 'longPressActive = false;\n' +
-'#define myBtn_' + btnName + 'NOPRESS    0\n' +
-'#define myBtn_' + btnName + 'SHORTPRESS 1\n' +
-'#define myBtn_' + btnName + 'LONGPRESS  2\n' +
-'int myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'NOPRESS;';
+'long ' + btnName + 'buttonTimer = 0;\n' +
+'#define ' + btnName + 'minShortPressTime 80\n' +
+'#define ' + btnName + 'longPressTime 750\n' +
+'boolean ' + btnName + 'buttonActive = false;\n' +
+'boolean ' + btnName + 'longPressActive = false;\n' +
+'#define ' + btnName + 'NOPRESS    0\n' +
+'#define ' + btnName + 'SHORTPRESS 1\n' +
+'#define ' + btnName + 'LONGPRESS  2\n' +
+'int ' + btnName + 'PressType = ' + btnName + 'NOPRESS;';
 
   Blockly.Arduino.addDeclaration('btn_' + btnName + '_button_input', decl_code);
   
   //now a function to handle the button
   
-  var decl_code_fun = '\nvoid handlemyBtn_' + btnName + 'Press() {\n' +
-'  myBtn_Knop1PressType = myBtn_Knop1NOPRESS;\n' + 
+  var decl_code_fun = '\nvoid handle' + btnName + 'Press() {\n' +
+'  ' + btnName + 'PressType = ' + btnName + 'NOPRESS;\n' + 
     whilecode_start +
-'      if (digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n'+
-'        if (myBtn_' + btnName + 'buttonActive == false) {\n'+
-'          myBtn_' + btnName + 'buttonActive = true;\n'+
-'          myBtn_' + btnName + 'buttonTimer = millis();\n'+
+'      if (digitalRead(' + btnName + ') == ' + btnName + '_PRESSED) {\n'+
+'        if (' + btnName + 'buttonActive == false) {\n'+
+'          ' + btnName + 'buttonActive = true;\n'+
+'          ' + btnName + 'buttonTimer = millis();\n'+
 '        }\n'+
-'        if ((millis() - myBtn_' + btnName + 'buttonTimer > myBtn_' + btnName + 'longPressTime) && (myBtn_' + btnName + 'longPressActive == false)) {\n'+
-'          myBtn_' + btnName + 'longPressActive = true;\n'+
-'          myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'LONGPRESS;\n'+
+'        if ((millis() - ' + btnName + 'buttonTimer > ' + btnName + 'longPressTime) && (' + btnName + 'longPressActive == false)) {\n'+
+'          ' + btnName + 'longPressActive = true;\n'+
+'          ' + btnName + 'PressType = ' + btnName + 'LONGPRESS;\n'+
 '        }\n'+
 '      } else {\n'+
-'        if (myBtn_' + btnName + 'buttonActive == true) {\n'+
-'          if (myBtn_' + btnName + 'longPressActive == true) {\n'+
-'            myBtn_' + btnName + 'longPressActive = false;\n'+
+'        if (' + btnName + 'buttonActive == true) {\n'+
+'          if (' + btnName + 'longPressActive == true) {\n'+
+'            ' + btnName + 'longPressActive = false;\n'+
 '          } else {\n'+
 '            //avoid fast fluctuations to be identified as a click\n' +
-'            if (millis() - myBtn_' + btnName + 'buttonTimer > myBtn_' + btnName + 'minShortPressTime)\n' +
-'              myBtn_' + btnName + 'PressType = myBtn_' + btnName + 'SHORTPRESS;\n' +
+'            if (millis() - ' + btnName + 'buttonTimer > ' + btnName + 'minShortPressTime)\n' +
+'              ' + btnName + 'PressType = ' + btnName + 'SHORTPRESS;\n' +
 '          }\n'+
-'          myBtn_' + btnName + 'buttonActive = false;\n'+
+'          ' + btnName + 'buttonActive = false;\n'+
 '        }\n'+
 '      }\n' + whilecode_end +
 '}\n'
-    Blockly.Arduino.addDeclaration('btn_' + btnName + '_handlefun', decl_code_fun);
+    Blockly.Arduino.userFunctions_['btn_' + btnName + '_handlefun'] = decl_code_fun;
   
   //we now have code to poll the status of the button
   //Execute the code block for the status found
-  var code = 'handlemyBtn_' + btnName + 'Press();\n' + 
+  var code = 'handle' + btnName + 'Press();\n' + 
 '\n' +
-'if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'SHORTPRESS) {\n' +
+'if (' + btnName + 'PressType == ' + btnName + 'SHORTPRESS) {\n' +
 '  //START STATEMENTS SHORT PRESS \n' +
     MDClickBranch +
 '  //END  STATEMENTS SHORT PRESS \n' +
-'} else if (myBtn_' + btnName + 'PressType == myBtn_' + btnName + 'LONGPRESS) {\n' +
+'} else if (' + btnName + 'PressType == ' + btnName + 'LONGPRESS) {\n' +
 '  //START STATEMENTS LONG PRESS \n' +
     MDLongPressBranch +
 '  //END  STATEMENTS LONG PRESS \n' +
-'} else if (!myBtn_' + btnName + 'longPressActive && digitalRead(myBtn_' + btnName + ') == myBtn_' + btnName + '_PRESSED) {\n' +
+'} else if (!' + btnName + 'longPressActive && digitalRead(' + btnName + ') == ' + btnName + '_PRESSED) {\n' +
 '  //START STATEMENTS PRESS \n' +
     MDPressBranch +
 '  //END  STATEMENTS PRESS \n' +

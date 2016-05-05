@@ -499,6 +499,10 @@
         "ARD_LEDLEG_DEFAULT_NAME": "Led_1",
         "ARD_NEOPIXEL_COMPONENT": "Neopixel strip",
         "ARD_NEOPIXEL_DEFAULT_NAME": "NeoPixel_1",
+        "ARD_BUTTON_COMPONENT": "Drukknop",
+        "ARD_BUTTON_DEFAULT_NAME": "Drukknop1",
+        "ARD_BUTTON_IFPUSHED": "Als ingedrukt meten we waarde",
+        "ARD_BUTTON_TIP": "Een drukknop die AAN of UIT kan zijn",
         "ARD_CONTROLS_EFFECT_TOOLTIP_1": "Aan de start van een effect doen we enkele opdrachten",
         "ARD_CONTROLS_EFFECT_TOOLTIP_2": "Aan de start van een effect doen we enkele opdrachten, en aan het einde ook",
         "ARD_CONTROLS_EFFECT_TOOLTIP_3": "Aan de start van een effect doen we enkele opdrachten, als de effect tijd groter wordt dan de gegeven waarde, worden de volgende opdrachten uitgevoerd.",
@@ -529,5 +533,8 @@
 	"ARD_MD_SERVO_STEP_WARN2": "Een Naam moet toegekend worden aan de Servo in het Servo configuratie blok!",
 	"ARD_MD_SERVO_STEP_WARN3": "De Geselecteerde Servo bestaat niet meer, kies aub een andere.",
 	"ARD_MD_SERVO_WRITE": "Positioneer 180 graden Servo ",
-	"ARD_MD_SERVO_READ": "lees Servo "
+	"ARD_MD_SERVO_READ": "lees Servo ",
+        "ARD_MD_CRASHBUTTONNAME_COMPONENT": "Microduino Crash Knop",
+        "ARD_MD_CRASHBUTTONNAME_DEFAULT_NAME": "Crashknop1",
+        "ARD_MD_CRASHBUTTON_TIP": "De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken",
 }
