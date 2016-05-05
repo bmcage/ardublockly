@@ -24,7 +24,7 @@ Blockly.Blocks['mcookie_button_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
-        .appendField(Blockly.Msg.ARD_BUTTON_DEFAULT_NAME)
+        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_BUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
         .appendField(Blockly.Msg.ARD_BUTTON_IFPUSHED)
@@ -84,7 +84,7 @@ Blockly.Blocks['mcookie_crashbutton_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
-        .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME)
+        .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_COMPONENT)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
     this.setOutput(true, 'MD_HUB_DIG');
@@ -196,7 +196,7 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT));
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT));
     }
   }
 };
@@ -276,7 +276,7 @@ Blockly.Blocks['mcookie_button_input'] = {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTONNAME_COMPONENT));
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT));
     }
   }
 };
