@@ -536,5 +536,5 @@
 	"ARD_MD_SERVO_READ": "lees Servo ",
         "ARD_MD_CRASHBUTTONNAME_COMPONENT": "Microduino Crash Knop",
         "ARD_MD_CRASHBUTTONNAME_DEFAULT_NAME": "Crashknop1",
-        "ARD_MD_CRASHBUTTON_TIP": "De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken",
+        "ARD_MD_CRASHBUTTON_TIP": "De microduino crash-knop waarmee je detecteert of je iets raakt, of die je als drukknop kunt gebruiken"
 }
