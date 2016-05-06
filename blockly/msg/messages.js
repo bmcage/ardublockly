@@ -1365,6 +1365,6 @@ Blockly.Msg.ARD_MD_AMPBLOCK = 'Loudspeaker (Amplifier) Module';
 Blockly.Msg.ARD_MD_AMPBLOCK_TIP = 'Amplifier module, connect the loudspeaker to it to hear sound.';
 Blockly.Msg.ARD_MD_AUDIO_PLAYNR = 'Play sound fragment';
 Blockly.Msg.ARD_MD_AUDIO_PLAY = '';
-Blockly.Msg.ARD_MD_AUDIO_PLAY_TIP = 'Write the number (first, second, ... denoted by 1,2,...) of the sound fragment you want to play. On the SD card these must be present in the folder with name "1"!';
+Blockly.Msg.ARD_MD_AUDIO_PLAY_TIP = 'Write the number of the sound fragment you want to play. On the this number corresponds to the order in which files have been copied to the SD Card. Best: 1/Empty the SD card 2/copy files to SD card in the order you want to play them 3/it is easier if you name the files 001.mp3, 002.mp3, ... and copy them one after the other to the card!';
 Blockly.Msg.ARD_MD_AUDIO_PAUSE = 'Pause sound fragment';
 Blockly.Msg.ARD_MD_AUDIO_PAUSE_TIP = 'Pause the sound fragment that is playing';

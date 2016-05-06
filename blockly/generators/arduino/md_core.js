@@ -108,7 +108,7 @@ Blockly.Arduino['mcookie_audio_setup'] = function(block) {
       block, 'VOLUME', Blockly.Arduino.ORDER_ATOMIC) || '10';
   var mode = block.getFieldValue('MODE');
   var audio_setup_code = 
-' AUDIO.init(DEVICE_TF, ' + mode + ', ' + volume + ');\n' +
+'AUDIO.init(DEVICE_TF, ' + mode + ', ' + volume + ');\n' +
 '  AUDIO.choose(1);\n' +
 '  AUDIO.pause();\n';
   
