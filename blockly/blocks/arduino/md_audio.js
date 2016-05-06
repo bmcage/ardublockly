@@ -22,15 +22,15 @@ Blockly.Blocks['mcookie_audio_play'] = {
   init: function() {
     this.appendValueInput("AUDIONAME")
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
-        .appendField("Geluidsfragment")
+        .appendField(Blockly.Msg.ARD_MD_AUDIO_PLAYNR)
         .setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
-        .appendField("afspelen");
+        .appendField(Blockly.Msg.ARD_MD_AUDIO_PLAY);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(Blockly.Blocks.md_audio.HUE);
-    this.setTooltip('Schrijf het nummer (eerste, tweede, ... aanduiden met 1,2,...) van het geluidsfragmentje dat je wilt afspelen. Op de SD kaart moet dit nummer in de map met naam "1" staan!');
+    this.setTooltip(Blockly.Msg.ARD_MD_AUDIO_PLAY_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Audio');
   },
   /**
@@ -56,7 +56,7 @@ Blockly.Blocks['mcookie_audio_play'] = {
     }
 
     if (!audioInstancePresent) {
-      this.setWarningText('Een Audio module moet toegevoegd worden aan je blokken om met muziek te kunnen werken.', 'mcookie_audio_play');
+      this.setWarningText(Blockly.Msg.ARD_MD_AUDIOSOUNDWARN, 'mcookie_audio_play');
     } else {
       this.setWarningText(null, 'mcookie_audio_play');
     }
@@ -67,11 +67,11 @@ Blockly.Blocks['mcookie_audio_pause'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
-        .appendField("Geluidsfragment pauzeren");
+        .appendField(Blockly.Msg.ARD_MD_AUDIO_PAUSE);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(Blockly.Blocks.md_audio.HUE);
-    this.setTooltip('Pauzeer het geluidsfragment dat aan het afspelen is');
+    this.setTooltip(Blockly.Msg.ARD_MD_AUDIO_PAUSE_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Audio');
   },
   /**
@@ -97,7 +97,7 @@ Blockly.Blocks['mcookie_audio_pause'] = {
     }
 
     if (!audioInstancePresent) {
-      this.setWarningText('Een Audio module moet toegevoegd worden aan je blokken om met muziek te kunnen werken.', 'mcookie_audio_pause');
+      this.setWarningText(Blockly.Msg.ARD_MD_AUDIOSOUNDWARN, 'mcookie_audio_pause');
     } else {
       this.setWarningText(null, 'mcookie_audio_pause');
     }

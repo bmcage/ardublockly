@@ -264,18 +264,18 @@ Blockly.Blocks['mcookie_servo_write2'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/ServoWrite');
     this.setColour(Blockly.Blocks.md_actuator.HUE);
     this.appendDummyInput()
-        .appendField('Roteer 360 graden Servo')
+        .appendField(Blockly.Msg.ARD_SERVO_ROTATE360)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_SERVOTOP_DEFAULT_NAME, 'Servo'), 'SERVO_NAME');
     this.appendValueInput('SERVO_SPEED')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField('met snelheid');
+        .appendField(Blockly.Msg.ARD_SERVO_ROTATESPEED);
     this.appendDummyInput()
-        .appendField('% (-100 tot 100)');
+        .appendField(Blockly.Msg.ARD_SERVO_ROTATEPERC);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
-    this.setTooltip('Draai een Servo aan een bepaalde snelheid');
+    this.setTooltip(Blockly.Msg.ARD_SERVO_ROTATE_TIP);
   },
   /**
    * Return all variables referenced by this block.

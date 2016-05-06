@@ -24,12 +24,12 @@ Blockly.Blocks['mcookie_led_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDLed.png", 19, 19, "*"))
-        .appendField("LED licht")
+        .appendField(Blockly.Msg.ARD_LEDLEG)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME');
     this.setOutput(true, 'MD_HUB_DIGOUT');
     this.setColour(Blockly.Blocks.md_light.HUE);
-    this.setTooltip('Een LED licht welke AAN of UIT kan zijn.');
+    this.setTooltip(Blockly.Msg.ARD_LEDLEG_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
   },
   /**
@@ -84,15 +84,15 @@ Blockly.Blocks['mcookie_neopixel_setup'] = {
   init: function() {
     this.appendValueInput('NUMBER')
         .appendField(new Blockly.FieldImage("../media/MD/MDLed.png", 19, 19, "*"))
-        .appendField("NeoPixel LED licht")
+        .appendField(Blockly.Msg.ARD_NEOPIXEL)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'LEDNAME')
-        .appendField("Strip met");
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_STRIP);
     this.appendDummyInput()
-        .appendField("Pixels");
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXELS);
     this.setOutput(true, 'MD_HUB_DIGOUT');
     this.setColour(Blockly.Blocks.md_light.HUE);
-    this.setTooltip('Een LED licht welke AAN of UIT kan zijn.');
+    this.setTooltip(Blockly.Msg.ARD_NEOPIXEL_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
   },
   /**
@@ -152,7 +152,7 @@ Blockly.Blocks['mcookie_led_digitalwrite'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.appendValueInput('STATE')
-        .appendField('Zet LED')
+        .appendField(Blockly.Msg.ARD_LEDLEG_SET)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME')
         .setCheck(Blockly.Types.BOOLEAN.checkList);
@@ -218,10 +218,10 @@ Blockly.Blocks['mcookie_neopixel_colourpick_write'] = {
   init: function() {
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.appendDummyInput("")
-        .appendField('Zet Neopixel')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
-        .appendField('pixel')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
         .setCheck(Blockly.Types.NUMBER.checkList)
@@ -231,7 +231,7 @@ Blockly.Blocks['mcookie_neopixel_colourpick_write'] = {
     colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
     
     this.appendDummyInput("")
-        .appendField('op kleur')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOUR)
         .appendField(colour, 'COLOUR');
 
     this.setInputsInline(true);
@@ -297,10 +297,10 @@ Blockly.Blocks['mcookie_neopixel_colourpick_dim_write'] = {
   init: function() {
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.appendDummyInput("")
-        .appendField('Zet Neopixel')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
-        .appendField('pixel')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
         .setCheck(Blockly.Types.NUMBER.checkList)
@@ -310,11 +310,11 @@ Blockly.Blocks['mcookie_neopixel_colourpick_dim_write'] = {
     colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
     
     this.appendDummyInput("")
-        .appendField('op kleur')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOUR)
         .appendField(colour, 'COLOUR');
     this.appendValueInput("BRIGHTNESS")
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField(' helderheid (%)')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS)
 
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -379,7 +379,7 @@ Blockly.Blocks['mcookie_neopixel_write'] = {
   init: function() {
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.appendDummyInput("")
-        .appendField('Zet Neopixel')
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
         .appendField('pixel')
@@ -389,15 +389,15 @@ Blockly.Blocks['mcookie_neopixel_write'] = {
     this.appendValueInput("RED")
         .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField('op kleur (0-255) rood:');
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
     this.appendValueInput("GREEN")
         .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField('groen:');
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
     this.appendValueInput("BLUE")
         .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField('blauw:');
+        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');

@@ -153,7 +153,7 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.appendDummyInput()
-        .appendField('Lees waarde knop')
+        .appendField(Blockly.Msg.ARD_BUTTON_READ)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
@@ -214,33 +214,33 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
 Blockly.Blocks['mcookie_button_input'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Als knop")
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_IF)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
-        .appendField(" geklikt wordt");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_CLICK);
     this.appendStatementInput("CLICKINPUT")
         .setCheck('ARD_BLOCK')
-        .appendField("dan");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_THEN);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("lang geklikt wordt");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_LONGCLICK);
     this.appendStatementInput("LONGPRESSINPUT")
         .setCheck('ARD_BLOCK')
-        .appendField("dan");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_THEN);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ingedrukt wordt");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_PRESSED);
     this.appendStatementInput("PRESSINPUT")
         .setCheck('ARD_BLOCK')
-        .appendField("dan");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_THEN);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldCheckbox("TRUE"), "WAIT_INPUT")
-        .appendField("wacht tot een klik gebeurt");
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_WAIT);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(120);
-    this.setTooltip('Controleer de input ontvangen op de knop, en reageer erop. Deze functie blokkeert je programma niet als je niet aanvinkt dat er moet gewacht worden op een klik. Klikken is drukken en loslaten, lang klikken is drukken en wat wachten voor loslaten, indrukken is zodra de knop ingedrukt is.');
+    this.setTooltip(Blockly.Msg.ARD_BUTTON_INPUT_TIP);
     this.setHelpUrl('');
   },
   /**
