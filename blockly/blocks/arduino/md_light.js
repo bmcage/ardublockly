@@ -27,7 +27,7 @@ Blockly.Blocks['mcookie_led_setup'] = {
         .appendField(Blockly.Msg.ARD_LEDLEG)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME');
-    this.setOutput(true, 'MD_HUB_DIGOUT');
+    this.setOutput(true, 'HUB_DIGOUT');
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.setTooltip(Blockly.Msg.ARD_LEDLEG_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');
@@ -90,7 +90,7 @@ Blockly.Blocks['mcookie_neopixel_setup'] = {
         .appendField(Blockly.Msg.ARD_NEOPIXEL_STRIP);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXELS);
-    this.setOutput(true, 'MD_HUB_DIGOUT');
+    this.setOutput(true, 'HUB_DIGOUT');
     this.setColour(Blockly.Blocks.md_light.HUE);
     this.setTooltip(Blockly.Msg.ARD_NEOPIXEL_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino_Sensor_Series');

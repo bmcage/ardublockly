@@ -61,7 +61,7 @@ Blockly.Blocks['mcookie_servo_setup'] = {
         Blockly.Msg.ARD_MD_SERVOBOT_DEFAULT_NAME, 'Servo'), 'NAMEBOTTOMSERVO')
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_TYPE);
     this.setInputsInline(false);
-    this.setOutput(true, "MD_SERVO");
+    this.setOutput(true, "MD_HUB_PWM");
     this.setColour(Blockly.Blocks.md_actuator.HUE);
     this.setTooltip(Blockly.Msg.ARD_MD_SERVOCON_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Servo');

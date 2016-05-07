@@ -31,7 +31,7 @@ Blockly.Blocks['mcookie_button_setup'] = {
         .appendField(
             new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
            'STATE');
-    this.setOutput(true, 'MD_HUB_DIG');
+    this.setOutput(true, 'HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.setTooltip(Blockly.Msg.ARD_BUTTON_TIP);
     this.setHelpUrl('https://www.arduino.cc/en/Tutorial/Button');
@@ -92,7 +92,7 @@ Blockly.Blocks['mcookie_crashbutton_setup'] = {
         .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_COMPONENT)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
-    this.setOutput(true, 'MD_HUB_DIG');
+    this.setOutput(true, 'HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.setTooltip(Blockly.Msg.ARD_MD_CRASHBUTTON_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Microduino-Crash');
