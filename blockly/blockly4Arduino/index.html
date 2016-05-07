@@ -20,6 +20,7 @@
   <script src="../blocks/variables.js"></script>
   <script src="../blocks/procedures.js"></script>
   <script src="../blocks/component_variable.js"></script>
+  <script src="../blocks/arduino/components.js"></script>
   <script src="../blocks/arduino/declare.js"></script>
   <script src="../blocks/arduino/io.js"></script>
   <script src="../blocks/arduino/io_extra.js"></script>
@@ -40,6 +41,7 @@
   <script src="../blocks/arduino/md_light.js"></script>
   <script src="../generators/arduino.js"></script>
   <script src="../generators/arduino/boards.js"></script>
+  <script src="../generators/arduino/components.js"></script>
   <script src="../generators/arduino/declare.js"></script>
   <script src="../generators/arduino/io.js"></script>
   <script src="../generators/arduino/io_extra.js"></script>
@@ -156,18 +158,6 @@
                   
                 <input type="file" id="load" style="display: none;"/>
                 <!--button class="launch" onclick="runJS()">Run Program</button-->
-              </div>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-md dropdown-toggle ard_setting" type="button" data-toggle="dropdown" id="setMenu">Settings
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Arduino</li>
-                    <li><a href="#" id="action-setUno">Uno</a></li>
-                    <li><a href="#" id="action-setMega">Mega</a></li>
-                    <li class="dropdown-header">Kits</li>
-                    <li><a href="#" id="action-setMDCore32U4">MD-CoreUSB</a></li>
-                    <li><a href="#" id="action-setMDCookieCoreUSB">MCookie-CoreUSB</a></li>
-                  </ul>
               </div>
               </div>
             </td>
@@ -366,6 +356,21 @@
     <block type="infinite_loop"></block>
   </category>
   <sep></sep>
+  <category id="catComponent" name="Componenten">
+    <block type="core_hub_component"></block>
+    <block type="stepper_config_hub">
+      <value name="STEPPER_STEPS">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+      <value name="STEPPER_SPEED">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+  </category>
   <category id="catTone" name="Muziek">
     <block type="io_tone">
       <field name="TONEPIN">0</field>
