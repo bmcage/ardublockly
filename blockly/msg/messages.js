@@ -1312,7 +1312,13 @@ Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TITLE_ELSEIF = Blockly.Msg.ARD_CONTROLS_E
 Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP = 'Add an extra effect time at which statements must be done';
 Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TITLE_ELSE = Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSE;
 Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TOOLTIP = 'Add a block for statements when the effect is finished.';
-
+Blockly.Msg.ARD_COMPONENT_BOARD = 'a specific Arduino Board';
+Blockly.Msg.ARD_COMPONENT_BOARD_TIP = 'Set which Arduino board you work with, and connect components to the pins.';
+Blockly.Msg.ARD_COMPONENT_BOARD_HUB_TIP = 'Set the Arduino board you work with, and to what it connects';
+Blockly.Msg.ARD_PIN_DIGDIG = 'digital pin1 and pin2';
+Blockly.Msg.ARD_PIN_DIGDIG_TIP = 'Component requiring two digital pins, pin1 and pin2';
+Blockly.Msg.ARD_PIN_DIGDIG1 = 'digital pin1#';
+Blockly.Msg.ARD_PIN_DIGDIG2 = 'pin2#';
 
 //GUI specific translations
 Blockly.Msg.UPLOAD_CLICK_1 = 'To Upload your code to Arduino:';

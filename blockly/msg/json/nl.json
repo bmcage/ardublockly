@@ -543,6 +543,13 @@
         "ARD_CONTROLS_EFFECT_MSG_ELSE": "op einde doe",
         "ARD_CONTROLS_EFFECT_ELSEIF_TOOLTIP": "Voeg een extra effect tijd toe om opdrachten bij uit te voeren",
         "ARD_CONTROLS_EFFECT_ELSE_TOOLTIP": "Voeg een blok toe voor als effect gedaan is",
+        "ARD_COMPONENT_BOARD": "een bepaald Arduino Bord",
+        "ARD_COMPONENT_BOARD_TIP": "Defineer welk Arduino bord je gebruikt, en connecteer componenten met de pinnen van de Arduino.",
+        "ARD_COMPONENT_BOARD_HUB_TIP": "Defineer welk Arduino bord je gebruikt, en met wat het geconnecteerd is.",
+        "ARD_PIN_DIGDIG": "digitale pin1 en pin2",
+        "ARD_PIN_DIGDIG_TIP": "Component welke twee digitale pinnen vereist, pin1 en pin2",
+        "ARD_PIN_DIGDIG1": "digitale pin1#",
+        "ARD_PIN_DIGDIG2": "digitale pin2#",
 	
 	"UPLOAD_CLICK_1": "Om jou code op te laden naar de Arduino doe je:",
 	"UPLOAD_CLICK_2": "  1. klik op de Arduino tab",
