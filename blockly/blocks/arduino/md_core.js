@@ -114,7 +114,7 @@ Blockly.Blocks['mcookie_coreusb'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     // Iterate through top level blocks to find if there are other board modules
-    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var blocks = this.workspace.getAllBlocks();
     var otherBoardPresent = false;
     for (var x = 0; x < blocks.length; x++) {
       var func = blocks[x].getBoardName;
@@ -130,7 +130,7 @@ Blockly.Blocks['mcookie_coreusb'] = {
       // Set a warning to select a valid stepper config
       this.setWarningText(Blockly.Msg.ARD_BOARD_WARN.replace('%1', Blockly.Msg.ARD_MD_COOKIEBUTTON_COMPONENT));
     } else {
-      Blockly.Arduino.Boards.changeBoard(Blockly.mainWorkspace, this.getBoardName());
+      Blockly.Arduino.Boards.changeBoard(this.workspace, this.getBoardName());
       this.setWarningText(null);
     }
   }
