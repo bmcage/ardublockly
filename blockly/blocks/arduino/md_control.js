@@ -202,7 +202,7 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('BUTTONNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Button')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Button')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config
@@ -282,7 +282,7 @@ Blockly.Blocks['mcookie_button_input'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('BUTTONNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Button')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Button')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config

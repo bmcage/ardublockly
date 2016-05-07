@@ -200,7 +200,7 @@ Blockly.Blocks['mcookie_led_digitalwrite'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('LEDNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'LedLeg')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedLeg')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config
@@ -279,7 +279,7 @@ Blockly.Blocks['mcookie_neopixel_colourpick_write'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'LedStrip')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config
@@ -361,7 +361,7 @@ Blockly.Blocks['mcookie_neopixel_colourpick_dim_write'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'LedStrip')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config
@@ -444,7 +444,7 @@ Blockly.Blocks['mcookie_neopixel_write'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'LedStrip')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid stepper config

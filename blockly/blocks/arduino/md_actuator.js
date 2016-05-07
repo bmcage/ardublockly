@@ -178,7 +178,7 @@ Blockly.Blocks['mcookie_servo_write'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Servo')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
@@ -245,7 +245,7 @@ Blockly.Blocks['mcookie_servo_read'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Servo')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
@@ -316,7 +316,7 @@ Blockly.Blocks['mcookie_servo_write2'] = {
     if (!this.workspace) { return; }  // Block has been deleted.
 
     var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(currentDropdown, 'Servo')) {
+    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
