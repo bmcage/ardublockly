@@ -367,6 +367,7 @@
           <field name="NUM">1</field>
         </block>
     </block>
+    <block type="servo_config_hub"></block>
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
@@ -439,17 +440,8 @@
     <block type="io_notone"></block>
   </category>
   <category id="catMotors" name="Motors">
-    <block type="servo_write">
-      <value name="SERVO_ANGLE">
-        <block type="math_number">
-          <field name="NUM">90</field>
-        </block>
-      </value>
-    </block>
-    <block type="servo_read"></block>
-    <block type="stepper_config">
-      <field name="STEPPER_PIN1">1</field>
-      <field name="STEPPER_PIN2">2</field>
+    <block type="servo_config_hub"></block>
+    <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
           <field name="NUM">100</field>
@@ -461,6 +453,21 @@
         </block>
       </value>
     </block>
+    <block type="servohub_write">
+      <value name="SERVO_ANGLE">
+        <block type="math_number">
+          <field name="NUM">90</field>
+        </block>
+      </value>
+    </block>
+    <block type="servohub_write2">
+      <value name="SERVO_SPEED">
+        <block type="math_number">
+          <field name="NUM">50</field>
+        </block>
+      </value>
+    </block>
+    <block type="servohub_read"></block>
     <block type="stepper_step">
       <value name="STEPPER_STEPS">
         <block type="math_number">
@@ -513,21 +520,21 @@
         </block>
         <block type="mcookie_servo_type">
         </block>
-        <block type="mcookie_servo_write">
+        <block type="servohub_write">
           <value name="SERVO_ANGLE">
             <block type="math_number">
               <field name="NUM">90</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_servo_write2">
+        <block type="servohub_write2">
           <value name="SERVO_SPEED">
             <block type="math_number">
               <field name="NUM">50</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_servo_read"></block>
+        <block type="servohub_read"></block>
       </category>
       <category id="catMDControl" name="Buttons">
         <block type="mcookie_crashbutton_setup"></block>
