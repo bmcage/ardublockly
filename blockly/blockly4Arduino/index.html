@@ -24,6 +24,7 @@
   <script src="../blocks/arduino/declare.js"></script>
   <script src="../blocks/arduino/io.js"></script>
   <script src="../blocks/arduino/io_extra.js"></script>
+  <script src="../blocks/arduino/light.js"></script>
   <script src="../blocks/arduino/logic.js"></script>
   <script src="../blocks/arduino/map.js"></script>
   <script src="../blocks/arduino/procedures.js"></script>
@@ -45,6 +46,7 @@
   <script src="../generators/arduino/declare.js"></script>
   <script src="../generators/arduino/io.js"></script>
   <script src="../generators/arduino/io_extra.js"></script>
+  <script src="../generators/arduino/light.js"></script>
   <script src="../generators/arduino/lists.js"></script>
   <script src="../generators/arduino/logic.js"></script>
   <script src="../generators/arduino/loops.js"></script>
@@ -358,6 +360,13 @@
   <sep></sep>
   <category id="catComponent" name="Componenten">
     <block type="core_hub_component"></block>
+    <block type="led_config_hub"></block>
+    <block type="neopixel_config_hub">
+      <value name="NUMBER">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+    </block>
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
@@ -370,6 +379,53 @@
         </block>
       </value>
     </block>
+    <block type="led_digitalwrite_onoff"></block>
+    <block type="led_digitalwrite">
+      <value name="STATE">
+        <shadow type="io_highlow"></shadow>
+      </value>
+    </block>
+        <block type="neopixel_colourpick_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+        <block type="neopixel_colourpick_dim_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="BRIGHTNESS">
+            <block type="math_number">
+              <field name="NUM">100</field>
+            </block>
+          </value>
+        </block>
+        <block type="neopixel_write">
+          <value name="LEDPIXEL">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="RED">
+            <block type="math_number">
+              <field name="NUM">255</field>
+            </block>
+          </value>
+          <value name="GREEN">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+          </value>
+          <value name="BLUE">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+          </value>
+        </block>
   </category>
   <category id="catTone" name="Muziek">
     <block type="io_tone">
@@ -486,26 +542,20 @@
         <block type="mcookie_button_input"></block>
       </category>
       <category id="catMDLight" name="Licht">
-        <block type="mcookie_led_setup"></block>
         <block type="mcookie_neopixel_setup">
           <value name="NUMBER">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>
           </value></block>
-        <block type="mcookie_led_digitalwrite">
-          <value name="STATE">
-            <shadow type="io_highlow"></shadow>
-          </value>
-        </block>
-        <block type="mcookie_neopixel_colourpick_write">
+        <block type="neopixel_colourpick_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_neopixel_colourpick_dim_write">
+        <block type="neopixel_colourpick_dim_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
@@ -517,7 +567,7 @@
             </block>
           </value>
         </block>
-        <block type="mcookie_neopixel_write">
+        <block type="neopixel_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
