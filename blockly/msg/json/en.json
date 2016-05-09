@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-05-09 18:31:51.419802",
+		"lastupdated": "2016-05-09 22:19:39.714467",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -573,6 +573,7 @@
 	"ARD_PWMOUTPUT_DEFAULT_NAME": "PWMOutput1",
 	"ARD_PWMOUTPUT_WRITE": "Write to PWM output",
 	"ARD_PWMOUTPUT_COMPONENT": "PWM Output",
+	"ARD_OUTPUT_WRITE_TO": "value",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_1": "At the start of an effect, do some statements",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_2": "At the start of an effect, do some statements, and at the end of the effect too",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_3": "At the start of an effect, do some statements, if the effect time becomes larger than the given time, do the next statements.",

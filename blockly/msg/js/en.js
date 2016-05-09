@@ -172,6 +172,7 @@ Blockly.Msg.ARD_NOTONE = "Turn off tone on pin #";
 Blockly.Msg.ARD_NOTONE_PIN = "No tone PIN#";
 Blockly.Msg.ARD_NOTONE_PIN_TIP = "Stop generating a tone on a pin";
 Blockly.Msg.ARD_NOTONE_TIP = "Turns the tone off on the selected pin";
+Blockly.Msg.ARD_OUTPUT_WRITE_TO = "value";
 Blockly.Msg.ARD_PIN_AN = "analog pin";
 Blockly.Msg.ARD_PIN_AN_TIP = "One of the analog pins of the Arduino Board";
 Blockly.Msg.ARD_PIN_DIG = "digital pin";
