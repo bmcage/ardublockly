@@ -110,6 +110,8 @@
             <td class="tabmin">&nbsp;</td-->
             <td id="tab_arduino" class="taboff" onclick="tabClick('arduino')">Arduino</td>
             <td class="tabmin">&nbsp;</td>
+            <td id="tab_codebender" class="taboff" onclick="tabClick('codebender')">Upload</td>
+            <td class="tabmin">&nbsp;</td>
             <td id="tab_xml" class="taboff" onclick="tabClick('xml')">XML</td>
             <td class="tabmax">
               <div class="dropdown">
@@ -172,15 +174,13 @@
     <tr>
       <td height="99%" id="content_area"></td>
     </tr>
-    <tr id="codebender_row" style="display: none;">
-      <td height="400px" width="800px">
-	<div id="content_codebender" class="content"><iframe id="codebender_iframe" style="height: 380px; width: 800px; margin: 10px 0 10px" allowTransparency="true" src="https://codebender.cc/sketch:282881" frameborder="0"></iframe></div>
-    </tr>
   </table>
   <div id="bottom_link" style="position:absolute;bottom:8px;left:8px;font-size:8px;height:16px;z-index:1;width:250px;"><a href="https://github.com/ingegno/Blockly4Arduino/blob/master/README.md">Info</a> | <a href="index.html">Nederlands</a></div>
   <div id="content_blocks" class="content"></div>
   <textarea id="content_arduino" class="content" readonly wrap="off"></textarea>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
+
+  <div id="content_codebender" class="content" style="visibility:hidden"><iframe id="codebender_iframe" style="margin: 10px 0 10px; width:100%; height:100%" allowTransparency="true" src="https://codebender.cc/sketch:282881" frameborder="0"></iframe></div>
 
   <xml id="toolbox" style="display: none">
   <category id="catInputOutput" name="In/Output">
