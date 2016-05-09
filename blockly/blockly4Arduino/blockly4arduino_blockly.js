@@ -14,7 +14,7 @@ var Blockly4Arduino = Blockly4Arduino || {};
  * List of tab names.
  * @private
  */
-var TABS_ = ['blocks', 'arduino', 'xml'];
+var TABS_ = ['blocks', 'arduino', 'codebender', 'xml'];
 
 var selected = 'blocks';
 
@@ -53,8 +53,6 @@ function tabClick(clickedName) {
     document.getElementById('tab_' + name).className = 'taboff';
     document.getElementById('content_' + name).style.visibility = 'hidden';
   }
-  var codebender_row = document.getElementById('codebender_row').style;
-  codebender_row.display = 'none';
   document.getElementById('content_area').height="99%";
 
  // Select the active tab.
@@ -64,14 +62,6 @@ function tabClick(clickedName) {
   document.getElementById('content_' + clickedName).style.visibility =
       'visible';
   renderContent();
-  if (clickedName == 'arduino') {
-    document.getElementById('content_codebender').style.visibility =
-      'visible';
-    //document.getElementById('content_area').height="30%";
-    document.getElementById('codebender_row').height="400px";
-    var codebender_row = document.getElementById('codebender_row').style;
-    codebender_row.display = 'table-row';
-  }
   if (clickedName == 'blocks') {
     Blockly.mainWorkspace.setVisible(true);
   }
@@ -105,6 +95,8 @@ function renderContent() {
     var arduinoTextarea = document.getElementById('content_arduino');
     arduinoTextarea.value = Blockly.Arduino.workspaceToCode(Blockly.mainWorkspace);
     arduinoTextarea.focus();
+  } else if (content.id == 'content_codebender') {
+    content.width = '100%';
   }
 }
 
