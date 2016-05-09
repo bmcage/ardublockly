@@ -48,10 +48,10 @@ Blockly.Arduino['mcookie_coreusb'] = function(block) {
  */
 Blockly.Arduino['mcookie_hub'] = function(block) {
   
-  function parseInput(block, name, connector) {
+  function parseInput(block, name, connectors) {
     var targetBlock = block.getInputTargetBlock(name);
     if (targetBlock) {
-      targetBlock.setHubConnector(connector);
+      targetBlock.setHubConnector(connectors);
     }
     var code = Blockly.Arduino.blockToCode(targetBlock);
     if (!goog.isString(code)) {
@@ -65,11 +65,22 @@ Blockly.Arduino['mcookie_hub'] = function(block) {
   }
   
   var code = '';
-  var blockinputs = ["HUB01-IIC", "HUB02-IIC", "HUB03-0/1", "HUB04-2/3", "HUB05-4/5",
-                 "HUB06-6/7", "HUB07-8/9", "HUB08-10/11", "HUB09-12/13",
-                 "HUB10-A6/A7", "HUB11-A2/A3", "HUB12-A0/A1"];
+  var blockinputs = [
+          ["HUB01-IIC", ['SDA', 'SCL']],
+          ["HUB02-IIC", ['SDA', 'SCL']],
+          ["HUB03-0/1", ['0', '1']],
+          ["HUB04-2/3", ['2', '3']],
+          ["HUB05-4/5", ['4', '5']],
+          ["HUB06-6/7", ['6', '7']],
+          ["HUB07-8/9", ['8', '9']],
+          ["HUB08-10/11", ['10', '11']],
+          ["HUB09-12/13", ['12', '13']],
+          ["HUB10-A6/A7", ['A6', 'A7']],
+          ["HUB11-A2/A3", ['A2', 'A3']],
+          ["HUB12-A0/A1", ['A0', 'A1']]
+                    ];
   for (var nr in blockinputs) {
-    parseInput(block, blockinputs[nr], parseInt(nr,10)+1);
+    parseInput(block, blockinputs[nr][0], blockinputs[nr][1]);
   }
   
   return '';
@@ -97,7 +108,7 @@ Blockly.Arduino['mcookie_audio_setup'] = function(block) {
       block, 'VOLUME', Blockly.Arduino.ORDER_ATOMIC) || '10';
   var mode = block.getFieldValue('MODE');
   var audio_setup_code = 
-' AUDIO.init(DEVICE_TF, ' + mode + ', ' + volume + ');\n' +
+'AUDIO.init(DEVICE_TF, ' + mode + ', ' + volume + ');\n' +
 '  AUDIO.choose(1);\n' +
 '  AUDIO.pause();\n';
   

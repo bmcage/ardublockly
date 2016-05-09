@@ -200,7 +200,7 @@ Blockly.Arduino['controls_effect'] = function(block) {
   var duration = Blockly.Arduino.valueToCode(
       block, 'EFFECTDURATION', Blockly.Arduino.ORDER_ATOMIC) || '1000';
   var effectnr = 0;
-  while (Blockly.Arduino.hasDeclaration('ard_effect' + effectnr.toString())) {
+  while (!(Blockly.Arduino.userFunctions_['ard_effect' + effectnr.toString()] === undefined)) {
     effectnr += 1;
   }
   var seffectnr = effectnr.toString();
@@ -266,8 +266,8 @@ Blockly.Arduino['controls_effect'] = function(block) {
     declare_effect_function += '  }\n'
   }
   declare_effect_function += '}\n';
-
-  Blockly.Arduino.addDeclaration('ard_effect' + seffectnr, declare_effect_branch + declare_effect_function);
     
+  var code = Blockly.Arduino.scrub_(block, declare_effect_branch + declare_effect_function);
+  Blockly.Arduino.userFunctions_['ard_effect' + seffectnr] = code;
   return '';
 };

@@ -26,7 +26,7 @@ Blockly.Blocks['md_modules'] = {
    */
   init: function() {
     this.appendDummyInput()
-        .appendField("Microduino blokken: ");
+        .appendField(Blockly.Msg.ARD_MD_BLOCKS);
     this.appendStatementInput("MD_BLOCKS")
         .setCheck('MD_BLOCK');
     this.setInputsInline(false);
@@ -67,16 +67,9 @@ Blockly.Blocks['md_modules'] = {
         }
       }
     }
-    
-    // Get the Board instance from this block
-    var board = Blockly.Arduino.Boards.selected;
 
-    if (!(board['name'] == 'Microduino CoreUSB 32U4' || 
-        board['name'] == 'MCookie-CoreUSB')) {
-      //this.setWarningText('You need to select board MD-CoreUSB to use MD components', 'md_board');
-      this.setWarningText('Je moet chip MD-CoreUSB kiezen in de settings om Microduino componenten te gebruiken.', 'md_modules');
-    } else if (blockInstanceTwicePresent) {
-      this.setWarningText('Je hebt twee keer dit blok staan. Dat is 1 keer teveel!', 'md_modules');
+    if (blockInstanceTwicePresent) {
+      this.setWarningText(Blockly.Msg.ARD_BLOCKS, 'md_modules');
     } else {
       this.setWarningText(null, 'md_modules');
     }
@@ -88,12 +81,20 @@ Blockly.Blocks['mcookie_coreusb'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDCoreUsb.png", 19, 19, "*"))
-        .appendField("Brein (CoreUSB)");
+        .appendField(Blockly.Msg.ARD_MD_COREBLOCK);
     this.setPreviousStatement(true, 'MD_BLOCK');
     this.setNextStatement(true, 'MD_BLOCK');
     this.setColour('#F20D33');
-    this.setTooltip('Het Brein van je constructie, de MCookie-CoreUSB');
+    this.setTooltip(Blockly.Msg.ARD_MD_COREBLOCK_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-CoreUSB');
+  },
+  /**
+   * Returns the Arduino Board name that is required for this block.
+   * @return {!string} Board name.
+   * @this Blockly.Block
+   */
+  getBoardName: function() {
+    return 'mdcookiecoreusb';
   },
   /**
    * Returns the MD block name.
@@ -102,6 +103,36 @@ Blockly.Blocks['mcookie_coreusb'] = {
    */
   getMDBlockName: function() {
     return 'mcookie_coreusb';
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks if the board selected corresponds to the what it should be
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function() {
+    if (!this.workspace) { return; }  // Block has been deleted.
+
+    // Iterate through top level blocks to find if there are other board modules
+    var blocks = this.workspace.getAllBlocks();
+    var otherBoardPresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getBoardName;
+      if (func) {
+        var BoardName = func.call(blocks[x]);
+        if (BoardName != this.getBoardName()) {
+          otherBoardPresent = true;
+        }
+      }
+    }
+    
+    if (otherBoardPresent) {
+      // Set a warning to select a valid stepper config
+      this.setWarningText(Blockly.Msg.ARD_BOARD_WARN.replace('%1', Blockly.Msg.ARD_MD_COOKIEBUTTON_COMPONENT));
+    } else {
+      Blockly.Arduino.Boards.changeBoard(this.workspace, this.getBoardName());
+      this.setWarningText(null);
+    }
   }
 };
 
@@ -110,60 +141,60 @@ Blockly.Blocks['mcookie_hub'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDSensorHub.png", 19, 19, "*"))
-        .appendField("De kabelhouder (Sensor Hub)");
+        .appendField(Blockly.Msg.ARD_MD_HUBBLOCK);
     this.appendValueInput("HUB01-IIC")
         .setCheck("MD_IIC")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("verbonden met ingang:   IIC"); //1
+        .appendField(Blockly.Msg.ARD_MD_HUBBLOCK01); //1
     this.appendValueInput("HUB02-IIC")
         .setCheck("MD_IIC")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("IIC (2)"); //2
     this.appendValueInput("HUB03-0/1")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("0/ 1"); //3
     this.appendValueInput("HUB04-2/3")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("2/ 3"); //4
     this.appendValueInput("HUB05-4/5")
-        .setCheck(["MD_HUB_DIG","MD_SERVO", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG","HUB_PWM", "HUB_DIGOUT", "MD_HUB_PWM"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("4/ 5"); //5
     this.appendValueInput("HUB06-6/7")
-        .setCheck(["MD_HUB_DIG","MD_SERVO", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG","HUB_PWM", "HUB_DIGOUT", "MD_HUB_PWM"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("6/ 7"); //6
     this.appendValueInput("HUB07-8/9")
-        .setCheck(["MD_HUB_DIG","MD_SERVO", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG","HUB_PWM", "HUB_DIGOUT", "MD_HUB_PWM"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("8/ 9"); //7
     this.appendValueInput("HUB08-10/11")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("10/11"); //8
     this.appendValueInput("HUB09-12/13")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_DIGOUT"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("12/13"); //9
     this.appendValueInput("HUB10-A6/A7")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_ANA"])
+        .setCheck(["HUB_DIG", "MD_HUB_ANA"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("A6/A7"); //10
     this.appendValueInput("HUB11-A2/A3")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_ANA"])
+        .setCheck(["HUB_DIG", "MD_HUB_ANA"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("A2/A3"); //11
     this.appendValueInput("HUB12-A0/A1")
-        .setCheck(["MD_HUB_DIG", "MD_HUB_ANA"])
+        .setCheck(["HUB_DIG", "MD_HUB_ANA"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("A0/A1"); //12
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
     this.setColour('#47EBCF');
-    this.setTooltip('De Hub laat je toe 12 sensoren te koppelen aan je Microduino');
-    this.setHelpUrl('http://www.example.com/');
+    this.setTooltip(Blockly.Msg.ARD_MD_HUBBLOCK_TIP);
+    this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Hub');
   }
 };
 
@@ -172,11 +203,11 @@ Blockly.Blocks['mcookie_power'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDBatteryModule.png", 19, 19, "*"))
-        .appendField("AAA Batterij module");
+        .appendField(Blockly.Msg.ARD_MD_AAABLOCK);
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
     this.setColour('#47EBCF');
-    this.setTooltip('De batterij Microduino, ');
+    this.setTooltip(Blockly.Msg.ARD_MD_AAABLOCK_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-BM_shield');
   },
   /**
@@ -194,12 +225,12 @@ Blockly.Blocks['mcookie_audio_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
-        .appendField("Geluidsmodules (Audio). Mode:")
+        .appendField(Blockly.Msg.ARD_MD_AUDIOBLOCK)
         .appendField(new Blockly.FieldDropdown([
-	    ["Herhaal alles",      "MODE_ALL"], //Loop all the time
-	    ["Speel alles 1 keer", "MODE_FOL"], //Loop once
-	    ["Herhaal 1 track",    "MODE_ONE"], 
-	    ["Speel 1 track",      "MODE_ONE_STOP"]]), "MODE")
+	    [Blockly.Msg.ARD_MD_AUDIO_REP1, "MODE_ALL"], //Loop all the time
+	    [Blockly.Msg.ARD_MD_AUDIO_REP2, "MODE_FOL"], //Loop once
+	    [Blockly.Msg.ARD_MD_AUDIO_REP3, "MODE_ONE"], 
+	    [Blockly.Msg.ARD_MD_AUDIO_REP4, "MODE_ONE_STOP"]]), "MODE")
         .appendField("Volume:");
     this.appendValueInput('VOLUME')
         .setCheck(Blockly.Types.NUMBER.checkList);
@@ -207,7 +238,7 @@ Blockly.Blocks['mcookie_audio_setup'] = {
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
     this.setColour('#D9D926');
-    this.setTooltip('Audio Functie Module, kies een mode en een volume');
+    this.setTooltip(Blockly.Msg.ARD_MD_AUDIOBLOCK_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Audio');
   },
   /**
@@ -249,11 +280,11 @@ Blockly.Blocks['mcookie_audio_setup'] = {
     }
 
     if (!CoreInstancePresent) {
-      this.setWarningText('Een Brein (CoreUSB) module moet toegevoegd worden aan je blokken', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_COREWARN, 'mcookie_audio_setup');
     } else if (!BMInstancePresent) {
-      this.setWarningText('Een AAA Batterij module moet toegevoegd worden aan je blokken als je met geluid werkt', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_AAASOUNDWARN, 'mcookie_audio_setup');
     } else if (!amplifierInstancePresent) {
-      this.setWarningText('Een Luidspreker module (Amplifier) moet toegevoegd worden aan je blokken', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_AMPWARN, 'mcookie_audio_setup');
     } else {
       this.setWarningText(null, 'mcookie_audio_setup');
     }
@@ -265,11 +296,11 @@ Blockly.Blocks['mcookie_audio_amplifier'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/MD/MDAudioSpeaker.png", 19, 19, "*"))
-        .appendField("Luidspreker (Amplifier Module)");
+        .appendField(Blockly.Msg.ARD_MD_AMPBLOCK);
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
     this.setColour('#47EBCF');
-    this.setTooltip('Amplifier module, koppel de luidspreker aan deze module om geluid te horen.');
+    this.setTooltip(Blockly.Msg.ARD_MD_AMPBLOCK_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/MCookie-Amplifier');
   },
   /**
@@ -311,11 +342,11 @@ Blockly.Blocks['mcookie_audio_amplifier'] = {
     }
 
     if (!CoreInstancePresent) {
-      this.setWarningText('Een Brein (CoreUSB) module moet toegevoegd worden aan je blokken', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_COREWARN, 'mcookie_audio_setup');
     } else if (!audioInstancePresent) {
-      this.setWarningText('Een Audio module moet toegevoegd worden aan je blokken om met de luidspreker te werken', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_AUDIOAMPWARN, 'mcookie_audio_setup');
     } else if (!BMInstancePresent) {
-      this.setWarningText('Een AAA Batterij module moet toegevoegd worden aan je blokken als je met geluid werkt', 'mcookie_audio_setup');
+      this.setWarningText(Blockly.Msg.ARD_MD_AAASOUNDWARN, 'mcookie_audio_setup');
     } else {
       this.setWarningText(null, 'mcookie_audio_setup');
     }

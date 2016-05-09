@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Blockly4Arduino: Blockly for Arduino and Genuino</title>
-
+  <link rel="shortcut icon" href="favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
   <script src="../blockly_compressed.js"></script>
   <script src="../blocks_compressed.js"></script>
@@ -19,9 +19,13 @@
   <script src="../blocks/colour.js"></script>
   <script src="../blocks/variables.js"></script>
   <script src="../blocks/procedures.js"></script>
+  <script src="../blocks/component_variable.js"></script>
+  <script src="../blocks/arduino/components.js"></script>
   <script src="../blocks/arduino/declare.js"></script>
   <script src="../blocks/arduino/io.js"></script>
   <script src="../blocks/arduino/io_extra.js"></script>
+  <script src="../blocks/arduino/light.js"></script>
+  <script src="../blocks/arduino/logic.js"></script>
   <script src="../blocks/arduino/map.js"></script>
   <script src="../blocks/arduino/procedures.js"></script>
   <script src="../blocks/arduino/serial.js"></script>
@@ -38,9 +42,11 @@
   <script src="../blocks/arduino/md_light.js"></script>
   <script src="../generators/arduino.js"></script>
   <script src="../generators/arduino/boards.js"></script>
+  <script src="../generators/arduino/components.js"></script>
   <script src="../generators/arduino/declare.js"></script>
   <script src="../generators/arduino/io.js"></script>
   <script src="../generators/arduino/io_extra.js"></script>
+  <script src="../generators/arduino/light.js"></script>
   <script src="../generators/arduino/lists.js"></script>
   <script src="../generators/arduino/logic.js"></script>
   <script src="../generators/arduino/loops.js"></script>
@@ -83,7 +89,7 @@
       <td>
                     <div class="header" style="width:100%;background-color:#f9f9f9;">
                         <!--Start Logo-->
-                        <div class="logo"> <a href="http://ingegno.be"><img src="http://ingegno.be/wp-content/themes/ingegno/images/logo.jpg" alt="Ingegno" width="800px" /></a></div>
+                        <div class="logo"> <a href="http://ingegno.be"><img src="../media/logotop.png" alt="Ingegno" width="800px" /></a></div>
                         <!--End Logo-->
                     </div>
       </td>
@@ -154,19 +160,6 @@
                 
                 <input type="file" id="load" style="display: none;"/>
                 <!--button class="launch" onclick="runJS()">Run Program</button-->
-              </div>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-md dropdown-toggle ard_setting" type="button" data-toggle="dropdown" id="setMenu">Settings
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-header">Arduino</li>
-                    <li><a href="#" id="action-setUno">Uno</a></li>
-                    <li><a href="#" id="action-setMega">Mega</a></li>
-                    <li class="dropdown-header">Kits</li>
-                    <li><a href="#" id="action-setMDCore32U4">MD-CoreUSB</a></li>
-                    <li><a href="#" id="action-setMDCookieCoreUSB">MCookie-CoreUSB</a></li>
-CoreUSB</a></li>
-                  </ul>
               </div>
               </div>
             </td>
@@ -365,6 +358,76 @@ CoreUSB</a></li>
     <block type="infinite_loop"></block>
   </category>
   <sep></sep>
+  <category id="catComponent" name="Components">
+    <block type="core_hub_component"></block>
+    <block type="led_config_hub"></block>
+    <block type="neopixel_config_hub">
+      <value name="NUMBER">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+    </block>
+    <block type="servo_config_hub"></block>
+    <block type="stepper_config_hub">
+      <value name="STEPPER_STEPS">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+      <value name="STEPPER_SPEED">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="led_digitalwrite_onoff"></block>
+    <block type="led_digitalwrite">
+      <value name="STATE">
+        <shadow type="io_highlow"></shadow>
+      </value>
+    </block>
+    <block type="neopixel_colourpick_write">
+      <value name="LEDPIXEL">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="neopixel_colourpick_dim_write">
+      <value name="LEDPIXEL">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="BRIGHTNESS">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="neopixel_write">
+      <value name="LEDPIXEL">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="RED">
+        <block type="math_number">
+          <field name="NUM">255</field>
+        </block>
+      </value>
+      <value name="GREEN">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="BLUE">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+    </block>
+  </category>
   <category id="catTone" name="Music">
     <block type="io_tone">
       <field name="TONEPIN">0</field>
@@ -377,17 +440,8 @@ CoreUSB</a></li>
     <block type="io_notone"></block>
   </category>
   <category id="catMotors" name="Motors">
-    <block type="servo_write">
-      <value name="SERVO_ANGLE">
-        <block type="math_number">
-          <field name="NUM">90</field>
-        </block>
-      </value>
-    </block>
-    <block type="servo_read"></block>
-    <block type="stepper_config">
-      <field name="STEPPER_PIN1">1</field>
-      <field name="STEPPER_PIN2">2</field>
+    <block type="servo_config_hub"></block>
+    <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
           <field name="NUM">100</field>
@@ -399,6 +453,21 @@ CoreUSB</a></li>
         </block>
       </value>
     </block>
+    <block type="servohub_write">
+      <value name="SERVO_ANGLE">
+        <block type="math_number">
+          <field name="NUM">90</field>
+        </block>
+      </value>
+    </block>
+    <block type="servohub_write2">
+      <value name="SERVO_SPEED">
+        <block type="math_number">
+          <field name="NUM">50</field>
+        </block>
+      </value>
+    </block>
+    <block type="servohub_read"></block>
     <block type="stepper_step">
       <value name="STEPPER_STEPS">
         <block type="math_number">
@@ -451,21 +520,21 @@ CoreUSB</a></li>
         </block>
         <block type="mcookie_servo_type">
         </block>
-        <block type="mcookie_servo_write">
+        <block type="servohub_write">
           <value name="SERVO_ANGLE">
             <block type="math_number">
               <field name="NUM">90</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_servo_write2">
+        <block type="servohub_write2">
           <value name="SERVO_SPEED">
             <block type="math_number">
               <field name="NUM">50</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_servo_read"></block>
+        <block type="servohub_read"></block>
       </category>
       <category id="catMDControl" name="Buttons">
         <block type="mcookie_crashbutton_setup"></block>
@@ -474,26 +543,15 @@ CoreUSB</a></li>
         <block type="mcookie_button_input"></block>
       </category>
       <category id="catMDLight" name="Light">
-        <block type="mcookie_led_setup">
-          <value name="NUMBER">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value></block>
         <block type="mcookie_neopixel_setup"></block>
-        <block type="mcookie_led_digitalwrite">
-          <value name="STATE">
-            <shadow type="io_highlow"></shadow>
-          </value>
-        </block>
-        <block type="mcookie_neopixel_colourpick_write">
+        <block type="neopixel_colourpick_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
             </block>
           </value>
         </block>
-        <block type="mcookie_neopixel_colourpick_dim_write">
+        <block type="neopixel_colourpick_dim_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
@@ -505,7 +563,7 @@ CoreUSB</a></li>
             </block>
           </value>
         </block>
-        <block type="mcookie_neopixel_write">
+        <block type="neopixel_write">
           <value name="LEDPIXEL">
             <block type="math_number">
               <field name="NUM">1</field>
