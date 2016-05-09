@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-05-08 15:00:18.341377",
+		"lastupdated": "2016-05-09 13:18:36.938707",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -552,6 +552,16 @@
 	"ARD_BUTTON_INPUT_PRESSED": "is being pressed",
 	"ARD_BUTTON_INPUT_WAIT": "wait for a click to happen",
 	"ARD_BUTTON_INPUT_TIP": "Check the input received on a button, and react to it. This function does not block your program if you do not check the checkbox to wait for a click. A click is a press and a release of the button, a long press a click and holding long time before you release, press is active as soon as the button is pressed down.",
+	"ARD_ANASENSOR": "Analog Sensor",
+	"ARD_ANASENSOR_TIP": "Connect an analog sensor to an analog pin, so as to read its value. On an Arduino UNO a value between 0 and 1024 is returned, corresponding to a measured value between 0 and 5V. Eg.: an LDR sensor, a potmeter, ...",
+	"ARD_ANASENSOR_DEFAULT_NAME": "AnaSensor1",
+	"ARD_ANASENSOR_READ": "Read analog sensor",
+	"ARD_ANASENSOR_COMPONENT": "Analog Sensor",
+	"ARD_DIGINPUT": "Digital input",
+	"ARD_DIGINPUT_TIP": "Connect a digital input to a digital pin, so as to read its value. The digital state can then be read, corresponding to 0V or 5V on the pin for an Arduino UNO.",
+	"ARD_DIGINPUT_DEFAULT_NAME": "DigiInput1",
+	"ARD_DIGINPUT_READ": "Read digital input",
+	"ARD_DIGINPUT_COMPONENT": "Digital Input",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_1": "At the start of an effect, do some statements",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_2": "At the start of an effect, do some statements, and at the end of the effect too",
 	"ARD_CONTROLS_EFFECT_TOOLTIP_3": "At the start of an effect, do some statements, if the effect time becomes larger than the given time, do the next statements.",
