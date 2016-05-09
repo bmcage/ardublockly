@@ -196,7 +196,7 @@
       </value>
     </block>
     <block type="io_digitalread"></block>
-    <block type="io_digitalread_var"></block>
+    <!--block type="io_digitalread_var"></block-->
     <block type="io_builtin_led">
       <value name="STATE">
         <block type="io_highlow"></block>
@@ -205,7 +205,7 @@
     <block type="io_analogwrite"></block>
     <block type="io_analogwrite_var"></block>
     <block type="io_analogread"></block>
-    <block type="io_analogread_var"></block>
+    <!--block type="io_analogread_var"></block-->
     <block type="io_highlow"></block>
     <block type="io_pulsein">
       <value name="PULSETYPE">
@@ -233,6 +233,10 @@
         <block type="math_number"></block>
       </value>
     </block>
+    <block type="analogsensor_config_hub"></block>
+    <block type="analogsensor_read"></block>
+    <block type="digitalinput_config_hub"></block>
+    <block type="digitalinput_read"></block>
   </category>
   <category id="catFunctions" name="Functies" custom="PROCEDURE"></category>
   <category id="catLoops" name="Herhalen">
@@ -367,6 +371,8 @@
           <field name="NUM">1</field>
         </block>
     </block>
+    <block type="analogsensor_read"></block>
+    <block type="digitalinput_config_hub"></block>
     <block type="servo_config_hub"></block>
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
