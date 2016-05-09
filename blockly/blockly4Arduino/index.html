@@ -184,28 +184,28 @@
 
   <xml id="toolbox" style="display: none">
   <category id="catInputOutput" name="In/Output">
-    <block type="io_pin_dig"></block>
+    <!--block type="io_pin_dig"></block>
     <block type="io_pin_an"></block>
-    <block type="io_pin_pwm"></block>
+    <block type="io_pin_pwm"></block-->
     <block type="io_digitalwrite">
       <value name="STATE">
         <block type="io_highlow"></block>
       </value>
     </block>
-    <block type="io_digitalwrite_var">
+    <!--block type="io_digitalwrite_var">
       <value name="STATE">
         <block type="io_highlow"></block>
       </value>
-    </block>
+    </block-->
     <block type="io_digitalread"></block>
     <!--block type="io_digitalread_var"></block-->
-    <block type="io_builtin_led">
+    <!--block type="io_builtin_led">
       <value name="STATE">
         <block type="io_highlow"></block>
       </value>
-    </block>
+    </block-->
     <block type="io_analogwrite"></block>
-    <block type="io_analogwrite_var"></block>
+    <!--block type="io_analogwrite_var"></block-->
     <block type="io_analogread"></block>
     <!--block type="io_analogread_var"></block-->
     <block type="io_highlow"></block>
@@ -241,6 +241,10 @@
     <block type="digitalinput_read"></block>
     <block type="button_setup"></block>
     <block type="button_input"></block>
+    <block type="digitaloutput_config_hub"></block>
+    <block type="digitaloutput_write"></block>
+    <block type="pwmoutput_config_hub"></block>
+    <block type="pwmoutput_write"></block>
   </category>
   <category id="catFunctions" name="Functies" custom="PROCEDURE"></category>
   <category id="catLoops" name="Herhalen">
@@ -378,6 +382,8 @@
     <block type="analogsensor_config_hub"></block>
     <block type="digitalinput_config_hub"></block>
     <block type="button_setup"></block>
+    <block type="digitaloutput_config_hub"></block>
+    <block type="pwmoutput_config_hub"></block>
     <block type="servo_config_hub"></block>
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
