@@ -20,6 +20,7 @@
   <script src="../blocks/variables.js"></script>
   <script src="../blocks/procedures.js"></script>
   <script src="../blocks/component_variable.js"></script>
+  <script src="../blocks/arduino/button.js"></script>
   <script src="../blocks/arduino/components.js"></script>
   <script src="../blocks/arduino/declare.js"></script>
   <script src="../blocks/arduino/io.js"></script>
@@ -42,6 +43,7 @@
   <script src="../blocks/arduino/md_light.js"></script>
   <script src="../generators/arduino.js"></script>
   <script src="../generators/arduino/boards.js"></script>
+  <script src="../generators/arduino/button.js"></script>
   <script src="../generators/arduino/components.js"></script>
   <script src="../generators/arduino/declare.js"></script>
   <script src="../generators/arduino/io.js"></script>
@@ -196,7 +198,7 @@
       </value>
     </block>
     <block type="io_digitalread"></block>
-    <block type="io_digitalread_var"></block>
+    <!--block type="io_digitalread_var"></block-->
     <block type="io_builtin_led">
       <value name="STATE">
         <block type="io_highlow"></block>
@@ -205,7 +207,7 @@
     <block type="io_analogwrite"></block>
     <block type="io_analogwrite_var"></block>
     <block type="io_analogread"></block>
-    <block type="io_analogread_var"></block>
+    <!--block type="io_analogread_var"></block-->
     <block type="io_highlow"></block>
     <block type="io_pulsein">
       <value name="PULSETYPE">
@@ -233,6 +235,12 @@
         <block type="math_number"></block>
       </value>
     </block>
+    <block type="analogsensor_config_hub"></block>
+    <block type="analogsensor_read"></block>
+    <block type="digitalinput_config_hub"></block>
+    <block type="digitalinput_read"></block>
+    <block type="button_setup"></block>
+    <block type="button_input"></block>
   </category>
   <category id="catFunctions" name="Functions" custom="PROCEDURE"></category>
   <category id="catLoops" name="Repeat">
@@ -367,6 +375,9 @@
           <field name="NUM">1</field>
         </block>
     </block>
+    <block type="analogsensor_config_hub"></block>
+    <block type="digitalinput_config_hub"></block>
+    <block type="button_setup"></block>
     <block type="servo_config_hub"></block>
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
@@ -427,6 +438,7 @@
         </block>
       </value>
     </block>
+    <block type="button_input"></block>
   </category>
   <category id="catTone" name="Music">
     <block type="io_tone">
@@ -538,9 +550,8 @@
       </category>
       <category id="catMDControl" name="Buttons">
         <block type="mcookie_crashbutton_setup"></block>
-        <block type="mcookie_button_setup"></block>
         <block type="mcookie_button_digitalread"></block>
-        <block type="mcookie_button_input"></block>
+        <block type="button_input"></block>
       </category>
       <category id="catMDLight" name="Light">
         <block type="mcookie_neopixel_setup"></block>
