@@ -84,23 +84,7 @@ Blockly4Arduino.designJsInit = function() {
  * The be executed on document ready.
  */
 Blockly4Arduino.materializeJsInit = function() {
-  // Drop down menus
-  $('.dropdown-button').dropdown({hover: false});
-  // Overlay content panels using modals (android dialogs)
-  /*
-  $('.modal-trigger').leanModal({
-      dismissible: true,
-      opacity: .5,
-      in_duration: 200,
-      out_duration: 250
-   });
-   */
-  // Pop-up tool tips
-  $('.tooltipped').tooltip({'delay': 50});
-  // Select menus
-  /*
-  $('select').material_select();
-  */
+
 };
 
 /** Binds the event listeners relevant to the page design. */
@@ -109,8 +93,8 @@ Blockly4Arduino.bindDesignEventListeners = function() {
   window.addEventListener(
       'resize', Blockly4Arduino.resizeBlocklyWorkspace, false);
   // Display/hide the XML load button when the XML collapsible header is clicked
-  document.getElementById('xml_collapsible_header').addEventListener(
-      'click', Blockly4Arduino.buttonLoadXmlCodeDisplay);
+  //document.getElementById('xml_collapsible_header').addEventListener(
+  //    'click', Blockly4Arduino.buttonLoadXmlCodeDisplay);
 };
 
 
@@ -220,6 +204,7 @@ Blockly4Arduino.resizeBlocklyWorkspace = function() {
  */
 Blockly4Arduino.tabClick = function(clickedName) {
   // If the XML tab was open, save and render the content.
+
   if (document.getElementById('tab_xml').className == 'tabon') {
     var xmlTextarea = document.getElementById('content_xml');
     var xmlText = xmlTextarea.value;
@@ -238,7 +223,7 @@ Blockly4Arduino.tabClick = function(clickedName) {
       Blockly.mainWorkspace.clear();
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
     }
-  }
+  } 
 
   if (document.getElementById('tab_blocks').className == 'tabon') {
     Blockly.mainWorkspace.setVisible(false);
@@ -260,6 +245,8 @@ Blockly4Arduino.tabClick = function(clickedName) {
   Blockly4Arduino.renderContent();
   if (clickedName == 'blocks') {
     Blockly.mainWorkspace.setVisible(true);
+    document.getElementById('content_ard_collapse').style.display =
+      'block';
   }
   Blockly.fireUiEvent(window, 'resize');
 }
@@ -298,7 +285,7 @@ Blockly4Arduino.renderSidebarContent = function() {
   }
 
   // Generate plain XML into element
-  document.getElementById('content_xml').value = Blockly4Arduino.generateXml();
+  //document.getElementById('content_xml').value = Blockly4Arduino.generateXml();
 };
 
 /**
@@ -360,6 +347,48 @@ Blockly4Arduino.toogleToolbox = function() {
 /** @return {boolean} Indicates if the toolbox is currently visible. */
 Blockly4Arduino.isToolboxVisible = function() {
   return Blockly4Arduino.TOOLBAR_SHOWING_;
+};
+
+/**
+ * Controls the height of the block and collapsible content between 2 states
+ * using CSS classes.
+ * It's state is dependent on the state of the IDE output collapsible. The
+ * collapsible functionality from Materialize framework adds the active class,
+ * so this class is consulted to shrink or expand the content height.
+ */
+Blockly4Arduino.contentHeightToggle = function() {
+  var outputHeader = document.getElementById('ide_output_collapsible_header');
+  var blocks = document.getElementById('blocks_panel');
+  var arduino = document.getElementById('content_arduino');
+  //var xml = document.getElementById('content_xml');
+
+  // Blockly doesn't resize with CSS3 transitions enabled, so do it manually
+  var timerId = setInterval(function() {
+    Blockly.fireUiEvent(window, 'resize');
+  }, 15);
+  setTimeout(function() {
+    clearInterval(timerId);
+  }, 400);
+
+  // Apart from checking if the output is visible, do not bother to shrink in
+  // small screens as the minimum height of the content will kick in and cause
+  // the content to be behind the IDE output data anyway.
+  if (!outputHeader.className.match('active') && $(window).height() > 800) {
+    blocks.className = 'content height_transition blocks_panel_small';
+    arduino.className = 'content height_transition content_arduino_small';
+    //xml.className = 'content height_transition content_xml_small';
+  } else {
+    blocks.className = 'content height_transition blocks_panel_large';
+    arduino.className = 'content height_transition content_arduino_large';
+    //xml.className = 'content height_transition content_xml_large';
+  }
+
+  // If the height transition CSS is left then blockly does not resize
+  setTimeout(function() {
+    blocks.className = blocks.className.replace('height_transition', '');
+    arduino.className = arduino.className.replace('height_transition', '');
+    //xml.className = xml.className.replace('height_transition', '');
+  }, 400);
 };
 
 

@@ -7,18 +7,6 @@
 	  font-size:18px;
 	  border-bottom: none;
 }
-pre.content {
-  border: 1px solid #ccc;
-  overflow: scroll;
-}
-#content_xml {
-      resize: none;
-      outline: none;
-      border: none;
-	  border: 1px solid #ccc;
-      font-family: monospace;
-      overflow: scroll;
-    }
 td.tabon {
       border-bottom-color: #ddd !important;
       background-color: #ddd;
@@ -208,29 +196,7 @@ td {
   padding: 0;
   vertical-align: top;
 }
-.content {
-  visibility: hidden;
-  margin: 0;
-  padding: 1ex;
-  position: absolute;
-  direction: ltr;
-}
-pre.content {
-  overflow: scroll;
-}
-#content_blocks {
-  padding: 0;
-}
-.blocklySvg {
-  border-top: none !important;
-}
-#content_xml {
-  resize: none;
-  outline: none;
-  border: none;
-  font-family: monospace;
-  overflow: scroll;
-}
+
 button {
   padding: 1px 1em;
   font-size: 90%;
@@ -250,6 +216,45 @@ button:active {
 button:hover {
   box-shadow: 2px 2px 5px #888;
 }
+
+.content {
+  visibility: initial;
+  margin: 0;
+  padding: 1ex;
+  position: absolute;
+  direction: ltr;
+}
+/*
+ * 
+pre.content {
+  border: 1px solid #ccc;
+  overflow: scroll;
+}
+#content_xml {
+      resize: none;
+      outline: none;
+      border: none;
+          border: 1px solid #ccc;
+      font-family: monospace;
+      overflow: scroll;
+    }
+pre.content {
+  overflow: scroll;
+}
+#content_blocks {
+  padding: 0;
+}
+.blocklySvg {
+  border-top: none !important;
+}
+#content_xml {
+  resize: none;
+  outline: none;
+  border: none;
+  font-family: monospace;
+  overflow: scroll;
+}
+*/ 
 
 /* Ardublockly copies */
 /**
@@ -364,7 +369,7 @@ ul.side-nav li.side-menu-end {
 /************************************/
 /*  Blocks, Arduino, and XML areas  */
 /************************************/
-.content {
+.content .content_sidebar{
   margin: 0;
   padding: 0;
   width: 100%;
@@ -430,7 +435,7 @@ ul.side-nav li.side-menu-end {
 
 /* The materialize framework changes height of the div to show or hide */
 /* the collapsible elements. */
-#content_arduino2 {
+#content_arduino {
   resize: none;
   outline: none;
   border: none;
@@ -446,10 +451,10 @@ ul.side-nav li.side-menu-end {
   min-height: 388px;
 }
 .content_arduino_large {
-  height: -moz-calc(100vh - 280px);     /* Firefox  */
-  height: -webkit-calc(100vh - 280px);  /* WebKit   */
-  height: -o-calc(100vh - 280px);       /* Opera    */
-  height: calc(100vh - 280px);          /* Standard */
+  height: -moz-calc(100vh - 180px);     /* Firefox  */
+  height: -webkit-calc(100vh - 180px);  /* WebKit   */
+  height: -o-calc(100vh - 180px);       /* Opera    */
+  height: calc(100vh - 180px);          /* Standard */
 }
 .content_arduino_small {
   height: -moz-calc(100vh - 440px);     /* Firefox  */
@@ -910,7 +915,8 @@ ul.side-nav li.side-menu-end {
 .blocklyTreeRoot {
   background: none !important;
   border: none !important;
-  margin: 36px 0px 0px 0px !important;
+  /*margin: 36px 0px 0px 0px !important;*/
+  margin: 0px 0px 0px 0px !important;
   padding: 0px 1px !important;
   height: -moz-calc(100% - 37px);     /* Firefox  */
   height: -webkit-calc(100% - 37px);  /* WebKit   */

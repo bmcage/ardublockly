@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <title>Blockly4Arduino: Blockly for Arduino and Genuino</title>
   
+  
   <!-- Materialize, Prettify, and Ardublockly CSS -->
   <link rel="stylesheet" href="materialize/materialize.css" media="screen,projection"/>
   <link rel="stylesheet" href="prettify/arduino.css"/>
   <link rel="stylesheet" type="text/css" href="color.css" media="screen,projection"/>
 
+  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+  <script src="../libs/jquery/jquery-1.12.2.min.js"></script>
+  <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
   
   <link rel="shortcut icon" href="favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
@@ -83,9 +87,6 @@
   <script type="text/javascript" src="FileSaver.min.js"></script>
   <script type="text/javascript" src="blockly_helper.js"></script>
 
-  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
-  <script src="../libs/jquery/jquery-1.12.2.min.js"></script>
-  <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
   
 
 </head>
@@ -120,7 +121,7 @@
             <td class="tabmax">
               <div class="dropdown">
               <div class="btn-group">
-                <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">Voorbeelden
+                <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown" style="text-transform:None;">Voorbeelden
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li class="dropdown-header">Basis Voorbeelden</li>
@@ -187,20 +188,19 @@
                         <div class="collapsible-header active">
                         <span class="collapsible_logo">{ }</span>Arduino Source Code
                         </div>
-                        <div class="collapsible-body">
-                        <pre id="content_arduino" class="content content_height_transition content_arduino_large"></pre>
+                        <div id="content_ard_collapse" class="collapsible-body">
+                        <pre id="content_arduino" class="content content_height_transition content_arduino_large" style="width: 25%; height: 75%;"></pre>
                         </div>
                     </li>
-                    
-          <li>
-            <div class="collapsible-header" id="xml_collapsible_header">
-              <span class="collapsible_logo">&#60; &#62;</span>Blocks XML
-            </div>
-            <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
-              <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml"><i class="mdi-action-extension"></i></a>
-              <textarea id="content_xml" class="content content_height_transition content_xml_large" wrap="soft"></textarea>
-            </div>
-          </li>
+                    <!--li>
+                      <div class="collapsible-header" id="xml_collapsible_header">
+                        <span class="collapsible_logo">&#60; &#62;</span>Blocks XML
+                      </div>
+                      <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
+                        <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml"><i class="mdi-action-extension"></i></a>
+                        <textarea id="content_xml" class="content_sidebar content_height_transition content_xml_large" wrap="soft"></textarea>
+                      </div>
+                    </li-->
                     </ul>
                 </div>
             </td>
