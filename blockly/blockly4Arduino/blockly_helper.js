@@ -116,7 +116,7 @@ function auto_save_and_restore_blocks() {
   window.setTimeout(restore_blocks, 0);
   // Hook a save function onto unload.
   bindEvent(window, 'unload', backup_blocks);
-  tabClick(selected);
+  Blockly4Arduino.tabClick(selected);
 
   // Init load event.
   var loadInput = document.getElementById('load');
