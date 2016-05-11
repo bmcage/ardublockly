@@ -274,9 +274,9 @@ Blockly4Arduino.renderSidebarContent = function() {
     for (var i = 0; i < diff.length; i++) {
       if (diff[i].added) {
         resultStringArray.push(
-            '<span class="code_highlight_new">' + diff[i].value + '</span>');
+            '<span class="code_highlight_new">' + diff[i].value.replace(/</g, '&lt;') + '</span>');
       } else if (!diff[i].removed) {
-        resultStringArray.push(diff[i].value);
+        resultStringArray.push(diff[i].value.replace(/</g, '&lt;') );
       }
     }
     document.getElementById('content_arduino').innerHTML =
