@@ -3,6 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Blockly4Arduino: Blockly for Arduino and Genuino</title>
+
+  <!-- Materialize, Prettify, and Ardublockly CSS -->
+  <link rel="stylesheet" href="materialize/materialize.css" media="screen,projection"/>
+  <link rel="stylesheet" href="prettify/arduino.css"/>
+  <link rel="stylesheet" type="text/css" href="color.css" media="screen,projection"/>
+
+  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+  <script src="../libs/jquery/jquery-1.12.2.min.js"></script>
+  <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+
   <link rel="shortcut icon" href="favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
   <script src="../blockly_compressed.js"></script>
@@ -76,16 +86,8 @@
   <script type="text/javascript" src="FileSaver.min.js"></script>
   <script type="text/javascript" src="blockly_helper.js"></script>
 
-  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
-  <script src="../libs/jquery/jquery-1.12.2.min.js"></script>
-  <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-  
-  <link rel="stylesheet" type="text/css" href="color.css" />
-
-  <script type="text/javascript" src="blockly4arduino_blockly.js"></script>
-
 </head>
-<body onload="init()">
+<body>
   <table height="100%" width="100%">
     <tr>
       <td>
@@ -100,23 +102,17 @@
       <td>
         <table width="100%">
           <tr id="tabRow" height="1em">
-            <td id="tab_blocks" class="tabon" onclick="tabClick('blocks')">Blokken</td>
+            <td id="tab_blocks" class="tabon" onclick="Blockly4Arduino.tabClick('blocks')">Blocks</td>
             <td class="tabmin">&nbsp;</td>
-            <!--td id="tab_javascript" class="taboff" onclick="tabClick(this.id)">JavaScript</td>
+            <!--td id="tab_arduino" class="taboff" onclick="tabClick('arduino')">Arduino</td>
             <td class="tabmin">&nbsp;</td-->
-            <!--td id="tab_dart" class="taboff" onclick="tabClick(this.id)">Dart</td>
+            <td id="tab_codebender" class="taboff" onclick="Blockly4Arduino.tabClick('codebender')">Upload</td>
             <td class="tabmin">&nbsp;</td>
-            <td id="tab_python" class="taboff" onclick="tabClick(this.id)">Python</td>
-            <td class="tabmin">&nbsp;</td-->
-            <td id="tab_arduino" class="taboff" onclick="tabClick('arduino')">Arduino</td>
-            <td class="tabmin">&nbsp;</td>
-            <td id="tab_codebender" class="taboff" onclick="tabClick('codebender')">Upload</td>
-            <td class="tabmin">&nbsp;</td>
-            <td id="tab_xml" class="taboff" onclick="tabClick('xml')">XML</td>
+            <td id="tab_xml" class="taboff" onclick="Blockly4Arduino.tabClick('xml')">XML</td>
             <td class="tabmax">
               <div class="dropdown">
               <div class="btn-group">
-                <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">Examples
+                <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown" style="text-transform:None;">Examples
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li class="dropdown-header">Basic Examples</li>
@@ -172,12 +168,42 @@
       </td>
     </tr>
     <tr>
-      <td height="99%" id="content_area"></td>
+      <td height="100%" width="100%">
+        <table height="100%" width="100%">
+          <tr height="100%" width="100%">
+            <td height="99%" id="content_area"></td>
+            <td height="99%" width="25%">
+                <div class="col s12 m12 l4">
+                    <ul class="collapsible z-depth-1" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header active">
+                        <span class="collapsible_logo">{ }</span>Arduino Source Code
+                        </div>
+                        <div id="content_ard_collapse" class="collapsible-body">
+                        <pre id="content_arduino" class="content content_height_transition content_arduino_large" style="width: 25%; height: 75%;"></pre>
+                        </div>
+                    </li>
+
+          <!--li>
+            <div class="collapsible-header" id="xml_collapsible_header">
+              <span class="collapsible_logo">&#60; &#62;</span>Blocks XML
+            </div>
+            <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
+              <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml"><i class="mdi-action-extension"></i></a>
+              <textarea id="content_xml" class="content content_height_transition content_xml_large" wrap="soft"></textarea>
+            </div>
+          </li-->
+                    </ul>
+                </div>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
   <div id="bottom_link" style="position:absolute;bottom:8px;left:8px;font-size:8px;height:16px;z-index:1;width:250px;"><a href="https://github.com/ingegno/Blockly4Arduino/blob/master/README.md">Info</a> | <a href="index.html">Nederlands</a></div>
   <div id="content_blocks" class="content"></div>
-  <textarea id="content_arduino" class="content" readonly wrap="off"></textarea>
+  <!--textarea id="content_arduino" class="content" readonly wrap="off"></textarea-->
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 
   <div id="content_codebender" class="content" style="visibility:hidden"><iframe id="codebender_iframe" style="margin: 10px 0 10px; width:100%; height:100%" allowTransparency="true" src="https://codebender.cc/sketch:282881" frameborder="0"></iframe></div>
@@ -608,7 +634,18 @@
     </category>
   </category>
 </xml>;
-  
+
+  <!-- JS Diff -->
+  <script src="js_libs/diff.js"></script>
+  <!-- Prettify JS -->
+  <script src="prettify/prettify.js"></script>
+  <script type="text/javascript" src="blockly4arduino_blockly.js"></script>
+  <script>
+    window.addEventListener('load', function load(event) {
+      window.removeEventListener('load', load, false);
+      Blockly4Arduino.init();
+    });
+  </script>
 </body>
 </html>
 
