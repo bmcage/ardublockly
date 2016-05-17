@@ -272,11 +272,15 @@ Blockly4Arduino.renderSidebarContent = function() {
     var diff = JsDiff.diffWords(Blockly4Arduino.PREV_ARDUINO_CODE_, arduinoCode);
     var resultStringArray = [];
     for (var i = 0; i < diff.length; i++) {
-      if (diff[i].added) {
-        resultStringArray.push(
-            '<span class="code_highlight_new">' + diff[i].value.replace(/</g, '&lt;') + '</span>');
-      } else if (!diff[i].removed) {
-        resultStringArray.push(diff[i].value.replace(/</g, '&lt;') );
+      if (!diff[i].removed) {
+        var escapedCode = diff[i].value.replace(/</g, "&lt;")
+                                       .replace(/>/g, "&gt;");
+        if (diff[i].added) {
+          resultStringArray.push(
+              '<span class="code_highlight_new">' + escapedCode + '</span>');
+        } else {
+          resultStringArray.push(escapedCode);
+        }
       }
     }
     document.getElementById('content_arduino').innerHTML =
