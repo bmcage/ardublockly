@@ -429,6 +429,24 @@
         </block>
       </value>
     </block>
+  </category>
+  <category id="catTone" name="Licht&Geluid">
+    <block type="led_config_hub"></block>
+    <block type="neopixel_config_hub">
+      <value name="NUMBER">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+    </block>
+    <block type="io_tone">
+      <field name="TONEPIN">0</field>
+      <value name="FREQUENCY">
+        <shadow type="math_number">
+          <field name="NUM">220</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="io_notone"></block>
     <block type="led_digitalwrite_onoff"></block>
     <block type="led_digitalwrite">
       <value name="STATE">
@@ -476,18 +494,6 @@
         </block>
       </value>
     </block>
-    <block type="button_input"></block>
-  </category>
-  <category id="catTone" name="Muziek">
-    <block type="io_tone">
-      <field name="TONEPIN">0</field>
-      <value name="FREQUENCY">
-        <shadow type="math_number">
-          <field name="NUM">220</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="io_notone"></block>
   </category>
   <category id="catMotors" name="Motoren">
     <block type="servo_config_hub"></block>
