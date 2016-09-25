@@ -51,12 +51,19 @@ Blockly.Arduino['ledup_hub'] = function(block) {
               ["LED-5", ['7']]
                         ];
       code += '// Attiny wiring of the LED0 to 5\n' +
-              '/*#define LED0 5  // RESET\n' +
-              '#define LED1 2  // SCK\n' +
-              '#define LED2 1  // MISO\n' +
-              '#define LED3 0  // MOSI\n' +
-              '#define LED4 4  // PB4\n' +
-              '#define LED5 3  // PB3\n' +
+              '/*' +
+              'int LED0 = 5;// RESET\n' +
+              'boolean LED0_ON = LOW;\n' +
+              'int LED1 = 2;// SCK\n' +
+              'boolean LED1_ON = LOW;\n' +
+              'int LED2 = 1;// MISO\n' +
+              'boolean LED2_ON = LOW;\n' +
+              'int LED3 = 0;// MOSI\n' +
+              'boolean LED3_ON = LOW;\n' +
+              'int LED4 = 4;// PB4\n' +
+              'boolean LED4_ON = LOW;\n' +
+              'int LED5 = 3;// PB3\n' +
+              'boolean LED5_ON = LOW;\n' +
               '*/\n';
   } else {
       var blockinputs = [
@@ -68,19 +75,26 @@ Blockly.Arduino['ledup_hub'] = function(block) {
               ["LED-5", ['3']]
                         ];
       code += '// Prototype wiring of the LED0 to 5\n' +
-              '/*#define LED0 2  \n' +
-              '#define LED1 3  \n' +
-              '#define LED2 4  \n' +
-              '#define LED3 5  \n' +
-              '#define LED4 6  \n' +
-              '#define LED5 7  \n' +
+              '/*' +
+              'int LED0 = 2;// RESET\n' +
+              'boolean LED0_ON = LOW;\n' +
+              'int LED1 = 3;// SCK\n' +
+              'boolean LED1_ON = LOW;\n' +
+              'int LED2 = 4;// MISO\n' +
+              'boolean LED2_ON = LOW;\n' +
+              'int LED3 = 5;// MOSI\n' +
+              'boolean LED3_ON = LOW;\n' +
+              'int LED4 = 6;// PB4\n' +
+              'boolean LED4_ON = LOW;\n' +
+              'int LED5 = 7;// PB3\n' +
+              'boolean LED5_ON = LOW;\n' +
               '*/\n';
   }
   for (var nr in blockinputs) {
     parseInput(block, blockinputs[nr][0], blockinputs[nr][1]);
   }
 
-  Blockly.Arduino.addSetup('ledupkidz', code, true);
+  Blockly.Arduino.addInclude('ledupkidz', code);
 
   return '';
 };
