@@ -1411,3 +1411,14 @@ Blockly.Msg.ARD_MD_AUDIO_PLAY = '';
 Blockly.Msg.ARD_MD_AUDIO_PLAY_TIP = 'Write the number of the sound fragment you want to play. On the this number corresponds to the order in which files have been copied to the SD Card. Best: 1/Empty the SD card 2/copy files to SD card in the order you want to play them 3/it is easier if you name the files 001.mp3, 002.mp3, ... and copy them one after the other to the card!';
 Blockly.Msg.ARD_MD_AUDIO_PAUSE = 'Pause sound fragment';
 Blockly.Msg.ARD_MD_AUDIO_PAUSE_TIP = 'Pause the sound fragment that is playing';
+
+Blockly.Msg.ARD_LEDUP_HUB = 'LedUpKidz, destination: ';
+Blockly.Msg.ARD_LEDUP_HUB_TIP = 'LedUpKidz is a gadget with 6 LED that you can program. There is a big prototype connected to an Arduino UNO, choose "prototype" for code destined for this. The gadget itself works on a small attiny85 microchip, for code with that destination, select destination "gadget"';
+Blockly.Msg.ARD_LEDUP_LED0 = 'LED 0';
+Blockly.Msg.ARD_LEDUP_LED1 = 'LED 1';
+Blockly.Msg.ARD_LEDUP_LED2 = 'LED 2';
+Blockly.Msg.ARD_LEDUP_LED3 = 'LED 3';
+Blockly.Msg.ARD_LEDUP_LED4 = 'LED 4';
+Blockly.Msg.ARD_LEDUP_LED5 = 'LED 5';
+Blockly.Msg.ARD_LEDUP_GADGET = 'Gadget LedUpKidz';
+Blockly.Msg.ARD_LEDUP_PROTO = 'Prototype Arduino UNO';
