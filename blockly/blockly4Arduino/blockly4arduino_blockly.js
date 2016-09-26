@@ -463,7 +463,7 @@ Blockly4Arduino.init = function() {
         colour: '#ccc',
         snap: true},
       maxBlocks: Infinity,
-      media: '../media/',
+      media: 'media/',
       rtl: false,
       scrollbars: true,
       sounds: true,
