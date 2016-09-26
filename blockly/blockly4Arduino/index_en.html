@@ -15,11 +15,11 @@
 
   <link rel="shortcut icon" href="favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
-  <script src="../blockly_compressed.js"></script>
+  <!--script src="../blockly_compressed.js"></script>
   <script src="../blocks_compressed.js"></script>
-  <script src="../arduino_compressed.js"></script>
+  <script src="../arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="../blockly_uncompressed.js"></script>
+  <script src="../blockly_uncompressed.js"></script>
   <script src="../../closure-library/closure/goog/base.js"></script>
   <script src="../blocks/logic.js"></script>
   <script src="../blocks/loops.js"></script>
@@ -51,6 +51,7 @@
   <script src="../blocks/arduino/md_actuator.js"></script>
   <script src="../blocks/arduino/md_audio.js"></script>
   <script src="../blocks/arduino/md_light.js"></script>
+  <script src="../blocks/arduino/ledup_blocks.js"></script>
   <script src="../generators/arduino.js"></script>
   <script src="../generators/arduino/boards.js"></script>
   <script src="../generators/arduino/button.js"></script>
@@ -77,7 +78,8 @@
   <script src="../generators/arduino/md_control.js"></script>
   <script src="../generators/arduino/md_actuator.js"></script>
   <script src="../generators/arduino/md_audio.js"></script>
-  <script src="../generators/arduino/md_light.js"></script-->
+  <script src="../generators/arduino/md_light.js"></script>
+  <script src="../generators/arduino/ledup_blocks.js"></script>
   
   <!-- Language of the interface -->
   <script type="text/javascript" src="../msg/js/en.js"></script>
@@ -636,7 +638,97 @@
         </block>
       </category>
     </category>
+    <category id="catLedUp" name="LedUpKidz">
+      <category id="catLedUpBlocks" name="LedUp Blocks">
+        <block type="ledup_hub">
+          <value name="LED-0">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED0</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+          <value name="LED-1">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED1</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+          <value name="LED-2">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED2</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+          <value name="LED-3">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED3</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+          <value name="LED-4">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED4</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+          <value name="LED-5">
+            <block type="led_config_hub">
+              <field name="LEDNAME">LED5</field>
+              <field name="POLARITY">neg</field>  
+            </block>
+          </value>
+        </block>
+        <block type="arduino_functions"></block>
+        <block type="procedures_defnoreturn">
+          <field name="NAME">EffectAan</field>
+          <statement name="STACK">
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED0</field>
+              <field name="STATE">on</field>
+            <next>
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED1</field>
+              <field name="STATE">on</field>
+            <next>
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED2</field>
+              <field name="STATE">on</field>
+            <next>
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED3</field>
+              <field name="STATE">on</field>
+            <next>
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED4</field>
+              <field name="STATE">on</field>
+            <next>
+            <block type="led_digitalwrite_onoff">
+              <field name="LEDNAME">LED5</field>
+              <field name="STATE">on</field>
+            </block>
+          </statement>
+        </block>
+        <block type="time_delay">
+          <value name="DELAY_TIME_MILI">
+            <block type="math_number">
+              <field name="NUM">1000</field>
+            </block>
+          </value>
+        </block>
+        <block type="time_delaymicros">
+          <value name="DELAY_TIME_MICRO">
+            <block type="math_number">
+              <field name="NUM">100</field>
+            </block>
+          </value>
+        </block>
+          
+    </category>
+    </category>
     <category id="catAllBot" name="AllBot">
+      <category id="catAllBotBlocks" name="AllBot Blocks">
+        <block type="allbot_hub"></block>
+    </category>
     </category>
   </category>
 </xml>;

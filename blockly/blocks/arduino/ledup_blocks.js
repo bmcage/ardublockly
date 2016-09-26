@@ -52,7 +52,7 @@ Blockly.Blocks['ledup_hub'] = {
         .appendField(Blockly.Msg.ARD_LEDUP_LED5); 
     this.setPreviousStatement(false, "MD_BLOCK");
     this.setNextStatement(false, "MD_BLOCK");
-    this.setColour('#47EBCF');
+    this.setColour('#70D65C');
     this.setTooltip(Blockly.Msg.ARD_LEDUP_HUB_TIP);
     this.setHelpUrl('http://ingegno.be/01-blockly-4-arduino/');
   }
