@@ -722,8 +722,34 @@
             </block>
           </value>
         </block>
-          
-    </category>
+      </category>
+      <category id="catLedUpBlocks" name="LedUp Extra">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+            </value>
+        </block>
+        <block type="controls_for">
+            <field name="VAR">lednumber</field>
+            <value name="FROM">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+            </value>
+            <value name="TO">
+            <block type="math_number">
+                <field name="NUM">5</field>
+            </block>
+            </value>
+            <value name="BY">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+            </value>
+        </block>
+      </category>
     </category>
     <category id="catAllBot" name="AllBot">
       <category id="catAllBotBlocks" name="AllBot Blocks">

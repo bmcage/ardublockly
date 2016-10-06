@@ -16,11 +16,11 @@
   
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
-  <script src="blockly_compressed.js"></script>
+  <!--script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -80,7 +80,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
 
   <!-- Language of the interface -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
@@ -739,8 +739,46 @@
             </block>
           </value>
         </block>
-          
-    </category>
+      </category>
+      <category id="catLedUpBlocks" name="LedUp Extra">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+            <block type="math_number">
+              <field name="NUM">10</field>
+            </block>
+            </value>
+        </block>
+        <block type="controls_for">
+            <field name="VAR">lednummer</field>
+            <value name="FROM">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+            </value>
+            <value name="TO">
+            <block type="math_number">
+              <field name="NUM">5</field>
+            </block>
+            </value>
+            <value name="BY">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+            </value>
+        </block>
+        <block type="ledupkidz_led_onoff">
+          <value name="LEDUPKIDZ_LEDNUMBER">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+          </value>
+          <value name="STATE">
+          <block type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </block>
+          </value>
+        </block>
+      </category>
     </category>
     <category id="catAllBot" name="AllBot">
       <category id="catAllBotBlocks" name="AllBot Blokken">

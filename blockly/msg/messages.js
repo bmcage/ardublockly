@@ -1422,3 +1422,6 @@ Blockly.Msg.ARD_LEDUP_LED4 = 'LED 4';
 Blockly.Msg.ARD_LEDUP_LED5 = 'LED 5';
 Blockly.Msg.ARD_LEDUP_GADGET = 'Gadget LedUpKidz';
 Blockly.Msg.ARD_LEDUP_PROTO = 'Prototype Arduino UNO';
+Blockly.Msg.ARD_LEDUP_LED_ONOFF1 = 'Put LedUp LED';
+Blockly.Msg.ARD_LEDUP_LED_ONOFF2 = 'on? True/False:';
+Blockly.Msg.ARD_LEDUP_LED_ONOFF_TIP = 'Set a given LedUpKidz light to on or off using variable blocks';
