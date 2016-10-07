@@ -21,7 +21,7 @@ function hexToRgb(hex) {
          .split(',');
     return {r: parseInt(rgb[0], 10),
             g: parseInt(rgb[1], 10),
-            b: parseInt(rgb[2], 10),
+            b: parseInt(rgb[2], 10)
            }
   } else {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
