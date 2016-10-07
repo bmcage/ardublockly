@@ -112,7 +112,7 @@ Blockly.Blocks['ledup_hub'] = {
 
 Blockly.Blocks['ledupkidz_led_onoff']  = {
   /**
-   * Block for creating a 'set pin' to a state.
+   * Block for setting a specific LED of LedUpKidz to a state.
    * @this Blockly.Block
    */
   init: function() {
