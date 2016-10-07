@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-09-26 10:04:34.060964",
+		"lastupdated": "2016-10-07 12:19:13.360475",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -373,7 +373,7 @@
 	"ARD_TYPE_UNDEF": "Undefined",
 	"ARD_TYPE_CHILDBLOCKMISSING": "ChildBlockMissing",
 	"ARD_BOARD": "Board",
-	"ARD_BOARD_WARN": "This block requires as board %1, but another block is present that requires another Arduino board!",
+	"ARD_BOARD_WARN": "This block requires as board %1, but or a duplicate block is present or another block is present that requires another Arduino board!",
 	"ARD_HIGH": "HIGH",
 	"ARD_LOW": "LOW",
 	"ARD_ANALOGREAD": "read analog pin#",
@@ -652,5 +652,8 @@
 	"ARD_LEDUP_LED4": "LED 4",
 	"ARD_LEDUP_LED5": "LED 5",
 	"ARD_LEDUP_GADGET": "Gadget LedUpKidz",
-	"ARD_LEDUP_PROTO": "Prototype Arduino UNO"
+	"ARD_LEDUP_PROTO": "Prototype Arduino UNO",
+	"ARD_LEDUP_LED_ONOFF1": "Put LedUp LED",
+	"ARD_LEDUP_LED_ONOFF2": "on? True/False:",
+	"ARD_LEDUP_LED_ONOFF_TIP": "Set a given LedUpKidz light to on or off using variable blocks"
 }
