@@ -111,7 +111,7 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
       hub = blocks[x];
     }
   }
-  var setfunc = 'void set_ledupkidz_onoff(int lednrin, boolean state) {\n  int lednr = int(lednrin) % 6; // should be number from 0 to 5!\n',
+  var setfunc = 'void set_ledupkidz_onoff(int lednrin, boolean state) {\n  if (lednrin < 0) {\n    // negative number, shift to positive with multiple of 6\n    lednrin = lednrin + (lednrin/6-1) * (-6);\n  }\n  int lednr = int(lednrin) % 6; // should be number from 0 to 5!\n',
     LEDvar,
     hubblocknr,
     start = 'if';
