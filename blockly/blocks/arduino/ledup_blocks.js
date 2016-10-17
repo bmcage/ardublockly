@@ -27,27 +27,27 @@ Blockly.Blocks['ledup_hub'] = {
 	    [Blockly.Msg.ARD_LEDUP_PROTO, "DEST_PROTOTYPE"], //For prototype on Arduino Uno
         ]), "TARGET");
     this.appendValueInput("LED-0")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED0); 
     this.appendValueInput("LED-1")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED1); 
     this.appendValueInput("LED-2")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED2); 
     this.appendValueInput("LED-3")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED3); 
     this.appendValueInput("LED-4")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED4); 
     this.appendValueInput("LED-5")
-        .setCheck(["HUB_DIG"])
+        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_LEDUP_LED5); 
     this.setPreviousStatement(false, "MD_BLOCK");
