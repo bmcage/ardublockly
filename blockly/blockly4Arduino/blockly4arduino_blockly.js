@@ -140,7 +140,7 @@ Blockly4Arduino.displayToolbox = function(show) {
         {height: document.getElementById('content_blocks').style.height}, 300,
         function() {
           toolboxTree.css('overflow-y', 'auto');
-          Blockly.fireUiEvent(window, 'resize');
+          window.dispatchEvent(new Event('resize'));
           $('#toolboxButtonScreen').remove();
         });
   } else {
@@ -149,7 +149,7 @@ Blockly4Arduino.displayToolbox = function(show) {
     toolbox.animate({height: 38}, 300, function() {
       button.className = button.className.replace(classOff, classOn);
       toolbox.fadeOut(350, 'linear', function() {
-        Blockly.fireUiEvent(window, 'resize');
+          window.dispatchEvent(new Event('resize'));
         setTimeout(function() { toolbox.height(38); }, 100);
         $('#toolboxButtonScreen').remove();
       });
@@ -164,7 +164,7 @@ Blockly4Arduino.displayToolbox = function(show) {
  * The toolbox width does not change with workspace width, so safe to do once.
  */
 Blockly4Arduino.resizeToggleToolboxBotton = function() {
-  Blockly.fireUiEvent(window, 'resize');
+  window.dispatchEvent(new Event('resize'));
   var button = $('#button_toggle_toolbox');
   // Sets the toolbox toggle button width to that of the toolbox
   if (Blockly4Arduino.isToolboxVisible() && Blockly4Arduino.blocklyToolboxWidth()) {
@@ -221,7 +221,7 @@ Blockly4Arduino.tabClick = function(clickedName) {
     }
     if (xmlDom) {
       Blockly.mainWorkspace.clear();
-      Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+      Blockly.Xml.domToWorkspace(xmlDom, Blockly.mainWorkspace);
     }
   } 
 
@@ -248,7 +248,7 @@ Blockly4Arduino.tabClick = function(clickedName) {
     document.getElementById('content_ard_collapse').style.display =
       'block';
   }
-  Blockly.fireUiEvent(window, 'resize');
+  window.dispatchEvent(new Event('resize'));
 }
 
 /**
@@ -368,7 +368,7 @@ Blockly4Arduino.contentHeightToggle = function() {
 
   // Blockly doesn't resize with CSS3 transitions enabled, so do it manually
   var timerId = setInterval(function() {
-    Blockly.fireUiEvent(window, 'resize');
+    window.dispatchEvent(new Event('resize'));
   }, 15);
   setTimeout(function() {
     clearInterval(timerId);
