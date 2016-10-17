@@ -53,13 +53,25 @@ class ServerCompilerSettings(object):
     __settings_filename = 'ServerCompilerSettings.ini'
 
     # Class dictionary to define Arduino board types, static content
+    # TODO: This content will be moved from here and integrated completely
+    #       into 'blockly\generators\arduino\boards.js', which should then
+    #       send the selected flag to be saved as a single value
     __arduino_types = {'Uno': 'arduino:avr:uno',
+                       'Nano': 'arduino:avr:nano',
                        'Leonardo': 'arduino:avr:leonardo',
                        'Yun': 'arduino:avr:leonardo',
                        'Mega': 'arduino:avr:mega',
-                       'Duemilanove_328p': 'arduino:avr:diecimila',
-                       'Duemilanove_168p':
-                               'arduino:avr:diecimila:cpu=atmega168'}
+                       'Duemilanove 328p': 'arduino:avr:diecimila',
+                       'Duemilanove 168p':
+                               'arduino:avr:diecimila:cpu=atmega168',
+                       'Atmel atmega328p Xplained mini':
+                               'atmel:avr:atmega328p_xplained_mini',
+                       'Atmel atmega168pb Xplained mini':
+                               'atmel:avr:atmega168pb_xplained_mini',
+                       'Atmel atmega328pb Xplained mini':
+                               'atmel:avr:atmega328pb_xplained_mini',
+                       'ESP8266 Huzzah': 'esp8266:esp8266:generic',
+                       'ESP8266 WeMos D1': 'esp8266:esp8266:generic'}
 
     # Class dictionary to contain the computer COM ports, dynamic content
     __serial_ports = {'port0': 'COM1'}
