@@ -22,7 +22,7 @@ Blockly.Blocks.md_light.HUE = 512;
 Blockly.Blocks['mcookie_neopixel_setup'] = {
   init: function() {
     this.appendValueInput('NUMBER')
-        .appendField(new Blockly.FieldImage("../media/MD/MDLed.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDLed.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_NEOPIXEL)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'LEDNAME')

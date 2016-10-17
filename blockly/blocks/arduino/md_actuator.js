@@ -44,7 +44,7 @@ Blockly.Blocks['mcookie_servo_type'] = {
 Blockly.Blocks['mcookie_servo_setup'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDServo.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDServo.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_SERVOCON);
     this.appendValueInput("SERVOTOPTYPE")
         .setCheck("SERVOTYPE")

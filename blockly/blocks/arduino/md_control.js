@@ -23,7 +23,7 @@ Blockly.Blocks.md_control.HUE = 120;
 Blockly.Blocks['mcookie_crashbutton_setup'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDButton.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDButton.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_COMPONENT)
         .appendField(new Blockly.Blocks.ComponentFieldVariable(
         Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')

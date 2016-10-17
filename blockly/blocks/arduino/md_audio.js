@@ -21,7 +21,7 @@ Blockly.Blocks.md_audio.HUE = 250;
 Blockly.Blocks['mcookie_audio_play'] = {
   init: function() {
     this.appendValueInput("AUDIONAME")
-        .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDAudioModule.png", 15, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_AUDIO_PLAYNR)
         .setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
@@ -66,7 +66,7 @@ Blockly.Blocks['mcookie_audio_play'] = {
 Blockly.Blocks['mcookie_audio_pause'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDAudioModule.png", 15, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_AUDIO_PAUSE);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');

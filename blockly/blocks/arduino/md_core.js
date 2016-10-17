@@ -80,7 +80,7 @@ Blockly.Blocks['md_modules'] = {
 Blockly.Blocks['mcookie_coreusb'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDCoreUsb.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDCoreUsb.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_COREBLOCK);
     this.setPreviousStatement(true, 'MD_BLOCK');
     this.setNextStatement(true, 'MD_BLOCK');
@@ -140,7 +140,7 @@ Blockly.Blocks['mcookie_coreusb'] = {
 Blockly.Blocks['mcookie_hub'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDSensorHub.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDSensorHub.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_HUBBLOCK);
     this.appendValueInput("HUB01-IIC")
         .setCheck("MD_IIC")
@@ -202,7 +202,7 @@ Blockly.Blocks['mcookie_hub'] = {
 Blockly.Blocks['mcookie_power'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDBatteryModule.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDBatteryModule.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_AAABLOCK);
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
@@ -224,7 +224,7 @@ Blockly.Blocks['mcookie_power'] = {
 Blockly.Blocks['mcookie_audio_setup'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDAudioModule.png", 15, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDAudioModule.png", 15, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_AUDIOBLOCK)
         .appendField(new Blockly.FieldDropdown([
 	    [Blockly.Msg.ARD_MD_AUDIO_REP1, "MODE_ALL"], //Loop all the time
@@ -295,7 +295,7 @@ Blockly.Blocks['mcookie_audio_setup'] = {
 Blockly.Blocks['mcookie_audio_amplifier'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/MD/MDAudioSpeaker.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/MD/MDAudioSpeaker.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_AMPBLOCK);
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");
