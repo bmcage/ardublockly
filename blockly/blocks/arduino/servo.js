@@ -92,8 +92,11 @@ Blockly.Blocks['servo_config_hub'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("../media/arduino/Servo.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_SERVOHUB)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_SERVO_DEFAULT_NAME, 'Servo'), 'NAMESERVO')
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_SERVO_DEFAULT_NAME,
+                                      true, true, false),
+            'NAMESERVO')
         .appendField(Blockly.Msg.ARD_SERVO_TYPE)
         .appendField(
             new Blockly.FieldDropdown([ 
@@ -113,34 +116,6 @@ Blockly.Blocks['servo_config_hub'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'Servo';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('NAMESERVO')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NAMESERVO'))) {
-      this.setFieldValue(newName, 'NAMESERVO');
-    }
   },
   /**
    * Gets the variable type required.
@@ -163,8 +138,11 @@ Blockly.Blocks['servohub_write'] = {
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVOHUB_WRITE)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_SERVO_DEFAULT_NAME, 'Servo'), 'SERVO_NAME');
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_SERVO_DEFAULT_NAME,
+                                      false, true, false),
+            'SERVO_NAME');
     this.setInputsInline(false);
     this.appendValueInput('SERVO_ANGLE')
         .setCheck(Blockly.Types.NUMBER.checkList)
@@ -175,26 +153,6 @@ Blockly.Blocks['servohub_write'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SERVO_NAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SERVO_NAME'))) {
-      this.setFieldValue(newName, 'SERVO_NAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -214,12 +172,12 @@ Blockly.Blocks['servohub_write'] = {
   onchange: function() {
     if (!this.workspace) { return; }  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
+    var instanceName = this.getFieldValue('SERVO_NAME');
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Servo', this)) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT));
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%2', Blockly.Msg.ARD_SERVO_COMPONENT));
     }
   }
 };
@@ -234,34 +192,17 @@ Blockly.Blocks['servohub_read'] = {
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVOHUB_READ)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_SERVO_DEFAULT_NAME, 'Servo'), 'SERVO_NAME');
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_SERVO_DEFAULT_NAME,
+                                      false, true, false),
+            'SERVO_NAME');
     this.setOutput(true, Blockly.Types.NUMBER.output);
     this.setTooltip(Blockly.Msg.ARD_SERVO_READ_TIP);
   },
   /** @return {string} The type of return value for the block, an integer. */
   getBlockType: function() {
     return Blockly.Types.NUMBER;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SERVO_NAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SERVO_NAME'))) {
-      this.setFieldValue(newName, 'SERVO_NAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -281,12 +222,12 @@ Blockly.Blocks['servohub_read'] = {
   onchange: function() {
     if (!this.workspace) { return; }  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
+    var instanceName = this.getFieldValue('SERVO_NAME');
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Servo', this)) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT));
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%2', Blockly.Msg.ARD_SERVO_COMPONENT));
     }
   }
 };
@@ -302,8 +243,11 @@ Blockly.Blocks['servohub_write2'] = {
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVO_ROTATE360)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_SERVO_DEFAULT_NAME, 'Servo'), 'SERVO_NAME');
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_SERVO_DEFAULT_NAME,
+                                      false, true, false),
+            'SERVO_NAME');
     this.appendValueInput('SERVO_SPEED')
         .setCheck(Blockly.Types.NUMBER.checkList)
         .appendField(Blockly.Msg.ARD_SERVO_ROTATESPEED);
@@ -313,26 +257,6 @@ Blockly.Blocks['servohub_write2'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_SERVO_ROTATE_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SERVO_NAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SERVO_NAME'))) {
-      this.setFieldValue(newName, 'SERVO_NAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -352,12 +276,12 @@ Blockly.Blocks['servohub_write2'] = {
   onchange: function() {
     if (!this.workspace) { return; }  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('SERVO_NAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Servo')) {
+    var instanceName = this.getFieldValue('SERVO_NAME');
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Servo', this)) {
       this.setWarningText(null);
     } else {
       // Set a warning to select a valid config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT));
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_SERVO_COMPONENT).replace('%2', Blockly.Msg.ARD_SERVO_COMPONENT));
     }
   }
 };
