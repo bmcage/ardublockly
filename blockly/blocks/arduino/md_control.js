@@ -25,8 +25,11 @@ Blockly.Blocks['mcookie_crashbutton_setup'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("media/MD/MDButton.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_MD_CRASHBUTTON_COMPONENT)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME,
+                                      true, true, false),
+            'BUTTONNAME');
     this.setOutput(true, 'HUB_DIG');
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.setTooltip(Blockly.Msg.ARD_MD_CRASHBUTTON_TIP);
@@ -39,34 +42,6 @@ Blockly.Blocks['mcookie_crashbutton_setup'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'Button';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('BUTTONNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
-      this.setFieldValue(newName, 'BUTTONNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -89,34 +64,17 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
     this.setColour(Blockly.Blocks.md_control.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_BUTTON_READ)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME');
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME,
+                                      false, true, false),
+            'BUTTONNAME');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
     return Blockly.Types.BOOLEAN;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('BUTTONNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
-      this.setFieldValue(newName, 'BUTTONNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -134,14 +92,17 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('BUTTONNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Button')) {
+    var instanceName = this.getFieldValue('BUTTONNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Button', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };

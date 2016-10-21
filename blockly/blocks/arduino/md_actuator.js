@@ -50,15 +50,21 @@ Blockly.Blocks['mcookie_servo_setup'] = {
         .setCheck("SERVOTYPE")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_TOP)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_MD_SERVOTOP_DEFAULT_NAME, 'Servo'), 'NAMETOPSERVO')
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_MD_SERVOTOP_DEFAULT_NAME,
+                                      true, true, false),
+            'NAMETOPSERVO')
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_TYPE);
     this.appendValueInput("SERVOBOTTOMTYPE")
         .setCheck("SERVOTYPE")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_BOTTOM)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_MD_SERVOBOT_DEFAULT_NAME, 'Servo'), 'NAMEBOTTOMSERVO')
+        .appendField(
+            new Blockly.FieldInstance('Servo',
+                                      Blockly.Msg.ARD_MD_SERVOBOT_DEFAULT_NAME,
+                                      true, true, false),
+            'NAMEBOTTOMSERVO')
         .appendField(Blockly.Msg.ARD_MD_SERVOCON_TYPE);
     this.setInputsInline(false);
     this.setOutput(true, "MD_HUB_PWM");
@@ -73,37 +79,6 @@ Blockly.Blocks['mcookie_servo_setup'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'Servo';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('NAMETOPSERVO'), this.getFieldValue('NAMEBOTTOMSERVO')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NAMETOPSERVO'))) {
-      this.setFieldValue(newName, 'NAMETOPSERVO');
-    }
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NAMEBOTTOMSERVO'))) {
-      this.setFieldValue(newName, 'NAMEBOTTOMSERVO');
-    }
   },
   /**
    * Gets the variable type required.

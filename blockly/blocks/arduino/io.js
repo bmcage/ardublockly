@@ -249,8 +249,11 @@ Blockly.Blocks['analogsensor_config_hub'] = {
     this.appendDummyInput()
         //.appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_ANASENSOR)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME, 'AnalogSensor'), 'SENSORNAME')
+        .appendField(
+            new Blockly.FieldInstance('AnalogSensor',
+                                      Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME,
+                                      true, true, false),
+            'SENSORNAME');
     this.setOutput(true, 'HUB_ANA');
     this.setColour(Blockly.Blocks.io.HUE);
     this.setTooltip(Blockly.Msg.ARD_ANASENSOR_TIP);
@@ -263,34 +266,6 @@ Blockly.Blocks['analogsensor_config_hub'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'AnalogSensor';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SENSORNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SENSORNAME'))) {
-      this.setFieldValue(newName, 'SENSORNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -313,34 +288,17 @@ Blockly.Blocks['analogsensor_read'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_ANASENSOR_READ)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME, 'AnalogSensor'), 'SENSORNAME')
+        .appendField(
+            new Blockly.FieldInstance('AnalogSensor',
+                                      Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME,
+                                      false, true, false),
+            'SENSORNAME');
     this.setOutput(true, Blockly.Types.NUMBER.output);
     this.setTooltip(Blockly.Msg.ARD_ANALOGREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
     return Blockly.Types.NUMBER;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SENSORNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SENSORNAME'))) {
-      this.setFieldValue(newName, 'SENSORNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -353,19 +311,22 @@ Blockly.Blocks['analogsensor_read'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of analogsensor config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('SENSORNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'AnalogSensor')) {
+    var instanceName = this.getFieldValue('SENSORNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'AnalogSensor', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_ANASENSOR_COMPONENT).replace('%1', Blockly.Msg.ARD_ANASENSOR_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_ANASENSOR_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -377,8 +338,11 @@ Blockly.Blocks['digitalinput_config_hub'] = {
     this.appendDummyInput()
         //.appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_DIGINPUT)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_DIGINPUT_DEFAULT_NAME, 'DigitalInput'), 'SENSORNAME')
+        .appendField(
+            new Blockly.FieldInstance('DigitalInput',
+                                      Blockly.Msg.ARD_DIGINPUT_DEFAULT_NAME,
+                                      true, true, false),
+            'SENSORNAME');
     this.setOutput(true, 'HUB_DIG');
     this.setColour(Blockly.Blocks.io.HUE);
     this.setTooltip(Blockly.Msg.ARD_DIGINPUT_TIP);
@@ -391,34 +355,6 @@ Blockly.Blocks['digitalinput_config_hub'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'DigitalInput';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SENSORNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SENSORNAME'))) {
-      this.setFieldValue(newName, 'SENSORNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -441,34 +377,17 @@ Blockly.Blocks['digitalinput_read'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_DIGINPUT_READ)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_DIGINPUT_DEFAULT_NAME, 'DigitalInput'), 'SENSORNAME')
+        .appendField(
+            new Blockly.FieldInstance('DigitalInput',
+                                      Blockly.Msg.ARD_DIGINPUT_DEFAULT_NAME,
+                                      false, true, false),
+            'SENSORNAME');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_DIGINPUT_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
     return Blockly.Types.BOOLEAN;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('SENSORNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('SENSORNAME'))) {
-      this.setFieldValue(newName, 'SENSORNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -481,19 +400,22 @@ Blockly.Blocks['digitalinput_read'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of digital input config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('SENSORNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'DigitalInput')) {
+    var instanceName = this.getFieldValue('SENSORNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'DigitalInput', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_DIGINPUT_COMPONENT).replace('%1', Blockly.Msg.ARD_DIGINPUT_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_DIGINPUT_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -504,8 +426,11 @@ Blockly.Blocks['digitaloutput_config_hub'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_DIGOUTPUT)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_DIGOUTPUT_DEFAULT_NAME, 'DigitalOutput'), 'OUTPUTNAME')
+        .appendField(
+            new Blockly.FieldInstance('DigitalOutput',
+                                      Blockly.Msg.ARD_DIGOUTPUT_DEFAULT_NAME,
+                                      true, true, false),
+            'OUTPUTNAME');
     this.setOutput(true, 'HUB_DIGOUT');
     this.setColour(Blockly.Blocks.io.HUE);
     this.setTooltip(Blockly.Msg.ARD_DIGOUTPUT_TIP);
@@ -518,34 +443,6 @@ Blockly.Blocks['digitaloutput_config_hub'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'DigitalOutput';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('OUTPUTNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('OUTPUTNAME'))) {
-      this.setFieldValue(newName, 'OUTPUTNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -568,34 +465,17 @@ Blockly.Blocks['digitaloutput_write'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('STATE')
         .appendField(Blockly.Msg.ARD_DIGOUTPUT_WRITE)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_DIGOUTPUT_DEFAULT_NAME, 'DigitalOutput'), 'OUTPUTNAME')
+        .appendField(
+            new Blockly.FieldInstance('DigitalOutput',
+                                      Blockly.Msg.ARD_DIGOUTPUT_DEFAULT_NAME,
+                                      false, true, false),
+            'OUTPUTNAME')
         .appendField(Blockly.Msg.ARD_OUTPUT_WRITE_TO)
         .setCheck(Blockly.Types.BOOLEAN.checkList);
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_DIGOUTPUT_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('OUTPUTNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('OUTPUTNAME'))) {
-      this.setFieldValue(newName, 'OUTPUTNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -608,19 +488,22 @@ Blockly.Blocks['digitaloutput_write'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of digital output config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('OUTPUTNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'DigitalOutput')) {
+    var instanceName = this.getFieldValue('OUTPUTNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'DigitalOutput', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_DIGOUTPUT_COMPONENT).replace('%1', Blockly.Msg.ARD_DIGOUTPUT_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_DIGOUTPUT_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -630,8 +513,11 @@ Blockly.Blocks['pwmoutput_config_hub'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_PWMOUTPUT)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_PWMOUTPUT_DEFAULT_NAME, 'PWMOutput'), 'OUTPUTNAME')
+        .appendField(
+            new Blockly.FieldInstance('PWMOutput',
+                                      Blockly.Msg.ARD_PWMOUTPUT_DEFAULT_NAME,
+                                      true, true, false),
+            'OUTPUTNAME');
     this.setOutput(true, 'HUB_PWM');
     this.setColour(Blockly.Blocks.io.HUE);
     this.setTooltip(Blockly.Msg.ARD_PWMOUTPUT_TIP);
@@ -644,34 +530,6 @@ Blockly.Blocks['pwmoutput_config_hub'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'PWMOutput';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('OUTPUTNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('OUTPUTNAME'))) {
-      this.setFieldValue(newName, 'OUTPUTNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -694,34 +552,17 @@ Blockly.Blocks['pwmoutput_write'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('NUM')
         .appendField(Blockly.Msg.ARD_PWMOUTPUT_WRITE)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_PWMOUTPUT_DEFAULT_NAME, 'PWMOutput'), 'OUTPUTNAME')
+        .appendField(
+            new Blockly.FieldInstance('PWMOutput',
+                                      Blockly.Msg.ARD_PWMOUTPUT_DEFAULT_NAME,
+                                      false, true, false),
+            'OUTPUTNAME')
         .appendField(Blockly.Msg.ARD_OUTPUT_WRITE_TO)
         .setCheck(Blockly.Types.NUMBER.output);
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_PWMOUTPUT_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('OUTPUTNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('OUTPUTNAME'))) {
-      this.setFieldValue(newName, 'OUTPUTNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -734,19 +575,22 @@ Blockly.Blocks['pwmoutput_write'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of pwmoutput config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('OUTPUTNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'PWMOutput')) {
+    var instanceName = this.getFieldValue('OUTPUTNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'PWMOutput', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_PWMOUTPUT_COMPONENT).replace('%1', Blockly.Msg.ARD_PWMOUTPUT_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_PWMOUTPUT_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };

@@ -23,10 +23,13 @@ Blockly.Blocks.button.HUE = 250;
 Blockly.Blocks['button_setup'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/arduino/Button.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/arduino/Button.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_BUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
+                                      true, true, false),
+            'BUTTONNAME')
         .appendField(Blockly.Msg.ARD_BUTTON_IFPUSHED)
         .appendField(
             new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
@@ -45,34 +48,6 @@ Blockly.Blocks['button_setup'] = {
     this['connector'] = connector;
   },
   /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'Button';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('BUTTONNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
-      this.setFieldValue(newName, 'BUTTONNAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -88,8 +63,11 @@ Blockly.Blocks['button_input'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_BUTTON_INPUT_IF)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_BUTTON_DEFAULT_NAME, 'Button'), 'BUTTONNAME')
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
+                                      false, true, false),
+            'BUTTONNAME')
         .appendField(Blockly.Msg.ARD_BUTTON_INPUT_CLICK);
     this.appendStatementInput("CLICKINPUT")
         .setCheck('ARD_BLOCK')
@@ -117,26 +95,6 @@ Blockly.Blocks['button_input'] = {
     this.setHelpUrl('');
   },
   /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('BUTTONNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('BUTTONNAME'))) {
-      this.setFieldValue(newName, 'BUTTONNAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -145,21 +103,18 @@ Blockly.Blocks['button_input'] = {
   getVarType: function(varName) {
     return Blockly.Types.NUMBER;
   },
-  /**
-   * Called whenever anything on the workspace changes.
-   * It checks the instances of the config block and attaches a warning to this
-   * block if not valid data is found.
-   * @this Blockly.Block
-   */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('BUTTONNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'Button')) {
+    var instanceName = this.getFieldValue('BUTTONNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Button', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace('%1', Blockly.Msg.ARD_BUTTON_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };

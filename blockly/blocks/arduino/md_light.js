@@ -24,8 +24,11 @@ Blockly.Blocks['mcookie_neopixel_setup'] = {
     this.appendValueInput('NUMBER')
         .appendField(new Blockly.FieldImage("media/MD/MDLed.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_NEOPIXEL)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'LEDNAME')
+        .appendField(
+            new Blockly.FieldInstance('LedStrip',
+                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
+                                      true, true, false),
+            'LEDNAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_STRIP);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXELS);
@@ -41,34 +44,6 @@ Blockly.Blocks['mcookie_neopixel_setup'] = {
    */
   setHubConnector: function(connector) {
     this['connector'] = connector;
-  },
-  /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'LedStrip';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('LEDNAME'))) {
-      this.setFieldValue(newName, 'LEDNAME');
-    }
   },
   /**
    * Gets the variable type required.

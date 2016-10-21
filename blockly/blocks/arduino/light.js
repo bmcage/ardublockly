@@ -23,10 +23,13 @@ Blockly.Blocks.light.HUE = 512;
 Blockly.Blocks['led_config_hub'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_LEDLEG)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME')
+        .appendField(
+            new Blockly.FieldInstance('LedLeg',
+                                      Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME,
+                                      true, true, false),
+            'LEDNAME')
         .appendField(Blockly.Msg.ARD_LEDLEGPOL)
         .appendField(
             new Blockly.FieldDropdown(
@@ -47,34 +50,6 @@ Blockly.Blocks['led_config_hub'] = {
     this['connector'] = connector;
   },
   /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'LedLeg';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('LEDNAME'))) {
-      this.setFieldValue(newName, 'LEDNAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -91,8 +66,11 @@ Blockly.Blocks['neopixel_config_hub'] = {
     this.appendValueInput('NUMBER')
         .appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_NEOPIXEL)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'LEDNAME')
+        .appendField(
+            new Blockly.FieldInstance('LedStrip',
+                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
+                                      true, true, false),
+            'LEDNAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_STRIP);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXELS)
@@ -124,34 +102,6 @@ Blockly.Blocks['neopixel_config_hub'] = {
     this['connector'] = connector;
   },
   /**
-   * Return the name of the component defined in this block
-   * @return {!<string>} The name of the component
-   * @this Blockly.Block
-   */
-  getComponentName: function() {
-    return 'LedStrip';
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('LEDNAME'))) {
-      this.setFieldValue(newName, 'LEDNAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -173,33 +123,16 @@ Blockly.Blocks['led_digitalwrite'] = {
     this.setColour(Blockly.Blocks.light.HUE);
     this.appendValueInput('STATE')
         .appendField(Blockly.Msg.ARD_LEDLEG_SET)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME')
+        .appendField(
+            new Blockly.FieldInstance('LedLeg',
+                                      Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME,
+                                      false, true, false),
+            'LEDNAME')
         .setCheck(Blockly.Types.BOOLEAN.checkList);
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('LEDNAME'))) {
-      this.setFieldValue(newName, 'LEDNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -212,19 +145,22 @@ Blockly.Blocks['led_digitalwrite'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of ledleg config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('LEDNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedLeg')) {
+    var instanceName = this.getFieldValue('LEDNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'LedLeg', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_LEDLEG_COMPONENT).replace('%1', Blockly.Msg.ARD_LEDLEG_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_LEDLEG_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -239,8 +175,11 @@ Blockly.Blocks['led_digitalwrite_onoff'] = {
     this.setColour(Blockly.Blocks.light.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_LEDLEG_SET)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME, 'LedLeg'), 'LEDNAME')
+        .appendField(
+            new Blockly.FieldInstance('LedLeg',
+                                      Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME,
+                                      false, true, false),
+            'LEDNAME')
         .appendField(
             new Blockly.FieldDropdown(
                 [[Blockly.Msg.ARD_LEDLEG_ON, 'on'],
@@ -250,26 +189,6 @@ Blockly.Blocks['led_digitalwrite_onoff'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('LEDNAME'))) {
-      this.setFieldValue(newName, 'LEDNAME');
-    }
   },
   /**
    * Gets the variable type required.
@@ -282,19 +201,22 @@ Blockly.Blocks['led_digitalwrite_onoff'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of ledleg config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('LEDNAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedLeg')) {
+    var instanceName = this.getFieldValue('LEDNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'LedLeg', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_LEDLEG_COMPONENT).replace('%1', Blockly.Msg.ARD_LEDLEG_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_LEDLEG_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -309,8 +231,11 @@ Blockly.Blocks['neopixel_colourpick_write'] = {
     this.setColour(Blockly.Blocks.light.HUE);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
+        .appendField(
+            new Blockly.FieldInstance('LedStrip',
+                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
+                                      false, true, false),
+            'NEONAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
@@ -331,26 +256,6 @@ Blockly.Blocks['neopixel_colourpick_write'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
     },
   /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('NEONAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NEONAME'))) {
-      this.setFieldValue(newName, 'NEONAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -361,19 +266,22 @@ Blockly.Blocks['neopixel_colourpick_write'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of neopixel config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
+    var instanceName = this.getFieldValue('NEONAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -388,8 +296,11 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
     this.setColour(Blockly.Blocks.light.HUE);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
+        .appendField(
+            new Blockly.FieldInstance('LedStrip',
+                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
+                                      false, true, false),
+            'NEONAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
@@ -413,26 +324,6 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
     },
   /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('NEONAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NEONAME'))) {
-      this.setFieldValue(newName, 'NEONAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -443,19 +334,22 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of neopixel config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
+    var instanceName = this.getFieldValue('NEONAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
@@ -470,8 +364,11 @@ Blockly.Blocks['neopixel_write'] = {
     this.setColour(Blockly.Blocks.light.HUE);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
-        .appendField(new Blockly.Blocks.ComponentFieldVariable(
-        Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME, 'LedStrip'), 'NEONAME')
+        .appendField(
+            new Blockly.FieldInstance('LedStrip',
+                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
+                                      false, true, false),
+            'NEONAME')
         .appendField('pixel')
     this.appendValueInput("LEDPIXEL")
         .setCheck(Blockly.Types.NUMBER.checkList)
@@ -496,26 +393,6 @@ Blockly.Blocks['neopixel_write'] = {
     this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
     },
   /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('NEONAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('NEONAME'))) {
-      this.setFieldValue(newName, 'NEONAME');
-    }
-  },
-  /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
    *     check.
@@ -526,19 +403,22 @@ Blockly.Blocks['neopixel_write'] = {
   },
   /**
    * Called whenever anything on the workspace changes.
-   * It checks the instances of stepper_config and attaches a warning to this
+   * It checks the instances of neopixel config and attaches a warning to this
    * block if not valid data is found.
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+    if (!this.workspace) return;  // Block has been deleted.
 
-    var currentDropdown = this.getFieldValue('NEONAME');
-    if (Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent(this.workspace, currentDropdown, 'LedStrip')) {
+    var instanceName = this.getFieldValue('NEONAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
       this.setWarningText(null);
     } else {
-      // Set a warning to select a valid stepper config
-      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace('%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT));
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace(
+                '%2', instanceName));
     }
   }
 };
