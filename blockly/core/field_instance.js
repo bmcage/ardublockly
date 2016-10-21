@@ -101,10 +101,15 @@ Blockly.FieldInstance.prototype.init = function() {
                   this.getValue(), this.sourceBlock_));
         }
       } else {
-        // Pick an existing name from the workspace if any exists
-        var existingName =
-            Blockly.Instances.getAnyInstanceOf(this.instanceType_ , workspace);
-        if (existingName) this.setValue(existingName);
+        // Pick an existing name from the workspace if needed and any exists
+        var instanceList =
+        Blockly.Instances.allInstancesOf(this.instanceType_,
+                                         this.sourceBlock_.workspace);
+        if (instanceList.indexOf(this.getValue()) == -1) {
+          var existingName =
+              Blockly.Instances.getAnyInstanceOf(this.instanceType_ , workspace);
+          if (existingName) this.setValue(existingName);
+        }
       }
   }
 };
