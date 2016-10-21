@@ -83,7 +83,7 @@ Blockly.Blocks['stepper_config_hub'] = {
         .appendField(
             new Blockly.FieldInstance('Stepper',
                                       Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
-                                      false, true, false),
+                                      true, true, false),
             'STEPPER_NAME')
         .appendField(Blockly.Msg.ARD_STEPPER_MOTOR);
     this.appendValueInput('STEPPER_STEPS')
@@ -138,35 +138,6 @@ Blockly.Blocks['stepper_step'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_STEPPER_STEP_TIP);
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('STEPPER_NAME')];
-  },
-  /**
-   * Notification that a variable is renaming.
-   * If the name matches one of this block's variables, rename it.
-   * @param {string} oldName Previous name of variable.
-   * @param {string} newName Renamed variable.
-   * @this Blockly.Block
-   */
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('STEPPER_NAME'))) {
-      this.setFieldValue(newName, 'STEPPER_NAME');
-    }
-  },
-  /**
-   * Gets the variable type required.
-   * @param {!string} varName Name of the variable selected in this block to
-   *     check.
-   * @return {string} String to indicate the variable type.
-   */
-  getVarType: function(varName) {
-    return Blockly.Types.ARRAY;
   },
   /**
    * Called whenever anything on the workspace changes.
