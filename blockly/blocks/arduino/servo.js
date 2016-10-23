@@ -23,7 +23,7 @@ Blockly.Blocks.servo.HUE = 60;
 
 Blockly.Blocks['servo_write'] = {
   /**
-   * Block for writing an angle value into a servo PWM pin.
+   * Block for writing an angle value into a servo pin.
    * @this Blockly.Block
    */
   init: function() {
@@ -32,7 +32,7 @@ Blockly.Blocks['servo_write'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVO_WRITE)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.pwmPins), 'SERVO_PIN');
+            Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
     this.setInputsInline(false);
     this.appendValueInput('SERVO_ANGLE')
         .setCheck(Blockly.Types.NUMBER.checkList)
@@ -50,13 +50,13 @@ Blockly.Blocks['servo_write'] = {
    */
   updateFields: function() {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-        this, 'SERVO_PIN', 'pwmPins');
+        this, 'SERVO_PIN', 'digitalPins');
   }
 };
 
 Blockly.Blocks['servo_read'] = {
   /**
-   * Block for reading an angle value of a servo PWM pin.
+   * Block for reading an angle value of a servo pin.
    * @this Blockly.Block
    */
   init: function() {
@@ -65,7 +65,7 @@ Blockly.Blocks['servo_read'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVO_READ)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.pwmPins), 'SERVO_PIN');
+            Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
     this.setOutput(true, Blockly.Types.NUMBER.output);
     this.setTooltip(Blockly.Msg.ARD_SERVO_READ_TIP);
   },
@@ -79,7 +79,7 @@ Blockly.Blocks['servo_read'] = {
    */
   updateFields: function() {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-        this, 'SERVO_PIN', 'pwmPins');
+        this, 'SERVO_PIN', 'digitalPins');
   }
 };
 
@@ -104,7 +104,7 @@ Blockly.Blocks['servo_config_hub'] = {
                                        [Blockly.Msg.ARD_360SERVO, '360SERVO']
                                       ]),
            'SERVOTYPE');
-    this.setOutput(true, "HUB_PWM");
+    this.setOutput(true, "HUB_DIGOUT");
     this.setColour(Blockly.Blocks.servo.HUE);
     this.setTooltip(Blockly.Msg.ARD_SERVOHUB_TIP);
     this.setHelpUrl('https://wiki.microduino.cc/index.php/Servo');
@@ -130,7 +130,7 @@ Blockly.Blocks['servo_config_hub'] = {
 
 Blockly.Blocks['servohub_write'] = {
   /**
-   * Block for writing an angle value into a servo PWM pin.
+   * Block for writing an angle value into a servo pin.
    * @this Blockly.Block
    */
   init: function() {
@@ -184,7 +184,7 @@ Blockly.Blocks['servohub_write'] = {
 
 Blockly.Blocks['servohub_read'] = {
   /**
-   * Block for reading an angle value of a servo PWM pin.
+   * Block for reading an angle value of a servo pin.
    * @this Blockly.Block
    */
   init: function() {
@@ -235,7 +235,7 @@ Blockly.Blocks['servohub_read'] = {
 
 Blockly.Blocks['servohub_write2'] = {
   /**
-   * Block for writing an angle value into a servo PWM pin.
+   * Block for writing an angle value into a servo pin.
    * @this Blockly.Block
    */
   init: function() {
