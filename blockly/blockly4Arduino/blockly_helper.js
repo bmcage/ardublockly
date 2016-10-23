@@ -103,7 +103,7 @@ function discard() {
   var count = Blockly.mainWorkspace.getAllBlocks().length;
   if (count < 2 || window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace('%1', count))) {
     Blockly.mainWorkspace.clear();
-    renderContent();
+    Blockly4Arduino.renderContent();
   }
 }
 
