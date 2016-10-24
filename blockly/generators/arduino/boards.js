@@ -13,7 +13,6 @@ goog.provide('Blockly.Arduino.Boards');
 
 goog.require('Blockly.Arduino');
 
-
 /**
  * Helper function to generate an array of pins (each an array of length 2) for
  * the digital IO.
@@ -358,6 +357,33 @@ Blockly.Arduino.Boards.profiles.mdcookiecoreusb = {
   interrupt: [['interrupt0', '19'], ['interrupt1', '18'], ['interrupt2', '0'],
               ['interrupt3', '1'], ['interrupt4', '2']]
 };
+
+/**         ALLBOT ROBOT BOARDS    **/
+
+/** ALLBOT 2 legged 4 servo on UNO. */
+Blockly.Arduino.Boards.profiles.allbotVR204uno =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.uno,
+        'AllBot VR204 Uno',
+        'AllBot with 2 legs, 4 servo, with uno');
+Blockly.Arduino.Boards.profiles.allbotVR204uno.joints = {
+    name:  [['ARD_ALLBOT_HIPLEFT', 'hipLeft'],
+            ['ARD_ALLBOT_HIPRIGHT', 'hipRight'], 
+            ['ARD_ALLBOT_ANKLELEFT', 'ankleLeft'], 
+            ['ARD_ALLBOT_ANKLERIGHT', 'ankleRight']
+           ],
+    initangle: [90, 90, 90, 90],
+    flipped: [1, 0, 1, 0]
+};
+
+/** ALLBOT 2 legged 4 servo on MEGA. */
+Blockly.Arduino.Boards.profiles.allbotVR204mega =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.mega,
+        'AllBot VR204 Mega',
+        'AllBot with 2 legs, 4 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR204mega.joints = 
+  Blockly.Arduino.Boards.profiles.allbotVR204uno.joints;
 
 /** Set default profile to Arduino standard-compatible board */
 Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.uno;

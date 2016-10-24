@@ -662,5 +662,14 @@
 	"ARD_LEDUP_PROTO": "Prototype Arduino UNO",
 	"ARD_LEDUP_LED_ONOFF1": "Zet LedUp LED",
 	"ARD_LEDUP_LED_ONOFF2": "aan? Waar/Onwaar:",
-	"ARD_LEDUP_LED_ONOFF_TIP": "Een gegeven LedUpKidz licht aan of uit zetten via variabelen."
+	"ARD_LEDUP_LED_ONOFF_TIP": "Een gegeven LedUpKidz licht aan of uit zetten via variabelen.",
+	"ARD_ALLBOT_SERVOHUB": "AllBot Servo motor",
+	"ARD_ALLBOT_HIPLEFT": "heupLinks",
+	"ARD_ALLBOT_HIPRIGHT": "heupRechts",
+	"ARD_ALLBOT_ANKLELEFT": "enkelLinks",
+	"ARD_ALLBOT_ANKLERIGHT": "enkelRechts",
+	"NEW_INSTANCE": "Nieuw object...",
+	"RENAME_INSTANCE": "Hernoem object...",
+	"NEW_INSTANCE_TITLE": "Nieuwe objectnaam:",
+	"RENAME_INSTANCE_TITLE": "Hernoem alle '%1' objecten als:"
 }

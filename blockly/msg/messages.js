@@ -1448,6 +1448,12 @@ Blockly.Msg.ARD_LEDUP_PROTO = 'Prototype Arduino UNO';
 Blockly.Msg.ARD_LEDUP_LED_ONOFF1 = 'Put LedUp LED';
 Blockly.Msg.ARD_LEDUP_LED_ONOFF2 = 'on? True/False:';
 Blockly.Msg.ARD_LEDUP_LED_ONOFF_TIP = 'Set a given LedUpKidz light to on or off using variable blocks';
+/// AllBot strings
+Blockly.Msg.ARD_ALLBOT_SERVOHUB = 'AllBot Servo motor';
+Blockly.Msg.ARD_ALLBOT_HIPLEFT = 'hipLeft';
+Blockly.Msg.ARD_ALLBOT_HIPRIGHT = 'hipRight';
+Blockly.Msg.ARD_ALLBOT_ANKLELEFT = 'ankleLeft';
+Blockly.Msg.ARD_ALLBOT_ANKLERIGHT = 'ankleRight';
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
