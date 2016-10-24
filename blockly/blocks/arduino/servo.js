@@ -90,7 +90,7 @@ Blockly.Blocks['servo_config_hub'] = {
    */
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("../media/arduino/Servo.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/arduino/Servo.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_SERVOHUB)
         .appendField(
             new Blockly.FieldInstance('Servo',
@@ -107,7 +107,7 @@ Blockly.Blocks['servo_config_hub'] = {
     this.setOutput(true, "HUB_DIGOUT");
     this.setColour(Blockly.Blocks.servo.HUE);
     this.setTooltip(Blockly.Msg.ARD_SERVOHUB_TIP);
-    this.setHelpUrl('https://wiki.microduino.cc/index.php/Servo');
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/Servo');
   },
   /**
    * Set the connection pins that the component connects to
