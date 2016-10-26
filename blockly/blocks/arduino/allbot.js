@@ -87,7 +87,17 @@ Blockly.Blocks['allbotservo_config_hub'] = {
     } else {
       this.setWarningText(null, 'allbotservo_config_hub');
     }
+  },
+  /**
+   * Updates the content of the allbot servomotor dropdown
+   * @this Blockly.Block
+   */
+  updateFields: function() {
+    // TODO BENNY 
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+        this, 'PIN', 'digitalPins');
   }
+};
 };
 
 Blockly.Blocks['allbot_forward'] = {
