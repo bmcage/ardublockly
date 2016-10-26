@@ -89,3 +89,20 @@ Blockly.Blocks['allbotservo_config_hub'] = {
     }
   }
 };
+
+Blockly.Blocks['allbot_forward'] = {
+  init: function() {
+    this.appendValueInput('STEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_FORWARD);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_WALK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};

@@ -1455,6 +1455,9 @@ Blockly.Msg.ARD_ALLBOT_HIPLEFT = 'hipLeft';
 Blockly.Msg.ARD_ALLBOT_HIPRIGHT = 'hipRight';
 Blockly.Msg.ARD_ALLBOT_ANKLELEFT = 'ankleLeft';
 Blockly.Msg.ARD_ALLBOT_ANKLERIGHT = 'ankleRight';
+Blockly.Msg.ARD_ALLBOT_FORWARD = 'AllBot Forward:';
+Blockly.Msg.ARD_ALLBOT_STEPS = 'steps, stepspeed';
+Blockly.Msg.ARD_ALLBOT_WALK_TIP = 'Make the allbot move a number of steps with the given speed (ms) for one step';
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
