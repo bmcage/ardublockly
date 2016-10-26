@@ -75,8 +75,8 @@ Blockly.Blocks['allbotservo_config_hub'] = {
     for (var x = 0; x < blocks.length; x++) {
       var func = blocks[x].getBoardName;
       if (func) {
-        var BlockInstanceName = func.call();
-        if (BlockInstanceName.startsWith("AllBot")) {
+        var BlockInstanceName = func.call(blocks[x]);
+        if (BlockInstanceName.startsWith("allbot")) {
           allbotInstancePresent = true;
         }
       }
