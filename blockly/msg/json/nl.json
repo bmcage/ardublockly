@@ -663,6 +663,7 @@
 	"ARD_LEDUP_LED_ONOFF1": "Zet LedUp LED",
 	"ARD_LEDUP_LED_ONOFF2": "aan? Waar/Onwaar:",
 	"ARD_LEDUP_LED_ONOFF_TIP": "Een gegeven LedUpKidz licht aan of uit zetten via variabelen.",
+	"ARD_NO_ALLBOT": "Geen AllBot aanwezig",
 	"ARD_ALLBOT_SERVOHUB": "AllBot Servo motor",
 	"ARD_ALLBOT_HIPLEFT": "heupLinks",
 	"ARD_ALLBOT_HIPRIGHT": "heupRechts",

@@ -81,7 +81,7 @@ Blockly.Arduino['servo_config_hub'] = function(block) {
   var servoType = block.getFieldValue('SERVOTYPE');
   
   //the hub saved the connector in the attached block
-  var hubconnector = block['connector'] || ['0', '1']
+  var hubconnector = block['connector'] || ['0']
   //compute the pins, normally only possible to attach at valid pins
   var pin = hubconnector[0];
 

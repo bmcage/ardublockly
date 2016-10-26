@@ -33,7 +33,7 @@ Blockly.Blocks['allbotservo_config_hub'] = {
                  Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
         }
     } else {
-        names = [['No AllBot', 'noallbot']];
+        names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
     }
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("media/arduino/Servo.png", 19, 19, "*"))
@@ -60,5 +60,32 @@ Blockly.Blocks['allbotservo_config_hub'] = {
    */
   getVarType: function(varName) {
     return Blockly.Types.NUMBER;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks if the board selected is a valid allbot
+   * @this Blockly.Block
+   */
+  onchange: function() {
+    if (!this.workspace) { return; }  // Block has been deleted.
+
+    // Iterate through top level blocks to find board module
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var allbotInstancePresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getBoardName;
+      if (func) {
+        var BlockInstanceName = func.call();
+        if (BlockInstanceName.startsWith("AllBot")) {
+          allbotInstancePresent = true;
+        }
+      }
+    }
+
+    if (!allbotInstancePresent) {
+      this.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_config_hub');
+    } else {
+      this.setWarningText(null, 'allbotservo_config_hub');
+    }
   }
 };
