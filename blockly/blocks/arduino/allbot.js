@@ -98,9 +98,8 @@ Blockly.Blocks['allbotservo_config_hub'] = {
         this, 'PIN', 'digitalPins');
   }
 };
-};
 
-Blockly.Blocks['allbot_forward'] = {
+Blockly.Blocks['allbot_walkforward'] = {
   init: function() {
     this.appendValueInput('STEPS')
         .setCheck(Blockly.Types.NUMBER.checkList)

@@ -17,7 +17,7 @@ goog.require('Blockly.Arduino');
 
 
 /**
- * The servo setup block
+ * The allbot servo setup block
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
@@ -31,7 +31,7 @@ Blockly.Arduino['allbotservo_config_hub'] = function(block) {
 
   //servo is a variable containing the used pins
   Blockly.Arduino.addVariable(servo,
-    'int ' + servo + ' = ' + pin + ';', true);
+    'int pin' + servo + ' = ' + pin + ';', true);
   
   // find type of allbot
   var allbot = Blockly.Arduino.Boards.selected;
@@ -208,3 +208,29 @@ void scared(int shakes, int beeps){
     chirp(beeps, 0);
 }`
 }
+
+
+/**
+ * The allbot walk forward block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_walkforward'] = function(block) {
+  var steps = Blockly.Arduino.valueToCode(
+      block, 'STEPS', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].walkforward;
+    Blockly.Arduino.addFunction('walkforward', func)
+    code = 'walkforward(' + steps + ', ' + speed + ');';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code';
+  }
+  
+  return code;
+};

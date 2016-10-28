@@ -366,6 +366,7 @@ Blockly.Arduino.Boards.profiles.allbotVR204uno =
         Blockly.Arduino.Boards.profiles.uno,
         'AllBot VR204 Uno',
         'AllBot with 2 legs, 4 servo, with uno');
+Blockly.Arduino.Boards.profiles.allbotVR204uno.allbotname = 'VR204';
 Blockly.Arduino.Boards.profiles.allbotVR204uno.joints = {
     name:  [['ARD_ALLBOT_HIPLEFT', 'hipLeft'],
             ['ARD_ALLBOT_HIPRIGHT', 'hipRight'], 
@@ -382,6 +383,7 @@ Blockly.Arduino.Boards.profiles.allbotVR204mega =
         Blockly.Arduino.Boards.profiles.mega,
         'AllBot VR204 Mega',
         'AllBot with 2 legs, 4 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR204mega.allbotname = 'VR204';
 Blockly.Arduino.Boards.profiles.allbotVR204mega.joints = 
   Blockly.Arduino.Boards.profiles.allbotVR204uno.joints;
 
