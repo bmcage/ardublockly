@@ -64,7 +64,7 @@ Blockly.Blocks['led_config_hub'] = {
 Blockly.Blocks['neopixel_config_hub'] = {
   init: function() {
     this.appendValueInput('NUMBER')
-        .appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
+        .appendField(new Blockly.FieldImage("media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_NEOPIXEL)
         .appendField(
             new Blockly.FieldInstance('LedStrip',
