@@ -669,6 +669,7 @@
 	"ARD_ALLBOT_HIPRIGHT": "heupRechts",
 	"ARD_ALLBOT_ANKLELEFT": "enkelLinks",
 	"ARD_ALLBOT_ANKLERIGHT": "enkelRechts",
+	"ARD_UNKNOWN_ALLBOTJOINT": "De oude servo waarde %1 is niet langer beschikbaar",
 	"ARD_ALLBOT_FORWARD": "AllBot Vooruit:",
 	"ARD_ALLBOT_STEPS": "stappen, stapsnelheid",
 	"ARD_ALLBOT_WALK_TIP": "Laat de allbot een aantal stappen maken in de gegeven snelheid (ms) per stap",
