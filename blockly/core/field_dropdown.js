@@ -314,6 +314,15 @@ Blockly.FieldDropdown.prototype.setText = function(text) {
   }
 };
 
+
+/**
+ * Get the text in this field.  
+ * @return {string} the visible text
+ */
+Blockly.FieldDropdown.prototype.getText = function() {
+  return this.text_;
+}
+
 /**
  * Close the dropdown menu if this input is being deleted.
  */
