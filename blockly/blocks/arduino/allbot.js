@@ -173,3 +173,116 @@ Blockly.Blocks['allbot_walkforward'] = {
     this.setHelpUrl('https://www.allbot.eu');
   }
 };
+
+Blockly.Blocks['allbot_walkbackward'] = {
+  init: function() {
+    this.appendValueInput('STEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_BACKWARD);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_WALK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_walkleft'] = {
+  init: function() {
+    this.appendValueInput('STEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_LEFT);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_WALK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_walkright'] = {
+  init: function() {
+    this.appendValueInput('STEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_RIGHT);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_WALK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_lookleft'] = {
+  init: function() {
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_LOOKLEFT);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_LOOK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_lookright'] = {
+  init: function() {
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_LOOKRIGHT);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_LOOK_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_chirp'] = {
+  init: function() {
+    this.appendValueInput('BEEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_CHIRP);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_CHIRPSPEED);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_CHIRP_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_scared'] = {
+  init: function() {
+    this.appendValueInput('SHAKES')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_SCARED);
+    this.appendValueInput('BEEPS')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_SCAREDBEEPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_SCARED_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};

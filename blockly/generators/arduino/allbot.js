@@ -227,9 +227,180 @@ Blockly.Arduino['allbot_walkforward'] = function(block) {
   if (allbot['allbotname'] !== undefined) {
     var func = allbotfunctions[allbot.allbotname].walkforward;
     Blockly.Arduino.addFunction('walkforward', func)
-    code = 'walkforward(' + steps + ', ' + speed + ');';
+    code = 'walkforward(' + steps + ', ' + speed + ');\n';
   } else {
-    code = '// No AllBot on the workspace. Add it to generate code';
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot walk backward block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_walkbackward'] = function(block) {
+  var steps = Blockly.Arduino.valueToCode(
+      block, 'STEPS', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].walkbackward;
+    Blockly.Arduino.addFunction('walkbackward', func)
+    code = 'walkbackward(' + steps + ', ' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot walk left block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_walkleft'] = function(block) {
+  var steps = Blockly.Arduino.valueToCode(
+      block, 'STEPS', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].walkleft;
+    Blockly.Arduino.addFunction('walkleft', func)
+    code = 'walkleft(' + steps + ', ' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot walk right block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_walkright'] = function(block) {
+  var steps = Blockly.Arduino.valueToCode(
+      block, 'STEPS', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].walkright;
+    Blockly.Arduino.addFunction('walkright', func)
+    code = 'walkright(' + steps + ', ' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot look left block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_lookleft'] = function(block) {
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].lookleft;
+    Blockly.Arduino.addFunction('lookleft', func)
+    code = 'lookleft(' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot look right block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_lookright'] = function(block) {
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '200';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].lookright;
+    Blockly.Arduino.addFunction('lookright', func)
+    code = 'lookright(' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot chirp block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_chirp'] = function(block) {
+  var beeps = Blockly.Arduino.valueToCode(
+      block, 'BEEPS', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '100';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].chirp;
+    Blockly.Arduino.addFunction('chirp', func)
+    code = 'chirp(' + beeps + ', ' + speed + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
+  }
+  
+  return code;
+};
+
+/**
+ * The allbot look scared block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_scared'] = function(block) {
+  var beeps = Blockly.Arduino.valueToCode(
+      block, 'BEEPS', Blockly.Arduino.ORDER_ATOMIC) || '3';
+  var shakes = Blockly.Arduino.valueToCode(
+      block, 'SHAKES', Blockly.Arduino.ORDER_ATOMIC) || '10';
+  
+  var code = '';
+  // find type of allbot
+  var allbot = Blockly.Arduino.Boards.selected;
+  if (allbot['allbotname'] !== undefined) {
+    var func = allbotfunctions[allbot.allbotname].scared;
+    Blockly.Arduino.addFunction('scared', func)
+    code = 'scared(' + shakes + ', ' + beeps + ');\n';
+  } else {
+    code = '// No AllBot on the workspace. Add it to generate code\n';
   }
   
   return code;
