@@ -37,9 +37,6 @@ Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
     names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
   }
   
-  //set the dropdown list
-  field.menuGenerator_ = names;
-
   //check if set value is a valid value
   var currentValuePresent = false;
   for (var i = 0; i < names.length; i++) {
@@ -47,14 +44,18 @@ Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
       currentValuePresent = true;
     }
   }
-  // this leads to infinite recursion error in onchange
   // If the old value is not present any more, add a warning to the block.
-  //if (!currentValuePresent) {
-  //  block.setWarningText(Blockly.Msg.ARD_UNKNOWN_ALLBOTJOINT.replace('%1', textValue),
-  //                       'allbotservo_config_joint');
-  //} else {
-  //  block.setWarningText(null, 'allbotservo_config_joint');
-  //}
+  if (!currentValuePresent) {
+    //doing setWarningText here can lead to infinite recursion in onchange
+    block.currentJointPresent = Blockly.Msg.ARD_UNKNOWN_ALLBOTJOINT.replace('%1', textValue);
+  } else {
+    block.currentJointPresent = null;
+  }
+  
+  //set the dropdown list
+  field.menuGenerator_ = names;
+  
+  return currentValuePresent;
 };
 
 
@@ -121,37 +122,23 @@ Blockly.Blocks['allbotservo_config_hub'] = {
       }
     }
     
-    //Iterate over joints and check if a valid joint selected
-    var field = this.getField('NAMESERVO');
-    var fieldValue = field.getValue();
-    var textValue = field.getText();
     
-    // create the list for the dropdown
-    var names = [];
-    if (Blockly.Arduino.Boards.selected['joints'] !== undefined) {
-        for (var nrname in Blockly.Arduino.Boards.selected.joints.name) {
-        names.push(
-            [Blockly.Msg[ Blockly.Arduino.Boards.selected.joints.name[nrname][0] ],
-            Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
-        }
-    } else {
-        names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
+    
+    //control if joint excists happens in updateFields 
+    var currentValuePresent = true;
+    if (this['currentJointPresent'] !== undefined && this['currentJointPresent'] !== null) {
+      //joint selected not present in dropdown, check if dropdown changed, and 
+      //redetermine if joint selected present already
+      currentValuePresent = Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown(
+        this, 'NAMESERVO');
     }
-    //check if set value is a valid value
-    var currentValuePresent = false;
-    for (var i = 0; i < names.length; i++) {
-        if (fieldValue == names[i][1]) {
-        currentValuePresent = true;
-        }
-    }
-
+    
     if (!allbotInstancePresent) {
-      this.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_config_hub');
+      this.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_block');
     } else if (!currentValuePresent) {
-      this.setWarningText(Blockly.Msg.ARD_UNKNOWN_ALLBOTJOINT.replace('%1', textValue),
-                         'allbotservo_config_hub');
+      this.setWarningText(this['currentJointPresent'], 'allbotservo_block');
     } else {
-      this.setWarningText(null, 'allbotservo_config_hub');
+      this.setWarningText(null, 'allbotservo_block');
     }
   },
   /**
