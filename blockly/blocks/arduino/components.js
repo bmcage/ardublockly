@@ -222,7 +222,6 @@ Blockly.Blocks['core_hub_component'] = {
     this.digdigCount_ = 0;
     // Rebuild the block's optional inputs.
     var clauseBlock = containerBlock.nextConnection.targetBlock();
-    console.log('inputs', oldInputs);
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'core_hub_digpin':
