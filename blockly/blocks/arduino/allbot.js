@@ -37,11 +37,20 @@ Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
     names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
   }
   
+  //set the dropdown list
+  field.menuGenerator_ = names;
+  
   //check if set value is a valid value
   var currentValuePresent = false;
   for (var i = 0; i < names.length; i++) {
     if (fieldValue == names[i][1]) {
       currentValuePresent = true;
+      // reset it for translation update as at init translation was not known
+      if (fieldValue == textValue) {
+        // on reload, translation should be set after setting menuGenerator_
+        field.setValue('dummy');
+        field.setValue(fieldValue);
+      }
     }
   }
   // If the old value is not present any more, add a warning to the block.
@@ -52,8 +61,6 @@ Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
     block.currentJointPresent = null;
   }
   
-  //set the dropdown list
-  field.menuGenerator_ = names;
   
   return currentValuePresent;
 };
@@ -121,9 +128,7 @@ Blockly.Blocks['allbotservo_config_hub'] = {
         }
       }
     }
-    
-    
-    
+
     //control if joint excists happens in updateFields 
     var currentValuePresent = true;
     if (this['currentJointPresent'] !== undefined && this['currentJointPresent'] !== null) {
