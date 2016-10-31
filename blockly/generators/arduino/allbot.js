@@ -419,3 +419,32 @@ Blockly.Arduino['servoallbot_write'] = function(block) {
   var code = 'BOT.write(' + servoInstanceName + ', ' + servoAngle + ');\n';
   return code;
 };
+
+/**
+ * Code generator to animate an allbot.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_animate'] = function(block) {
+  var speed = Blockly.Arduino.valueToCode(
+      block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '100';
+  var movementBranch = Blockly.Arduino.statementToCode(block, 'SERVOMOVEMENTS');
+  
+  var code = movementBranch;
+  code += '  BOT.animate(' + speed + ');\n';
+  return code;
+};
+
+/**
+ * Code generator for a movement block of the animate of an allbot.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['servoallbot_animate'] = function(block) {
+  var servoInstanceName = block.getFieldValue('SERVO_NAME');
+  var servoAngle = Blockly.Arduino.valueToCode(
+      block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+
+  var code = 'BOT.move(' + servoInstanceName + ', ' + servoAngle + ');\n';
+  return code;
+};

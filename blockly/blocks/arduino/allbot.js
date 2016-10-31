@@ -19,6 +19,56 @@ goog.require('Blockly.Types');
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.allbot.HUE = '#50E68E';
 
+Blockly.Blocks.allbot.allbotJointsName = 
+    function(block) {
+  var names = [];
+  if (Blockly.Arduino.Boards.selected['joints'] !== undefined) {
+      for (var nrname in Blockly.Arduino.Boards.selected.joints.name) {
+          names.push(
+              [Blockly.Msg[ Blockly.Arduino.Boards.selected.joints.name[nrname][0] ],
+               Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
+      }
+  } else {
+      names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
+  }
+  return names;
+}
+
+Blockly.Blocks.allbot.allbotJointonchange = 
+    function(block, fieldname) {
+  if (!block.workspace) { return; }  // Block has been deleted.
+
+  // Iterate through top level blocks to find board module
+  var blocks = Blockly.mainWorkspace.getAllBlocks();
+  var allbotInstancePresent = false;
+  for (var x = 0; x < blocks.length; x++) {
+    var func = blocks[x].getBoardName;
+    if (func) {
+      var BlockInstanceName = func.call(blocks[x]);
+      if (BlockInstanceName.startsWith("allbot")) {
+        allbotInstancePresent = true;
+      }
+    }
+  }
+
+  //control if joint exists happens in updateFields 
+  var currentValuePresent = true;
+  if (block['currentJointPresent'] !== undefined && block['currentJointPresent'] !== null) {
+    //joint selected not present in dropdown, check if dropdown changed, and 
+    //redetermine if joint selected present already
+    currentValuePresent = Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown(
+      block, fieldname);
+  }
+
+  if (!allbotInstancePresent) {
+    block.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_block');
+  } else if (!currentValuePresent) {
+    block.setWarningText(block['currentJointPresent'], 'allbotservo_block');
+  } else {
+    block.setWarningText(null, 'allbotservo_block');
+  }
+}
+
 Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
     function(block, fieldName) {
   var field = block.getField(fieldName);
@@ -26,16 +76,7 @@ Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown =
   var textValue = field.getText();
   
   // create the list for the dropdown
-  var names = [];
-  if (Blockly.Arduino.Boards.selected['joints'] !== undefined) {
-    for (var nrname in Blockly.Arduino.Boards.selected.joints.name) {
-      names.push(
-        [Blockly.Msg[ Blockly.Arduino.Boards.selected.joints.name[nrname][0] ],
-         Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
-    }
-  } else {
-    names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
-  }
+  var names = Blockly.Blocks.allbot.allbotJointsName(this);
   
   //set the dropdown list
   field.menuGenerator_ = names;
@@ -72,16 +113,7 @@ Blockly.Blocks['allbotservo_config_hub'] = {
    * @this Blockly.Block
    */
   init: function() {
-    var names = [];
-    if (Blockly.Arduino.Boards.selected['joints'] !== undefined) {
-        for (var nrname in Blockly.Arduino.Boards.selected.joints.name) {
-            names.push(
-                [Blockly.Msg[ Blockly.Arduino.Boards.selected.joints.name[nrname][0] ],
-                 Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
-        }
-    } else {
-        names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
-    }
+    var names = Blockly.Blocks.allbot.allbotJointsName(this);
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("media/arduino/Servo.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_ALLBOT_SERVOHUB)
@@ -114,37 +146,7 @@ Blockly.Blocks['allbotservo_config_hub'] = {
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
-
-    // Iterate through top level blocks to find board module
-    var blocks = Blockly.mainWorkspace.getAllBlocks();
-    var allbotInstancePresent = false;
-    for (var x = 0; x < blocks.length; x++) {
-      var func = blocks[x].getBoardName;
-      if (func) {
-        var BlockInstanceName = func.call(blocks[x]);
-        if (BlockInstanceName.startsWith("allbot")) {
-          allbotInstancePresent = true;
-        }
-      }
-    }
-
-    //control if joint excists happens in updateFields 
-    var currentValuePresent = true;
-    if (this['currentJointPresent'] !== undefined && this['currentJointPresent'] !== null) {
-      //joint selected not present in dropdown, check if dropdown changed, and 
-      //redetermine if joint selected present already
-      currentValuePresent = Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown(
-        this, 'NAMESERVO');
-    }
-    
-    if (!allbotInstancePresent) {
-      this.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_block');
-    } else if (!currentValuePresent) {
-      this.setWarningText(this['currentJointPresent'], 'allbotservo_block');
-    } else {
-      this.setWarningText(null, 'allbotservo_block');
-    }
+    Blockly.Blocks.allbot.allbotJointonchange(this, 'NAMESERVO');
   },
   /**
    * Updates the content of the allbot servomotor dropdown
@@ -287,23 +289,13 @@ Blockly.Blocks['allbot_scared'] = {
   }
 };
 
-
 Blockly.Blocks['servoallbot_write'] = {
   /**
    * Block for writing an angle value into an allbot servo pin.
    * @this Blockly.Block
    */
   init: function() {
-    var names = [];
-    if (Blockly.Arduino.Boards.selected['joints'] !== undefined) {
-        for (var nrname in Blockly.Arduino.Boards.selected.joints.name) {
-            names.push(
-                [Blockly.Msg[ Blockly.Arduino.Boards.selected.joints.name[nrname][0] ],
-                 Blockly.Arduino.Boards.selected.joints.name[nrname][1]]);
-        }
-    } else {
-        names = [[Blockly.Msg.ARD_NO_ALLBOT, 'noallbot']];
-    }
+    var names = Blockly.Blocks.allbot.allbotJointsName(this);
     this.setHelpUrl('http://arduino.cc/en/Reference/ServoWrite');
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
@@ -318,7 +310,7 @@ Blockly.Blocks['servoallbot_write'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
-    this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOTSERVO_WRITE_TIP);
   },
   /**
    * Gets the variable type required.
@@ -335,37 +327,78 @@ Blockly.Blocks['servoallbot_write'] = {
    * @this Blockly.Block
    */
   onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
-
-    // Iterate through top level blocks to find board module
-    var blocks = Blockly.mainWorkspace.getAllBlocks();
-    var allbotInstancePresent = false;
-    for (var x = 0; x < blocks.length; x++) {
-      var func = blocks[x].getBoardName;
-      if (func) {
-        var BlockInstanceName = func.call(blocks[x]);
-        if (BlockInstanceName.startsWith("allbot")) {
-          allbotInstancePresent = true;
-        }
-      }
-    }
-
-    //control if joint excists happens in updateFields 
-    var currentValuePresent = true;
-    if (this['currentJointPresent'] !== undefined && this['currentJointPresent'] !== null) {
-      //joint selected not present in dropdown, check if dropdown changed, and 
-      //redetermine if joint selected present already
-      currentValuePresent = Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown(
+    Blockly.Blocks.allbot.allbotJointonchange(this, 'SERVO_NAME');
+  },
+  /**
+   * Updates the content of the allbot servomotor dropdown
+   * @this Blockly.Block
+   */
+  updateFields: function() {
+    Blockly.Blocks.allbot.refreshBlockFieldAllbotJointsDropdown(
         this, 'SERVO_NAME');
-    }
     
-    if (!allbotInstancePresent) {
-      this.setWarningText(Blockly.Msg.ARD_NO_ALLBOT, 'allbotservo_block');
-    } else if (!currentValuePresent) {
-      this.setWarningText(this['currentJointPresent'], 'allbotservo_block');
-    } else {
-      this.setWarningText(null, 'allbotservo_block');
-    }
+  }
+};
+
+Blockly.Blocks['allbot_animate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOT_ANIMATE)
+    this.appendStatementInput("SERVOMOVEMENTS")
+        .setCheck('ALLBOT_SERVOMOVE')
+        .appendField(Blockly.Msg.ARD_ALLBOT_ANIMATESERVOS);
+    this.appendValueInput('SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_ALLBOT_ANIMATESPEED);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_ANIMATE_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+
+Blockly.Blocks['servoallbot_animate'] = {
+  /**
+   * Block for indicating an angle value that allbot servo pin should animate towards.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var names = Blockly.Blocks.allbot.allbotJointsName(this);
+    this.setHelpUrl('http://allbot.eu');
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOTSERVO_ANIMATE)
+        .appendField(new Blockly.FieldDropdown(names), 'SERVO_NAME');
+    this.setInputsInline(false);
+    this.appendValueInput('SERVO_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField(Blockly.Msg.ARD_SERVO_WRITE_TO);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_SERVO_WRITE_DEG_180);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ALLBOT_SERVOMOVE');
+    this.setNextStatement(true, 'ALLBOT_SERVOMOVE');
+    this.setTooltip(Blockly.Msg.ARD_ALLBOTSERVO_ANIMATE_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks if the board selected is a valid allbot
+   * @this Blockly.Block
+   */
+  onchange: function() {
+    Blockly.Blocks.allbot.allbotJointonchange(this, 'SERVO_NAME');
   },
   /**
    * Updates the content of the allbot servomotor dropdown
