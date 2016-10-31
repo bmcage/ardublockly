@@ -166,7 +166,12 @@ class ALLBOT {
       s.write(angle);
       s.reset();
     };
+    void write(int servo, int angle){
+      // go to angle immediately
+      _servo[servo].write(angle);
+    };
     void move(int servo, int angle){
+      // set an intended angle to move to
       _servo[servo].move(angle);
     };
     void animate(int speed){

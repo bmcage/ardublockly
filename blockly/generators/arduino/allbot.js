@@ -54,7 +54,7 @@ Blockly.Arduino['allbotservo_config_hub'] = function(block) {
       
       var setupCode = 'BOT.attach(' + servo + ', ' + pin + ', ' + allbot.joints.initangle[jointselected] + ', ' + allbot.joints.flipped[jointselected] + ', 0);';
       Blockly.Arduino.addSetup('allbot1_' + servo, setupCode, true);
-      Blockly.Arduino.addSetup('allbot2_all', '  // Wait for joints to be initialized\n' +
+      Blockly.Arduino.addSetup('allbot2_' + servo, '  // Wait for joints to be initialized\n' +
                                '  delay(500);', true);
     } else {
       Blockly.Arduino.addDeclaration('// Unknown AllBot joint selected');
@@ -403,5 +403,19 @@ Blockly.Arduino['allbot_scared'] = function(block) {
     code = '// No AllBot on the workspace. Add it to generate code\n';
   }
   
+  return code;
+};
+
+/**
+ * Code generator to set an angle (Y) value to an allbot servo pin (X).
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['servoallbot_write'] = function(block) {
+  var servoInstanceName = block.getFieldValue('SERVO_NAME');
+  var servoAngle = Blockly.Arduino.valueToCode(
+      block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+
+  var code = 'BOT.write(' + servoInstanceName + ', ' + servoAngle + ');\n';
   return code;
 };
