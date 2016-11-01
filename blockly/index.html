@@ -142,6 +142,9 @@
                     <li><a href="index.html?url=blockly4Arduino/examples/MD_RotateServo.xml">02: Rotate Servo</a></li>
                     <li><a href="index.html?url=blockly4Arduino/examples/MD_ButtonLed.xml">03: LED met Knop</a></li>
                     <li><a href="index.html?url=blockly4Arduino/examples/MD_ButtonSound.xml">04: Geluid met Knop</a></li>
+                    <li class="dropdown-header">AllBot</li>
+                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_calibrateServos_VR408_nl.xml">01: Calibreer VR408</a></li>
+                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_VR408_WalkWave.xml">02: Allbot VR408 Wandel en Wuif</a></li>
                   </ul>
                 <button type="button" class="btn btn-default btn-md" onclick="uploadClick()">
                   <a class="b4ard_tt" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Opladen">
@@ -863,10 +866,29 @@
           </value>
         </block>
         <block type="allbot_animate">
+          <statement name="SERVOMOVEMENTS">
+            <block type="servoallbot_animate">
+              <field name="SERVO_NAME">hipLeft</field>
+              <value name="SERVO_ANGLE">
+                <block type="math_number">
+                  <field name="NUM">45</field>
+                </block>
+              </value>
+            <next>
+              <block type="servoallbot_animate">
+                <field name="SERVO_NAME">hipRight</field>
+                <value name="SERVO_ANGLE">
+                  <block type="math_number">
+                    <field name="NUM">135</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </statement>
           <value name="SPEED">
-          <block type="math_number">
-            <field name="NUM">150</field>
-          </block>
+            <block type="math_number">
+              <field name="NUM">150</field>
+            </block>
           </value>
         </block>
         <block type="servoallbot_animate">
