@@ -387,6 +387,142 @@ Blockly.Arduino.Boards.profiles.allbotVR204mega.allbotname = 'VR204';
 Blockly.Arduino.Boards.profiles.allbotVR204mega.joints = 
   Blockly.Arduino.Boards.profiles.allbotVR204uno.joints;
 
+/** ALLBOT 4 legged 8 servo on UNO. */
+Blockly.Arduino.Boards.profiles.allbotVR408uno =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.uno,
+        'AllBot VR408 Uno',
+        'AllBot with 4 legs, 8 servo, with uno');
+Blockly.Arduino.Boards.profiles.allbotVR408uno.allbotname = 'VR408';
+Blockly.Arduino.Boards.profiles.allbotVR408uno.joints = {
+    name:  [                      
+            ['ARD_ALLBOT_HIPFRONTLEFT', 'hipFrontLeft'],
+            ['ARD_ALLBOT_HIPFRONTRIGHT', 'hipFrontRight'],
+            ['ARD_ALLBOT_HIPREARLEFT', 'hipRearLeft'],
+            ['ARD_ALLBOT_HIPREARRIGHT', 'hipRearRight'],
+            ['ARD_ALLBOT_KNEEFRONTLEFT', 'kneeFrontLeft'],
+            ['ARD_ALLBOT_KNEEFRONTRIGHT', 'kneeFrontRight'],
+            ['ARD_ALLBOT_KNEEREARLEFT', 'kneeRearLeft'],
+            ['ARD_ALLBOT_KNEEREARRIGHT', 'kneeRearRight'],
+           ],
+    initangle: [45, 45, 45, 45, 45, 45, 45, 45],
+    flipped: [0, 1, 1, 0, 1, 0, 1, 0]
+};
+
+/** ALLBOT 4 legged 8 servo on MEGA. */
+Blockly.Arduino.Boards.profiles.allbotVR408mega =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.mega,
+        'AllBot VR408 Mega',
+        'AllBot with 4 legs, 8 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR408mega.allbotname = 'VR408';
+Blockly.Arduino.Boards.profiles.allbotVR408mega.joints = 
+  Blockly.Arduino.Boards.profiles.allbotVR408uno.joints;
+
+/** ALLBOT 4 legged 12 servo on MEGA. */
+Blockly.Arduino.Boards.profiles.allbotVR412mega =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.mega,
+        'AllBot VR412 Mega',
+        'AllBot with 4 legs, 12 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR412mega.allbotname = 'VR412';
+Blockly.Arduino.Boards.profiles.allbotVR412mega.joints = {
+    name:  [                      
+            ['ARD_ALLBOT_HIPFRONTLEFT', 'hipFrontLeft'],
+            ['ARD_ALLBOT_HIPFRONTRIGHT', 'hipFrontRight'],
+            ['ARD_ALLBOT_HIPREARLEFT', 'hipRearLeft'],
+            ['ARD_ALLBOT_HIPREARRIGHT', 'hipRearRight'],
+            ['ARD_ALLBOT_KNEEFRONTLEFT', 'kneeFrontLeft'],
+            ['ARD_ALLBOT_KNEEFRONTRIGHT', 'kneeFrontRight'],
+            ['ARD_ALLBOT_KNEEREARLEFT', 'kneeRearLeft'],
+            ['ARD_ALLBOT_KNEEREARRIGHT', 'kneeRearRight'],
+            ['ARD_ALLBOT_ANKLEFRONTLEFT', 'ankleFrontLeft'],
+            ['ARD_ALLBOT_ANKLEFRONTRIGHT', 'ankleFrontRight'],
+            ['ARD_ALLBOT_ANKLEREARLEFT', 'ankleRearLeft'],
+            ['ARD_ALLBOT_ANKLEREARRIGHT', 'ankleRearRight'],
+           ],
+    initangle: [45, 45, 45, 45, 10, 10, 10, 10, 0, 0, 0, 0],
+    flipped: [0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1]
+};
+
+/** ALLBOT 4 legged 12 servo on UNO. */
+Blockly.Arduino.Boards.profiles.allbotVR412uno =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.uno,
+        'AllBot VR412 Uno',
+        'AllBot with 4 legs, 12 servo, with Uno');
+Blockly.Arduino.Boards.profiles.allbotVR412uno.allbotname = 'VR412';
+Blockly.Arduino.Boards.profiles.allbotVR412uno.joints = 
+  Blockly.Arduino.Boards.profiles.allbotVR412mega.joints;
+
+/** ALLBOT 6 legged 12 servo on UNO. */
+Blockly.Arduino.Boards.profiles.allbotVR612uno =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.uno,
+        'AllBot VR612 Uno',
+        'AllBot with 6 legs, 12 servo, with uno');
+Blockly.Arduino.Boards.profiles.allbotVR612uno.allbotname = 'VR612';
+Blockly.Arduino.Boards.profiles.allbotVR612uno.joints = {
+    name:  [
+            ['ARD_ALLBOT_HIPFRONTLEFT', 'hipFrontLeft'],
+            ['ARD_ALLBOT_KNEEFRONTLEFT', 'kneeFrontLeft'],
+            ['ARD_ALLBOT_HIPFRONTRIGHT', 'hipFrontRight'],
+            ['ARD_ALLBOT_KNEEFRONTRIGHT', 'kneeFrontRight'],
+            ['ARD_ALLBOT_HIPMIDDLERIGHT', 'hipMiddleRight'],
+            ['ARD_ALLBOT_KNEEMIDDLERIGHT', 'kneeMiddleRight'],
+            ['ARD_ALLBOT_HIPREARRIGHT', 'hipRearRight'],
+            ['ARD_ALLBOT_KNEEREARRIGHT', 'kneeRearRight'],
+            ['ARD_ALLBOT_HIPREARLEFT', 'hipRearLeft'],
+            ['ARD_ALLBOT_KNEEREARLEFT', 'kneeRearLeft'],
+            ['ARD_ALLBOT_HIPMIDDLELEFT', 'hipMiddleLeft'],
+            ['ARD_ALLBOT_KNEEMIDDLELEFT', 'kneeMiddleLeft'],
+           ],
+    initangle: [45, 20, 45, 20, 90, 20, 45, 20, 45, 20, 90, 20],
+    flipped: [0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1]
+};
+
+/** ALLBOT 6 legged 12 servo on MEGA. */
+Blockly.Arduino.Boards.profiles.allbotVR612mega =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.mega,
+        'AllBot VR612 Mega',
+        'AllBot with 6 legs, 12 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR612mega.allbotname = 'VR612';
+Blockly.Arduino.Boards.profiles.allbotVR612mega.joints = 
+  Blockly.Arduino.Boards.profiles.allbotVR612uno.joints;
+
+/** ALLBOT 6 legged 18 servo on MEGA. */
+Blockly.Arduino.Boards.profiles.allbotVR618mega =
+    Blockly.Arduino.Boards.duplicateBoardProfile(
+        Blockly.Arduino.Boards.profiles.mega,
+        'AllBot VR618 Mega',
+        'AllBot with 6 legs, 18 servo, with mega');
+Blockly.Arduino.Boards.profiles.allbotVR618mega.allbotname = 'VR618';
+Blockly.Arduino.Boards.profiles.allbotVR618mega.joints = {
+    name:  [
+            ['ARD_ALLBOT_HIPFRONTRIGHT', 'hipFrontRight'],
+            ['ARD_ALLBOT_HIPFRONTLEFT', 'hipFrontLeft'],
+            ['ARD_ALLBOT_HIPMIDDLERIGHT', 'hipMiddleRight'],
+            ['ARD_ALLBOT_HIPMIDDLELEFT', 'hipMiddleLeft'],
+            ['ARD_ALLBOT_HIPREARRIGHT', 'hipRearRight'],
+            ['ARD_ALLBOT_HIPREARLEFT', 'hipRearLeft'],
+            ['ARD_ALLBOT_KNEEFRONTRIGHT', 'kneeFrontRight'],
+            ['ARD_ALLBOT_KNEEFRONTLEFT', 'kneeFrontLeft'],
+            ['ARD_ALLBOT_KNEEMIDDLERIGHT', 'kneeMiddleRight'],
+            ['ARD_ALLBOT_KNEEMIDDLELEFT', 'kneeMiddleLeft'],
+            ['ARD_ALLBOT_KNEEREARRIGHT', 'kneeRearRight'],
+            ['ARD_ALLBOT_KNEEREARLEFT', 'kneeRearLeft'],
+            ['ARD_ALLBOT_ANKLEFRONTRIGHT', 'ankleFrontRight'],
+            ['ARD_ALLBOT_ANKLEFRONTLEFT', 'ankleFrontLeft'],
+            ['ARD_ALLBOT_ANKLEMIDDLERIGHT', 'ankleMiddleRight'],
+            ['ARD_ALLBOT_ANKLEMIDDLELEFT', 'ankleMiddleLeft'],
+            ['ARD_ALLBOT_ANKLEREARRIGHT', 'ankleRearRight'],
+            ['ARD_ALLBOT_ANKLEREARLEFT', 'ankleRearLeft'],
+           ],
+    initangle: [45, 45, 90, 90, 45, 45, 135, 135, 135, 135, 135, 135, 0, 0, 0, 0, 0, 0],
+    flipped: [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1]
+};
+
 /** Set default profile to Arduino standard-compatible board */
 Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.uno;
 Blockly.Arduino.Boards.selected.profilename_ = 'uno';

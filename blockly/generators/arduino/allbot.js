@@ -209,7 +209,1820 @@ void scared(int shakes, int beeps){
 }`
 }
 
+//  VR408    *******************************************************
+allbotfunctions.VR408 = {
+  chirp: `
+void chirp(int beeps, int speedms){
 
+  for (int i = 0; i < beeps; i++){
+    for (int i = 0; i < 255; i++){
+      digitalWrite(sounderPin, HIGH);
+      delayMicroseconds((355-i)+ (speedms*2));
+      digitalWrite(sounderPin, LOW);
+      delayMicroseconds((355-i)+ (speedms*2));
+    }
+     delay(30);
+  }
+}`,
+  walkbackward: `
+void walkbackward(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 20);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 20);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkforward: `
+void walkforward(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipFrontLeft, 20);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipFrontRight, 20);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkleft: `
+void walkleft(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 0);
+    BOT.move(hipFrontLeft, 90);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+     
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 90);
+    BOT.move(hipFrontRight, 0);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkright: `
+void walkright(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 0);
+    BOT.move(hipFrontRight, 90);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+     
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 90);
+    BOT.move(hipFrontLeft, 0);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  lookright: `
+void lookright(int speedms){
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.move(hipFrontRight, 10);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+}`,
+  lookleft: `
+void lookleft(int speedms){
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.move(hipFrontLeft, 10);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+}`,
+  leanright: `
+void leanright(int speedms){
+    BOT.move(kneeFrontRight, 90);
+    BOT.move(kneeRearRight, 90);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeFrontRight, 45);
+    BOT.move(kneeRearRight, 45);
+    BOT.animate(speedms);
+}`,
+  leanleft: `
+void leanleft(int speedms){
+    BOT.move(kneeFrontLeft, 90);
+    BOT.move(kneeRearLeft, 90);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeFrontLeft, 45);
+    BOT.move(kneeRearLeft, 45);
+    BOT.animate(speedms);
+}`,
+  leanforward: `
+void leanforward(int speedms){
+    BOT.move(kneeFrontLeft, 90);
+    BOT.move(kneeFrontRight, 90);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeFrontLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+}`,
+  leanbackward: `
+void leanbackward(int speedms){
+    BOT.move(kneeRearLeft, 90);
+    BOT.move(kneeRearRight, 90);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeRearRight, 45);
+    BOT.animate(speedms);
+}`,
+  turnleft: `
+void turnleft(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 90);
+    BOT.move(hipFrontLeft, 90);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 0);
+    BOT.move(hipFrontRight, 0);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  turnright: `
+void turnright(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(kneeFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 0);
+    BOT.move(hipFrontLeft, 0);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 30);
+    BOT.move(kneeFrontLeft, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 90);
+    BOT.move(hipFrontRight, 90);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 30);
+    BOT.move(kneeFrontRight, 30);
+    BOT.animate(speedms);
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 45);
+    BOT.move(kneeFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  scared: `
+void scared(int shakes, int beeps){
+    BOT.move(kneeFrontRight, 0);
+    BOT.move(kneeRearRight, 0);
+    BOT.move(kneeFrontLeft, 0);
+    BOT.move(kneeRearLeft, 0);
+    BOT.animate(50);
+    
+    for (int i = 0; i < shakes; i++){
+ 
+      BOT.move(hipRearRight, 80);
+      BOT.move(hipRearLeft, 10);
+      BOT.move(hipFrontRight, 10);
+      BOT.move(hipFrontLeft, 80);
+      BOT.animate(100);
+      
+      BOT.move(hipRearLeft, 80);
+      BOT.move(hipRearRight, 10);
+      BOT.move(hipFrontLeft, 10);
+      BOT.move(hipFrontRight, 80);
+      BOT.animate(50);
+    }
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(200);
+    
+    chirp(beeps, 0);
+    
+    BOT.move(kneeFrontRight, 45);
+    BOT.move(kneeRearRight, 45);
+    BOT.move(kneeFrontLeft, 45);
+    BOT.move(kneeRearLeft, 45);
+    BOT.animate(75);
+}`
+}
+//  VR412    *******************************************************
+allbotfunctions.VR412 = {
+  standup: `
+void standup(){
+
+  BOT.move(kneeFrontLeft, 110);
+  BOT.move(kneeFrontRight, 110);
+  BOT.animate(500);
+
+  BOT.move(kneeRearLeft, 110);
+  BOT.move(kneeRearRight, 110);
+  BOT.animate(500);
+
+  BOT.move(kneeFrontLeft, 90);
+  BOT.animate(100);
+  BOT.move(ankleFrontLeft, 20);
+  BOT.animate(100);
+  BOT.move(kneeFrontLeft, 110);
+  BOT.animate(100);
+
+  BOT.move(kneeFrontRight, 90);
+  BOT.animate(100);
+  BOT.move(ankleFrontRight, 20);
+  BOT.animate(100);
+  BOT.move(kneeFrontRight, 110);
+  BOT.animate(100);
+
+  BOT.move(kneeRearLeft, 90);
+  BOT.animate(100);
+  BOT.move(ankleRearLeft, 20);
+  BOT.animate(100);
+  BOT.move(kneeRearLeft, 110);
+  BOT.animate(100);
+
+  BOT.move(kneeRearRight, 90);
+  BOT.animate(100);
+  BOT.move(ankleRearRight, 20);
+  BOT.animate(100);
+  BOT.move(kneeRearRight, 110);
+  BOT.animate(100);
+}`,
+  chirp: `
+void chirp(int beeps, int speedms){
+
+  for (int i = 0; i < beeps; i++){
+    for (int i = 0; i < 255; i++){
+      digitalWrite(sounderPin, HIGH);
+      delayMicroseconds((355-i)+ (speedms*2));
+      digitalWrite(sounderPin, LOW);
+      delayMicroseconds((355-i)+ (speedms*2));
+    }
+     delay(30);
+  }
+}`,
+  walkbackward: `
+void walkbackward(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkforward: `
+void walkforward(int steps, int speedms){
+  for (int i = 0; i < steps; i++){ 
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkleft: `
+void walkleft(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  walkright: `
+void walkright(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  lookright: `
+void lookright(int speedms){
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.move(hipFrontRight, 10);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+}`,
+  lookleft: `
+void lookleft(int speedms){
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.move(hipFrontLeft, 10);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(speedms);
+}`,
+  leanright: `
+void leanright(int speedms){
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(kneeRearRight, 80);
+    BOT.move(ankleFrontRight, 0);
+    BOT.move(ankleRearRight, 0);
+    BOT.animate(speedms*2);
+    
+    delay(speedms*3);
+
+    BOT.move(kneeFrontRight, 110);  
+    BOT.move(kneeRearRight, 110);
+    BOT.move(ankleFrontRight, 20);
+    BOT.move(ankleRearRight, 20);
+    BOT.animate(speedms*2);
+}`,
+  leanleft: `
+void leanleft(int speedms){
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(ankleFrontLeft, 0);
+    BOT.move(ankleRearLeft, 0);
+    BOT.animate(speedms*2);
+    
+    delay(speedms*3);
+
+    BOT.move(kneeFrontLeft, 110);  
+    BOT.move(kneeRearLeft, 110);
+    BOT.move(ankleFrontLeft, 20);
+    BOT.move(ankleRearLeft, 20);
+    BOT.animate(speedms*2);
+}`,
+  leanforward: `
+void leanforward(int speedms){
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(ankleFrontLeft, 0);
+    BOT.move(ankleFrontRight, 0);
+    BOT.animate(speedms*2);
+    
+    delay(speedms*3);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.move(kneeFrontRight, 110);
+    BOT.move(ankleFrontLeft, 20);
+    BOT.move(ankleFrontRight, 20);
+    BOT.animate(speedms*2);
+}`,
+  leanbackward: `
+void leanbackward(int speedms){
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(kneeRearRight, 80);
+    BOT.move(ankleRearLeft, 0);
+    BOT.move(ankleRearRight, 0);
+    BOT.animate(speedms*2);
+    
+    delay(speedms*3);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.move(kneeRearRight, 110);
+    BOT.move(ankleRearLeft, 20);
+    BOT.move(ankleRearRight, 20);
+    BOT.animate(speedms*2);
+
+}`,
+  turnleft: `
+void turnleft(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  turnright: `
+void turnright(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeRearRight, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 80);
+    BOT.move(hipRearLeft, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeRearLeft, 110);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 80);
+    BOT.move(hipFrontLeft, 10);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 110);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 80);
+    BOT.move(hipFrontRight, 80);
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 110);
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+  }
+}`,
+  scared: `
+void scared(int shakes, int beeps){
+    for (int i = 0; i < shakes; i++){
+      BOT.move(kneeFrontLeft, 80);
+      BOT.move(kneeFrontRight, 80);
+      BOT.move(kneeRearLeft, 80);
+      BOT.move(kneeRearRight, 80);
+      BOT.move(ankleFrontLeft, 0);
+      BOT.move(ankleFrontRight, 0);
+      BOT.move(ankleRearLeft, 0);
+      BOT.move(ankleRearRight, 0);
+      BOT.animate(30);
+  
+      BOT.move(kneeFrontLeft, 110);  
+      BOT.move(kneeFrontRight, 110); 
+      BOT.move(kneeRearLeft, 110);
+      BOT.move(kneeRearRight, 110);
+      BOT.move(ankleFrontLeft, 20);
+      BOT.move(ankleFrontRight, 20);
+      BOT.move(ankleRearLeft, 20);
+      BOT.move(ankleRearRight, 20);
+      BOT.animate(30);
+    }
+    chirp(beeps, 0);
+}`
+}
+
+//  VR612    *******************************************************
+allbotfunctions.VR612 = {
+  chirp: `
+void chirp(int beeps, int speedms){
+
+  for (int i = 0; i < beeps; i++){
+    for (int i = 0; i < 255; i++){
+      digitalWrite(sounderPin, HIGH);
+      delayMicroseconds((355-i)+ (speedms*2));
+      digitalWrite(sounderPin, LOW);
+      delayMicroseconds((355-i)+ (speedms*2));
+    }
+     delay(30);
+  }
+}`,
+  walkbackward: `
+void walkbackward(int steps, int speedms){
+  
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(hipFrontLeft, 15);
+    BOT.move(hipFrontRight, 75);
+    
+    BOT.move(hipFrontLeft, 80);
+    BOT.move(hipRearLeft, 5);
+    BOT.move(hipMiddleRight, 115);
+    BOT.animate(speedms);//
+  
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeFrontLeft, 10);
+    BOT.move(kneeRearLeft, 10);
+    BOT.move(kneeMiddleRight, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);//
+      
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipFrontRight, 80);
+    BOT.move(hipRearRight, 5);
+    BOT.move(hipMiddleLeft, 115);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 10);
+    BOT.move(kneeRearRight, 10);
+    BOT.move(kneeMiddleLeft, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(kneeMiddleRight, 50);
+    BOT.animate(speedms);//
+    
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.move(hipFrontLeft, 80);
+    BOT.move(hipRearLeft, 5);
+    BOT.move(hipMiddleRight, 115);
+    BOT.animate(speedms);
+
+  }
+    BOT.move(kneeFrontLeft, 10);
+    BOT.move(kneeRearLeft, 10);
+    BOT.move(kneeMiddleRight, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);//
+    
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.animate(speedms);//
+}`,
+  walkforward: `
+void walkforward(int steps, int speedms){
+  
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeMiddleRight, 50);
+    BOT.animate(speedms); //
+    
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipFrontLeft, 5);
+    BOT.move(hipMiddleRight, 65);
+    BOT.animate(speedms);//
+  
+  for (int i = 0; i < steps; i++){
+    
+    BOT.move(kneeRearLeft, 10);
+    BOT.move(kneeFrontLeft, 10);
+    BOT.move(kneeMiddleRight, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);//
+      
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipFrontRight, 5);
+    BOT.move(hipMiddleLeft, 65);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 10);
+    BOT.move(kneeFrontRight, 10);
+    BOT.move(kneeMiddleLeft, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeMiddleRight, 50);
+    BOT.animate(speedms);//
+    
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipFrontLeft, 5);
+    BOT.move(hipMiddleRight, 65);
+    BOT.animate(speedms);
+  }
+    BOT.move(kneeRearLeft, 10);
+    BOT.move(kneeFrontLeft, 10);
+    BOT.move(kneeMiddleRight, 10);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);//
+    
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.animate(speedms);//
+}`,
+  walkleft: `
+void walkleft(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontLeft, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontRight, 10);
+    BOT.move(hipRearLeft, 80);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeMiddleRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms/2);
+  
+    BOT.move(hipFrontLeft, 15);
+    BOT.move(hipFrontRight, 75);
+    BOT.move(hipRearLeft, 15);
+    BOT.move(hipRearRight, 75);
+    BOT.animate(speedms); 
+    
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.animate(speedms/2);
+    }
+  }`,
+  walkright: `
+void walkright(int steps, int speedms){
+  for (int i = 0; i < steps; i++){
+    
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontLeft, 10);
+    BOT.move(hipRearRight, 80);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontRight, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeMiddleRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms/2);
+  
+    BOT.move(hipFrontLeft, 75);
+    BOT.move(hipFrontRight, 15);
+    BOT.move(hipRearLeft, 75);
+    BOT.move(hipRearRight, 15);
+    BOT.animate(speedms); 
+    
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.animate(speedms/2);
+    
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.animate(speedms/2);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.animate(speedms);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.animate(speedms/2);
+    }
+  }`,
+  lookright: `
+void lookright(int speedms){
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipRearLeft, 10);
+    BOT.move(hipFrontRight, 10);
+    BOT.move(hipFrontLeft, 80);
+    BOT.move(hipMiddleRight, 65);
+    BOT.move(hipMiddleLeft, 125);    
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.animate(speedms);
+}`,
+  lookleft: `
+void lookleft(int speedms){
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipRearRight, 10);
+    BOT.move(hipFrontLeft, 10);
+    BOT.move(hipFrontRight, 80);
+    BOT.move(hipMiddleRight, 125);
+    BOT.move(hipMiddleLeft, 65);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.animate(speedms);
+}`,
+  leanright: `
+void leanright(int speedms){
+  
+    BOT.move(kneeRearRight, 10);
+    BOT.move(kneeFrontRight, 10);
+    BOT.move(kneeMiddleRight, 0);
+    BOT.move(kneeRearLeft, 90);
+    BOT.move(kneeFrontLeft, 90);
+    BOT.move(kneeMiddleLeft, 90);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    
+    BOT.animate(speedms);
+}`,
+  leanleft: `
+void leanleft(int speedms){
+  
+    BOT.move(kneeRearRight, 90);
+    BOT.move(kneeFrontRight, 90);
+    BOT.move(kneeMiddleRight, 90);
+    BOT.move(kneeRearLeft, 10);
+    BOT.move(kneeFrontLeft, 10);
+    BOT.move(kneeMiddleLeft, 0);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    
+    BOT.animate(speedms);
+}`,
+  leanforward: `
+void leanforward(int speedms){
+  
+    BOT.move(kneeFrontLeft, 90);
+    BOT.move(kneeFrontRight, 90);
+    BOT.move(kneeMiddleRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    
+    BOT.animate(speedms);
+}`,
+  leanbackward: `
+void leanbackward(int speedms){
+  
+    BOT.move(kneeRearLeft, 90);
+    BOT.move(kneeRearRight, 90);
+    BOT.move(kneeMiddleRight, 50);
+    BOT.move(kneeMiddleLeft, 50);
+    BOT.animate(speedms);
+    
+    delay(speedms/2);
+    
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    
+    BOT.animate(speedms);
+}`,
+  turnleft: `
+void turnleft(int steps, int speedms){
+
+  for (int i = 0; i < steps; i++){
+
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(kneeMiddleRight, 50);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 80);
+    BOT.move(hipRearLeft, 5);
+    BOT.move(hipMiddleRight, 65);    
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeMiddleRight, 20);    
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeMiddleLeft, 50);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontRight, 5);
+    BOT.move(hipRearRight, 80);
+    BOT.move(hipMiddleLeft, 115);   
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeMiddleLeft, 20);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleLeft, 90);    
+    BOT.animate(speedms);
+  }
+}`,
+  turnright: `
+void turnright(int steps, int speedms){
+
+  for (int i = 0; i < steps; i++){
+
+    BOT.move(kneeFrontLeft, 50);
+    BOT.move(kneeRearLeft, 50);
+    BOT.move(kneeMiddleRight, 50);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 5);
+    BOT.move(hipRearLeft, 80);
+    BOT.move(hipMiddleRight, 115);    
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeRearLeft, 20);
+    BOT.move(kneeMiddleRight, 20);    
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 50);
+    BOT.move(kneeRearRight, 50);
+    BOT.move(kneeMiddleLeft, 50);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontRight, 80);
+    BOT.move(hipRearRight, 5);
+    BOT.move(hipMiddleLeft, 65);    
+    BOT.animate(speedms);
+
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeMiddleLeft, 20);    
+    BOT.animate(speedms);
+
+    BOT.move(hipFrontLeft, 45);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleLeft, 90);    
+    BOT.animate(speedms);
+  }
+}`,
+  scared: `
+void scared(int shakes, int beeps){
+    BOT.move(kneeFrontRight, 0);
+    BOT.move(kneeMiddleRight, 0);
+    BOT.move(kneeRearRight, 0);
+    BOT.move(kneeFrontLeft, 0);
+    BOT.move(kneeMiddleLeft, 0);
+    BOT.move(kneeRearLeft, 0); 
+    BOT.animate(50);
+    
+    for (int i = 0; i < shakes; i++){
+ 
+      BOT.move(hipRearRight, 80);
+      BOT.move(hipMiddleRight, 65);
+      BOT.move(hipRearLeft, 5);
+      BOT.move(hipFrontRight, 5);
+      BOT.move(hipMiddleLeft, 115);
+      BOT.move(hipFrontLeft, 80);
+      BOT.animate(100);
+      
+      BOT.move(hipRearLeft, 80);
+      BOT.move(hipMiddleRight, 115);
+      BOT.move(hipRearRight, 5);
+      BOT.move(hipFrontLeft, 5);
+      BOT.move(hipMiddleLeft, 65);
+      BOT.move(hipFrontRight, 80);
+      BOT.animate(50);
+    }
+    
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipFrontRight, 45);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.move(hipFrontLeft, 45);
+    BOT.animate(200);
+    
+    chirp(beeps, 0);
+    
+    BOT.move(kneeFrontRight, 20);
+    BOT.move(kneeMiddleRight, 20);
+    BOT.move(kneeRearRight, 20);
+    BOT.move(kneeFrontLeft, 20);
+    BOT.move(kneeMiddleLeft, 20);
+    BOT.move(kneeRearLeft, 20); 
+    BOT.animate(75);
+}`
+}
+
+//  VR618    *******************************************************
+allbotfunctions.VR618 = {
+  chirp: `
+void chirp(int beeps, int speedms){
+
+  for (int i = 0; i < beeps; i++){
+    for (int i = 0; i < 255; i++){
+      digitalWrite(sounderPin, HIGH);
+      delayMicroseconds((355-i)+ (speedms*2));
+      digitalWrite(sounderPin, LOW);
+      delayMicroseconds((355-i)+ (speedms*2));
+    }
+     delay(30);
+  }
+}`,
+  standup: `
+void standup ()
+{
+  BOT.move(kneeFrontRight, 100);
+  BOT.move(kneeFrontLeft, 100);
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeRearLeft, 100);
+  BOT.animate(200);
+}`,
+  walkbackward: `
+void walkbackward(int steps, int speedms)
+{
+  BOT.move(kneeFrontRight, 130);    //Lift 3a
+  BOT.move(kneeRearRight, 130);
+  BOT.move(kneeMiddleLeft, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 70);    //Swivel 3a backward
+  BOT.move(hipRearRight, 20);
+  BOT.move(hipMiddleLeft, 115);
+  BOT.animate(speedms);
+  
+  for (int i = 0; i < steps; i++){
+  
+  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
+  BOT.move(kneeRearRight, 70);
+  BOT.move(kneeMiddleLeft, 70);
+  BOT.move(ankleFrontRight, 20);
+  BOT.move(ankleRearRight, 20);
+  BOT.move(ankleMiddleLeft, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
+  BOT.move(hipRearRight, 45);
+  BOT.move(hipMiddleLeft, 90);
+  //
+  BOT.move(kneeFrontLeft, 130);    //Lift 3b
+  BOT.move(kneeRearLeft, 130);
+  BOT.move(kneeMiddleRight, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);    //Normalize 3a
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  //
+  BOT.move(hipFrontLeft, 70);    //Swivel 3b backward
+  BOT.move(hipRearLeft, 20);
+  BOT.move(hipMiddleRight, 115);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement
+  BOT.move(kneeRearLeft, 70);
+  BOT.move(kneeMiddleRight, 70);
+  BOT.move(ankleFrontLeft, 20);
+  BOT.move(ankleRearLeft, 20);
+  BOT.move(ankleMiddleRight, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center
+  BOT.move(hipRearLeft, 45);
+  BOT.move(hipMiddleRight, 90);
+  //
+  BOT.move(kneeFrontRight, 130);    //Lift 3a
+  BOT.move(kneeRearRight, 130);
+  BOT.move(kneeMiddleLeft, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontLeft, 100);    //Normalize 3b
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(ankleFrontLeft, 0);
+  BOT.move(ankleRearLeft, 0);
+  BOT.move(ankleMiddleRight, 0);
+  //
+  BOT.move(hipFrontRight, 70);    //Swivel 3a backward
+  BOT.move(hipRearRight, 20);
+  BOT.move(hipMiddleLeft, 115);
+  BOT.animate(speedms);
+  
+  }
+  
+  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
+  BOT.move(kneeRearRight, 70);
+  BOT.move(kneeMiddleLeft, 70);
+  BOT.move(ankleFrontRight, 20);
+  BOT.move(ankleRearRight, 20);
+  BOT.move(ankleMiddleLeft, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
+  BOT.move(hipRearRight, 45);
+  BOT.move(hipMiddleLeft, 90);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);    //Normalize 3a
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  BOT.animate(speedms);
+}`,
+  walkforward: `
+void walkforward(int steps, int speedms)
+{
+  BOT.move(kneeFrontRight, 130);    //Lift 3a
+  BOT.move(kneeRearRight, 130);
+  BOT.move(kneeMiddleLeft, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 20);    //Swivel 3a forward
+  BOT.move(hipRearRight, 70);
+  BOT.move(hipMiddleLeft, 65);
+  BOT.animate(speedms);
+  
+  for (int i = 0; i < steps; i++){
+  
+  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
+  BOT.move(kneeRearRight, 70);
+  BOT.move(kneeMiddleLeft, 70);
+  BOT.move(ankleFrontRight, 20);
+  BOT.move(ankleRearRight, 20);
+  BOT.move(ankleMiddleLeft, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
+  BOT.move(hipRearRight, 45);
+  BOT.move(hipMiddleLeft, 90);
+  //
+  BOT.move(kneeFrontLeft, 130);    //Lift 3b
+  BOT.move(kneeRearLeft, 130);
+  BOT.move(kneeMiddleRight, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);    //Normalize 3a
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  //
+  BOT.move(hipFrontLeft, 20);    //Swivel 3b forward
+  BOT.move(hipRearLeft, 70);
+  BOT.move(hipMiddleRight, 65);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement
+  BOT.move(kneeRearLeft, 70);
+  BOT.move(kneeMiddleRight, 70);
+  BOT.move(ankleFrontLeft, 20);
+  BOT.move(ankleRearLeft, 20);
+  BOT.move(ankleMiddleRight, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center
+  BOT.move(hipRearLeft, 45);
+  BOT.move(hipMiddleRight, 90);
+  //
+  BOT.move(kneeFrontRight, 130);    //Lift 3a
+  BOT.move(kneeRearRight, 130);
+  BOT.move(kneeMiddleLeft, 130);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontLeft, 100);    //Normalize 3b
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(ankleFrontLeft, 0);
+  BOT.move(ankleRearLeft, 0);
+  BOT.move(ankleMiddleRight, 0);
+  //
+  BOT.move(hipFrontRight, 20);    //Swivel 3a forward
+  BOT.move(hipRearRight, 70);
+  BOT.move(hipMiddleLeft, 65);
+  BOT.animate(speedms);
+  
+  }
+  
+  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
+  BOT.move(kneeRearRight, 70);
+  BOT.move(kneeMiddleLeft, 70);
+  BOT.move(ankleFrontRight, 20);
+  BOT.move(ankleRearRight, 20);
+  BOT.move(ankleMiddleLeft, 20);
+  BOT.animate(speedms);
+  
+  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
+  BOT.move(hipRearRight, 45);
+  BOT.move(hipMiddleLeft, 90);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);    //Normalize 3a
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  BOT.animate(speedms);
+}`,
+  walkleft: `
+void walkleft(int steps, int speedms){
+  // TODO - No sequence implemented
+  }`,
+  walkright: `
+void walkright(int steps, int speedms){
+  // TODO - No sequence implemented
+  }`,
+  lookright: `
+void lookright(int speedms){
+    // TODO - No sequence implemented
+}`,
+  lookleft: `
+void lookleft(int speedms){
+    // TODO - No sequence implemented
+}`,
+  leanright: `
+void leanright (int speedms)
+{
+  BOT.move(kneeFrontRight, 50);
+  BOT.move(kneeMiddleRight, 50);
+  BOT.move(kneeRearRight, 50);
+  BOT.move(ankleFrontRight, 50);
+  BOT.move(ankleMiddleRight, 50);
+  BOT.move(ankleRearRight, 50);
+  //
+  BOT.move(kneeFrontLeft, 150);
+  BOT.move(kneeMiddleLeft, 150);
+  BOT.move(kneeRearLeft, 150);
+  BOT.move(ankleFrontLeft, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  BOT.move(ankleRearLeft, 0);
+  BOT.animate(speedms);
+  //
+  BOT.move(kneeFrontRight, 100);
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(kneeRearRight, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleMiddleRight, 0);
+  BOT.move(ankleRearRight, 0);
+  //
+  BOT.move(kneeFrontLeft, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(ankleFrontLeft, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  BOT.move(ankleRearLeft, 0);
+  BOT.animate(speedms);
+}`,
+  leanleft: `
+void leanleft (int speedms)
+{
+  BOT.move(kneeFrontLeft, 50);
+  BOT.move(kneeMiddleLeft, 50);
+  BOT.move(kneeRearLeft, 50);
+  BOT.move(ankleFrontLeft, 50);
+  BOT.move(ankleMiddleLeft, 50);
+  BOT.move(ankleRearLeft, 50);
+  //
+  BOT.move(kneeFrontRight, 150);
+  BOT.move(kneeMiddleRight, 150);
+  BOT.move(kneeRearRight, 150);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleMiddleRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.animate(speedms);
+  //
+  BOT.move(kneeFrontLeft, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(ankleFrontLeft, 0);
+  BOT.move(ankleMiddleLeft, 0);
+  BOT.move(ankleRearLeft, 0);
+  //
+  BOT.move(kneeFrontRight, 100);
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(kneeRearRight, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleMiddleRight, 0);
+  BOT.move(ankleRearRight, 0);
+  BOT.animate(speedms);
+}`,
+  leanforward: `
+void leanforward(int speedms)
+{  
+  BOT.move(kneeRearRight, 50);
+  BOT.move(kneeRearLeft, 50);
+  BOT.move(ankleRearRight, 80);
+  BOT.move(ankleRearLeft, 80);
+  //
+  BOT.move(kneeFrontRight, 135);
+  BOT.move(kneeFrontLeft, 135);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleFrontLeft, 0);
+  //
+  BOT.move(kneeMiddleRight, 110);
+  BOT.move(kneeMiddleLeft, 110);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);
+  BOT.move(kneeFrontLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleFrontLeft, 0);
+  //
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleRearLeft, 0);
+  //
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.animate(speedms);
+}`,
+  leanbackward: `
+void leanbackward(int speedms)
+{  
+  BOT.move(kneeFrontRight, 50);
+  BOT.move(kneeFrontLeft, 50);
+  BOT.move(ankleFrontRight, 80);
+  BOT.move(ankleFrontLeft, 80);
+  //
+  BOT.move(kneeRearRight, 135);
+  BOT.move(kneeRearLeft, 135);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleRearLeft, 0);
+  //
+  BOT.move(kneeMiddleRight, 110);
+  BOT.move(kneeMiddleLeft, 110);
+  BOT.animate(speedms);
+  
+  BOT.move(kneeFrontRight, 100);
+  BOT.move(kneeFrontLeft, 100);
+  BOT.move(ankleFrontRight, 0);
+  BOT.move(ankleFrontLeft, 0);
+  //
+  BOT.move(kneeRearRight, 100);
+  BOT.move(kneeRearLeft, 100);
+  BOT.move(ankleRearRight, 0);
+  BOT.move(ankleRearLeft, 0);
+  //
+  BOT.move(kneeMiddleRight, 100);
+  BOT.move(kneeMiddleLeft, 100);
+  BOT.animate(speedms);
+}`,
+  turnleft: `
+void turnleft (int steps, int speedms)
+{
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeFrontRight, 130);    //Lift 3a
+    BOT.move(kneeRearRight, 130);
+    BOT.move(kneeMiddleLeft, 130);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontRight, 20);    //turn 3a left
+    BOT.move(hipRearRight, 70);
+    BOT.move(hipMiddleLeft, 115);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 100);  //Drop 3a
+    BOT.move(kneeRearRight, 100);
+    BOT.move(kneeMiddleLeft, 100);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 130);    //Lift 3b
+    BOT.move(kneeRearLeft, 130);
+    BOT.move(kneeMiddleRight, 130);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontLeft, 70);    //turn 3b left
+    BOT.move(hipRearLeft, 20);
+    BOT.move(hipMiddleRight, 65);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement
+    BOT.move(kneeRearLeft, 100);
+    BOT.move(kneeMiddleRight, 100);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.move(hipFrontLeft, 45);    //turn 3b right
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.animate(speedms);
+  }
+}`,
+  turnright: `
+void turnright (int steps, int speedms)
+{
+  for (int i = 0; i < steps; i++){
+    BOT.move(kneeFrontRight, 130);    //Lift 3a
+    BOT.move(kneeRearRight, 130);
+    BOT.move(kneeMiddleLeft, 130);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontRight, 70);    //turn 3a right
+    BOT.move(hipRearRight, 20);
+    BOT.move(hipMiddleLeft, 65);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontRight, 100);  //Drop 3a
+    BOT.move(kneeRearRight, 100);
+    BOT.move(kneeMiddleLeft, 100);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 130);    //Lift 3b
+    BOT.move(kneeRearLeft, 130);
+    BOT.move(kneeMiddleRight, 130);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontLeft, 20);    //turn 3b right
+    BOT.move(hipRearLeft, 70);
+    BOT.move(hipMiddleRight, 115);
+    BOT.animate(speedms);
+    
+    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement
+    BOT.move(kneeRearLeft, 100);
+    BOT.move(kneeMiddleRight, 100);
+    BOT.animate(speedms);
+    
+    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center
+    BOT.move(hipRearRight, 45);
+    BOT.move(hipMiddleLeft, 90);
+    BOT.move(hipFrontLeft, 45);    //turn 3b right
+    BOT.move(hipRearLeft, 45);
+    BOT.move(hipMiddleRight, 90);
+    BOT.animate(speedms);
+  }
+}`,
+  scared: `
+void scared(int shakes, int beeps){
+   // TODO - No sequence implemented
+}`
+}
 /**
  * The allbot walk forward block
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -324,8 +2137,12 @@ Blockly.Arduino['allbot_lookleft'] = function(block) {
   var allbot = Blockly.Arduino.Boards.selected;
   if (allbot['allbotname'] !== undefined) {
     var func = allbotfunctions[allbot.allbotname].lookleft;
-    Blockly.Arduino.addFunction('lookleft', func)
-    code = 'lookleft(' + speed + ');\n';
+    if (func !== undefined) {
+      Blockly.Arduino.addFunction('lookleft', func)
+      code = 'lookleft(' + speed + ');\n';
+    } else {
+      code = '// This AllBot has no lookleft function !!\n';
+    }
   } else {
     code = '// No AllBot on the workspace. Add it to generate code\n';
   }
@@ -347,8 +2164,12 @@ Blockly.Arduino['allbot_lookright'] = function(block) {
   var allbot = Blockly.Arduino.Boards.selected;
   if (allbot['allbotname'] !== undefined) {
     var func = allbotfunctions[allbot.allbotname].lookright;
-    Blockly.Arduino.addFunction('lookright', func)
-    code = 'lookright(' + speed + ');\n';
+    if (func !== undefined) {
+      Blockly.Arduino.addFunction('lookright', func)
+      code = 'lookright(' + speed + ');\n';
+    } else {
+      code = '// This AllBot has no lookright function !!\n';
+    }
   } else {
     code = '// No AllBot on the workspace. Add it to generate code\n';
   }
