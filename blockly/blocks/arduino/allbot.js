@@ -310,7 +310,7 @@ Blockly.Blocks['servoallbot_write'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
-    this.setTooltip(Blockly.Msg.ARD_ALLBOTSERVO_WRITE_TIP);
+    this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
   },
   /**
    * Gets the variable type required.
