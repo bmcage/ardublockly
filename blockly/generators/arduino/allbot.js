@@ -2269,3 +2269,148 @@ Blockly.Arduino['servoallbot_animate'] = function(block) {
   var code = 'BOT.move(' + servoInstanceName + ', ' + servoAngle + ');\n';
   return code;
 };
+
+/**
+ * Code generator for the allbot remote control block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_remotecontrol'] = function(block) {
+  
+  var commandsBranch = Blockly.Arduino.statementToCode(block, 'RC_COMMANDS');
+  
+  var use_serial = (block.getFieldValue('RC_SERIAL') == 'TRUE');
+  
+  if (use_serial) {
+    Blockly.Arduino.addVariable('ALLBOTreceivelog', 'boolean ALLBOTreceivelog = true; // Set this to false if you do not want to see the serial messages for debugging the IR commands', true);
+    
+    Blockly.Arduino.addFunction('ALLBOTresetserial', `
+void ALLBOTresetserial (void)      // This clears any received IR commands that where received in the serial buffer while the robot was execution a command.
+{
+  //resetting all variables
+  ALLBOTrawcommand = "";
+  ALLBOTcommand = "";
+  ALLBOTtimes = 0;
+  ALLBOTspeedms = 0;
+  
+  //flushing the serial buffer (64 byte) so there are no stored movements that need to be handled (annoying)...
+  while (Serial.available()) {
+    Serial.read();
+  }
+}`)
+  } else {
+    Blockly.Arduino.addVariable('ALLBOTreceivelog', 'boolean ALLBOTreceivelog = false; // Set this to true if you  want to see the serial messages for debugging the IR commands', true);
+  }
+  
+  Blockly.Arduino.addVariable('ALLBOTrawcommand', 'String ALLBOTrawcommand;  // Global variable that stores the raw received IR command', true);
+  Blockly.Arduino.addVariable('ALLBOTcommand', 'String ALLBOTcommand;     // Global variable that stores part of the decoded IR command', true);
+  Blockly.Arduino.addVariable('ALLBOTtimes',      'int ALLBOTtimes;          // Global variable that stores part the received IR command', true);
+  Blockly.Arduino.addVariable('ALLBOTspeedms',      'int ALLBOTspeedms;        // Global variable that stores part the received IR command', true);
+  Blockly.Arduino.addVariable('ALLBOT_IRreceive',    'boolean ALLBOT_IRreceive = true; // Set this to false if you do not want to use the IR remote');
+
+  var setupCode_Serial = `
+  // Starting the hardware UART, necessary for receiving IR
+  if (ALLBOT_IRreceive == true) {   // Check if required (when Serial is started servo1 connector will not work!)
+      Serial.begin(2400);
+      Serial.setTimeout(100);
+      Serial.println("serial communication started");
+    }
+`;
+  Blockly.Arduino.addSetup('allbot_RC', setupCode_Serial, true);
+  
+  Blockly.Arduino.addFunction('ALLBOT_getcommand', `
+void ALLBOT_getcommand (void)                   // This is the routine that listens and decodes any IR commands. Decodes commands end up in the global vars.
+{ 
+  int space1 = 0;
+  int space2 = 0;
+  
+  if (Serial.available()) {
+     ALLBOTrawcommand = Serial.readString();
+     if (ALLBOTreceivelog){
+        Serial.println("START " + ALLBOTrawcommand + " END" + "\\r\\n" + "Received string length = " + ALLBOTrawcommand.length() + "\\r\\n" + "End character > at index = " + ALLBOTrawcommand.indexOf('>'));
+     }
+
+     //checking and deleting rubbish data at start of received command
+     if ((ALLBOTrawcommand.indexOf('<') != 0) && (ALLBOTrawcommand.indexOf('<') != -1))
+     {
+        //ALLBOTrawcommand.remove(0, ALLBOTrawcommand.indexOf('<'));
+        ALLBOTcommand = ALLBOTrawcommand.substring(ALLBOTrawcommand.indexOf('<'));//,ALLBOTrawcommand.length()-1);
+     }
+     
+     //check if received command is correct
+     if ((ALLBOTrawcommand.charAt(0) == '<') && (ALLBOTrawcommand.indexOf('>') <= 12) && (ALLBOTrawcommand.indexOf('>') != -1) && (ALLBOTrawcommand.length() > 7))
+     {
+       if (ALLBOTreceivelog){
+         Serial.println("Command is VALID"); 
+       }      
+       //breakdown into chunks
+       //ALLBOTcommand
+       ALLBOTcommand = ALLBOTrawcommand.substring(1, 3);
+       
+       //finding the spaces to find the ALLBOTtimes and ALLBOTspeedms
+       for (int i=0; i <= ALLBOTrawcommand.length(); i ++)
+       {
+         if ((ALLBOTrawcommand.charAt(i) == ' ') && (space1 == 0))
+         {
+            space1 = i;
+         }
+         else if ((ALLBOTrawcommand.charAt(i) == ' ') && (space2 == 0))
+         {
+            space2 = i;
+         }
+       }
+
+       //Setting the command variables and checking if they are indeed a number (toInt()).
+       
+       //ALLBOTtimes
+       ALLBOTtimes = ALLBOTrawcommand.substring(space1+1, space2).toInt();
+       
+       //ALLBOTspeedms
+       ALLBOTspeedms = ALLBOTrawcommand.substring(space2+1, ALLBOTrawcommand.indexOf('>')).toInt();
+
+       if (ALLBOTreceivelog){
+         Serial.println("decoded commands are:");
+         Serial.flush();
+         Serial.println("command = " + ALLBOTcommand);
+         Serial.flush();
+         Serial.println("times = " + ALLBOTtimes);
+         Serial.flush();
+         Serial.println("speedms = " + ALLBOTspeedms);
+       }
+       
+     }
+     else
+     {
+       if (ALLBOTreceivelog){
+          Serial.println("Command is NOT valid");
+       }
+       ALLBOTresetserial();  
+     }
+  }
+}`)
+  
+  var code = `
+  if (ALLBOT_IRreceive == true)                  // Allow to switch off the IR part
+    {
+      ALLBOT_getcommand();                       // Listen for IR command\n`;
+  code += commandsBranch;  // add the commands given by user to process the IR input
+  code += '\n    }\n';
+  return code;
+};
+
+/**
+ * Code generator for a allbot RC command block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_remotecontroldo'] = function(block) {
+  if (block.getParent() == undefined) return '';
+  
+  var commandRC = block.getFieldValue('RC_COMMAND');
+  var executeBranch = Blockly.Arduino.statementToCode(block, 'RC_EXECUTE');
+  
+  var code = 'if (ALLBOTcommand == "' + commandRC + '") {\n';
+  code += executeBranch + '\n    }';
+  
+  return code;
+};

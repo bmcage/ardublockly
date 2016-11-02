@@ -410,3 +410,77 @@ Blockly.Blocks['servoallbot_animate'] = {
     
   }
 };
+
+Blockly.Blocks['allbot_remotecontrol'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOT_RC)
+    this.appendStatementInput("RC_COMMANDS")
+        .setCheck('ALLBOT_RC_COMMANDS')
+        .appendField(Blockly.Msg.ARD_ALLBOT_RCCOMMANDS);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "RC_SERIAL")
+        .appendField(Blockly.Msg.ARD_ALLBOT_RCSERIAL);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setColour(Blockly.Blocks.allbot.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_RC_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_remotecontroldo'] = {
+  /**
+   * Block for reacting to the allbot remote control app
+   * @this Blockly.Block
+   */
+  init: function() {
+    var commands = [
+      ['WF', 'WF'],
+      ['WB', 'WB'],
+      ['WL', 'WL'],
+      ['WR', 'WR'],
+      ['TR', 'TR'],
+      ['TL', 'TL'],
+      ['LF', 'LF'],
+      ['LB', 'LB'],
+      ['LL', 'LL'],
+      ['LR', 'LR'],
+      ['FR', 'FR'],
+      ['FL', 'FL'],
+      ['RR', 'RR'],
+      ['RL', 'RL'],
+      ['SC', 'SC'],
+      ['CH', 'CH'],
+    ];
+    this.setColour(Blockly.Blocks.logic.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOT_RCCOMMAND)
+        .appendField(new Blockly.FieldDropdown(commands), 'RC_COMMAND');
+    this.appendStatementInput("RC_EXECUTE")
+        .setCheck('ARD_BLOCK')
+        .appendField(Blockly.Msg.ARD_ALLBOT_RCDO);
+    this.setInputsInline(false);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ALLBOT_RC_COMMANDS');
+    this.setNextStatement(true, 'ALLBOT_RC_COMMANDS');
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_RCCOMMAND_TIP);
+    this.setHelpUrl('http://allbot.eu');
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks if the board selected is a valid allbot
+   * @this Blockly.Block
+   */
+  onchange: function() {
+    var parent = this.getParent();
+    if (parent == undefined) {
+      this.setWarningText(Blockly.Msg.ARD_ALLBOT_RCCOMMAND_SINGLE, 'allbot_remotecontroldo');
+    } else {
+      this.setWarningText(null, 'allbot_remotecontroldo');
+    }
+  }
+      
+};

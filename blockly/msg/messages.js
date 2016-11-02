@@ -1497,6 +1497,14 @@ Blockly.Msg.ARD_ALLBOT_ANIMATESPEED = 'Animation duration (ms):';
 Blockly.Msg.ARD_ALLBOT_ANIMATE_TIP = 'Animate the allbot by moving different servos at the same time. Total duration of this animation can be set. A servo may have only one movement block present.';
 Blockly.Msg.ARD_ALLBOTSERVO_ANIMATE = 'Move AllBot Servo ';
 Blockly.Msg.ARD_ALLBOTSERVO_ANIMATE_TIP = 'Move Servo to a specified angle gradually over the animation duration. You can combine this with other servo movements';
+Blockly.Msg.ARD_ALLBOT_RC = 'AllBot Remote Control Handling';
+Blockly.Msg.ARD_ALLBOT_RCCOMMANDS = 'Commands ';
+Blockly.Msg.ARD_ALLBOT_RCSERIAL = 'Use Serial to view Commands';
+Blockly.Msg.ARD_ALLBOT_RC_TIP = 'A block to react to the AllBot Remote Control App on your smarthphone. Check Serial to see in the serial monitor what commands are received. Note: Your AllBot shield must be switched to RECEIVE after programming it.';
+Blockly.Msg.ARD_ALLBOT_RCCOMMAND = 'On receiving command ';
+Blockly.Msg.ARD_ALLBOT_RCDO = 'Do ';
+Blockly.Msg.ARD_ALLBOT_RCCOMMAND_SINGLE = 'This block must be inside an AllBot Remote Control block ';
+Blockly.Msg.ARD_ALLBOT_RCCOMMAND_TIP = 'Set the actions the AllBot must do on receiving a command.';
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
