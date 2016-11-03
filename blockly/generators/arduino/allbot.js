@@ -2373,9 +2373,10 @@ void ALLBOT_getcommand (void)                   // This is the routine that list
          Serial.flush();
          Serial.println("command = " + ALLBOTcommand);
          Serial.flush();
-         Serial.println("times = " + ALLBOTtimes);
+         Serial.print("times = ");Serial.println(ALLBOTtimes);
          Serial.flush();
-         Serial.println("speedms = " + ALLBOTspeedms);
+         Serial.print("speedms = ");Serial.println(ALLBOTspeedms);
+         Serial.flush();
        }
        
      }
