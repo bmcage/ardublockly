@@ -1505,6 +1505,10 @@ Blockly.Msg.ARD_ALLBOT_RCCOMMAND = 'On receiving command ';
 Blockly.Msg.ARD_ALLBOT_RCDO = 'Do ';
 Blockly.Msg.ARD_ALLBOT_RCCOMMAND_SINGLE = 'This block must be inside an AllBot Remote Control block ';
 Blockly.Msg.ARD_ALLBOT_RCCOMMAND_TIP = 'Set the actions the AllBot must do on receiving a command.';
+Blockly.Msg.ARD_ALLBOT_RC_SPEED = 'RC Speed';
+Blockly.Msg.ARD_ALLBOT_RC_SPEED_TIP = 'The speed as set in the Remote Control App';
+Blockly.Msg.ARD_ALLBOT_RC_TIMES = 'RC Times';
+Blockly.Msg.ARD_ALLBOT_RC_TIMES_TIP = 'The times (number of steps) as set in the Remote Control App';
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';

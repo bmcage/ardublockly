@@ -482,5 +482,27 @@ Blockly.Blocks['allbot_remotecontroldo'] = {
       this.setWarningText(null, 'allbot_remotecontroldo');
     }
   }
-      
+};
+
+
+Blockly.Blocks['allbot_remotecontrol_speed'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOT_RC_SPEED)
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setColour(Blockly.Blocks.math.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_RC_SPEED_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
+};
+
+Blockly.Blocks['allbot_remotecontrol_times'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ALLBOT_RC_TIMES)
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setColour(Blockly.Blocks.math.HUE);
+    this.setTooltip(Blockly.Msg.ARD_ALLBOT_RC_TIMES_TIP);
+    this.setHelpUrl('https://www.allbot.eu');
+  }
 };

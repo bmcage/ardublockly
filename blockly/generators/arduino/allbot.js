@@ -2217,8 +2217,10 @@ Blockly.Arduino['allbot_scared'] = function(block) {
   // find type of allbot
   var allbot = Blockly.Arduino.Boards.selected;
   if (allbot['allbotname'] !== undefined) {
+    var funcchirp = allbotfunctions[allbot.allbotname].chirp;
+    Blockly.Arduino.addFunction('chirp', funcchirp);
     var func = allbotfunctions[allbot.allbotname].scared;
-    Blockly.Arduino.addFunction('scared', func)
+    Blockly.Arduino.addFunction('scared', func);
     code = 'scared(' + shakes + ', ' + beeps + ');\n';
   } else {
     code = '// No AllBot on the workspace. Add it to generate code\n';
@@ -2304,8 +2306,8 @@ void ALLBOTresetserial (void)      // This clears any received IR commands that 
   
   Blockly.Arduino.addVariable('ALLBOTrawcommand', 'String ALLBOTrawcommand;  // Global variable that stores the raw received IR command', true);
   Blockly.Arduino.addVariable('ALLBOTcommand', 'String ALLBOTcommand;     // Global variable that stores part of the decoded IR command', true);
-  Blockly.Arduino.addVariable('ALLBOTtimes',      'int ALLBOTtimes;          // Global variable that stores part the received IR command', true);
-  Blockly.Arduino.addVariable('ALLBOTspeedms',      'int ALLBOTspeedms;        // Global variable that stores part the received IR command', true);
+  Blockly.Arduino.addVariable('ALLBOTtimes',      'int ALLBOTtimes = 1;          // Global variable that stores part the received IR command', true);
+  Blockly.Arduino.addVariable('ALLBOTspeedms',      'int ALLBOTspeedms = 100;        // Global variable that stores part the received IR command', true);
   Blockly.Arduino.addVariable('ALLBOT_IRreceive',    'boolean ALLBOT_IRreceive = true; // Set this to false if you do not want to use the IR remote');
 
   var setupCode_Serial = `
@@ -2414,4 +2416,32 @@ Blockly.Arduino['allbot_remotecontroldo'] = function(block) {
   code += executeBranch + '\n    }';
   
   return code;
+};
+
+/**
+ * Code generator for a allbot RC speed block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_remotecontrol_speed'] = function(block) {
+  
+  Blockly.Arduino.addVariable('ALLBOTspeedms',      'int ALLBOTspeedms = 100;        // Global variable that stores part the received IR command', true);
+  
+  var code = 'ALLBOTspeedms';
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+/**
+ * Code generator for a allbot RC times block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['allbot_remotecontrol_times'] = function(block) {
+  
+  Blockly.Arduino.addVariable('ALLBOTtimes',      'int ALLBOTtimes = 1;          // Global variable that stores part the received IR command', true);
+  
+  var code = 'ALLBOTtimes';
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
