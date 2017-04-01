@@ -2393,8 +2393,7 @@ void ALLBOT_getcommand (void)                   // This is the routine that list
 }`)
   
   var code = `
-  if (ALLBOT_IRreceive == true)                  // Allow to switch off the IR part
-    {
+  if (ALLBOT_IRreceive == true) {                 // Allow to switch off the IR part
       ALLBOT_getcommand();                       // Listen for IR command\n`;
   code += commandsBranch;  // add the commands given by user to process the IR input
   code += '\n    }\n';
@@ -2413,7 +2412,7 @@ Blockly.Arduino['allbot_remotecontroldo'] = function(block) {
   var executeBranch = Blockly.Arduino.statementToCode(block, 'RC_EXECUTE');
   
   var code = 'if (ALLBOTcommand == "' + commandRC + '") {\n';
-  code += executeBranch + '\n    }';
+  code += executeBranch + '\n    }\n';
   
   return code;
 };
