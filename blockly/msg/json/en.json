@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2016-11-04 08:32:58.814361",
+		"lastupdated": "2017-06-15 15:09:23.575915",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -725,6 +725,18 @@
 	"ARD_ALLBOT_RC_SPEED_TIP": "The speed as set in the Remote Control App",
 	"ARD_ALLBOT_RC_TIMES": "RC Times",
 	"ARD_ALLBOT_RC_TIMES_TIP": "The times (number of steps) as set in the Remote Control App",
+	"ARD_BUZZEROUTPUT": "Buzzer/Speaker",
+	"ARD_BUZOUTPUT_TIP": "This component is a Buzzer or a Loudspeaker. You can connect it to a digital pin of the Arduino.",
+	"ARD_BUZNOTONE": "No tone on buzzer",
+	"ARD_BUZOUTPUT_DEFAULT_NAME": "MyBuzzer1",
+	"ARD_BUZNOTONE_TIP": "Stop generating a tone on the buzzer",
+	"ARD_BUZOUTPUT_COMPONENT": "Buzzer/Speaker",
+	"ARD_BUZSETTONE": "Set tone on buzzer",
+	"ARD_TONEDURATION": "and duration (ms)",
+	"ARD_TONEDURATION_TIP": "Sets tone on a buzzer to the specified frequency within range 31 - 65535 and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!",
+	"ARD_TONE_WARNING2": "A duration must be positive (>0)",
+	"ARD_BUZSETPITCH": "with pitch",
+	"ARD_TONEPITCH_TIP": "Sets tone on a buzzer to the specified pitch and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!",
 	"NEW_INSTANCE": "New instance...",
 	"RENAME_INSTANCE": "Rename instance...",
 	"NEW_INSTANCE_TITLE": "New instance name:",
