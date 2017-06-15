@@ -734,6 +734,8 @@
   	"ARD_TONE_WARNING2": "Een duurtijd moet positief zijn (>0)",
   	"ARD_BUZSETPITCH": "met toonhoogte",
   	"ARD_TONEPITCH_TIP": "Speelt een toon op de buzzer met de gegeven toonhoogte en met de gegeven duurtijd in milliseconden. Opgelet: een duurtijd van een toon loopt door, ook tijdens een pauze, een nieuwe toonopdracht kan enkel gegeven worden als de vorige toon gestopt is!",
+  	"ARD_BUZSELECTPITCH": "Toonhoogte",
+  	"ARD_BUZSELECTPITCH_TIP": "Selecteer de toonhoogte die je wenst. Dit blok geeft je het nummer welke de frequentie is van de geselecteerde toonhoogte.",
 	"NEW_INSTANCE": "Nieuw object...",
 	"RENAME_INSTANCE": "Hernoem object...",
 	"NEW_INSTANCE_TITLE": "Nieuwe objectnaam:",

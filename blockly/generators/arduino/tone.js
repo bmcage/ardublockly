@@ -71,20 +71,12 @@ Blockly.Arduino['io_tone_buz'] = function(block) {
   var pin = block.getFieldValue('OUTPUTNAME');
   var freq = Blockly.Arduino.valueToCode(block, 'FREQUENCY', Blockly.Arduino.ORDER_ATOMIC);
 
-  //var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
-  //Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
-
   var code = 'tone(' + pin + ', ' + freq + ');\n';
   return code;
 };
 
 Blockly.Arduino['io_notone_buz'] = function(block) {
   var pin = block.getFieldValue('OUTPUTNAME');
-  //Blockly.Arduino.reservePin(
-  //    block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Tone Pin');
-  
-  //var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
-  //Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
 
   var code = 'noTone(' + pin + ');\n';
   return code;
@@ -95,20 +87,20 @@ Blockly.Arduino['io_toneduration'] = function(block) {
   var freq = Blockly.Arduino.valueToCode(block, 'FREQUENCY', Blockly.Arduino.ORDER_ATOMIC);
   var duration = Blockly.Arduino.valueToCode(block, 'DURATION', Blockly.Arduino.ORDER_ATOMIC);
 
-  //var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
-  //Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
-
   var code = 'tone(' + pin + ', ' + freq + ', ' + duration +');\n';
   return code;
+};
+
+Blockly.Arduino['io_pitch'] = function(block) {
+  var code = block.getFieldValue('TONEPITCH');
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['io_tonepitch'] = function(block) {
   var pin = block.getFieldValue('OUTPUTNAME');
   var pitch = block.getFieldValue('TONEPITCH');
   var duration = Blockly.Arduino.valueToCode(block, 'DURATION', Blockly.Arduino.ORDER_ATOMIC);
-
-  //var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
-  //Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
 
   var code = 'tone(' + pin + ', ' + pitch + ', ' + duration +'); // pitch ' + block.getField('TONEPITCH').getText() + '\n';
   return code;

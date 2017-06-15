@@ -1521,6 +1521,8 @@ Blockly.Msg.ARD_TONEDURATION_TIP = 'Sets tone on a buzzer to the specified frequ
 Blockly.Msg.ARD_TONE_WARNING2 = 'A duration must be positive (>0)';
 Blockly.Msg.ARD_BUZSETPITCH = 'with pitch';
 Blockly.Msg.ARD_TONEPITCH_TIP = 'Sets tone on a buzzer to the specified pitch and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!';
+Blockly.Msg.ARD_BUZSELECTPITCH = 'Pitch';
+Blockly.Msg.ARD_BUZSELECTPITCH_TIP = 'Select the pitch you want. This block returns a number which is the frequency of the selected pitch.';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
