@@ -1509,6 +1509,19 @@ Blockly.Msg.ARD_ALLBOT_RC_SPEED = 'RC Speed';
 Blockly.Msg.ARD_ALLBOT_RC_SPEED_TIP = 'The speed as set in the Remote Control App';
 Blockly.Msg.ARD_ALLBOT_RC_TIMES = 'RC Times';
 Blockly.Msg.ARD_ALLBOT_RC_TIMES_TIP = 'The times (number of steps) as set in the Remote Control App';
+Blockly.Msg.ARD_BUZZEROUTPUT = 'Buzzer/Speaker';
+Blockly.Msg.ARD_BUZOUTPUT_TIP = 'This component is a Buzzer or a Loudspeaker. You can connect it to a digital pin of the Arduino.';
+Blockly.Msg.ARD_BUZNOTONE = 'No tone on buzzer';
+Blockly.Msg.ARD_BUZOUTPUT_DEFAULT_NAME = 'MyBuzzer1';
+Blockly.Msg.ARD_BUZNOTONE_TIP = 'Stop generating a tone on the buzzer';
+Blockly.Msg.ARD_BUZOUTPUT_COMPONENT = 'Buzzer/Speaker';
+Blockly.Msg.ARD_BUZSETTONE = 'Set tone on buzzer';
+Blockly.Msg.ARD_TONEDURATION = 'and duration (ms)';
+Blockly.Msg.ARD_TONEDURATION_TIP = 'Sets tone on a buzzer to the specified frequency within range 31 - 65535 and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!';
+Blockly.Msg.ARD_TONE_WARNING2 = 'A duration must be positive (>0)';
+Blockly.Msg.ARD_BUZSETPITCH = 'with pitch';
+Blockly.Msg.ARD_TONEPITCH_TIP = 'Sets tone on a buzzer to the specified pitch and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!';
+
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
