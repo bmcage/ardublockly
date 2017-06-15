@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-06-15 15:09:23.575915",
+		"lastupdated": "2017-06-15 22:31:22.998319",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -737,6 +737,8 @@
 	"ARD_TONE_WARNING2": "A duration must be positive (>0)",
 	"ARD_BUZSETPITCH": "with pitch",
 	"ARD_TONEPITCH_TIP": "Sets tone on a buzzer to the specified pitch and given duration in milliseconds. Careful: a durations continues, also during delays, a new tone can only be given if a previous tone is terminated!",
+	"ARD_BUZSELECTPITCH": "Pitch",
+	"ARD_BUZSELECTPITCH_TIP": "Select the pitch you want. This block returns a number which is the frequency of the selected pitch.",
 	"NEW_INSTANCE": "New instance...",
 	"RENAME_INSTANCE": "Rename instance...",
 	"NEW_INSTANCE_TITLE": "New instance name:",
