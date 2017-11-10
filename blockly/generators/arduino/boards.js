@@ -529,6 +529,33 @@ Blockly.Arduino.Boards.profiles.allbotVR618mega.joints = {
     flipped: [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1]
 };
 
+/** Ingegno Diorama is build upon the Arduino Mega board profile. */
+Blockly.Arduino.Boards.profiles.diorama = {
+  name: 'Ingegno Diorama',
+  description: 'Arduino Mega-compatible board with TM1638, SD Card and stepper',
+  compilerFlag: 'arduino:avr:mega',
+  analogPins: Blockly.Arduino.Boards.generateAnalogIo(0, 15),
+  //TODO: Check if the Mega can use analogue pins as digital, it would be
+  //      logical but it is not clear on the arduino.cc website
+  digitalPins: Blockly.Arduino.Boards.generateDigitalIo(0, 10),
+  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(2, 10),
+  serial: [['serial', 'Serial']],
+  serialPins: {
+    Serial: [['TX', '0'], ['RX', '1']]
+  },
+  serialSpeed: Blockly.Arduino.Boards.profiles.uno.serialSpeed,
+  spi: [['SPI', 'SPI']],
+  spiPins: { SPI: [['MOSI', '51'], ['MISO', '50'], ['SCK', '52']] },
+  //TODO: confirm the clock divides are the same for the DUE and UNO
+  spiClockDivide: Blockly.Arduino.Boards.profiles.uno.spiClockDivide,
+  i2c: [['I2C', 'Wire']],
+  i2cPins: { Wire: [['SDA', '20'], ['SCL', '21']] },
+  i2cSpeed: [['100kHz', '100000L'], ['400kHz', '400000L']],
+  builtinLed: Blockly.Arduino.Boards.profiles.uno.builtinLed,
+  interrupt: [['interrupt0', '2'], ['interrupt1', '3'], ['interrupt2', '21'],
+              ['interrupt3', '20'], ['interrupt4', '19'], ['interrupt5', '18']]
+};
+
 /** Set default profile to Arduino standard-compatible board */
 Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.uno;
 Blockly.Arduino.Boards.selected.profilename_ = 'uno';
