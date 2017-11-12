@@ -153,6 +153,7 @@ Blockly.Msg.ARD_DIGOUTPUT_COMPONENT = "Digitale Output";
 Blockly.Msg.ARD_DIGOUTPUT_DEFAULT_NAME = "DigOutput1";
 Blockly.Msg.ARD_DIGOUTPUT_TIP = "Connecteer een digitale output aan een digitale pin op een hub, en schrijf naar die pin. De digitale toestend kan LOW of HIGH zijn, welke overeenkomt met 0V en 5V op die pin voor een Arduino UNO.";
 Blockly.Msg.ARD_DIGOUTPUT_WRITE = "Schrijf naar digital output";
+Blockly.Msg.ARD_DIORAMA_BOARD_TIP = "Het Ingegno Diorama bord - Zie de handleiding voor info";
 Blockly.Msg.ARD_FUN_RUN_DECL = "Arduino definieer vooraf:";
 Blockly.Msg.ARD_FUN_RUN_DECL_TIP = "Code die je vooraf wil declareren (gebruik dit bv. voor variabelen die je nodig zult hebben in de setup).";
 Blockly.Msg.ARD_FUN_RUN_LOOP = "Arduino herhaal voor altijd:";

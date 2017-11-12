@@ -1524,6 +1524,9 @@ Blockly.Msg.ARD_TONEPITCH_TIP = 'Sets tone on a buzzer to the specified pitch an
 Blockly.Msg.ARD_BUZSELECTPITCH = 'Pitch';
 Blockly.Msg.ARD_BUZSELECTPITCH_TIP = 'Select the pitch you want. This block returns a number which is the frequency of the selected pitch.';
 
+/// Diorama strings
+Blockly.Msg.ARD_DIORAMA_BOARD_TIP = 'The Ingegno Diorama board - See manual for info'
+
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
