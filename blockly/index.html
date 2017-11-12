@@ -61,7 +61,9 @@
   <script src="generators/arduino/boards.js"></script>
   <script src="generators/arduino/button.js"></script>
   <script src="generators/arduino/components.js"></script>
+  <script src="generators/arduino/component_diorama.js"></script>
   <script src="generators/arduino/declare.js"></script>
+  <script src="generators/arduino/diorama.js"></script>
   <script src="generators/arduino/io.js"></script>
   <script src="generators/arduino/io_extra.js"></script>
   <script src="generators/arduino/light.js"></script>
@@ -971,7 +973,156 @@
       </category>
     </category>
     <category id="catDiorama" name="Diorama">
-      <block type="diorama_hub_component"></block>
+      <block type="diorama_hub_component">stepper_step
+        <statement name="DIO_BTN_S1">
+          <block type="stepper_step">
+            <field name="STEPPER_NAME">StepperDiorama</field>
+            <value name="STEPPER_STEPS">
+              <block type="math_number">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="DIO_BTN_S2">
+          <block type="dio_stoptrack">
+          <next>
+            <block type="dio_displaytext">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">stop    </field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S3">
+          <block type="dio_louder">
+          <next>
+            <block type="time_delay">
+              <value name="DELAY_TIME_MILI">
+                <block type="math_number">
+                  <field name="NUM">500</field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S4">
+          <block type="dio_quieter">
+          <next>
+            <block type="time_delay">
+              <value name="DELAY_TIME_MILI">
+                <block type="math_number">
+                  <field name="NUM">500</field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S5">
+          <block type="dio_playtrack">
+            <value name="TRACK">
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          <next>
+            <block type="dio_displaytext">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">nr 1    </field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S6">
+          <block type="dio_playtrack">
+            <value name="TRACK">
+              <block type="math_number">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+          <next>
+            <block type="dio_displaytext">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">nr 2    </field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S7">
+          <block type="dio_playtrack">
+            <value name="TRACK">
+              <block type="math_number">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+          <next>
+            <block type="dio_displaytext">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">nr 3    </field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <statement name="DIO_BTN_S8">
+          <block type="dio_playtrack">
+            <value name="TRACK">
+              <block type="math_number">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+          <next>
+            <block type="dio_displaytext">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">nr 4    </field>
+                </block>
+              </value>
+            </block>
+          </next>
+        </statement>
+        <field name="STEPPER_NAME">StepperDiorama</field>
+        <value name="STEPPER_STEPS">
+          <block type="math_number">
+            <field name="NUM">2050</field>
+          </block>
+        </value>
+        <value name="STEPPER_SPEED">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_playtrack">
+        <value name="TRACK">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_displaytext">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">HELLO</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_louder"></block>
+      <block type="dio_quieter"></block>
+      <block type="dio_setvolume">
+        <value name="VOLUME">
+          <block type="math_number">
+            <field name="NUM">7</field>
+          </block>
+        </value>
+      </block>  
     </category>
   </category>
 </xml>;

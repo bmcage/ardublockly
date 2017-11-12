@@ -108,7 +108,7 @@ Blockly.Blocks['diorama_hub_component'] = {
    * @this Blockly.Block
    */
   getBoardName: function() {
-    return 'DIORAMA';
+    return 'diorama';
   },
   /**
    * Called whenever anything on the workspace changes.

@@ -1525,7 +1525,21 @@ Blockly.Msg.ARD_BUZSELECTPITCH = 'Pitch';
 Blockly.Msg.ARD_BUZSELECTPITCH_TIP = 'Select the pitch you want. This block returns a number which is the frequency of the selected pitch.';
 
 /// Diorama strings
-Blockly.Msg.ARD_DIORAMA_BOARD_TIP = 'The Ingegno Diorama board - See manual for info'
+Blockly.Msg.ARD_DIORAMA_BOARD_TIP = 'The Ingegno Diorama board - See manual for info';
+Blockly.Msg.ARD_DIO_BOARD_MISSING = 'No Diorama board present. Add it to the canvas!';
+Blockly.Msg.ARD_DIO_SOUND_TIP = 'Change sound output of the Diorama board';
+Blockly.Msg.ARD_DIO_LOUDER = 'Diorama: louder output';
+Blockly.Msg.ARD_DIO_LESSLOUD = 'Diorama: less loud output';
+Blockly.Msg.ARD_DIO_SETLOUDNESS = 'Diorama: set volume to (0-10):';
+Blockly.Msg.ARD_DIO_SOUND_WARNING = 'Volume must be between 0 and 10!';
+Blockly.Msg.ARD_DIO_PLAYTRACK = 'Play track number ';
+Blockly.Msg.ARD_DIO_TRACK_TIP = 'If number 1, then play a track stored on SD card as "track001.mp3"';
+Blockly.Msg.ARD_DIO_STOPTRACK = 'Stop playing';
+Blockly.Msg.ARD_DIO_STOPTRACK_TIP = 'Immediately stop playing the track that is playing';
+Blockly.Msg.ARD_DIO_TRACK_WARNING = 'Track must be a number between 1 and 100!';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT = 'Show on display: ';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT_TIP = 'Give a text of 8 characters to show on the diorama display';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING = 'Text can only be 8 long, not longer!'
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
