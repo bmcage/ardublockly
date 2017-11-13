@@ -147,7 +147,9 @@ Ardublockly.TOOLBOX_XML =
 '        <shadow type="io_highlow"></shadow>' +
 '      </value>' +
 '      <value name="TIMEOUT">' +
-'        <block type="math_number"></block>' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </shadow>' +
 '      </value>'+
 '    </block>' +
 '  </category>' +
@@ -194,6 +196,7 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '    <block type="servo_read"></block>' +
 '    <block type="stepper_config">' +
+'      <field name="STEPPER_NUMBER_OF_PINS">2</field>' +
 '      <field name="STEPPER_PIN1">1</field>' +
 '      <field name="STEPPER_PIN2">2</field>' +
 '      <value name="STEPPER_STEPS">' +

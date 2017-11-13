@@ -8,7 +8,6 @@
 			"아라",
 			"JaapDeKleine",
 			"Sjoerddebruin",
-			"Benny Malengier",
 			"Lemondoge",
 			"Jeleniccz"
 		]
@@ -722,9 +721,9 @@
   	"ARD_ALLBOT_RC_SPEED_TIP": "De snelheid zoals gezet in de Afstandsbediening App",
   	"ARD_ALLBOT_RC_TIMES": "RC Aantal",
   	"ARD_ALLBOT_RC_TIMES_TIP": "Het aantal (aantal stappen) zoals gezet in de Afstandsbediening App",
-    "ARD_BUZZEROUTPUT": "Buzzer/Luidspreker",
-    "ARD_BUZOUTPUT_TIP": "Deze component is een Buzzer of een Luidspreker. Je kan hem met een digitale pin van de Arduino verbinden",
-    "ARD_BUZNOTONE": "Stop toon op buzzer",
+  	"ARD_BUZZEROUTPUT": "Buzzer/Luidspreker",
+  	"ARD_BUZOUTPUT_TIP": "Deze component is een Buzzer of een Luidspreker. Je kan hem met een digitale pin van de Arduino verbinden",
+  	"ARD_BUZNOTONE": "Stop toon op buzzer",
   	"ARD_BUZOUTPUT_DEFAULT_NAME": "MijnBuzzer1",
   	"ARD_BUZNOTONE_TIP": "Stop met een toon spelen op de buzzer",
   	"ARD_BUZOUTPUT_COMPONENT": "Buzzer/Luidspreker",
