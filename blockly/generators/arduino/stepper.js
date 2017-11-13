@@ -122,3 +122,19 @@ Blockly.Arduino['stepper_step'] = function(block) {
   var code = stepperInstanceName + '.step(' + stepperSteps + ');\n';
   return code;
 };
+
+/**
+ * Code generator for setting the speed of stepper instance (X)
+ * Library info in the setHelpUrl link.
+ * This block requires the stepper_config block to be present.
+ * Arduino code: loop { X.steps(Y) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['stepper_speed'] = function(block) {
+  var stepperInstanceName = 'stepper_' + block.getFieldValue('STEPPER_NAME');
+  var stepperRpm = Blockly.Arduino.valueToCode(block, 'STEPPER_SPEED',
+      Blockly.Arduino.ORDER_ATOMIC) || '5';
+  var code = stepperInstanceName + '.setSpeed(' + stepperRpm + ');\n';
+  return code;
+};

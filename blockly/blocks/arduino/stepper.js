@@ -186,7 +186,7 @@ Blockly.Blocks['stepper_step'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setHelpUrl('http://arduino.cc/en/Reference/StepperStep');
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/StepperStep');
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_STEPPER_STEP)
@@ -202,6 +202,53 @@ Blockly.Blocks['stepper_step'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_STEPPER_STEP_TIP);
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
+Blockly.Blocks['stepper_speed'] = {
+  /**
+   * Block for for the stepper 'setSpeed()' function.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/StepperSetSpeed');
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_SPEED)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME');
+    this.appendValueInput('STEPPER_SPEED')
+        .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_STEPPER_SPEED_TIP);
   },
   /**
    * Called whenever anything on the workspace changes.
