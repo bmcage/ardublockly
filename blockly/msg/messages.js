@@ -1216,6 +1216,7 @@ Blockly.Msg.ARD_STEPPER_SETUP_TIP = 'Configures a stepper motor pinout and other
 Blockly.Msg.ARD_STEPPER_STEP = 'move stepper';
 Blockly.Msg.ARD_STEPPER_STEPS = 'steps';
 Blockly.Msg.ARD_STEPPER_STEP_TIP = 'Turns the stepper motor a specific number of steps.';
+Blockly.Msg.ARD_STEPPER_SPEED_TIP = 'Sets speed of the stepper motor. The steps are set at the speed needed to have the set RPM speed based on the given steps per revolution in the constructor.';
 Blockly.Msg.ARD_STEPPER_COMPONENT = 'stepper';
 Blockly.Msg.ARD_SERVO_COMPONENT = 'servo';
 Blockly.Msg.ARD_SERVO_ROTATE360 = 'Rotate 360 degree Servo';
@@ -1539,7 +1540,11 @@ Blockly.Msg.ARD_DIO_STOPTRACK_TIP = 'Immediately stop playing the track that is 
 Blockly.Msg.ARD_DIO_TRACK_WARNING = 'Track must be a number between 1 and 100!';
 Blockly.Msg.ARD_DIO_DISPLAYTEXT = 'Show on display: ';
 Blockly.Msg.ARD_DIO_DISPLAYTEXT_TIP = 'Give a text of 8 characters to show on the diorama display';
-Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING = 'Text can only be 8 long, not longer!'
+Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING = 'Text can only be 8 long, not longer!';
+Blockly.Msg.ARD_DIO_TRACKPLAYING = 'track is playing';
+Blockly.Msg.ARD_DIO_TRACKPLAYING_TIP = 'Return true if a track is still playing, false otherwise';
+Blockly.Msg.ARD_DIO_RESETBTN = 'reset diorama buttons';
+Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considered pressed';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';

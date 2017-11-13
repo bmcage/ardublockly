@@ -584,6 +584,13 @@
     <block type="stepper_step">
       <value name="STEPPER_STEPS">
         <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+    </block>
+    <block type="stepper_speed">
+      <value name="STEPPER_SPEED">
+        <block type="math_number">
           <field name="NUM">10</field>
         </block>
       </value>
@@ -982,10 +989,14 @@
                 <field name="NUM">2</field>
               </block>
             </value>
-          </block>
+          <next>
+            <block type="dio_resetbtnpress"></block>
+          </next>
         </statement>
         <statement name="DIO_BTN_S2">
           <block type="dio_stoptrack">
+          <next>
+            <block type="dio_resetbtnpress">
           <next>
             <block type="dio_displaytext">
               <value name="TEXT">
@@ -1122,7 +1133,9 @@
             <field name="NUM">7</field>
           </block>
         </value>
-      </block>  
+      </block>
+      <block type="dio_trackplaying"></block>
+      <block type="dio_resetbtnpress"></block>
     </category>
   </category>
 </xml>;

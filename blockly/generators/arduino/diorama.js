@@ -94,6 +94,23 @@ Blockly.Arduino['dio_stoptrack'] = function(block) {
 };
 
 /**
+ * Function to determine if a track is playing
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['dio_trackplaying'] = function(block) {
+  return 'DIOMP3player.isPlaying()';
+};
+
+/**
+ * Function to reset the button presses
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['dio_resetbtnpress'] = function(block) {
+  return 'DIOLastBtnPushed = 0;\n';
+};
+/**
  * Function for displaying text on the display.
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {array} Completed code with order of operation.
