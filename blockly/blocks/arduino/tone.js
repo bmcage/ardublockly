@@ -137,8 +137,11 @@ Blockly.Blocks['io_notone_buz'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'BuzzerOutput', this)) {
@@ -172,8 +175,11 @@ Blockly.Blocks['io_tone_buz'] = {
     this.setTooltip(Blockly.Msg.ARD_TONE_TIP);
     this.setHelpUrl('https://www.arduino.cc/en/Reference/tone');
   },
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     var freq = Blockly.Arduino.valueToCode(this, "FREQUENCY", Blockly.Arduino.ORDER_ATOMIC)
@@ -217,8 +223,11 @@ Blockly.Blocks['io_toneduration'] = {
     this.setTooltip(Blockly.Msg.ARD_TONEDURATION_TIP);
     this.setHelpUrl('https://www.arduino.cc/en/Reference/tone');
   },
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     var freq = Blockly.Arduino.valueToCode(this, "FREQUENCY", Blockly.Arduino.ORDER_ATOMIC)
@@ -284,8 +293,11 @@ Blockly.Blocks['io_tonepitch'] = {
     this.setTooltip(Blockly.Msg.ARD_TONEPITCH_TIP);
     this.setHelpUrl('https://www.arduino.cc/en/Tutorial/ToneMelody');
   },
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     var duration = Blockly.Arduino.valueToCode(this, "DURATION", Blockly.Arduino.ORDER_ATOMIC)

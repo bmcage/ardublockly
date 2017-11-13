@@ -64,13 +64,15 @@ Blockly4Arduino.replaceBlocksfromXml = function(blocksXml) {
 
 /** Binds the event listeners relevant to Blockly. */
 Blockly4Arduino.bindBlocklyEventListeners = function() {
-  Blockly4Arduino.workspace.addChangeListener(Blockly4Arduino.renderContent);
-
+  Blockly4Arduino.workspace.addChangeListener(function(event) {
+    if (event.type != Blockly.Events.UI) {
+      Blockly4Arduino.renderContent();
+    }
+  }
   // Ensure the Blockly workspace resizes accordingly
   window.addEventListener('resize',
-      function() { Blockly.svgResize(Blockly4Arduino.workspace); }, false);
+      function() { Blockly.asyncSvgResize(Blockly4Arduino.workspace); }, false);
 };
-
 
 
 /** Initialises all the design related JavaScript. */
@@ -517,8 +519,7 @@ Blockly4Arduino.generateArduino = function() {
 /** @return {!string} Generated XML code from the Blockly workspace. */
 Blockly4Arduino.generateXml = function() {
   var xmlDom = Blockly.Xml.workspaceToDom(Blockly4Arduino.workspace);
-  var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-  return xmlText;
+  return Blockly.Xml.domToPrettyText(xmlDom);
 };
 
 /** Binds functions to each of the buttons, nav links, and related. */

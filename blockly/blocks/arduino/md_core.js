@@ -49,8 +49,11 @@ Blockly.Blocks['md_modules'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find Amplifier module
     var blocks = Blockly.mainWorkspace.getTopBlocks();
@@ -110,8 +113,11 @@ Blockly.Blocks['mcookie_coreusb'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if there are other board modules
     var blocks = this.workspace.getAllBlocks();
@@ -255,8 +261,11 @@ Blockly.Blocks['mcookie_audio_setup'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find Amplifier module
     var blocks = Blockly.mainWorkspace.getAllBlocks();
@@ -317,8 +326,11 @@ Blockly.Blocks['mcookie_audio_amplifier'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find Amplifier module
     var blocks = Blockly.mainWorkspace.getAllBlocks();

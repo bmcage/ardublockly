@@ -32,8 +32,11 @@ Blockly.Blocks['dio_louder'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_SOUND_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();
@@ -73,8 +76,11 @@ Blockly.Blocks['dio_quieter'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_SOUND_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();
@@ -115,8 +121,11 @@ Blockly.Blocks['dio_setvolume'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_SOUND_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();
@@ -162,8 +171,11 @@ Blockly.Blocks['dio_playtrack'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_TRACK_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();
@@ -207,8 +219,11 @@ Blockly.Blocks['dio_stoptrack'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_STOPTRACK_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();
@@ -249,8 +264,11 @@ Blockly.Blocks['dio_displaytext'] = {
     this.setTooltip(Blockly.Msg.ARD_DIO_DISPLAYTEXT_TIP);
     this.setHelpUrl('');
   },
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Iterate through top level blocks to find if diorama board is present
     var blocks = this.workspace.getAllBlocks();

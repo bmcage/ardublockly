@@ -334,8 +334,11 @@ Blockly.Blocks['analogsensor_read'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('SENSORNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'AnalogSensor', this)) {
@@ -423,8 +426,11 @@ Blockly.Blocks['digitalinput_read'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('SENSORNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'DigitalInput', this)) {
@@ -511,8 +517,11 @@ Blockly.Blocks['digitaloutput_write'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'DigitalOutput', this)) {
@@ -598,8 +607,11 @@ Blockly.Blocks['pwmoutput_write'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('OUTPUTNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'PWMOutput', this)) {

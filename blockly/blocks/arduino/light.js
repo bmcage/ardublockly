@@ -149,8 +149,11 @@ Blockly.Blocks['led_digitalwrite'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('LEDNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'LedLeg', this)) {
@@ -205,8 +208,11 @@ Blockly.Blocks['led_digitalwrite_onoff'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('LEDNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'LedLeg', this)) {
@@ -270,8 +276,11 @@ Blockly.Blocks['neopixel_colourpick_write'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('NEONAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
@@ -338,8 +347,11 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('NEONAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
@@ -407,9 +419,11 @@ Blockly.Blocks['neopixel_write'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
-
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
     var instanceName = this.getFieldValue('NEONAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
       this.setWarningText(null);

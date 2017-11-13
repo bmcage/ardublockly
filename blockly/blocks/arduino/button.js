@@ -103,8 +103,11 @@ Blockly.Blocks['button_input'] = {
   getVarType: function(varName) {
     return Blockly.Types.NUMBER;
   },
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('BUTTONNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'Button', this)) {
