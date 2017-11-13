@@ -289,7 +289,8 @@ Blockly.Blocks['dio_displaytext'] = {
     }
     
     var txt = Blockly.Arduino.valueToCode(this, "TEXT", Blockly.Arduino.ORDER_ATOMIC);
-    if (txt.length > 8) {
+    // if a string, then check if length is correct
+    if (txt[0] == '"' && txt.length-2 > 8) {
       warning = Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING;
     }
     if (warning) {

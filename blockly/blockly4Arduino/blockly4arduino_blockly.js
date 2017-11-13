@@ -68,7 +68,7 @@ Blockly4Arduino.bindBlocklyEventListeners = function() {
     if (event.type != Blockly.Events.UI) {
       Blockly4Arduino.renderContent();
     }
-  }
+  });
   // Ensure the Blockly workspace resizes accordingly
   window.addEventListener('resize',
       function() { Blockly.asyncSvgResize(Blockly4Arduino.workspace); }, false);
