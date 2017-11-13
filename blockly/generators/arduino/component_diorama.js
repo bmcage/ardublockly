@@ -98,6 +98,7 @@ void DOIvolLouder() {
   var DIO_IN4 = 37;
   var dioramainclude = `
 TM1638 DIOmodule(45, 43, 41);   // Sets up TM1638 Diorama module, verbonden met pinnen D2 (DIO), D5 (CLK), en D1 (STB)
+uint8_t DIOLastBtnPushed = 0; // 8 buttons, from 1 to 8
 
 // Variables used in base code for the diorama
 SdFat sd; // Create object to handle SD functions
@@ -107,7 +108,7 @@ SFEMP3Shield DIOMP3player; // Create Mp3 library object
 // some stereo options:
 uint8_t DIOvolume = 40; // MP3 Player volume 0=max, 255=lowest (off)
 const uint16_t DIOmonoMode = 1;  // Mono setting 0=off, 3=max
-
+int DIOtracknrplaying = 0;
 
 // initSD() initializes the SD card and checks for an error.
 void DIOinitSD()
@@ -179,46 +180,49 @@ void DIOinitMP3Player()
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
   
   var dioramacode = `
-  // DIOmodule.getButtons() geeft het nummer van de ingedrukte drukknoppen.
-  // S1 = 1, S2 = 2, S3 = 4 .... S8 = 128
-  // worden drukknoppen S1 en S3 ingedrukt dan is het resultaat = 5
-  byte DIOdrukknoppen = DIOmodule.getButtons();  // bewaar het nummer van de ingedrukte knoppen in DIOdruknoppen
+// DIOmodule.getButtons() geeft het nummer van de ingedrukte drukknoppen.
+// S1 = 1, S2 = 2, S3 = 4 .... S8 = 128
+// worden drukknoppen S1 en S3 ingedrukt dan is het resultaat = 5
+byte DIOdrukknoppen = DIOmodule.getButtons();  // bewaar het nummer van de ingedrukte knoppen in DIOdruknoppen
 
-  if (bitRead(DIOdrukknoppen, 0))
-  {
-    DIObtn_S1_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 1))
-  {
-    DIObtn_S2_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 2))
-  {
-    DIObtn_S3_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 3))
-  {
-    DIObtn_S4_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 4))
-  {
-    DIObtn_S5_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 5))
-  {
-    DIObtn_S6_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 6))
-  {
-    DIObtn_S7_fun();
-  }
-  else if (bitRead(DIOdrukknoppen, 7))
-  {
-    DIObtn_S8_fun();
-  }
+if (bitRead(DIOdrukknoppen, 0)) {
+  DIOLastBtnPushed = 1;
+} else if (bitRead(DIOdrukknoppen, 1)) {
+  DIOLastBtnPushed = 2;
+} else if (bitRead(DIOdrukknoppen, 2)) {
+  DIOLastBtnPushed = 3;
+} else if (bitRead(DIOdrukknoppen, 3)) {
+  DIOLastBtnPushed = 4;
+} else if (bitRead(DIOdrukknoppen, 4)) {
+  DIOLastBtnPushed = 5;
+} else if (bitRead(DIOdrukknoppen, 5)) {
+  DIOLastBtnPushed = 6;
+} else if (bitRead(DIOdrukknoppen, 6)){
+  DIOLastBtnPushed = 7;
+} else if (bitRead(DIOdrukknoppen, 7)) {
+  DIOLastBtnPushed = 8;
+}
 
-  DIOmodule.setLEDs(DIOdrukknoppen);  // doe led branden boven de drukknop
+DIOmodule.setLEDs(DIOdrukknoppen);  // doe led branden boven de drukknop
 
+// we execute the commands as desired by the last button press
+if (DIOLastBtnPushed == 1) {
+  DIObtn_S1_fun();
+} else if (DIOLastBtnPushed == 2) {
+  DIObtn_S2_fun();
+} else if (DIOLastBtnPushed == 3) {
+  DIObtn_S3_fun();
+} else if (DIOLastBtnPushed == 4) {
+  DIObtn_S4_fun();
+} else if (DIOLastBtnPushed == 5) {
+  DIObtn_S5_fun();
+} else if (DIOLastBtnPushed == 6) {
+  DIObtn_S6_fun();
+} else if (DIOLastBtnPushed == 7) {
+  DIObtn_S7_fun();
+} else if (DIOLastBtnPushed == 8) {
+  DIObtn_S8_fun();
+} 
 `
   
   return dioramacode;

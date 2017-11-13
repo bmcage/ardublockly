@@ -75,7 +75,13 @@ Blockly.Arduino['dio_setvolume'] = function(block) {
 Blockly.Arduino['dio_playtrack'] = function(block) {
   var track = Blockly.Arduino.valueToCode(
       block, 'TRACK', Blockly.Arduino.ORDER_ATOMIC) || '1';
-  return 'DIOMP3player.stopTrack(); uint8_t result = DIOMP3player.playTrack(' + track + ');\n';
+  var code = `if (!DIOMP3player.isPlaying() || DIOtracknrplaying != %1)  {
+  DIOMP3player.stopTrack();
+  uint8_t result = DIOMP3player.playTrack(%1);
+}
+DIOtracknrplaying = %1;
+`
+  return code.replace('%1', track).replace('%1', track).replace('%1', track);
 };
 
 /**
@@ -84,7 +90,7 @@ Blockly.Arduino['dio_playtrack'] = function(block) {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_stoptrack'] = function(block) {
-  return 'DIOMP3player.stopTrack();\n';
+  return 'if (DIOMP3player.isPlaying()) {DIOMP3player.stopTrack();}\n';
 };
 
 /**
