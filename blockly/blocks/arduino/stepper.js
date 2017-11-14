@@ -236,16 +236,15 @@ Blockly.Blocks['stepper_speed'] = {
     this.setHelpUrl('https://www.arduino.cc/en/Reference/StepperSetSpeed');
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_STEPPER_SPEED)
         .appendField(
             new Blockly.FieldInstance('Stepper',
                                       Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
                                       false, true, false),
-            'STEPPER_NAME');
+            'STEPPER_NAME')
+        .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
     this.appendValueInput('STEPPER_SPEED')
         .setCheck(Blockly.Types.NUMBER.checkList);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_STEPPER_SPEED_TIP);
