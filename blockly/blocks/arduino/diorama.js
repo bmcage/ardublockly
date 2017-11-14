@@ -337,6 +337,60 @@ Blockly.Blocks['dio_resetbtnpress'] = {
   },
 };
 
+Blockly.Blocks['dio_resetbtnnrpress'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_DIO_RESETBTN)
+        .appendField(
+            new Blockly.FieldDropdown(
+                [['1', '1'],
+                 ['2', '2'],
+                 ['3', '3'],
+                 ['4', '4'],
+                 ['5', '5'],
+                 ['6', '6'],
+                 ['7', '7'],
+                ]), 'BUTTON')
+    this.setInputsInline(true);
+    this.setColour(Blockly.Blocks.diorama.HUE);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true,'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_DIO_RESETBTNNR_TIP);
+    this.setHelpUrl('');
+  },
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    // Iterate through top level blocks to find if diorama board is present
+    var blocks = this.workspace.getAllBlocks();
+    var dioPresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getBoardName;
+      if (func) {
+        var BoardName = func.call(blocks[x]);
+        if (BoardName == "diorama") {
+          dioPresent = true;
+        }
+      }
+    }
+    
+    var warning = '';
+    if (!dioPresent) {
+      warning = Blockly.Msg.ARD_DIO_BOARD_MISSING;
+    }
+    
+    if (warning) {
+      // Set a warning to select a valid stepper config
+      this.setWarningText(warning, 'dio_resetbtnpress');
+    } else {
+      this.setWarningText(null, 'dio_resetbtnpress');
+    }
+  },
+};
+
 Blockly.Blocks['dio_displaytext'] = {
   init: function() {
     this.appendValueInput('TEXT')

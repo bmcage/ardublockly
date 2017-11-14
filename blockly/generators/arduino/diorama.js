@@ -31,7 +31,7 @@ void DOIvolLouder() {
 }
 `
   Blockly.Arduino.addFunction('DIOvolLouder', code);
-  return 'DOIvolLouder();\n';
+  return 'DOIvolLouder();\nDIObtn_stoprunning();\n';
 };
 
 /**
@@ -52,7 +52,7 @@ void DOIvolQuieter() {
 }
 `
   Blockly.Arduino.addFunction('DOIvolQuieter', code);
-  return 'DOIvolQuieter();\n';
+  return 'DOIvolQuieter();\nDIObtn_stoprunning();\n';
 };
 
 /**
@@ -75,7 +75,7 @@ Blockly.Arduino['dio_setvolume'] = function(block) {
 Blockly.Arduino['dio_playtrack'] = function(block) {
   var track = Blockly.Arduino.valueToCode(
       block, 'TRACK', Blockly.Arduino.ORDER_ATOMIC) || '1';
-  var code = `if (!DIOMP3player.isPlaying() || DIOtracknrplaying != %1)  {
+  var code = `if (DIOtracknrplaying != %1)  { //!DIOMP3player.isPlaying() ||
   DIOMP3player.stopTrack();
   uint8_t result = DIOMP3player.playTrack(%1);
 }
@@ -108,7 +108,20 @@ Blockly.Arduino['dio_trackplaying'] = function(block) {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_resetbtnpress'] = function(block) {
-  return 'DIOLastBtnPushed = 0;\n';
+  return 'DIObtn_stoprunning();\n';
+};
+
+/**
+ * Function to stop a button press
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['dio_resetbtnnrpress'] = function(block) {
+  var nr = block.getFieldValue('BUTTON');
+  var code = `if (DIOLastBtnPushed == %1) {DIOLastBtnPushed = 0;}
+DIOBtn%1Running = false;
+`
+  return code.replace('%1', nr).replace('%1', nr);
 };
 /**
  * Function for displaying text on the display.

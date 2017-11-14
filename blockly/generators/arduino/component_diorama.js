@@ -15,7 +15,7 @@ goog.require('Blockly.Arduino');
 
 
 /**
- * The default arduino Hub block
+ * The default diorama Hub block
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
@@ -56,16 +56,6 @@ Blockly.Arduino['diorama_hub_component'] = function(block) {
     parseInput(block, 'DIGDIG' + i, [pin1, pin2]);
   }
   
-  // we consider the code of the push buttons
-  var pshbtnS1 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S1');
-  var pshbtnS2 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S2');
-  var pshbtnS3 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S3');
-  var pshbtnS4 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S4');
-  var pshbtnS5 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S5');
-  var pshbtnS6 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S6');
-  var pshbtnS7 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S7');
-  var pshbtnS8 = Blockly.Arduino.statementToCode(block, 'DIO_BTN_S8');
-  
   
   var code = `
 void DOIvolLouder() {
@@ -78,15 +68,44 @@ void DOIvolLouder() {
   DIOMP3player.setVolume(DIOvolume, DIOvolume);
 }
 `
-  Blockly.Arduino.addFunction('DIObtn_S1_fun', "void DIObtn_S1_fun() {\n " + pshbtnS1 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S2_fun', "void DIObtn_S2_fun() {\n " + pshbtnS2 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S3_fun', "void DIObtn_S3_fun() {\n " + pshbtnS3 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S4_fun', "void DIObtn_S4_fun() {\n " + pshbtnS4 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S5_fun', "void DIObtn_S5_fun() {\n " + pshbtnS5 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S6_fun', "void DIObtn_S6_fun() {\n " + pshbtnS6 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S7_fun', "void DIObtn_S7_fun() {\n " + pshbtnS7 + "\n}");
-  Blockly.Arduino.addFunction('DIObtn_S8_fun', "void DIObtn_S8_fun() {\n " + pshbtnS8 + "\n}");
+  //generate missing functions
+  Blockly.Arduino.addFunction('DIObtn_S1_fun', "void DIObtn_S1_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S2_fun', "void DIObtn_S2_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S3_fun', "void DIObtn_S3_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S4_fun', "void DIObtn_S4_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S5_fun', "void DIObtn_S5_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S6_fun', "void DIObtn_S6_fun() {}");
+  Blockly.Arduino.addFunction('DIObtn_S7_fun', "void DIObtn_S7_fun() {}");
+  var code8 = `void DIObtn_S8_fun() {
+  DIOLastBtnPushed = 0;
+  DIOBtn1Running = false;
+  DIOBtn2Running = false;
+  DIOBtn3Running = false;
+  DIOBtn4Running = false;
+  DIOBtn5Running = false;
+  DIOBtn6Running = false;
+  DIOBtn7Running = false;
+  DIOBtn8Running = false;
+  if (DIOMP3player.isPlaying()) {DIOMP3player.stopTrack();}
+  DIOmodule.setDisplayToString("stop    ");
+}
+`
+  Blockly.Arduino.addFunction('DIObtn_S8_fun', code8);
+  var coderunning = `void DIObtn_stoprunning() {
+  if (DIOLastBtnPushed == 1) {DIOBtn1Running = false;}
+  else if (DIOLastBtnPushed == 2) {DIOBtn2Running = false;}
+  else if (DIOLastBtnPushed == 3) {DIOBtn3Running = false;}
+  else if (DIOLastBtnPushed == 4) {DIOBtn4Running = false;}
+  else if (DIOLastBtnPushed == 5) {DIOBtn5Running = false;}
+  else if (DIOLastBtnPushed == 6) {DIOBtn6Running = false;}
+  else if (DIOLastBtnPushed == 7) {DIOBtn7Running = false;}
+  else if (DIOLastBtnPushed == 8) {DIOBtn8Running = false;}
 
+  DIOLastBtnPushed = 0;
+}
+`
+  Blockly.Arduino.addFunction('DIObtn_stoprunning', coderunning);
+  
   // the allbot board is present! We need servo library, and allbot library 
   Blockly.Arduino.addInclude('tm1638',      '#include <TM1638.h>       // TM1638 bibliotheek');
   Blockly.Arduino.addInclude('spi',         '#include <SPI.h>          // SPI library');
@@ -99,6 +118,14 @@ void DOIvolLouder() {
   var dioramainclude = `
 TM1638 DIOmodule(45, 43, 41);   // Sets up TM1638 Diorama module, verbonden met pinnen D2 (DIO), D5 (CLK), en D1 (STB)
 uint8_t DIOLastBtnPushed = 0; // 8 buttons, from 1 to 8
+bool DIOBtn1Running = false;
+bool DIOBtn2Running = false;
+bool DIOBtn3Running = false;
+bool DIOBtn4Running = false;
+bool DIOBtn5Running = false;
+bool DIOBtn6Running = false;
+bool DIOBtn7Running = false;
+bool DIOBtn8Running = false;
 
 // Variables used in base code for the diorama
 SdFat sd; // Create object to handle SD functions
@@ -186,44 +213,56 @@ void DIOinitMP3Player()
 byte DIOdrukknoppen = DIOmodule.getButtons();  // bewaar het nummer van de ingedrukte knoppen in DIOdruknoppen
 
 if (bitRead(DIOdrukknoppen, 0)) {
-  DIOLastBtnPushed = 1;
+  DIOLastBtnPushed = 1; DIOBtn1Running = true;
 } else if (bitRead(DIOdrukknoppen, 1)) {
-  DIOLastBtnPushed = 2;
+  DIOLastBtnPushed = 2; DIOBtn2Running = true;
 } else if (bitRead(DIOdrukknoppen, 2)) {
-  DIOLastBtnPushed = 3;
+  DIOLastBtnPushed = 3; DIOBtn3Running = true;
 } else if (bitRead(DIOdrukknoppen, 3)) {
-  DIOLastBtnPushed = 4;
+  DIOLastBtnPushed = 4; DIOBtn4Running = true;
 } else if (bitRead(DIOdrukknoppen, 4)) {
-  DIOLastBtnPushed = 5;
+  DIOLastBtnPushed = 5; DIOBtn5Running = true;
 } else if (bitRead(DIOdrukknoppen, 5)) {
-  DIOLastBtnPushed = 6;
+  DIOLastBtnPushed = 6; DIOBtn6Running = true;
 } else if (bitRead(DIOdrukknoppen, 6)){
-  DIOLastBtnPushed = 7;
+  DIOLastBtnPushed = 7; DIOBtn7Running = true;
 } else if (bitRead(DIOdrukknoppen, 7)) {
-  DIOLastBtnPushed = 8;
+  DIOLastBtnPushed = 8; DIOBtn8Running = true;
 }
 
 DIOmodule.setLEDs(DIOdrukknoppen);  // doe led branden boven de drukknop
 
 // we execute the commands as desired by the last button press
-if (DIOLastBtnPushed == 1) {
-  DIObtn_S1_fun();
-} else if (DIOLastBtnPushed == 2) {
-  DIObtn_S2_fun();
-} else if (DIOLastBtnPushed == 3) {
-  DIObtn_S3_fun();
-} else if (DIOLastBtnPushed == 4) {
-  DIObtn_S4_fun();
-} else if (DIOLastBtnPushed == 5) {
-  DIObtn_S5_fun();
-} else if (DIOLastBtnPushed == 6) {
-  DIObtn_S6_fun();
-} else if (DIOLastBtnPushed == 7) {
-  DIObtn_S7_fun();
-} else if (DIOLastBtnPushed == 8) {
-  DIObtn_S8_fun();
-} 
+if (DIOLastBtnPushed == 1) {  DIObtn_S1_fun();}
+if (DIOLastBtnPushed == 2) {  DIObtn_S2_fun();}
+if (DIOLastBtnPushed == 3) {  DIObtn_S3_fun();}
+if (DIOLastBtnPushed == 4) {  DIObtn_S4_fun();}
+if (DIOLastBtnPushed == 5) {  DIObtn_S5_fun();}
+if (DIOLastBtnPushed == 6) {  DIObtn_S6_fun();}
+if (DIOLastBtnPushed == 7) {  DIObtn_S7_fun();}
+if (DIOLastBtnPushed == 8) {  DIObtn_S8_fun();}
+if (DIOBtn1Running && DIOLastBtnPushed != 1) {  DIObtn_S1_fun();}
+if (DIOBtn2Running && DIOLastBtnPushed != 2) {  DIObtn_S2_fun();}
+if (DIOBtn3Running && DIOLastBtnPushed != 3) {  DIObtn_S3_fun();}
+if (DIOBtn4Running && DIOLastBtnPushed != 4) {  DIObtn_S4_fun();}
+if (DIOBtn5Running && DIOLastBtnPushed != 5) {  DIObtn_S5_fun();}
+if (DIOBtn6Running && DIOLastBtnPushed != 6) {  DIObtn_S6_fun();}
+if (DIOBtn7Running && DIOLastBtnPushed != 7) {  DIObtn_S7_fun();}
+if (DIOBtn8Running && DIOLastBtnPushed != 8) {  DIObtn_S8_fun();}
 `
   
   return dioramacode;
+};
+
+/**
+ * Function to set the code to execute once a button is pressed
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['diorama_button_declaration'] = function(block) {
+  var pshbtnSx = Blockly.Arduino.statementToCode(block, 'BUTTONCODE');
+  var nr = block.getFieldValue('BUTTON');
+  Blockly.Arduino.addFunction('DIObtn_S%1_fun'.replace('%1', nr), 
+                              "void DIObtn_S%1_fun() {\n ".replace('%1', nr) + pshbtnSx + "\n}", true);
+  return '';
 };

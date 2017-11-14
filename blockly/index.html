@@ -980,125 +980,7 @@
       </category>
     </category>
     <category id="catDiorama" name="Diorama">
-      <block type="diorama_hub_component">stepper_step
-        <statement name="DIO_BTN_S1">
-          <block type="stepper_step">
-            <field name="STEPPER_NAME">StepperDiorama</field>
-            <value name="STEPPER_STEPS">
-              <block type="math_number">
-                <field name="NUM">2</field>
-              </block>
-            </value>
-          <next>
-            <block type="dio_resetbtnpress"></block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S2">
-          <block type="dio_stoptrack">
-          <next>
-            <block type="dio_resetbtnpress">
-          <next>
-            <block type="dio_displaytext">
-              <value name="TEXT">
-                <block type="text">
-                  <field name="TEXT">stop    </field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S3">
-          <block type="dio_louder">
-          <next>
-            <block type="time_delay">
-              <value name="DELAY_TIME_MILI">
-                <block type="math_number">
-                  <field name="NUM">500</field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S4">
-          <block type="dio_quieter">
-          <next>
-            <block type="time_delay">
-              <value name="DELAY_TIME_MILI">
-                <block type="math_number">
-                  <field name="NUM">500</field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S5">
-          <block type="dio_playtrack">
-            <value name="TRACK">
-              <block type="math_number">
-                <field name="NUM">1</field>
-              </block>
-            </value>
-          <next>
-            <block type="dio_displaytext">
-              <value name="TEXT">
-                <block type="text">
-                  <field name="TEXT">nr 1    </field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S6">
-          <block type="dio_playtrack">
-            <value name="TRACK">
-              <block type="math_number">
-                <field name="NUM">2</field>
-              </block>
-            </value>
-          <next>
-            <block type="dio_displaytext">
-              <value name="TEXT">
-                <block type="text">
-                  <field name="TEXT">nr 2    </field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S7">
-          <block type="dio_playtrack">
-            <value name="TRACK">
-              <block type="math_number">
-                <field name="NUM">3</field>
-              </block>
-            </value>
-          <next>
-            <block type="dio_displaytext">
-              <value name="TEXT">
-                <block type="text">
-                  <field name="TEXT">nr 3    </field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
-        <statement name="DIO_BTN_S8">
-          <block type="dio_playtrack">
-            <value name="TRACK">
-              <block type="math_number">
-                <field name="NUM">4</field>
-              </block>
-            </value>
-          <next>
-            <block type="dio_displaytext">
-              <value name="TEXT">
-                <block type="text">
-                  <field name="TEXT">nr 4    </field>
-                </block>
-              </value>
-            </block>
-          </next>
-        </statement>
+      <block type="diorama_hub_component">
         <field name="STEPPER_NAME">StepperDiorama</field>
         <value name="STEPPER_STEPS">
           <block type="math_number">
@@ -1111,6 +993,7 @@
           </block>
         </value>
       </block>
+      <block type="diorama_button_declaration"></block>
       <block type="dio_playtrack">
         <value name="TRACK">
           <block type="math_number">
@@ -1136,6 +1019,7 @@
       </block>
       <block type="dio_trackplaying"></block>
       <block type="dio_resetbtnpress"></block>
+      <block type="dio_resetbtnnrpress"></block>
     </category>
   </category>
 </xml>;

@@ -29,51 +29,13 @@ Blockly.Blocks['diorama_hub_component'] = {
    */
   init: function() {
     this.arguments_ = [];
-    this.setHelpUrl(''); //Blockly.Msg.ARD_CONTROLS_EFFECT_HELPURL);
+    this.setHelpUrl(''); 
     this.setColour(Blockly.Blocks.components.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_BOARD)
         .appendField('Diorama');
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 1');
-    this.appendStatementInput('DIO_BTN_S1')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 2');
-    this.appendStatementInput('DIO_BTN_S2')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 3');
-    this.appendStatementInput('DIO_BTN_S3')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 4');
-    this.appendStatementInput('DIO_BTN_S4')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 5');
-    this.appendStatementInput('DIO_BTN_S5')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 6');
-    this.appendStatementInput('DIO_BTN_S6')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 7');
-    this.appendStatementInput('DIO_BTN_S7')
-        .setCheck('ARD_BLOCK');
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
-        .appendField(' 8');
-    this.appendStatementInput('DIO_BTN_S8')
-        .setCheck('ARD_BLOCK');
+        .appendField(Blockly.Msg.ARD_DIO_STOPBTN)
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_STEPPER_SETUP)
         .appendField(
@@ -412,3 +374,36 @@ Blockly.Blocks['diorama_hub_component'] = {
     }
   }
 };
+
+
+Blockly.Blocks['diorama_button_declaration'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.components.HUE);
+    this.appendDummyInput()
+	    .appendField('Diorama ' + Blockly.Msg.ARD_BUTTON_COMPONENT)
+        .appendField(
+            new Blockly.FieldDropdown(
+                [['1', '1'],
+                 ['2', '2'],
+                 ['3', '3'],
+                 ['4', '4'],
+                 ['5', '5'],
+                 ['6', '6'],
+                 ['7', '7'],
+                ]), 'BUTTON');
+	this.appendStatementInput('BUTTONCODE')
+        .setCheck('ARD_BLOCK');
+	this.setTooltip(Blockly.Msg.ARD_DIORAMA_BTN_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getDioBtn: function() {
+    return this.getFieldValue('BUTTON');
+  }
+};
+
+
