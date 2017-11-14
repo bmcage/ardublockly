@@ -1528,7 +1528,9 @@ Blockly.Msg.ARD_BUZSELECTPITCH_TIP = 'Select the pitch you want. This block retu
 /// Diorama strings
 Blockly.Msg.ARD_DIORAMA_BOARD_TIP = 'The Ingegno Diorama board - See manual for info';
 Blockly.Msg.ARD_DIO_BOARD_MISSING = 'No Diorama board present. Add it to the canvas!';
-Blockly.Msg.ARD_DIO_SOUND_TIP = 'Change sound output of the Diorama board';
+Blockly.Msg.ARD_DIORAMA_BTN_TIP = 'Diorama button code, executed in a loop once the button has been pressed';
+Blockly.Msg.ARD_DIO_STOPBTN = 'Pushbutton 8: stop';
+Blockly.Msg.ARD_DIO_SOUND_TIP = 'Change sound output of the Diorama board. If louder or quieter, we stop processing the button after the call.';
 Blockly.Msg.ARD_DIO_LOUDER = 'Diorama: louder output';
 Blockly.Msg.ARD_DIO_LESSLOUD = 'Diorama: less loud output';
 Blockly.Msg.ARD_DIO_SETLOUDNESS = 'Diorama: set volume to (0-10):';
@@ -1543,8 +1545,9 @@ Blockly.Msg.ARD_DIO_DISPLAYTEXT_TIP = 'Give a text of 8 characters to show on th
 Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING = 'Text can only be 8 long, not longer!';
 Blockly.Msg.ARD_DIO_TRACKPLAYING = 'track is playing';
 Blockly.Msg.ARD_DIO_TRACKPLAYING_TIP = 'Return true if a track is still playing, false otherwise';
-Blockly.Msg.ARD_DIO_RESETBTN = 'reset diorama buttons';
-Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considered pressed';
+Blockly.Msg.ARD_DIO_RESETBTN = 'stop button';
+Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considered pressed.';
+Blockly.Msg.ARD_DIO_RESETBTNNR_TIP = 'Stop action of the given button.';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
