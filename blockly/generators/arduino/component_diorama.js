@@ -21,6 +21,7 @@ goog.require('Blockly.Arduino');
  */
 Blockly.Arduino['diorama_hub_component'] = function(block) {
   
+  var stepperName = block.getFieldValue('STEPPER_NAME');
   function parseInput(block, name, connectors) {
     var targetBlock = block.getInputTargetBlock(name);
     if (targetBlock) {
@@ -88,18 +89,34 @@ void DOIvolLouder() {
   DIOBtn8Running = false;
   if (DIOMP3player.isPlaying()) {DIOMP3player.stopTrack();}
   DIOmodule.setDisplayToString("stop    ");
+  //also the stepper is reset 
+  STEPPERNAME_finished = false; 
+  STEPPERNAME_rotating = false;
+  STEPPERNAME_stepsdone = 0;
 }
 `
-  Blockly.Arduino.addFunction('DIObtn_S8_fun', code8);
-  var coderunning = `void DIObtn_stoprunning() {
-  if (DIOLastBtnPushed == 1) {DIOBtn1Running = false;}
-  else if (DIOLastBtnPushed == 2) {DIOBtn2Running = false;}
-  else if (DIOLastBtnPushed == 3) {DIOBtn3Running = false;}
-  else if (DIOLastBtnPushed == 4) {DIOBtn4Running = false;}
-  else if (DIOLastBtnPushed == 5) {DIOBtn5Running = false;}
-  else if (DIOLastBtnPushed == 6) {DIOBtn6Running = false;}
-  else if (DIOLastBtnPushed == 7) {DIOBtn7Running = false;}
-  else if (DIOLastBtnPushed == 8) {DIOBtn8Running = false;}
+  Blockly.Arduino.addFunction('DIObtn_S8_fun', code8.replace(new RegExp('STEPPERNAME', 'g'), 'stepper_' + stepperName));
+  var coderunning = `void DIObtn_stoprunning(bool stopall) {
+
+  if (stopall) {
+    DIOBtn1Running = false;
+    DIOBtn2Running = false;
+    DIOBtn3Running = false;
+    DIOBtn4Running = false;
+    DIOBtn5Running = false;
+    DIOBtn6Running = false;
+    DIOBtn7Running = false;
+    DIOBtn8Running = false;
+  } else {
+    if (DIOLastBtnPushed == 1) {DIOBtn1Running = false;}
+    else if (DIOLastBtnPushed == 2) {DIOBtn2Running = false;}
+    else if (DIOLastBtnPushed == 3) {DIOBtn3Running = false;}
+    else if (DIOLastBtnPushed == 4) {DIOBtn4Running = false;}
+    else if (DIOLastBtnPushed == 5) {DIOBtn5Running = false;}
+    else if (DIOLastBtnPushed == 6) {DIOBtn6Running = false;}
+    else if (DIOLastBtnPushed == 7) {DIOBtn7Running = false;}
+    else if (DIOLastBtnPushed == 8) {DIOBtn8Running = false;}
+  }
 
   DIOLastBtnPushed = 0;
 }
@@ -183,7 +200,6 @@ void DIOinitMP3Player()
   Blockly.Arduino.addSetup('diorama', dioramaSetupCode, true);
   
   var pinType = Blockly.Arduino.PinTypes.STEPPER;
-  var stepperName = block.getFieldValue('STEPPER_NAME');
   var stepperSteps = Blockly.Arduino.valueToCode(block, 'STEPPER_STEPS',
       Blockly.Arduino.ORDER_ATOMIC) || '360';
   var stepperSpeed = Blockly.Arduino.valueToCode(block, 'STEPPER_SPEED',
@@ -199,13 +215,26 @@ void DIOinitMP3Player()
   Blockly.Arduino.reservePin(block, DIO_IN4, pinType, 'Stepper');
 
   Blockly.Arduino.addInclude('stepper', '#include <Stepper.h>\n#define DIO_IN1  31\n#define DIO_IN2  33\n#define DIO_IN3  35\n#define DIO_IN4  37');
-
-  var globalCode = 'Stepper ' + stepperName + '(' + stepperSteps + ', DIO_IN1, DIO_IN3, DIO_IN2, DIO_IN4);';
+  
+  var a2scode = `int STEPPERNAME_Angle2Steps(int angle) {
+  return (angle * STEPPERNAME_steps) / 360;
+}
+`
+  Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
+  
+  var globalCode = 'const unsigned long ' + stepperName + '_steps = ' + stepperSteps
+      + ';\n'
+      + 'Stepper ' + stepperName + '(' + stepperName + '_steps, DIO_IN1, DIO_IN3, DIO_IN2, DIO_IN4);\n'
+      + 'bool ' + stepperName + '_rotating = false;\n'
+      + 'unsigned int ' + stepperName + '_stepsdone = 0;\n'
+      + 'bool ' + stepperName + '_finished = false;';
   Blockly.Arduino.addDeclaration(stepperName, globalCode);
 
-  var setupCode = stepperName + '.setSpeed(' + stepperSpeed + ');';
+  var setupCode = 'int ' + stepperName + '_rpm = ' + stepperSpeed
+      + ';\n'
+      + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
-  
+
   var dioramacode = `
 // DIOmodule.getButtons() geeft het nummer van de ingedrukte drukknoppen.
 // S1 = 1, S2 = 2, S3 = 4 .... S8 = 128

@@ -31,7 +31,7 @@ void DOIvolLouder() {
 }
 `
   Blockly.Arduino.addFunction('DIOvolLouder', code);
-  return 'DOIvolLouder();\nDIObtn_stoprunning();\n';
+  return 'DOIvolLouder();\nDIObtn_stoprunning(false);\n';
 };
 
 /**
@@ -52,7 +52,7 @@ void DOIvolQuieter() {
 }
 `
   Blockly.Arduino.addFunction('DOIvolQuieter', code);
-  return 'DOIvolQuieter();\nDIObtn_stoprunning();\n';
+  return 'DOIvolQuieter();\nDIObtn_stoprunning(false);\n';
 };
 
 /**
@@ -99,7 +99,7 @@ Blockly.Arduino['dio_stoptrack'] = function(block) {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_trackplaying'] = function(block) {
-  return 'DIOMP3player.isPlaying()';
+  return ['DIOMP3player.isPlaying()', Blockly.Arduino.ORDER_ATOMIC];
 };
 
 /**
@@ -108,7 +108,7 @@ Blockly.Arduino['dio_trackplaying'] = function(block) {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_resetbtnpress'] = function(block) {
-  return 'DIObtn_stoprunning();\n';
+  return 'DIObtn_stoprunning(true);\n';
 };
 
 /**

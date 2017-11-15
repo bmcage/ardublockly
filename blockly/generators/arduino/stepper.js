@@ -40,27 +40,40 @@ Blockly.Arduino['stepper_config'] = function(block) {
   }
 
   var pinArray = 'int ' + stepperName + '[' + pins.length +'] = {';
-  var globalCode = 'Stepper stepper_' + stepperName + '(' + stepperSteps + ', ';
+  var globalCode = 'const int stepper_' + stepperName + '_steps = ' + stepperSteps
+      + ';\n' 
+      + 'Stepper stepper_' + stepperName + '(stepper_' + stepperName + '_steps, ';
   for (var i = 0; i < pins.length; i++) {
     Blockly.Arduino.reservePin(block, pins[i], pinType, 'Stepper');
     pinArray += pins[i] + ', ';
     globalCode += pins[i] + ', ';
   }
   pinArray = pinArray.slice(0, -2) + '};';
-  globalCode = globalCode.slice(0, -2) + ');';
-
+  globalCode = globalCode.slice(0, -2) + ');\n';
+  
   //stepper is a variable containing the used pins
-  Blockly.Arduino.addVariable(stepperName,
-      pinArray, true);
+  Blockly.Arduino.addVariable(stepperName, pinArray, true);
   stepperName = 'stepper_' + stepperName;
+  
+  globalCode += 'bool ' + stepperName + '_rotating = false;\n'
+      + 'unsigned int ' + stepperName + '_stepsdone = 0;\n'
+      + 'bool ' + stepperName + '_finished = false;';
 
   Blockly.Arduino.addInclude('stepper', '#include <Stepper.h>');
 
   Blockly.Arduino.addDeclaration(stepperName, globalCode);
 
-  var setupCode = stepperName + '.setSpeed(' + stepperSpeed + ');';
+  var setupCode = 'int ' + stepperName + '_rpm = ' + stepperSpeed
+      + ';\n'
+      + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
 
+  var a2scode = `int STEPPERNAME_Angle2Steps(int angle) {
+  return (angle * STEPPERNAME_steps) / 360;
+}
+`
+  Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
+  
   return '';
 };
 
@@ -97,13 +110,26 @@ Blockly.Arduino['stepper_config_hub'] = function(block) {
 
   Blockly.Arduino.addInclude('stepper', '#include <Stepper.h>');
 
-  var globalCode = 'Stepper ' + stepperName + '(' + stepperSteps + ', ' +
-      pin1 + ', ' + pin2 + ');';
+  var globalCode = 'const int ' + stepperName + '_steps = ' + stepperSteps
+      + ';\n'
+      + 'Stepper ' + stepperName + '(' + stepperName + '_steps, ' +
+      pin1 + ', ' + pin2 + ');\n'
+      + 'bool ' + stepperName + '_rotating = false;\n'
+      + 'unsigned int ' + stepperName + '_stepsdone = 0;\n'
+      + 'bool ' + stepperName + '_finished = false;';
   Blockly.Arduino.addDeclaration(stepperName, globalCode);
 
-  var setupCode = stepperName + '.setSpeed(' + stepperSpeed + ');';
+  var setupCode = 'int ' + stepperName + '_rpm = ' + stepperSpeed
+      + ';\n  '
+      + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
 
+  var a2scode = `int STEPPERNAME_Angle2Steps(int angle) {
+  return (angle * STEPPERNAME_steps) / 360;
+}
+`
+  Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
+  
   return '';
 };
 
@@ -137,4 +163,66 @@ Blockly.Arduino['stepper_speed'] = function(block) {
       Blockly.Arduino.ORDER_ATOMIC) || '5';
   var code = stepperInstanceName + '.setSpeed(' + stepperRpm + ');\n';
   return code;
+};
+
+/**
+ * Code generator for rotating the stepper instance (X) over a given angle
+ * Library info in the setHelpUrl link.
+ * This block requires the stepper_config block to be present.
+ * Arduino code: loop { X.steps(Y) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['stepper_rotate'] = function(block) {
+  var stepperInstanceName = 'stepper_' + block.getFieldValue('STEPPER_NAME');
+  var stepperAngle = block.getFieldValue('ANGLE');
+  var stepperDirection = block.getFieldValue('DIRECTION')
+  var code = `
+if (!STEPPERNAME_finished) {
+  // stepper should still rotate further
+  STEPPERNAME_rotating = true;
+  int steps2take = STEPPERNAME_Angle2Steps(%1);
+  if (STEPPERNAME_stepsdone < steps2take) {
+    //take an extra step
+    STEPPERNAME.step(%2);
+    STEPPERNAME_stepsdone += 1;
+  } else {
+    STEPPERNAME_finished = true;
+    STEPPERNAME_rotating = false;
+  }
+}
+`
+  return code.replace(new RegExp('STEPPERNAME', 'g'), stepperInstanceName)
+             .replace('%1', stepperAngle)
+             .replace('%2', stepperDirection);
+};
+
+/**
+ * Code generator for rotating the stepper instance (X) over a given angle
+ * Library info in the setHelpUrl link.
+ * This block requires the stepper_config block to be present.
+ * Arduino code: loop { X.steps(Y) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['stepper_restart'] = function(block) {
+  var stepperInstanceName = 'stepper_' + block.getFieldValue('STEPPER_NAME');
+  var code = stepperInstanceName + '_finished = false;\n' 
+        + stepperInstanceName + '_rotating = false;\n'
+        + stepperInstanceName + '_stepsdone = 0;\n';
+  return code;
+};
+
+/**
+ * Code generator for rotating the stepper instance (X) over a given angle
+ * Library info in the setHelpUrl link.
+ * This block requires the stepper_config block to be present.
+ * Arduino code: loop { X.steps(Y) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['stepper_isrotating'] = function(block) {
+  var stepperInstanceName = 'stepper_' + block.getFieldValue('STEPPER_NAME');
+  var code = stepperInstanceName + '_rotating';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };

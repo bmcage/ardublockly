@@ -204,6 +204,15 @@ Blockly.Blocks['stepper_step'] = {
     this.setTooltip(Blockly.Msg.ARD_STEPPER_STEP_TIP);
   },
   /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
+  },
+  /**
    * Called whenever anything on the workspace changes.
    * It checks/warns if the selected stepper instance has a config block.
    * @this Blockly.Block
@@ -229,7 +238,7 @@ Blockly.Blocks['stepper_step'] = {
 
 Blockly.Blocks['stepper_speed'] = {
   /**
-   * Block for for the stepper 'setSpeed()' function.
+   * Block for the stepper 'setSpeed()' function.
    * @this Blockly.Block
    */
   init: function() {
@@ -248,6 +257,15 @@ Blockly.Blocks['stepper_speed'] = {
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_STEPPER_SPEED_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
   },
   /**
    * Called whenever anything on the workspace changes.
@@ -272,3 +290,171 @@ Blockly.Blocks['stepper_speed'] = {
     }
   }
 };
+
+Blockly.Blocks['stepper_rotate'] = {
+  /**
+   * Block for the stepper to rotate non blocking over a given angle
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/Stepper');
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_ROTATE)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME')
+        .appendField(
+            new Blockly.FieldDropdown(
+                [['+', '1'],
+                 ['-', '-1'],
+                ]), 'DIRECTION')
+        .appendField(new Blockly.FieldAngle(15), 'ANGLE')
+        .appendField(Blockly.Msg.ARD_STEPPER_DEGREES);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_STEPPER_ROTATE_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
+Blockly.Blocks['stepper_restart'] = {
+  /**
+   * Block for the stepper 'setSpeed()' function.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/Stepper');
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_RESTART)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME')
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_STEPPER_RESTART_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
+Blockly.Blocks['stepper_isrotating'] = {
+  /**
+   * Block for determining if the stepper is rotating
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/Stepper');
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME')
+        .appendField(Blockly.Msg.ARD_STEPPER_ISROTATING);
+    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setTooltip(Blockly.Msg.ARD_STEPPER_ISROTATING_TIP);
+  },
+  /** @return {string} The type of return value for the block, a bool. */
+  getBlockType: function() {
+    return Blockly.Types.BOOLEAN;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
