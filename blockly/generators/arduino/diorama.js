@@ -131,6 +131,16 @@ DIOBtn%1Running = false;
 Blockly.Arduino['dio_displaytext'] = function(block) {
   var text = Blockly.Arduino.valueToCode(
       block, 'TEXT', Blockly.Arduino.ORDER_ATOMIC) || 'no text';
+  //limit text to 8 characters
+  if (text.slice(0,1) == '"') {
+    // not a variable, pad string to 8 long
+    text = text.slice(1, text.length-1);
+    if (text.length > 8) {text = text.slice(0,8);}
+    //pad to 8 long
+    while (text.length < 8)
+          text = text + ' ';
+    text = '"' + text + '"'
+  }
   return 'DIOmodule.setDisplayToString(' + text + ');\n';
 };
 
