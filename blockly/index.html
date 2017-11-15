@@ -16,11 +16,11 @@
   
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
-  <script src="blockly_compressed.js"></script>
+  <!--<script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script>-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -41,6 +41,7 @@
   <script src="blocks/arduino/logo.js"></script>
   <script src="blocks/arduino/map.js"></script>
   <script src="blocks/arduino/procedures.js"></script>
+  <script src="blocks/arduino/segment.js"></script>
   <script src="blocks/arduino/serial.js"></script>
   <script src="blocks/arduino/servo.js"></script>
   <script src="blocks/arduino/spi.js"></script>
@@ -69,6 +70,7 @@
   <script src="generators/arduino/map.js"></script>
   <script src="generators/arduino/math.js"></script>
   <script src="generators/arduino/procedures.js"></script>
+  <script src="generators/arduino/segment.js"></script>
   <script src="generators/arduino/serial.js"></script>
   <script src="generators/arduino/servo.js"></script>
   <script src="generators/arduino/spi.js"></script>
@@ -82,7 +84,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
 
   <!-- Language of the interface -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
@@ -967,8 +969,39 @@
           </value>
         </block>
       </category>
-    </category>
   </category>
+    <category id="catTestBlocks" name="Test Blocks">
+        <block type="segment_config_hub">
+            <value name="SEG_A">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_B">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_C">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_D">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_E">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_F">
+                <block type="segment_pin"></block>
+            </value>
+            <value name="SEG_G">
+                <block type="segment_pin"></block>
+            </value>
+        </block>
+        <block type="segment_write_number">
+            <value name="SEG_VAL">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+    </category>
 </xml>;
 
   <!-- JS Diff -->
