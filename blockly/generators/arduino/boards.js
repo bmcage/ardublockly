@@ -537,8 +537,8 @@ Blockly.Arduino.Boards.profiles.diorama = {
   analogPins: Blockly.Arduino.Boards.generateAnalogIo(0, 15),
   //TODO: Check if the Mega can use analogue pins as digital, it would be
   //      logical but it is not clear on the arduino.cc website
-  digitalPins: Blockly.Arduino.Boards.generateDigitalIo(0, 10),
-  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(2, 10),
+  digitalPins: Blockly.Arduino.Boards.generateDigitalIo(3, 10),
+  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(3, 10),
   serial: [['serial', 'Serial']],
   serialPins: {
     Serial: [['TX', '0'], ['RX', '1']]
