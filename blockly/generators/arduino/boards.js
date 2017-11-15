@@ -534,11 +534,15 @@ Blockly.Arduino.Boards.profiles.diorama = {
   name: 'Ingegno Diorama',
   description: 'Arduino Mega-compatible board with TM1638, SD Card and stepper',
   compilerFlag: 'arduino:avr:mega',
-  analogPins: Blockly.Arduino.Boards.generateAnalogIo(0, 15),
+  analogPins: Blockly.Arduino.Boards.generateAnalogIo(0, 5),
   //TODO: Check if the Mega can use analogue pins as digital, it would be
   //      logical but it is not clear on the arduino.cc website
-  digitalPins: Blockly.Arduino.Boards.generateDigitalIo(3, 10),
-  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(3, 10),
+  digitalPins: Blockly.Arduino.Boards.generateDigitalIo(0, 1)
+    .concat(Blockly.Arduino.Boards.generateDigitalIo(3, 5))
+    .concat([['10', '10']])
+    .concat(Blockly.Arduino.Boards.generateAnalogIo(0, 5)),
+  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(3, 5)
+    .concat([['10', '10']]),
   serial: [['serial', 'Serial']],
   serialPins: {
     Serial: [['TX', '0'], ['RX', '1']]
