@@ -30,6 +30,7 @@
   <script src="blocks/variables.js"></script>
   <script src="blocks/procedures.js"></script>
   <script src="blocks/component_variable.js"></script>
+  <script src="blocks/arduino/allbot.js"></script>
   <script src="blocks/arduino/button.js"></script>
   <script src="blocks/arduino/components.js"></script>
   <script src="blocks/arduino/component_diorama.js"></script>
@@ -55,6 +56,7 @@
   <script src="blocks/arduino/md_light.js"></script>
   <script src="blocks/arduino/ledup_blocks.js"></script>
   <script src="generators/arduino.js"></script>
+  <script src="generators/arduino/allbot.js"></script>
   <script src="generators/arduino/boards.js"></script>
   <script src="generators/arduino/button.js"></script>
   <script src="generators/arduino/components.js"></script>
@@ -85,8 +87,10 @@
   <script src="generators/arduino/md_light.js"></script>
   <script src="generators/arduino/ledup_blocks.js"></script-->
   
-  <!-- Language of the interface -->
-  <script type="text/javascript" src="msg/js/en.js"></script>
+  <!-- Default language js files, user selection appended to head on load -->
+  <script type="text/javascript" src="../blockly/msg/js/en.js"></script>
+  <script type="text/javascript" src="blockly4Arduino/msg/en.js"></script>
+  
   <script type="text/javascript" src="blockly4Arduino/Blob.js"></script>
   <script type="text/javascript" src="blockly4Arduino/spin.js"></script>
   <script type="text/javascript" src="blockly4Arduino/FileSaver.min.js"></script>
@@ -110,7 +114,7 @@
           <tr id="tabRow" height="1em">
             <td id="tab_blocks" class="tabon" onclick="Blockly4Arduino.tabClick('blocks')">Blocks</td>
             <td class="tabmin">&nbsp;</td>
-            <!--td id="tab_arduino" class="taboff" onclick="tabClick('arduino')">Arduino</td>
+            <!--td id="tab_arduino" class="taboff" onclick="Blockly4Arduino.tabClick('arduino')">Arduino</td>
             <td class="tabmin">&nbsp;</td-->
             <td id="tab_codebender" class="taboff" onclick="Blockly4Arduino.tabClick('codebender')">Upload</td>
             <td class="tabmin">&nbsp;</td>
@@ -122,25 +126,27 @@
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li class="dropdown-header">Basic Examples</li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/Blink.xml">01: Blink</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/AnologReadSerial.xml">02: Analog Read, serial monitor</a></li>
+                    <li><input id="ex_Basis01" type="button" class="buttonlink" value="01: Blink" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'Blink.xml');" /></li>
+                    <li><input id="ex_Basis02" type="button" class="buttonlink" value="02: Analog Read, serial monitor" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AnologReadSerial.xml');" /></li>
                     <li class="dropdown-header">Digital</li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/BlinkNoDelay.xml">01: Blink No Delay</a></li>
+                    <li><input id="ex_D01" type="button" class="buttonlink" value="01: Blink No Delay" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'BlinkNoDelay.xml');" /></li>
                     <li class="dropdown-header">LedUpKidz</li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/LedUpKidz_01_aan_uit_en.xml">01: Flashing</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/LedUpKidz_02_ronddraaien_en.xml">02: Wheel Effect</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/LedUpKidz_03_versnellen_en.xml">03: Faster and faster</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/LedUpKidz_04_combineren_en.xml">04: Combining Effects</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/LedUpKidz_05_loops_en.xml">05: Extra: Loops</a></li>
+                    <li><input id="ex_LUK01" type="button" class="buttonlink" value="01: Flashing" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_01_aan_uit_en.xml');" /></li>
+                    <li><input id="ex_LUK02" type="button" class="buttonlink" value="02: Wheel Effect" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_02_ronddraaien_en.xml');" /></li>
+                    <li><input id="ex_LUK03" type="button" class="buttonlink" value="03: Faster and faster" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_03_versnellen_en.xml');" /></li>
+                    <li><input id="ex_LUK04" type="button" class="buttonlink" value="04: Combining Effects" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_04_combineren_en.xml');" /></li>
+                    <li><input id="ex_LUK05" type="button" class="buttonlink" value="05: Extra: Loops" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_05_loops_en.xml');" /></li>
                     <li class="dropdown-header">Microduino</li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/MD_SweepServo.xml">01: Sweep Servo</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/MD_RotateServo.xml">02: Rotate Servo</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/MD_ButtonLed.xml">03: LED with Button</a></li>
-                    <li><a href="index_en.html?url=blockly4Arduino/examples/MD_ButtonSound.xml">04: Sound with Button</a></li>
+                    <li><input id="ex_MD01" type="button" class="buttonlink" value="01: Sweep Servo" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_SweepServo.xml');" /></li>
+                    <li><input id="ex_MD02" type="button" class="buttonlink" value="02: Rotate Servo" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_RotateServo.xml');" /></li>
+                    <li><input id="ex_MD03" type="button" class="buttonlink" value="03: LED with Button" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_ButtonLed.xml');" /></li>
+                    <li><input id="ex_MD04" type="button" class="buttonlink" value="04: Sound with Button" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_ButtonSound.xml');" /></li>
+                    <li class="dropdown-header">Diorama</li>
+                    <li><input id="ex_DIO01" type="button" class="buttonlink" value="01: Diorama example" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'Diorama_01_2tracks_effect.xml');" /></li>
                     <li class="dropdown-header">AllBot</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_calibrateServos_VR408_nl.xml">01: Calibrate VR408</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_VR408_WalkWave.xml">02: Allbot VR408 Walk and Wave</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_remote_control.xml">03: Allbot VR408 Remote Control</a></li>
+                    <li><input id="ex_allbot01" type="button" class="buttonlink" value="01: Calibrate VR408" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_calibrateServos_VR408_nl.xml');" /></li>
+                    <li><input id="ex_allbot02" type="button" class="buttonlink" value="02: Allbot VR408 Walk and Wave" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_VR408_WalkWave.xml');" /></li>
+                    <li><input id="ex_allbot03" type="button" class="buttonlink" value="03: Allbot VR408 Remote Control" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_remote_control.xml');" /></li>
                   </ul>
                 <button type="button" class="btn btn-default btn-md" onclick="uploadClick()">
                   <a class="b4ard_tt" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Upload">
@@ -549,7 +555,7 @@
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
-          <field name="NUM">2</field>
+          <field name="NUM">100</field>
         </block>
       </value>
       <value name="STEPPER_SPEED">
@@ -587,6 +593,9 @@
         </block>
       </value>
     </block>
+    <block type="stepper_rotate"></block>
+    <block type="stepper_restart"></block>
+    <block type="stepper_isrotating"></block>
   </category>
   <category id="catComms" name="Comms">
     <block type="serial_setup"><field name="SPEED">9600</field></block>
@@ -989,6 +998,7 @@
       <block type="dio_trackplaying"></block>
       <block type="dio_resetbtnpress"></block>
       <block type="dio_resetbtnnrpress"></block>
+      <block type="dio_stoptrack"></block>
     </category>
   </category>
 </xml>;
@@ -997,6 +1007,7 @@
   <script src="blockly4Arduino/js_libs/diff.js"></script>
   <!-- Prettify JS -->
   <script src="blockly4Arduino/prettify/prettify.js"></script>
+  <script src="blockly4Arduino/blockly4arduino_lang.js"></script>
   <script type="text/javascript" src="blockly4Arduino/blockly4arduino_blockly.js"></script>
   <script>
     window.addEventListener('load', function load(event) {
