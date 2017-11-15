@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-11-14 09:12:49.226624",
+		"lastupdated": "2017-11-15 17:30:08.565191",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -465,6 +465,13 @@
 	"ARD_STEPPER_STEP_TIP": "Turns the stepper motor a specific number of steps.",
 	"ARD_STEPPER_SPEED_TIP": "Sets speed of the stepper motor. The steps are set at the speed needed to have the set RPM speed based on the given steps per revolution in the constructor.",
 	"ARD_STEPPER_COMPONENT": "stepper",
+	"ARD_STEPPER_ROTATE": "Rotate",
+	"ARD_STEPPER_DEGREES": "degrees",
+	"ARD_STEPPER_ROTATE_TIP": "Rotate the stepper motor over a number of degrees in a non-blocking way. This block must be called in the loop. When finished the stepper is blocked, and a call to restart movement is needed for the block to cause a next movement.",
+	"ARD_STEPPER_RESTART": "Restart",
+	"ARD_STEPPER_RESTART_TIP": "Restart the motor after a rotation block has finished",
+	"ARD_STEPPER_ISROTATING": "in movement",
+	"ARD_STEPPER_ISROTATING_TIP": "Returns true if the stepper is moving.",
 	"ARD_SERVO_COMPONENT": "servo",
 	"ARD_SERVO_ROTATE360": "Rotate 360 degree Servo",
 	"ARD_SERVO_ROTATESPEED": "with speed",
