@@ -426,6 +426,9 @@ Blockly4Arduino.getBBox_ = function(element) {
  * Initialize Blockly.  Called on page load.
  */
 Blockly4Arduino.init = function() {
+  // Lang init must run first for the rest of the page to pick the right msgs
+  Blockly4Arduino.initLanguage();
+  
   //window.onbeforeunload = function() {
   //  return 'Leaving this page will result in the loss of your work.';
   //};
@@ -496,6 +499,46 @@ Blockly4Arduino.init = function() {
   }
 }
 
+/** @return {!boolean} Indicates if the Blockly workspace has blocks. */
+Blockly4Arduino.isWorkspaceEmpty = function() {
+  return Blockly4Arduino.workspace.getAllBlocks().length ? false : true;
+};
+
+/**
+ * Loads an XML file from the server and replaces the current blocks into the
+ * Blockly workspace.
+ * @param {!string} xmlFile Server location of the XML file to load.
+ */
+Blockly4Arduino.loadServerXmlFile = function(xmlFile) {
+  var loadXmlfileAccepted = function() {
+    // loadXmlBlockFile loads the file asynchronously and needs a callback
+    var loadXmlCb = function(sucess) {
+      if (sucess) {
+        Blockly4Arduino.renderContent();
+      } else {
+        Blockly4Arduino.alertMessage(
+            Blockly4Arduino.getLocalStr('invalidXmlTitle'),
+            Blockly4Arduino.getLocalStr('invalidXmlBody'),
+            false);
+      }
+    };
+    var connectionErrorCb = function() {
+      Blockly4Arduino.alertMessage('Error', 'Not connected to server');
+      //Blockly4Arduino.openNotConnectedModal();
+    };
+    Blockly4Arduino.loadXmlBlockFile(xmlFile, loadXmlCb, connectionErrorCb);
+  };
+
+  if (Blockly4Arduino.isWorkspaceEmpty()) {
+    loadXmlfileAccepted();
+  } else {
+    Blockly4Arduino.alertMessage(
+        Blockly4Arduino.getLocalStr('loadNewBlocksTitle'),
+        Blockly4Arduino.getLocalStr('loadNewBlocksBody'),
+        true, loadXmlfileAccepted);
+  }
+};
+
 /** Populate the workspace blocks with the XML written in the XML text area. */
 Blockly4Arduino.XmlTextareaToBlocks = function() {
   var success = Blockly4Arduino.replaceBlocksfromXml(
@@ -522,6 +565,70 @@ Blockly4Arduino.generateXml = function() {
   return Blockly.Xml.domToPrettyText(xmlDom);
 };
 
+/**
+ * Loads an XML file from the server and replaces the current blocks into the
+ * Blockly workspace.
+ * @param {!string} xmlFile XML file path in a reachable server (no local path).
+ * @param {!function} cbSuccess Function to be called once the file is loaded.
+ * @param {!function} cbError Function to be called if there is a connection
+ *     error to the XML server.
+ */
+Blockly4Arduino.loadXmlBlockFile = function(xmlFile, cbSuccess, cbError) {
+  var request = Blockly4Arduino.ajaxRequest();
+  var requestCb = function() {
+    if (request.readyState == 4) {
+      if (request.status == 200) {
+        var success = Blockly4Arduino.replaceBlocksfromXml(request.responseText);
+        cbSuccess(success);
+      } else {
+        cbError();
+      }
+    }
+  };
+  try {
+    request.open('GET', xmlFile, true);
+    request.onreadystatechange = requestCb;
+    request.send(null);
+  } catch (e) {
+    cbError();
+  }
+};
+
+/**
+ * Parses the XML from its argument input to generate and replace the blocks
+ * in the Blockly workspace.
+ * @param {!string} blocksXml String of XML code for the blocks.
+ * @return {!boolean} Indicates if the XML into blocks parse was successful.
+ */
+Blockly4Arduino.replaceBlocksfromXml = function(blocksXml) {
+  var xmlDom = null;
+  try {
+    xmlDom = Blockly.Xml.textToDom(blocksXml);
+  } catch (e) {
+    return false;
+  }
+  Blockly4Arduino.workspace.clear();
+  var sucess = false;
+  if (xmlDom) {
+    sucess = Blockly4Arduino.loadBlocksfromXmlDom(xmlDom);
+  }
+  return sucess;
+};
+
+/**
+ * Parses the XML from its argument to add the blocks to the workspace.
+ * @param {!string} blocksXmlDom String of XML DOM code for the blocks.
+ * @return {!boolean} Indicates if the XML into blocks parse was successful.
+ */
+Blockly4Arduino.loadBlocksfromXmlDom = function(blocksXmlDom) {
+  try {
+    Blockly.Xml.domToWorkspace(blocksXmlDom, Blockly4Arduino.workspace);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
 /** Binds functions to each of the buttons, nav links, and related. */
 Blockly4Arduino.bindActionFunctions = function() {
   Blockly4Arduino.bindClick_('button_toggle_toolbox', Blockly4Arduino.toogleToolbox);
@@ -531,4 +638,93 @@ Blockly4Arduino.bindActionFunctions = function() {
 Blockly4Arduino.functionNotImplemented = function() {
   console.log('Not implemented function called');
   Blockly4Arduino.shortMessage('Function not yet implemented');
+};
+
+/**
+ * Interface to display messages with a possible action.
+ * @param {!string} title HTML to include in title.
+ * @param {!element} body HTML to include in body.
+ * @param {boolean=} confirm Indicates if the user is shown a single option (ok)
+ *     or an option to cancel, with an action applied to the "ok".
+ * @param {string=|function=} callback If confirm option is selected this would
+ *     be the function called when clicked 'OK'.
+ */
+Blockly4Arduino.alertMessage = function(title, body, confirm, callback) {
+  if (confirm) {
+    var result = window.confirm(title + '\n\n' + body);
+    if (result) {
+      callback();
+    }
+  } else {
+    window.alert(title + '\n\n' + body);
+  }
+  // Blockly4Arduino.materialAlert(title, body, confirm, callback);
+};
+
+/**
+ * Interface to displays a short message, which disappears after a time out.
+ * @param {!string} message Text to be temporarily displayed.
+ */
+Blockly4Arduino.shortMessage = function(message) {
+  // we use an alert box instead
+  window.alert(message);
+  // Blockly4Arduino.MaterialToast(message);
+};
+
+/** @return {!boolean} Indicates if a block is currently being dragged. */
+Blockly4Arduino.blocklyIsDragging = function() {
+  return (Blockly.dragMode_ != 0) ? true : false;
+};
+
+/** Wraps the blockly 'cut' functionality. */
+Blockly4Arduino.blocklyCut = function() {
+  if (Blockly.selected) {
+    Blockly.copy_(Blockly.selected);
+    Blockly.selected.dispose(true, true);
+  }
+};
+
+/** Wraps the blockly 'copy' functionality. */
+Blockly4Arduino.blocklyCopy = function() {
+  if (Blockly.selected) {
+    Blockly.copy_(Blockly.selected);
+  }
+};
+
+/** Wraps the blockly 'paste' functionality. */
+Blockly4Arduino.blocklyPaste = function() {
+  if (Blockly.clipboardXml_) {
+    Blockly.hideChaff();
+    Blockly.clipboardSource_.paste(Blockly.clipboardXml_);
+  }
+};
+
+/** Wraps the blockly 'delete' functionality. */
+Blockly4Arduino.blocklyDelete = function() {
+  if (Blockly.selected && Blockly.selected.isDeletable()) {
+    Blockly.hideChaff();
+    Blockly.selected.dispose(true, true);
+  }
+};
+
+/** @return {XMLHttpRequest} An XML HTTP Request multi-browser compatible. */
+Blockly4Arduino.ajaxRequest = function() {
+  var request;
+  try {
+    // Firefox, Chrome, IE7+, Opera, Safari
+    request = new XMLHttpRequest();
+  } catch (e) {
+    try {
+      // IE6 and earlier
+      request = new ActiveXObject('Msxml2.XMLHTTP');
+    } catch (e) {
+      try {
+        request = new ActiveXObject('Microsoft.XMLHTTP');
+      } catch (e) {
+        throw 'Your browser does not support AJAX';
+        request = null;
+      }
+    }
+  }
+  return request;
 };

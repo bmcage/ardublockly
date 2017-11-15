@@ -88,8 +88,10 @@
   <script src="generators/arduino/md_light.js"></script>
   <script src="generators/arduino/ledup_blocks.js"></script>
 
-  <!-- Language of the interface -->
-  <script type="text/javascript" src="msg/js/nl.js"></script>
+  <!-- Default language js files, user selection appended to head on load -->
+  <script type="text/javascript" src="../blockly/msg/js/en.js"></script>
+  <script type="text/javascript" src="blockly4Arduino/msg/nl.js"></script>
+  
   <script type="text/javascript" src="blockly4Arduino/Blob.js"></script>
   <script type="text/javascript" src="blockly4Arduino/spin.js"></script>
   <script type="text/javascript" src="blockly4Arduino/FileSaver.min.js"></script>
@@ -131,25 +133,25 @@
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li class="dropdown-header">Basis Voorbeelden</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/Blink.xml">01: Blink</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AnologReadSerial_nl.xml">02: Analoog lezen, seriele monitor</a></li>
+                    <li><input id="ex_Basis01" type="button" class="buttonlink" value="01: Blink" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'Blink.xml');" /></li>
+                    <li><input id="ex_Basis02" type="button" class="buttonlink" value="02: Analoog lezen, seriele monitor" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AnologReadSerial_nl.xml');" /></li>
                     <li class="dropdown-header">Digital</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/BlinkNoDelay_nl.xml">01: Blink zonder wachten</a></li>
+                    <li><input id="ex_D01" type="button" class="buttonlink" value="01: Blink zonder wachten" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'BlinkNoDelay_nl.xml');" /></li>
                     <li class="dropdown-header">LedUpKidz</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/LedUpKidz_01_aan_uit.xml">01: Flikkeren</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/LedUpKidz_02_ronddraaien.xml">02: Ronddraaien</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/LedUpKidz_03_versnellen.xml">03: Sneller en sneller</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/LedUpKidz_04_combineren.xml">04: Meerdere effecten</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/LedUpKidz_05_loops.xml">05: Extra: Loops</a></li>
+                    <li><input id="ex_LUK01" type="button" class="buttonlink" value="01: Flikkeren" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_01_aan_uit.xml');" /></li>
+                    <li><input id="ex_LUK02" type="button" class="buttonlink" value="02: Ronddraaien" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_02_ronddraaien.xml');" /></li>
+                    <li><input id="ex_LUK03" type="button" class="buttonlink" value="03: Sneller en sneller" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_03_versnellen.xml');" /></li>
+                    <li><input id="ex_LUK04" type="button" class="buttonlink" value="04: Meerdere effecten" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_04_combineren.xml');" /></li>
+                    <li><input id="ex_LUK05" type="button" class="buttonlink" value="05: Extra: Loops" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'LedUpKidz_05_loops.xml');" /></li>
                     <li class="dropdown-header">Microduino</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/MD_SweepServo.xml">01: Sweep Servo</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/MD_RotateServo.xml">02: Rotate Servo</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/MD_ButtonLed.xml">03: LED met Knop</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/MD_ButtonSound.xml">04: Geluid met Knop</a></li>
+                    <li><input id="ex_MD01" type="button" class="buttonlink" value="01: Sweep Servo" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_SweepServo.xml');" /></li>
+                    <li><input id="ex_MD02" type="button" class="buttonlink" value="02: Rotate Servo" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_RotateServo.xml');" /></li>
+                    <li><input id="ex_MD03" type="button" class="buttonlink" value="03: LED met Knop" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_ButtonLed.xml');" /></li>
+                    <li><input id="ex_MD04" type="button" class="buttonlink" value="04: Geluid met Knop" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'MD_ButtonSound.xml');" /></li>
                     <li class="dropdown-header">AllBot</li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_calibrateServos_VR408_nl.xml">01: Calibreer VR408</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_VR408_WalkWave.xml">02: Allbot VR408 Wandel en Wuif</a></li>
-                    <li><a href="index.html?url=blockly4Arduino/examples/AllBot/AllBot_remote_control.xml">03: Allbot VR408 Afstandsbediening</a></li>
+                    <li><input id="ex_allbot01" type="button" class="buttonlink" value="01: Calibreer VR408" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_calibrateServos_VR408_nl.xml');" /></li>
+                    <li><input id="ex_allbot02" type="button" class="buttonlink" value="02: Allbot VR408 Wandel en Wuif" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_VR408_WalkWave.xml');" /></li>
+                    <li><input id="ex_allbot03" type="button" class="buttonlink" value="03: Allbot VR408 Afstandsbediening" onclick="Blockly4Arduino.loadServerXmlFile(Blockly4Arduino.EXAMPLE_HTTPURL + 'AllBot/AllBot_remote_control.xml');" /></li>
                   </ul>
                 <button type="button" class="btn btn-default btn-md" onclick="uploadClick()">
                   <a class="b4ard_tt" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Opladen">
@@ -1028,6 +1030,7 @@
   <script src="blockly4Arduino/js_libs/diff.js"></script>
   <!-- Prettify JS -->
   <script src="blockly4Arduino/prettify/prettify.js"></script>
+  <script src="blockly4Arduino/blockly4arduino_lang.js"></script>
   <script type="text/javascript" src="blockly4Arduino/blockly4arduino_blockly.js"></script>
   <script>
     window.addEventListener('load', function load(event) {
