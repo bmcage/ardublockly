@@ -760,7 +760,7 @@
   	"ARD_DIO_DISPLAYTEXT": "Toon op de display: ",
   	"ARD_DIO_DISPLAYTEXT_TIP": "Geef een tekst van 8 karakters om te tonen op de diorama display",
   	"ARD_DIO_DISPLAYTEXT_WARNING": "Tekst mag maximaal 8 lang zijn, niet langer!",
-  	"ARD_DIO_TRACKPLAYING": "audiofragment wordt afgespeed",
+  	"ARD_DIO_TRACKPLAYING": "audiofragment wordt afgespeeld",
   	"ARD_DIO_TRACKPLAYING_TIP": "Waar als een audiofragment wordt afgespeeld, anders onwaar",
   	"ARD_DIO_RESETBTN": "stop knop",
   	"ARD_DIO_RESETBTN_TIP": "Reset de knoppen, zodat geen enkele knop als ingedrukt verondersteld wordt",
