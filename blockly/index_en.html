@@ -32,7 +32,9 @@
   <script src="blocks/component_variable.js"></script>
   <script src="blocks/arduino/button.js"></script>
   <script src="blocks/arduino/components.js"></script>
+  <script src="blocks/arduino/component_diorama.js"></script>
   <script src="blocks/arduino/declare.js"></script>
+  <script src="blocks/arduino/diorama.js"></script>
   <script src="blocks/arduino/io.js"></script>
   <script src="blocks/arduino/io_extra.js"></script>
   <script src="blocks/arduino/light.js"></script>
@@ -56,7 +58,9 @@
   <script src="generators/arduino/boards.js"></script>
   <script src="generators/arduino/button.js"></script>
   <script src="generators/arduino/components.js"></script>
+  <script src="generators/arduino/component_diorama.js"></script>
   <script src="generators/arduino/declare.js"></script>
+  <script src="generators/arduino/diorama.js"></script>
   <script src="generators/arduino/io.js"></script>
   <script src="generators/arduino/io_extra.js"></script>
   <script src="generators/arduino/light.js"></script>
@@ -545,7 +549,7 @@
     <block type="stepper_config_hub">
       <value name="STEPPER_STEPS">
         <block type="math_number">
-          <field name="NUM">100</field>
+          <field name="NUM">2</field>
         </block>
       </value>
       <value name="STEPPER_SPEED">
@@ -571,6 +575,13 @@
     <block type="servohub_read"></block>
     <block type="stepper_step">
       <value name="STEPPER_STEPS">
+        <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+    </block>
+    <block type="stepper_speed">
+      <value name="STEPPER_SPEED">
         <block type="math_number">
           <field name="NUM">10</field>
         </block>
@@ -936,6 +947,48 @@
           </value>
         </block>
       </category>
+    </category>
+    <category id="catDiorama" name="Diorama">
+      <block type="diorama_hub_component">
+        <field name="STEPPER_NAME">StepperDiorama</field>
+        <value name="STEPPER_STEPS">
+          <block type="math_number">
+            <field name="NUM">2050</field>
+          </block>
+        </value>
+        <value name="STEPPER_SPEED">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="diorama_button_declaration"></block>
+      <block type="dio_playtrack">
+        <value name="TRACK">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_displaytext">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">HELLO</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_louder"></block>
+      <block type="dio_quieter"></block>
+      <block type="dio_setvolume">
+        <value name="VOLUME">
+          <block type="math_number">
+            <field name="NUM">7</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_trackplaying"></block>
+      <block type="dio_resetbtnpress"></block>
+      <block type="dio_resetbtnnrpress"></block>
     </category>
   </category>
 </xml>;
