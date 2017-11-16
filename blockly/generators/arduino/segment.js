@@ -65,11 +65,10 @@ Blockly.Arduino['segment_config_hub'] = function(block) {
     }
 
     var code = '';
-    var nr;
-    var blockinputs = [["SEG-A", ['0']], ["SEG-B", ['1']], ["SEG-C", ['2']], ["SEG-D", ['3']],
+    var blockInputs = [["SEG-A", ['0']], ["SEG-B", ['1']], ["SEG-C", ['2']], ["SEG-D", ['3']],
         ["SEG-E", ['4']], ["SEG-F", ['5']], ["SEG-G", ['6']]];
-    for (nr in blockinputs) {
-        parseInput(block, blockinputs[nr][0], blockinputs[nr][1]);
+    for (var nr in blockInputs) {
+        parseInput(block, blockInputs[nr][0], blockInputs[nr][1]);
     }
 
     return '';
@@ -95,7 +94,7 @@ Blockly.Arduino['segment_pin'] = function(block) {
     
     var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
     Blockly.Arduino.addSetup('segment_' + pin, pinSetupCode, false);
-    Blockly.Arduino.addSetup('test_' + test, test, false);
+    //Blockly.Arduino.addSetup('test_' + test, test, false);
 
     return '';
 };
@@ -105,40 +104,46 @@ Blockly.Arduino['segment_pin'] = function(block) {
  */
 Blockly.Arduino['segment_write_number'] = function (block) {
     var name = block.getFieldValue('SEG_NAME');
-
+    var blockInputs = [["SEG_A", ['0']], ["SEG_B", ['1']], ["SEG_C", ['2']], ["SEG_D", ['3']],
+        ["SEG_E", ['4']], ["SEG_F", ['5']], ["SEG_G", ['6']]];
+    
     // Find the segment_hub to get the pin values for each segment (eg. segA = digital pin 1)
     var blocks = block.workspace.getAllBlocks();
-    var hub, vars, varname;
+    var hub;
     for (var i = 0; i < blocks.length; i++) {
-        vars = blocks[0].getVars();
-        if (vars) {
-            for (var j = 0; j < vars.length; j++) {
-                varname = vars[j];
-                if (Blockly.Names.equals(varname, name)) {
-                    hub = blocks[i];
-                }
-            }
+        var func = blocks[i].getSegmentInstance;
+        if (func) {
+            hub = blocks[i];
         }
     }
-    return 'length: ' + blocks.length + '\nblocks: ' + blocks + 
-        '\nvarsLength: ' + vars.length + '\nvars: ' + vars + '\nvarname: ' + '\nhub: ' + hub;
-    /*var pin = 0;
+    var SEGvar;
+    var code = '';
+    if (hub) {
+        for (var hubNr in blockInputs) {
+            var targetBlock = hub.getInputTargetBlock(blockInputs[hubNr][0]);
+            if (targetBlock && targetBlock.getVars) {
+                SEGvar = targetBlock.getVars()[0];
+            }
+            code += 'digitalWrite(' + SEGvar + ', ' + 1 + ');\n';
+        }
+    }
 
     // Get the number value from the block
     var stateOutput = Blockly.Arduino.valueToCode(
       block, 'SEG_VAL', Blockly.Arduino.ORDER_ATOMIC) || '0';
     
-    if(stateOutput == 0) { // A, B, C, D, E, F 
-        var code = 'digitalWrite(' + segA + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segB + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segC + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segD + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segE + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segF + ', ' + 1 + ')\n'
-            + 'digitalWrite(' + segG + ', ' + 0 + ')\n';
+    /*if(stateOutput == 0) { // A, B, C, D, E, F 
+        var code = 'digitalWrite(' + segA + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segB + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segC + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segD + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segE + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segF + ', ' + 1 + ');\n'
+            + 'digitalWrite(' + segG + ', ' + 0 + ');\n';
         return code;
     } else {
         return 'Not yet implemented for: (' + stateOutput + ')';   
     }*/
+    return code;
 };
 

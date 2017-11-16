@@ -63,6 +63,52 @@ Blockly.Blocks['segment_config_hub'] = {
         this.setNextStatement(false, "MD_BLOCK");
         this.setTooltip("");
         this.setHelpUrl("");
+    },
+    /** @return {!boolean} True if the block instance is in the workspace. */
+    getSegmentInstance: function() {
+        return true;
+    },
+    /**
+    * Returns the Arduino Board name that is required for this block.
+    * @return {!string} Board name.
+    * @this Blockly.Block
+    */
+    getBoardName: function() {
+        return 'uno';
+    },
+    /**
+    * Called whenever anything on the workspace changes.
+    * It checks if the board selected corresponds to what it should be
+    * block if not valid data is found.
+    * @this Blockly.Block
+    */
+    onchange: function() {
+        if (!this.workspace) { return; }  // Block has been deleted.
+
+        // Iterate through top level blocks to find if there are other board modules
+        var blocks = this.workspace.getAllBlocks();
+        var otherBoardPresent = false;
+        for (var x = 0; x < blocks.length; x++) {
+          var func = blocks[x].getBoardName;
+          if (func) {
+            var BoardName = func.call(blocks[x]);
+            if (BoardName != this.getBoardName()) {
+              otherBoardPresent = true;
+            }
+            if (this != blocks[x]) {
+              // no two ledupkidx blocks allowed.
+              otherBoardPresent = true;
+            }
+          }
+        }
+
+        if (otherBoardPresent) {
+          // Set a warning to select a valid stepper config
+          this.setWarningText(Blockly.Msg.ARD_BOARD_WARN.replace('%1', Blockly.Msg.ARD_COMPONENT_BOARD), 'board');
+        } else {
+          Blockly.Arduino.Boards.changeBoard(this.workspace, this.getBoardName());
+          this.setWarningText(null, 'board');
+        }
     }
 };
 
@@ -88,6 +134,23 @@ Blockly.Blocks['segment_pin'] = {
         this.setOutput(true, 'HUB_DIGOUT');
         this.setInputsInline(true);
         this.setTooltip('');
+    },
+    /**
+    * Set the connection pins that the component connects to
+    * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+    * @this Blockly.Block
+    */
+    setHubConnector: function(connector) {
+        this['connector'] = connector;
+    },
+    /**
+    * Gets the variable type required.
+    * @param {!string} varName Name of the variable selected in this block to
+    *     check.
+    * @return {string} String to indicate the variable type.
+    */
+    getVarType: function(varName) {
+        return Blockly.Types.NUMBER;
     }
 };
 
