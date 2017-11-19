@@ -355,3 +355,19 @@ Blockly.Blocks['controls_effect_else'] = {
   }
 };
 
+
+Blockly.Blocks['ard_comment'] = {
+  /**
+   * Block for adding a comment to thecode
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl("https://www.arduino.cc/reference/en/language/structure/further-syntax/blockcomment/");
+    this.setColour(Blockly.Blocks.texts.HUE);
+    this.appendValueInput('TEXT')
+        .appendField(Blockly.Msg.ARD_COMMENT);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_COMMENT_TIP);
+  }
+};

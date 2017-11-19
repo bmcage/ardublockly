@@ -271,3 +271,11 @@ Blockly.Arduino['controls_effect'] = function(block) {
   Blockly.Arduino.userFunctions_['ard_effect' + seffectnr] = code;
   return '';
 };
+
+
+Blockly.Arduino['ard_comment'] = function(block) {
+  // add a comment block
+  var argument0 = Blockly.Arduino.valueToCode(block, 'TEXT',
+      Blockly.Arduino.ORDER_NONE) || '';
+  return '/* ' + argument0 + ' */\n';
+};

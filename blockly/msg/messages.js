@@ -1555,6 +1555,8 @@ Blockly.Msg.ARD_DIO_TRACKPLAYING_TIP = 'Return true if a track is still playing,
 Blockly.Msg.ARD_DIO_RESETBTN = 'stop button';
 Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considered pressed.';
 Blockly.Msg.ARD_DIO_RESETBTNNR_TIP = 'Stop action of the given button.';
+Blockly.Msg.ARD_COMMENT = 'Comment';
+Blockly.Msg.ARD_COMMENT_TIP = 'Add the given text as comment to the Arduino code';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';

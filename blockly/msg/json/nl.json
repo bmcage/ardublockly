@@ -765,6 +765,8 @@
   	"ARD_DIO_RESETBTN": "stop knop",
   	"ARD_DIO_RESETBTN_TIP": "Reset de knoppen, zodat geen enkele knop als ingedrukt verondersteld wordt",
   	"ARD_DIO_RESETBTNNR_TIP": "Stop acties van de gegeven knop.",
+  	"ARD_COMMENT": "Commentaar",
+  	"ARD_COMMENT_TIP": "Voeg de gegeven tekst als commentaar toe aan de Arduino code",
 	"NEW_INSTANCE": "Nieuw object...",
 	"RENAME_INSTANCE": "Hernoem object...",
 	"NEW_INSTANCE_TITLE": "Nieuwe objectnaam:",
