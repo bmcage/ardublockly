@@ -763,6 +763,8 @@
 	"ARD_DIO_RESETBTN": "",
 	"ARD_DIO_RESETBTN_TIP": "",
 	"ARD_DIO_RESETBTNNR_TIP": "",
+	"ARD_COMMENT": "",
+	"ARD_COMMENT_TIP": "",
 	"NEW_INSTANCE": "Ardublockly instances",
 	"RENAME_INSTANCE": "",
 	"NEW_INSTANCE_TITLE": "",

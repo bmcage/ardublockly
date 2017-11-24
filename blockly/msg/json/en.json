@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-11-15 17:30:08.565191",
+		"lastupdated": "2017-11-24 10:43:42.092863",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -769,6 +769,8 @@
 	"ARD_DIO_RESETBTN": "stop button",
 	"ARD_DIO_RESETBTN_TIP": "Reset the buttons, so no button is considered pressed.",
 	"ARD_DIO_RESETBTNNR_TIP": "Stop action of the given button.",
+	"ARD_COMMENT": "Comment",
+	"ARD_COMMENT_TIP": "Add the given text as comment to the Arduino code",
 	"NEW_INSTANCE": "New instance...",
 	"RENAME_INSTANCE": "Rename instance...",
 	"NEW_INSTANCE_TITLE": "New instance name:",
