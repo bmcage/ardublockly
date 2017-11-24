@@ -351,6 +351,68 @@ Blockly.Blocks['stepper_rotate'] = {
   }
 };
 
+Blockly.Blocks['stepper_rotate_number'] = {
+  /**
+   * Block for the stepper to rotate non blocking over a given angle, where angle in a number input
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('https://www.arduino.cc/en/Reference/Stepper');
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_ROTATE)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.ARD_STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME')
+        .appendField(
+            new Blockly.FieldDropdown(
+                [['+', '1'],
+                 ['-', '-1'],
+                ]), 'DIRECTION');
+    this.appendValueInput('ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_STEPPER_DEGREES)
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_STEPPER_ROTATE_TIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.ARRAY;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
 Blockly.Blocks['stepper_restart'] = {
   /**
    * Block for the stepper 'setSpeed()' function.

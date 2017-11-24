@@ -216,7 +216,11 @@ void DIOinitMP3Player()
 
   Blockly.Arduino.addInclude('stepper', '#include <Stepper.h>\n#define DIO_IN1  31\n#define DIO_IN2  33\n#define DIO_IN3  35\n#define DIO_IN4  37');
   
-  var a2scode = `int STEPPERNAME_Angle2Steps(int angle) {
+  var a2scode = `unsigned long STEPPERNAME_Angle2Steps(int angle) {
+  if (angle < 0) {
+    // convert negative angle to a positive one
+    angle = -angle;
+  }
   return (angle * STEPPERNAME_steps) / 360;
 }
 `
@@ -226,7 +230,7 @@ void DIOinitMP3Player()
       + ';\n'
       + 'Stepper ' + stepperName + '(' + stepperName + '_steps, DIO_IN1, DIO_IN3, DIO_IN2, DIO_IN4);\n'
       + 'bool ' + stepperName + '_rotating = false;\n'
-      + 'unsigned int ' + stepperName + '_stepsdone = 0;\n'
+      + 'unsigned long ' + stepperName + '_stepsdone = 0;\n'
       + 'bool ' + stepperName + '_finished = false;';
   Blockly.Arduino.addDeclaration(stepperName, globalCode);
 
