@@ -1557,6 +1557,12 @@ Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considere
 Blockly.Msg.ARD_DIO_RESETBTNNR_TIP = 'Stop action of the given button.';
 Blockly.Msg.ARD_COMMENT = 'Comment';
 Blockly.Msg.ARD_COMMENT_TIP = 'Add the given text as comment to the Arduino code';
+Blockly.Msg.ARD_DHTHUB = 'Temperature and humidity sensor';
+Blockly.Msg.ARD_DHT_DEFAULT_NAME = 'TempRH_Sensor';
+Blockly.Msg.ARD_DHTHUB_TIP= 'Block to assign to an Arduino pin a DHT type sensor';
+Blockly.Msg.ARD_DHTHUB_READTEMP = '°C temperature at';
+Blockly.Msg.ARD_DHT_READTEMP_TIP = 'Obtain the temperature in degree Celcius of a DHT sensor';
+Blockly.Msg.ARD_DHT_COMPONENT = 'DHT sensor';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';

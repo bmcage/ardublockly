@@ -42,6 +42,7 @@
   <script src="blocks/arduino/logo.js"></script>
   <script src="blocks/arduino/map.js"></script>
   <script src="blocks/arduino/procedures.js"></script>
+  <script src="blocks/arduino/sensor.js"></script>
   <script src="blocks/arduino/serial.js"></script>
   <script src="blocks/arduino/servo.js"></script>
   <script src="blocks/arduino/spi.js"></script>
@@ -72,6 +73,7 @@
   <script src="generators/arduino/map.js"></script>
   <script src="generators/arduino/math.js"></script>
   <script src="generators/arduino/procedures.js"></script>
+  <script src="generators/arduino/sensor.js"></script>
   <script src="generators/arduino/serial.js"></script>
   <script src="generators/arduino/servo.js"></script>
   <script src="generators/arduino/spi.js"></script>
@@ -1033,6 +1035,10 @@
       <block type="dio_resetbtnpress"></block>
       <block type="dio_resetbtnnrpress"></block>
       <block type="dio_stoptrack"></block>
+    </category>
+    <category id="catSensors" name="Sensors">
+      <block type="DHT_config_hub"></block>      
+      <block type="DHT_readTemp"></block>
     </category>
   </category>
 </xml>;
