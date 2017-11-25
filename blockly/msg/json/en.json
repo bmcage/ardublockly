@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-11-24 10:43:42.092863",
+		"lastupdated": "2017-11-25 12:36:25.479671",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -771,6 +771,12 @@
 	"ARD_DIO_RESETBTNNR_TIP": "Stop action of the given button.",
 	"ARD_COMMENT": "Comment",
 	"ARD_COMMENT_TIP": "Add the given text as comment to the Arduino code",
+	"ARD_DHTHUB": "Temperature and humidity sensor",
+	"ARD_DHT_DEFAULT_NAME": "TempRH_Sensor",
+	"ARD_DHTHUB_TIP": "Block to assign to an Arduino pin a DHT type sensor",
+	"ARD_DHTHUB_READTEMP": "°C temperature at",
+	"ARD_DHT_READTEMP_TIP": "Obtain the temperature in degree Celcius of a DHT sensor",
+	"ARD_DHT_COMPONENT": "DHT sensor",
 	"NEW_INSTANCE": "New instance...",
 	"RENAME_INSTANCE": "Rename instance...",
 	"NEW_INSTANCE_TITLE": "New instance name:",
