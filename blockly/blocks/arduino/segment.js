@@ -206,3 +206,54 @@ Blockly.Blocks['segment_write_number'] = {
         return Blockly.Types.NUMBER;
     }
 };
+
+/** Write to a single segment */
+Blockly.Blocks['segment_write_singleSeg'] = {
+  init: function () {
+      this.setColour(Blockly.Blocks.segment.HUE);
+      this.appendDummyInput()
+            .appendField('7-Segment name')
+            .appendField(
+                new Blockly.FieldInstance('Segment', 'Segment1', false, true, false), 'SEG_NAME');
+      this.appendDummyInput()
+            .appendField('type segment')
+            .appendField(
+                new Blockly.FieldDropdown(
+                        [['A', 'A'], //msg, state
+                         ['B', 'B'],
+                         ['C', 'C'],
+                         ['D', 'D'],
+                         ['E', 'E'],
+                         ['F', 'F'],
+                         ['G', 'G'],
+                         ['DP', 'DP']
+                        ]), 'SEG_TYPE');
+      this.appendDummyInput()
+            .appendField('On/Off')
+            .appendField(
+                new Blockly.FieldDropdown(
+                    [['ON', 'on'], //msg, state
+                     ['OFF', 'off']
+                    ]), 'STATE');
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, 'ARD_BLOCK');
+      this.setNextStatement(true, 'ARD_BLOCK');
+      this.setTooltip('Set a specific segment of the 7-Segment display high');
+      this.setHelpUrl('');
+    },
+    /**
+    * Called whenever anything on the workspace changes.
+    * It checks/warns if the selected stepper instance has a config block.
+    * @this Blockly.Block
+    */
+    onchange: function() {
+        if (!this.workspace) return; // Block has been deleted.
+        var instanceName = this.getFieldValue('SEG_NAME');
+        if (Blockly.Instances.isInstancePresent(instanceName, 'Segment', this)) {
+            this.setWarningText(null);
+        } else {
+            // Set a warning to select a valid Segment config block
+            this.setWarningText('CHOOSE A HUB!');
+        }
+    }
+};

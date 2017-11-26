@@ -209,3 +209,18 @@ Blockly.Arduino['segment_write_number'] = function (block) {
     Blockly.Arduino.addDeclaration('segment_write', code);
     return 'WriteNumber(' + stateOutput + ');\n';
 };
+
+/**
+  * Code generator to turn a single segment on/off
+  */
+Blockly.Arduino['segment_write_singleSeg'] = function(block) {
+    var SEGType = block.getFieldValue('SEG_TYPE');
+    var stateOutput = block.getFieldValue('STATE');
+    var stateval = 'SEG_' + SEGType + '_ON';
+    if (stateOutput == 'off') {
+        stateval = '! (' + stateval + ')';
+    }
+    
+    var code = 'digitalWrite(SEG_' + SEGType + ', ' + stateval + ');\n';
+    return code;
+};
