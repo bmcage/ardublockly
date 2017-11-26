@@ -17,7 +17,7 @@ goog.require('Blockly.Types');
 
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.segment.HUE = 120;
+Blockly.Blocks.segment.HUE = 350;
 
 /** Attach a 7SEGMENT block to the hub */
 Blockly.Blocks['segment_config_hub'] = {
@@ -58,6 +58,10 @@ Blockly.Blocks['segment_config_hub'] = {
             .setCheck(["HUB_DIG", "HUB_DIGOUT"])
             .setAlign(Blockly.ALIGN_RIGHT)
             .appendField('G');
+        this.appendValueInput("SEG_DP")
+            .setCheck(["HUB_DIG", "HUB_DIGOUT"])
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('DP');
         this.setColour(Blockly.Blocks.segment.HUE);
         this.setPreviousStatement(false, "MD_BLOCK");
         this.setNextStatement(false, "MD_BLOCK");
@@ -68,21 +72,24 @@ Blockly.Blocks['segment_config_hub'] = {
     getSegmentInstance: function() {
         return true;
     },
+    setHubConnector: function (connector) {
+        this['connector'] = connector;
+    }
     /**
     * Returns the Arduino Board name that is required for this block.
     * @return {!string} Board name.
     * @this Blockly.Block
     */
-    getBoardName: function() {
+    /*getBoardName: function() {
         return 'uno';
-    },
+    },*/
     /**
     * Called whenever anything on the workspace changes.
     * It checks if the board selected corresponds to what it should be
     * block if not valid data is found.
     * @this Blockly.Block
     */
-    onchange: function() {
+    /*onchange: function() {
         if (!this.workspace) { return; }  // Block has been deleted.
 
         // Iterate through top level blocks to find if there are other board modules
@@ -109,7 +116,7 @@ Blockly.Blocks['segment_config_hub'] = {
           Blockly.Arduino.Boards.changeBoard(this.workspace, this.getBoardName());
           this.setWarningText(null, 'board');
         }
-    }
+    }*/
 };
 
 /** 
@@ -142,6 +149,9 @@ Blockly.Blocks['segment_pin'] = {
     */
     setHubConnector: function(connector) {
         this['connector'] = connector;
+    },
+    getHubConnector: function() {
+        return this['connector'];
     },
     /**
     * Gets the variable type required.

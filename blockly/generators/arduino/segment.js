@@ -18,40 +18,12 @@ goog.require('Blockly.Arduino');
  * @return {string} Completed code.
  */
 Blockly.Arduino['segment_config_hub'] = function(block) {
-    /*//the hub saved the connector in the attached block
-    var hubconnector = block['connector'] || ['0', '1', '2', '3', '4', '5', '6']
-    var segA = hubconnector[0];
-    var segB = hubconnector[1];
-    var segC = hubconnector[2];
-    var segD = hubconnector[3];
-    var segE = hubconnector[4];
-    var segF = hubconnector[5];
-    var segG = hubconnector[6];
-
-    var segmentName = block.getFieldValue('SEG_NAME');
-    //segment is a variable containing the used pins
-    Blockly.Arduino.addVariable(segmentName,
-        'int ' + segmentName + '[7] = {' + segA + ', ' + segB + ', ' + segC + ', ' + segD
-                                + ', ' + segE + ', ' + segF + ', ' + segG + '};', true);
-    segmentName = 'segment_' + segmentName;
-
-    Blockly.Arduino.reservePin(block, segA, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segB, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segC, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segD, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segE, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segF, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');
-    Blockly.Arduino.reservePin(block, segG, Blockly.Arduino.PinTypes.SEGMENT, 'Segment');*/
-
-    /*var globalCode = "TEST";
-    Blockly.Arduino.addDeclaration(segmentName, globalCode);
-    var setupCode = segmentName + '.attach(' + pin + ');';
-    Blockly.Arduino.addSetup(segmentName, setupCode, true);*/
-
-    function parseInput(block, name, connectors) {
-        var targetBlock = block.getInputTargetBlock(name);
-        if (targetBlock) {
-            targetBlock.setHubConnector(connectors);
+    function parseInput(block, nr) {
+        var targetBlock = block.getInputTargetBlock(blockInputs[nr][0]);
+        if(targetBlock) {
+            var connectors = targetBlock.getHubConnector() || ['0', '1'];
+            blockInputs[nr][1] = connectors[0];
+            blockInputs[nr][2] = connectors[1];
         }
         var code = Blockly.Arduino.blockToCode(targetBlock);
         if (!goog.isString(code)) {
@@ -61,14 +33,15 @@ Blockly.Arduino['segment_config_hub'] = function(block) {
             // blocks should only init data ... 
             console.log('Unexpected code in segment_hub', code);
         }
-        return code;
+        return code;   
     }
 
     var code = '';
-    var blockInputs = [["SEG-A", ['0']], ["SEG-B", ['1']], ["SEG-C", ['2']], ["SEG-D", ['3']],
-        ["SEG-E", ['4']], ["SEG-F", ['5']], ["SEG-G", ['6']]];
+    var blockInputs = [["SEG_A", '0', 'HIGH'], ["SEG_B", '1', 'HIGH'], ["SEG_C", '2', 'HIGH'], ["SEG_D", '3', 'HIGH'], ["SEG_E", '4', 'HIGH'], ["SEG_F", '5', 'HIGH'], ["SEG_G", '6', 'HIGH'], ["SEG_DP", '7', 'HIGH']];
+    
     for (var nr in blockInputs) {
-        parseInput(block, blockInputs[nr][0], blockInputs[nr][1]);
+        parseInput(block, nr);
+        Blockly.Arduino.addVariable(blockInputs[nr][0], 'int ' + blockInputs[nr][0] + ' = ' + blockInputs[nr][1] + ';\nboolean ' + blockInputs[nr][0] + '_ON = ' + blockInputs[nr][2] + ';', true);
     }
 
     return '';
@@ -85,16 +58,17 @@ Blockly.Arduino['segment_pin'] = function(block) {
         SEGon = 'LOW';
     }
     //the hub saved the connector in the attached block
-    var hubconnector = block['connector'] || ['0', '1']
+    //var hubconnector = block['connector'] || ['0', '1']
     //compute the pins, normally only possible to attach at valid pins
-    var test = hubconnector[0];
-
+    //var test = hubconnector[1];
+    //console.log(test);
+    block.setHubConnector([pin, SEGon]);
+    
     Blockly.Arduino.reservePin(
         block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
     
     var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
     Blockly.Arduino.addSetup('segment_' + pin, pinSetupCode, false);
-    //Blockly.Arduino.addSetup('test_' + test, test, false);
 
     return '';
 };
@@ -104,8 +78,8 @@ Blockly.Arduino['segment_pin'] = function(block) {
  */
 Blockly.Arduino['segment_write_number'] = function (block) {
     var name = block.getFieldValue('SEG_NAME');
-    var blockInputs = [["SEG_A", ['0']], ["SEG_B", ['1']], ["SEG_C", ['2']], ["SEG_D", ['3']],
-        ["SEG_E", ['4']], ["SEG_F", ['5']], ["SEG_G", ['6']]];
+    var blockInputs = [["SEG_A", '0'], ["SEG_B", '1'], ["SEG_C", '2'], ["SEG_D", '3'],
+        ["SEG_E", '4'], ["SEG_F", '5'], ["SEG_G", '6'], ["SEG_DP", '7']];
     
     // Find the segment_hub to get the pin values for each segment (eg. segA = digital pin 1)
     var blocks = block.workspace.getAllBlocks();
@@ -116,34 +90,122 @@ Blockly.Arduino['segment_write_number'] = function (block) {
             hub = blocks[i];
         }
     }
-    var SEGvar;
     var code = '';
     if (hub) {
         for (var hubNr in blockInputs) {
             var targetBlock = hub.getInputTargetBlock(blockInputs[hubNr][0]);
-            if (targetBlock && targetBlock.getVars) {
-                SEGvar = targetBlock.getVars()[0];
+            if (targetBlock && targetBlock['connector'][0] != 'undefined') {
+                blockInputs[hubNr][1] = targetBlock['connector'][0];
             }
-            code += 'digitalWrite(' + SEGvar + ', ' + 1 + ');\n';
         }
     }
 
     // Get the number value from the block
-    var stateOutput = Blockly.Arduino.valueToCode(
-      block, 'SEG_VAL', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var stateOutput = Blockly.Arduino.valueToCode(block, 'SEG_VAL', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    //Blockly.Arduino.addDeclaration('write_' + name, 'int ' + name + '_Nr = ' + stateOutput + ';\n');
     
-    /*if(stateOutput == 0) { // A, B, C, D, E, F 
-        var code = 'digitalWrite(' + segA + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segB + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segC + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segD + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segE + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segF + ', ' + 1 + ');\n'
-            + 'digitalWrite(' + segG + ', ' + 0 + ');\n';
-        return code;
-    } else {
-        return 'Not yet implemented for: (' + stateOutput + ')';   
-    }*/
-    return code;
+    // Write the code for output
+    var code = 'void WriteNumber(int Segment_Nr) {\n  ' +
+        'if(Segment_Nr == 0) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', ' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[6][0] + ', !' + blockInputs[6][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 1
+    code += ' else if(Segment_Nr == 1) {\n      ' + 
+        'digitalWrite(' + blockInputs[0][0] + ', !' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[3][0] + ', !' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', !' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', !' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 2
+    code += ' else if(Segment_Nr == 2) {\n      ' + 
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', !' + blockInputs[2][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', ' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', !' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 3
+    code += ' else if(Segment_Nr == 3) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', !' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 4
+    code += ' else if(Segment_Nr == 4) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', !' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', !' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 5
+    code += ' else if(Segment_Nr == 5) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', !' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 6
+    code += ' else if(Segment_Nr == 6) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', !' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', ' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 7
+    code += ' else if(Segment_Nr == 7) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', !' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', !' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', !' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 8
+    code += ' else if(Segment_Nr == 8) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', ' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    // == 9
+    code += ' else if(Segment_Nr == 9) {\n      ' +
+        'digitalWrite(' + blockInputs[0][0] + ', ' + blockInputs[0][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[1][0] + ', ' + blockInputs[1][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[2][0] + ', ' + blockInputs[2][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[3][0] + ', ' + blockInputs[3][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[4][0] + ', !' + blockInputs[4][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[5][0] + ', ' + blockInputs[5][0] + '_ON);\n      ' + 
+        'digitalWrite(' + blockInputs[6][0] + ', ' + blockInputs[6][0] + '_ON);\n      ' +
+        'digitalWrite(' + blockInputs[7][0] + ', !' + blockInputs[7][0] + '_ON);\n  }';
+    code += '\n }';
+    Blockly.Arduino.addDeclaration('segment_write', code);
+    return 'WriteNumber(' + stateOutput + ');\n';
 };
-

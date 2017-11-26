@@ -91,8 +91,11 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) return;  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     var instanceName = this.getFieldValue('BUTTONNAME')
     if (Blockly.Instances.isInstancePresent(instanceName, 'Button', this)) {

@@ -279,13 +279,18 @@ Blockly.Arduino.addSetup = function(setupTag, code, overwrite) {
  * @param {!string} code Code to be included in the setup() function.
  * @return {!string} A unique function name based on input name.
  */
-Blockly.Arduino.addFunction = function(preferedName, code) {
+Blockly.Arduino.addFunction = function(preferedName, code, overwrite) {
   if (Blockly.Arduino.codeFunctions_[preferedName] === undefined) {
     var uniqueName = Blockly.Arduino.variableDB_.getDistinctName(
         preferedName, Blockly.Generator.NAME_TYPE);
     Blockly.Arduino.codeFunctions_[preferedName] =
         code.replace(Blockly.Arduino.DEF_FUNC_NAME, uniqueName);
     Blockly.Arduino.functionNames_[preferedName] = uniqueName;
+  } else if (overwrite) {
+    //function already defined, overwrite: 
+    var uniqueName = Blockly.Arduino.functionNames_[preferedName];
+    Blockly.Arduino.codeFunctions_[preferedName] =
+        code.replace(Blockly.Arduino.DEF_FUNC_NAME, uniqueName);
   }
   return Blockly.Arduino.functionNames_[preferedName];
 };

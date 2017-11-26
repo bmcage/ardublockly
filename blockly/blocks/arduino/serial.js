@@ -75,8 +75,7 @@ Blockly.Blocks['serial_print'] = {
         .appendField(new Blockly.FieldDropdown(
                 Blockly.Arduino.Boards.selected.serial), 'SERIAL_ID')
         .appendField(Blockly.Msg.ARD_SERIAL_PRINT);
-    this.appendValueInput('CONTENT')
-        .setCheck(Blockly.Types.TEXT.checkList);
+    this.appendValueInput('CONTENT');
     this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'NEW_LINE')
         .appendField(Blockly.Msg.ARD_SERIAL_PRINT_NEWLINE);
@@ -91,12 +90,14 @@ Blockly.Blocks['serial_print'] = {
    * block if not valid data is found.
    * @this Blockly.Block
    */
-  onchange: function() {
-    if (!this.workspace) { return; }  // Block has been deleted.
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
 
     // Get the Serial instance from this block
     var thisInstanceName = this.getFieldValue('SERIAL_ID');
-
     // Iterate through top level blocks to find setup instance for the serial id
     var blocks = Blockly.mainWorkspace.getTopBlocks();
     var setupInstancePresent = false;
@@ -106,13 +107,14 @@ Blockly.Blocks['serial_print'] = {
         var setupBlockInstanceName = func.call(blocks[x]);
         if (thisInstanceName == setupBlockInstanceName) {
           setupInstancePresent = true;
+          break;
         }
       }
     }
 
     if (!setupInstancePresent) {
-      this.setWarningText(Blockly.Msg.ARD_SERIAL_PRINT_WARN.replace('%1', 
-			    thisInstanceName), 'serial_setup');
+      this.setWarningText(Blockly.Msg.ARD_SERIAL_PRINT_WARN.replace('%1',
+          thisInstanceName), 'serial_setup');
     } else {
       this.setWarningText(null, 'serial_setup');
     }

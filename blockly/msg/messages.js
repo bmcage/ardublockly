@@ -1216,7 +1216,15 @@ Blockly.Msg.ARD_STEPPER_SETUP_TIP = 'Configures a stepper motor pinout and other
 Blockly.Msg.ARD_STEPPER_STEP = 'move stepper';
 Blockly.Msg.ARD_STEPPER_STEPS = 'steps';
 Blockly.Msg.ARD_STEPPER_STEP_TIP = 'Turns the stepper motor a specific number of steps.';
+Blockly.Msg.ARD_STEPPER_SPEED_TIP = 'Sets speed of the stepper motor. The steps are set at the speed needed to have the set RPM speed based on the given steps per revolution in the constructor.';
 Blockly.Msg.ARD_STEPPER_COMPONENT = 'stepper';
+Blockly.Msg.ARD_STEPPER_ROTATE = 'Rotate';
+Blockly.Msg.ARD_STEPPER_DEGREES = 'degrees';
+Blockly.Msg.ARD_STEPPER_ROTATE_TIP = 'Rotate the stepper motor over a number of degrees in a non-blocking way. This block must be called in the loop. When finished the stepper is blocked, and a call to restart movement is needed for the block to cause a next movement.';
+Blockly.Msg.ARD_STEPPER_RESTART = 'Restart';
+Blockly.Msg.ARD_STEPPER_RESTART_TIP = 'Restart the motor after a rotation block has finished';
+Blockly.Msg.ARD_STEPPER_ISROTATING = 'in movement';
+Blockly.Msg.ARD_STEPPER_ISROTATING_TIP = 'Returns true if the stepper is moving.';
 Blockly.Msg.ARD_SERVO_COMPONENT = 'servo';
 Blockly.Msg.ARD_SERVO_ROTATE360 = 'Rotate 360 degree Servo';
 Blockly.Msg.ARD_SERVO_ROTATESPEED = 'with speed';
@@ -1524,8 +1532,33 @@ Blockly.Msg.ARD_TONEPITCH_TIP = 'Sets tone on a buzzer to the specified pitch an
 Blockly.Msg.ARD_BUZSELECTPITCH = 'Pitch';
 Blockly.Msg.ARD_BUZSELECTPITCH_TIP = 'Select the pitch you want. This block returns a number which is the frequency of the selected pitch.';
 
+/// Diorama strings
+Blockly.Msg.ARD_DIORAMA_BOARD_TIP = 'The Ingegno Diorama board - See manual for info';
+Blockly.Msg.ARD_DIO_BOARD_MISSING = 'No Diorama board present. Add it to the canvas!';
+Blockly.Msg.ARD_DIORAMA_BTN_TIP = 'Diorama button code, executed in a loop once the button has been pressed';
+Blockly.Msg.ARD_DIO_STOPBTN = 'Pushbutton 8: stop';
+Blockly.Msg.ARD_DIO_SOUND_TIP = 'Change sound output of the Diorama board. If louder or quieter, we stop processing the button after the call.';
+Blockly.Msg.ARD_DIO_LOUDER = 'Diorama: louder output';
+Blockly.Msg.ARD_DIO_LESSLOUD = 'Diorama: less loud output';
+Blockly.Msg.ARD_DIO_SETLOUDNESS = 'Diorama: set volume to (0-10):';
+Blockly.Msg.ARD_DIO_SOUND_WARNING = 'Volume must be between 0 and 10!';
+Blockly.Msg.ARD_DIO_PLAYTRACK = 'Play track number ';
+Blockly.Msg.ARD_DIO_TRACK_TIP = 'If number 1, then play a track stored on SD card as "track001.mp3"';
+Blockly.Msg.ARD_DIO_STOPTRACK = 'Stop playing';
+Blockly.Msg.ARD_DIO_STOPTRACK_TIP = 'Immediately stop playing the track that is playing';
+Blockly.Msg.ARD_DIO_TRACK_WARNING = 'Track must be a number between 1 and 100!';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT = 'Show on display: ';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT_TIP = 'Give a text of 8 characters to show on the diorama display';
+Blockly.Msg.ARD_DIO_DISPLAYTEXT_WARNING = 'Text can only be 8 long, not longer!';
+Blockly.Msg.ARD_DIO_TRACKPLAYING = 'track is playing';
+Blockly.Msg.ARD_DIO_TRACKPLAYING_TIP = 'Return true if a track is still playing, false otherwise';
+Blockly.Msg.ARD_DIO_RESETBTN = 'stop button';
+Blockly.Msg.ARD_DIO_RESETBTN_TIP = 'Reset the buttons, so no button is considered pressed.';
+Blockly.Msg.ARD_DIO_RESETBTNNR_TIP = 'Stop action of the given button.';
+
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
 Blockly.Msg.NEW_INSTANCE_TITLE = 'New instance name:';
 Blockly.Msg.RENAME_INSTANCE_TITLE = 'Rename all "%1" instances to:';
+
