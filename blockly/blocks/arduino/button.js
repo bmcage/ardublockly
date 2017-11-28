@@ -66,7 +66,7 @@ Blockly.Blocks['button_noresistor_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("media/arduino/Button.png", 19, 19, "*"))
-        .appendField(Blockly.Msg.ARD_BUTTON_COMPONENT)
+        .appendField(Blockly.Msg.ARD_BUTTON_NORESISTOR_COMPONENT)
         .appendField(
             new Blockly.FieldInstance('Button',
                                       Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,

@@ -27,8 +27,11 @@ Blockly.Blocks['segment_config_hub'] = {
     */
     init: function () {
         this.appendDummyInput()
-            .appendField('7-segment HUB')
+            .appendField(Blockly.Msg.ARD_7SEGMENT_HUB)
             .appendField(new Blockly.FieldInstance('Segment', 'Segment1', true, true, false), 'SEG_NAME');
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("media/arduino/7Segment.png", 126, 146, "*"))
+            .setAlign(Blockly.ALIGN_CENTRE)
         this.appendValueInput("SEG_A")
             .setCheck(["HUB_DIG", "HUB_DIGOUT"])
             .setAlign(Blockly.ALIGN_RIGHT)
@@ -65,6 +68,7 @@ Blockly.Blocks['segment_config_hub'] = {
         this.setColour(Blockly.Blocks.segment.HUE);
         this.setPreviousStatement(false, "MD_BLOCK");
         this.setNextStatement(false, "MD_BLOCK");
+        this.setInputsInline(false);
         this.setTooltip("");
         this.setHelpUrl("");
     },
