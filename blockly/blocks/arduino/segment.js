@@ -78,22 +78,22 @@ Blockly.Blocks['segment_config_hub'] = {
     },
     setHubConnector: function (connector) {
         this['connector'] = connector;
-    }
+    },
     /**
     * Returns the Arduino Board name that is required for this block.
     * @return {!string} Board name.
     * @this Blockly.Block
     */
-    /*getBoardName: function() {
+    getBoardName: function() {
         return 'uno';
-    },*/
+    },
     /**
     * Called whenever anything on the workspace changes.
     * It checks if the board selected corresponds to what it should be
     * block if not valid data is found.
     * @this Blockly.Block
     */
-    /*onchange: function() {
+    onchange: function() {
         if (!this.workspace) { return; }  // Block has been deleted.
 
         // Iterate through top level blocks to find if there are other board modules
@@ -120,7 +120,7 @@ Blockly.Blocks['segment_config_hub'] = {
           Blockly.Arduino.Boards.changeBoard(this.workspace, this.getBoardName());
           this.setWarningText(null, 'board');
         }
-    }*/
+    }
 };
 
 /** 
@@ -153,9 +153,6 @@ Blockly.Blocks['segment_pin'] = {
     */
     setHubConnector: function(connector) {
         this['connector'] = connector;
-    },
-    getHubConnector: function() {
-        return this['connector'];
     },
     /**
     * Gets the variable type required.

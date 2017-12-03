@@ -21,9 +21,9 @@ Blockly.Arduino['segment_config_hub'] = function(block) {
     function parseInput(block, nr) {
         var targetBlock = block.getInputTargetBlock(blockInputs[nr][0]);
         if(targetBlock) {
-            var connectors = targetBlock.getHubConnector() || ['0', '1'];
-            blockInputs[nr][1] = connectors[0];
-            blockInputs[nr][2] = connectors[1];
+            //var connectors = targetBlock['connector'] || ['0', '1'];
+            blockInputs[nr][1] = targetBlock.getFieldValue('PIN');//connectors[0];
+            blockInputs[nr][2] = targetBlock.getFieldValue('POLARITY');//connectors[1];
         }
         var code = Blockly.Arduino.blockToCode(targetBlock);
         if (!goog.isString(code)) {
@@ -70,6 +70,7 @@ Blockly.Arduino['segment_pin'] = function(block) {
     var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
     Blockly.Arduino.addSetup('segment_' + pin, pinSetupCode, false);
 
+    this.workspace.render();
     return '';
 };
 
