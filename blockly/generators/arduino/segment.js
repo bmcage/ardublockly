@@ -37,7 +37,7 @@ Blockly.Arduino['segment_config'] = function(block) {
                            + blockInputs[nr][1] + ';\nboolean ' + segmentName + '_' 
                            + blockInputs[nr][0] + '_ON = ' + blockInputs[nr][2] + ';', true);
         Blockly.Arduino.reservePin(
-            block, blockInputs[nr][1], Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write to 7 Segment');
+            block, blockInputs[nr][1], Blockly.Arduino.PinTypes.OUTPUT, '7 Segment ' + blockInputs[nr][0].slice(4));
         var pinSetupCode = 'pinMode(' + segmentName + '_' + blockInputs[nr][0] + ', OUTPUT);';
         Blockly.Arduino.addSetup('io_' + segmentName + '_' + blockInputs[nr][0], pinSetupCode, false);
     }

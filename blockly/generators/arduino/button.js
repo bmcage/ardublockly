@@ -55,7 +55,7 @@ Blockly.Arduino['button_input_pullup_setup'] = function(block) {
   var pin = hubconnector[0];
   
   Blockly.Arduino.reservePin(
-      block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+      block, pin, Blockly.Arduino.PinTypes.INPUT_PULLUP, 'Digital Read INPUT_PULLUP');
 
   //btnName is a variable containing the used pins
   Blockly.Arduino.addVariable(btnName,

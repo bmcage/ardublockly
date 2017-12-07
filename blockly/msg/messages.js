@@ -1567,8 +1567,9 @@ Blockly.Msg.ARD_DHT_READTEMP_TIP = 'Obtain the temperature in degree Celcius of 
 Blockly.Msg.ARD_DHT_COMPONENT = 'DHT sensor';
 Blockly.Msg.ARD_7SEGMENT_COMPONENT = '7-Segment Display';
 Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP = '7-Segment LED Display can be used to show numbers and some characters. It has 7 segments and 1 dot, requiring 8 digital pins on the Arduino to use.';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT_WARN = 'Pin used in segment %1 is also present in one of the other segments! Change the pin number.';
 Blockly.Msg.ARD_7SEGMENT_WRITE = 'show number';
-Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display';
+Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display. Number must be between 0 and 9, otherwise nothing is shown.';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
 
