@@ -19,8 +19,8 @@ goog.require('Blockly.Types');
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.segment.HUE = 350;
 
-/** Attach a 7SEGMENT block to the hub */
-Blockly.Blocks['segment_config_hub'] = {
+/** Set up a 7SEGMENT block */
+Blockly.Blocks['segment_config'] = {
     /**
     * Block for adding a 7segment display to a hub.
     * @this Blockly.Block
@@ -134,7 +134,7 @@ Blockly.Blocks['segment_write_number'] = {
 };
 
 /** Set a single segment on or off*/
-Blockly.Blocks['segment_write_singleSeg'] = {
+Blockly.Blocks['segment_write_singleseg'] = {
   init: function () {
       this.setColour(Blockly.Blocks.segment.HUE);
       this.appendDummyInput()

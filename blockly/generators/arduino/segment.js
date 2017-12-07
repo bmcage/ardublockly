@@ -17,34 +17,32 @@ goog.require('Blockly.Arduino');
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
-Blockly.Arduino['segment_config_hub'] = function(block) {
-    function parseInput(block, nr) {
-        var targetBlock = block.getInputTargetBlock(blockInputs[nr][0]);
-        if(targetBlock) {
-            //var connectors = targetBlock['connector'] || ['0', '1'];
-            blockInputs[nr][1] = targetBlock.getFieldValue('PIN');//connectors[0];
-            blockInputs[nr][2] = targetBlock.getFieldValue('POLARITY');//connectors[1];
-        }
-        var code = Blockly.Arduino.blockToCode(targetBlock);
-        if (!goog.isString(code)) {
-            throw 'Expecting code from statement block "' + targetBlock.type + '".';
-        }
-        if (code) {
-            // blocks should only init data ... 
-            console.log('Unexpected code in segment_hub', code);
-        }
-        return code;   
-    }
+Blockly.Arduino['segment_config'] = function(block) {
 
     var code = '';
-    var blockInputs = [["SEG_A", '0', 'HIGH'], ["SEG_B", '1', 'HIGH'], ["SEG_C", '2', 'HIGH'], ["SEG_D", '3', 'HIGH'], ["SEG_E", '4', 'HIGH'], ["SEG_F", '5', 'HIGH'], ["SEG_G", '6', 'HIGH'], ["SEG_DP", '7', 'HIGH']];
+  
+    var segmentName = block.getFieldValue('SEG_NAME');
+    var blockInputs = [["SEG_A", block.getFieldValue('SEG_A'), 'HIGH'], 
+                       ["SEG_B", block.getFieldValue('SEG_B'), 'HIGH'], 
+                       ["SEG_C", block.getFieldValue('SEG_C'), 'HIGH'], 
+                       ["SEG_D", block.getFieldValue('SEG_D'), 'HIGH'], 
+                       ["SEG_E", block.getFieldValue('SEG_E'), 'HIGH'], 
+                       ["SEG_F", block.getFieldValue('SEG_F'), 'HIGH'], 
+                       ["SEG_G", block.getFieldValue('SEG_G'), 'HIGH'], 
+                       ["SEG_DP", block.getFieldValue('SEG_DP'), 'HIGH']];
     
     for (var nr in blockInputs) {
-        parseInput(block, nr);
-        Blockly.Arduino.addVariable(blockInputs[nr][0], 'int ' + blockInputs[nr][0] + ' = ' + blockInputs[nr][1] + ';\nboolean ' + blockInputs[nr][0] + '_ON = ' + blockInputs[nr][2] + ';', true);
+        Blockly.Arduino.addVariable(segmentName + '_' + blockInputs[nr][0], 
+                    'int ' + segmentName + '_' + blockInputs[nr][0] + ' = ' 
+                           + blockInputs[nr][1] + ';\nboolean ' + segmentName + '_' 
+                           + blockInputs[nr][0] + '_ON = ' + blockInputs[nr][2] + ';', true);
+        Blockly.Arduino.reservePin(
+            block, blockInputs[nr][1], Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write to 7 Segment');
+        var pinSetupCode = 'pinMode(' + segmentName + '_' + blockInputs[nr][0] + ', OUTPUT);';
+        Blockly.Arduino.addSetup('io_' + segmentName + '_' + blockInputs[nr][0], pinSetupCode, false);
     }
 
-    return '';
+      return '';
 };
 
 /**
@@ -214,7 +212,7 @@ Blockly.Arduino['segment_write_number'] = function (block) {
 /**
   * Code generator to turn a single segment on/off
   */
-Blockly.Arduino['segment_write_singleSeg'] = function(block) {
+Blockly.Arduino['segment_write_singleseg'] = function(block) {
     var SEGType = block.getFieldValue('SEG_TYPE');
     var stateOutput = block.getFieldValue('STATE');
     var stateval = 'SEG_' + SEGType + '_ON';

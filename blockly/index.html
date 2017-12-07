@@ -559,6 +559,15 @@
       </value>
     </block>
     <block type="io_notone"></block>
+    <block type="segment_config"></block>
+    <block type="segment_write_number">
+        <value name="SEG_VAL">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+    </block>
+    <block type="segment_write_singleseg"></block>
   </category>
   <category id="catMotors" name="Motoren">
     <block type="servo_config_hub"></block>
@@ -1045,17 +1054,6 @@
       <block type="DHT_readTemp"></block>
     </category>
   </category>
-    <category id="catTestBlocks" name="Test Blocks">
-        <block type="segment_config_hub"></block>
-        <block type="segment_write_number">
-            <value name="SEG_VAL">
-                <block type="math_number">
-                    <field name="NUM">1</field>
-                </block>
-            </value>
-        </block>
-        <block type="segment_write_singleSeg"></block>
-    </category>
 </xml>;
 
   <!-- JS Diff -->
