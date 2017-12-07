@@ -119,7 +119,6 @@ Blockly.Blocks['segment_write_number'] = {
                 '%1', Blockly.Msg.ARD_7SEGMENT_COMPONENT).replace(
                     '%2', instanceName).replace(
                     '%1', instanceName));
-        console.log(instanceName);
         }
     },
     /**
