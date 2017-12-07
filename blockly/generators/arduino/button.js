@@ -41,6 +41,33 @@ Blockly.Arduino['button_setup'] = function(block) {
   return '';
 };
 
+/**
+ * The button with INPUT_PULLUP setup block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['button_input_pullup_setup'] = function(block) {
+  var btnName = block.getFieldValue('BUTTONNAME');
+  
+  //the hub saved the connector in the attached block
+  var hubconnector = block['connector'] || ['0', '1']
+  //compute the pins, normally only possible to attach at valid pins
+  var pin = hubconnector[0];
+  
+  Blockly.Arduino.reservePin(
+      block, pin, Blockly.Arduino.PinTypes.INPUT_PULLUP, 'Digital Read INPUT_PULLUP');
+
+  //btnName is a variable containing the used pins
+  Blockly.Arduino.addVariable(btnName,
+      'int ' + btnName + ' = ' + pin + ';', true);
+  
+  // when pressed, button reads LOW !
+  Blockly.Arduino.addDeclaration(btnName, 'boolean ' + btnName + '_PRESSED = LOW;\n');
+  var pinSetupCode = 'pinMode(' + btnName + ', INPUT_PULLUP);';
+  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+  return '';
+};
 
 /**
  * Function for waiting on an input of a button.

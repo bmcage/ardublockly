@@ -58,6 +58,43 @@ Blockly.Blocks['button_setup'] = {
   }
 };
 
+/** 
+ * Attach a button block to the hub making use
+ * of the internal PULL UP resistor
+ */
+Blockly.Blocks['button_input_pullup_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("media/arduino/Button.png", 19, 19, "*"))
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_COMPONENT)
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
+                                      true, true, false),
+            'BUTTONNAME');
+    this.setOutput(true, 'HUB_DIG');
+    this.setColour(Blockly.Blocks.button.HUE);
+    this.setTooltip(Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_TIP);
+    this.setHelpUrl('https://www.arduino.cc/en/Tutorial/InputPullupSerial');
+  },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
+  setHubConnector: function(connector) {
+    this['connector'] = connector;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  }
+};
 
 Blockly.Blocks['button_input'] = {
   init: function() {

@@ -15,11 +15,11 @@
 
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version -->
-  <script src="blockly_compressed.js"></script>
+  <!--script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -42,6 +42,7 @@
   <script src="blocks/arduino/logic.js"></script>
   <script src="blocks/arduino/map.js"></script>
   <script src="blocks/arduino/procedures.js"></script>
+  <script src="blocks/arduino/segment.js"></script>
   <script src="blocks/arduino/sensor.js"></script>
   <script src="blocks/arduino/serial.js"></script>
   <script src="blocks/arduino/servo.js"></script>
@@ -73,6 +74,7 @@
   <script src="generators/arduino/map.js"></script>
   <script src="generators/arduino/math.js"></script>
   <script src="generators/arduino/procedures.js"></script>
+  <script src="generators/arduino/segment.js"></script>
   <script src="generators/arduino/sensor.js"></script>
   <script src="generators/arduino/serial.js"></script>
   <script src="generators/arduino/servo.js"></script>
@@ -87,7 +89,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
   
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/en.js"></script>
@@ -299,6 +301,7 @@
     <block type="digitalinput_config_hub"></block>
     <block type="digitalinput_read"></block>
     <block type="button_setup"></block>
+    <block type="button_input_pullup_setup"></block>
     <block type="button_input"></block>
     <block type="digitaloutput_config_hub"></block>
     <block type="digitaloutput_write"></block>
@@ -446,6 +449,7 @@
     <block type="analogsensor_config_hub"></block>
     <block type="digitalinput_config_hub"></block>
     <block type="button_setup"></block>
+    <block type="button_input_pullup_setup"></block>
     <block type="digitaloutput_config_hub"></block>
     <block type="pwmoutput_config_hub"></block>
     <block type="buzzer_config_hub"></block>
@@ -556,6 +560,15 @@
       </value>
     </block>
     <block type="io_notone"></block>
+    <block type="segment_config"></block>
+    <block type="segment_write_number">
+        <value name="SEG_VAL">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+    </block>
+    <block type="segment_write_singleseg"></block>
   </category>
   <category id="catMotors" name="Motors">
     <block type="servo_config_hub"></block>

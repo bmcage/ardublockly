@@ -1332,7 +1332,7 @@ Blockly.Msg.ARD_BLOCKS = 'You have this block twice on the canvas. That is once 
 Blockly.Msg.ARD_BUTTON_COMPONENT = 'Push Button';
 Blockly.Msg.ARD_BUTTON_DEFAULT_NAME = 'PushButton1';
 Blockly.Msg.ARD_BUTTON_IFPUSHED = 'If pushed we measure value';
-Blockly.Msg.ARD_BUTTON_TIP = 'Een drukknop die AAN of UIT kan zijn';
+Blockly.Msg.ARD_BUTTON_TIP = 'A push button which can be ON or OFF, connected to the Arduino with 3 wires: GND, 5V over resisotor, and a digital pin';
 Blockly.Msg.ARD_BUTTON_READ = 'Read value button';
 Blockly.Msg.ARD_BUTTON_INPUT_IF = 'If button';
 Blockly.Msg.ARD_BUTTON_INPUT_CLICK = ' is clicked';
@@ -1341,6 +1341,8 @@ Blockly.Msg.ARD_BUTTON_INPUT_LONGCLICK = 'is undergoing a long click';
 Blockly.Msg.ARD_BUTTON_INPUT_PRESSED = 'is being pressed';
 Blockly.Msg.ARD_BUTTON_INPUT_WAIT = 'wait for a click to happen';
 Blockly.Msg.ARD_BUTTON_INPUT_TIP = 'Check the input received on a button, and react to it. This function does not block your program if you do not check the checkbox to wait for a click. A click is a press and a release of the button, a long press a click and holding long time before you release, press is active as soon as the button is pressed down.';
+Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_COMPONENT = 'Pushbutton 2-wire no resistor';
+Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_TIP = 'A push button which can be ON or OFF, connected to the Arduino with 2 wires: GND, and a digital pin';
 Blockly.Msg.ARD_ANASENSOR = 'Analog Sensor';
 Blockly.Msg.ARD_ANASENSOR_TIP = 'Connect an analog sensor to an analog pin, so as to read its value. On an Arduino UNO a value between 0 and 1024 is returned, corresponding to a measured value between 0 and 5V. Eg.: an LDR sensor, a potmeter, ...';
 Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME = 'AnaSensor1';
@@ -1563,10 +1565,16 @@ Blockly.Msg.ARD_DHTHUB_TIP= 'Block to assign to an Arduino pin a DHT type sensor
 Blockly.Msg.ARD_DHTHUB_READTEMP = '°C temperature at';
 Blockly.Msg.ARD_DHT_READTEMP_TIP = 'Obtain the temperature in degree Celcius of a DHT sensor';
 Blockly.Msg.ARD_DHT_COMPONENT = 'DHT sensor';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT = '7-Segment Display';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP = '7-Segment LED Display can be used to show numbers and some characters. It has 7 segments and 1 dot, requiring 8 digital pins on the Arduino to use.';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT_WARN = 'Pin used in segment %1 is also present in one of the other segments! Change the pin number.';
+Blockly.Msg.ARD_7SEGMENT_WRITE = 'show number';
+Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display. Number must be between 0 and 9, otherwise nothing is shown.';
+Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
+Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
 Blockly.Msg.NEW_INSTANCE_TITLE = 'New instance name:';
 Blockly.Msg.RENAME_INSTANCE_TITLE = 'Rename all "%1" instances to:';
-
