@@ -566,7 +566,7 @@
 	"ARD_BUTTON_INPUT_PRESSED": "ingedrukt wordt",
 	"ARD_BUTTON_INPUT_WAIT": "wacht tot een klik gebeurt",
 	"ARD_BUTTON_INPUT_TIP": "Controleer de input ontvangen op de knop, en reageer erop. Deze functie blokkeert je programma niet als je niet aanvinkt dat er moet gewacht worden op een klik. Klikken is drukken en loslaten, lang klikken is drukken en wat wachten voor loslaten, indrukken is zodra de knop ingedrukt is.",
-	"ARD_BUTTON_INPUT_PULLUP_COMPONENT": "Pushbutton 2-wire no resistor",
+	"ARD_BUTTON_INPUT_PULLUP_COMPONENT": "Drukknop 2-draads, geen weerstand",
 	"ARD_BUTTON_INPUT_PULLUP_TIP": "Een drukknop die AAN of UIT kan zijn, geconnecteerd met de Arduino via 2 draden: GND, en een digitale pin",
 	"ARD_ANASENSOR": "Analoge Sensor",
 	"ARD_ANASENSOR_TIP": "Connecteer een analoge sensor aan een analoge pin op een hub, en lees zijn waarde. Bij een Arduino UNO verkrijg je bij lezen een waarde tussen 0 en 1024, welke overeenkomt met een gemeten waarde tussen 0 en 5V. Bv.: een LDR sensor, een potmeter, ...",
