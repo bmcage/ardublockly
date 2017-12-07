@@ -59,27 +59,23 @@ Blockly.Blocks['button_setup'] = {
 };
 
 /** 
- * Attach a button block to the hub 
- * BUTTON WITH INTERNAL PULL UP RESISTOR
+ * Attach a button block to the hub making use
+ * of the internal PULL UP resistor
  */
-Blockly.Blocks['button_noresistor_setup'] = {
+Blockly.Blocks['button_input_pullup_setup'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("media/arduino/Button.png", 19, 19, "*"))
-        .appendField(Blockly.Msg.ARD_BUTTON_NORESISTOR_COMPONENT)
+        .appendField(Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_COMPONENT)
         .appendField(
             new Blockly.FieldInstance('Button',
                                       Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
                                       true, true, false),
             'BUTTONNAME');
-        /*.appendField(Blockly.Msg.ARD_BUTTON_IFPUSHED)
-        .appendField(
-            new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
-           'STATE');*/
     this.setOutput(true, 'HUB_DIG');
-    this.setColour(512);
-    this.setTooltip(Blockly.Msg.ARD_BUTTON_TIP);
-    this.setHelpUrl('https://www.arduino.cc/en/Tutorial/Button');
+    this.setColour(Blockly.Blocks.button.HUE);
+    this.setTooltip(Blockly.Msg.ARD_BUTTON_INPUT_PULLUP_TIP);
+    this.setHelpUrl('https://www.arduino.cc/en/Tutorial/InputPullupSerial');
   },
   /**
    * Set the connection pins that the component connects to
@@ -99,7 +95,6 @@ Blockly.Blocks['button_noresistor_setup'] = {
     return Blockly.Types.NUMBER;
   }
 };
-
 
 Blockly.Blocks['button_input'] = {
   init: function() {

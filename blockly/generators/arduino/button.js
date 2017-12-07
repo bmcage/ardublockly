@@ -42,13 +42,12 @@ Blockly.Arduino['button_setup'] = function(block) {
 };
 
 /**
- * The button with NO RESISTOR setup block
+ * The button with INPUT_PULLUP setup block
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
-Blockly.Arduino['button_noresistor_setup'] = function(block) {
+Blockly.Arduino['button_input_pullup_setup'] = function(block) {
   var btnName = block.getFieldValue('BUTTONNAME');
-  //var stateOutput = block.getFieldValue('STATE');
   
   //the hub saved the connector in the attached block
   var hubconnector = block['connector'] || ['0', '1']
@@ -62,7 +61,7 @@ Blockly.Arduino['button_noresistor_setup'] = function(block) {
   Blockly.Arduino.addVariable(btnName,
       'int ' + btnName + ' = ' + pin + ';', true);
   
-  //Blockly.Arduino.addDeclaration(btnName, 'boolean ' + btnName + '_PRESSED = ' + stateOutput + ';\n');
+  // when pressed, button reads LOW !
   Blockly.Arduino.addDeclaration(btnName, 'boolean ' + btnName + '_PRESSED = LOW;\n');
   var pinSetupCode = 'pinMode(' + btnName + ', INPUT_PULLUP);';
   Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
