@@ -58,6 +58,48 @@ Blockly.Blocks['button_setup'] = {
   }
 };
 
+/** 
+ * Attach a button block to the hub 
+ * BUTTON WITH INTERNAL PULL UP RESISTOR
+ */
+Blockly.Blocks['button_noresistor_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("media/arduino/Button.png", 19, 19, "*"))
+        .appendField(Blockly.Msg.ARD_BUTTON_NORESISTOR_COMPONENT)
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
+                                      true, true, false),
+            'BUTTONNAME');
+        /*.appendField(Blockly.Msg.ARD_BUTTON_IFPUSHED)
+        .appendField(
+            new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
+           'STATE');*/
+    this.setOutput(true, 'HUB_DIG');
+    this.setColour(512);
+    this.setTooltip(Blockly.Msg.ARD_BUTTON_TIP);
+    this.setHelpUrl('https://www.arduino.cc/en/Tutorial/Button');
+  },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
+  setHubConnector: function(connector) {
+    this['connector'] = connector;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  }
+};
+
 
 Blockly.Blocks['button_input'] = {
   init: function() {
