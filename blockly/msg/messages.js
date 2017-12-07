@@ -1565,13 +1565,15 @@ Blockly.Msg.ARD_DHTHUB_TIP= 'Block to assign to an Arduino pin a DHT type sensor
 Blockly.Msg.ARD_DHTHUB_READTEMP = '°C temperature at';
 Blockly.Msg.ARD_DHT_READTEMP_TIP = 'Obtain the temperature in degree Celcius of a DHT sensor';
 Blockly.Msg.ARD_DHT_COMPONENT = 'DHT sensor';
-
-/// 7 Segment strings
-Blockly.Msg.ARD_7SEGMENT_HUB = '7-Segment Core BLock';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT = '7-Segment Display';
+Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP = '7-Segment LED Display can be used to show numbers and some characters. It has 7 segments and 1 dot, requiring 8 digital pins on the Arduino to use.';
+Blockly.Msg.ARD_7SEGMENT_WRITE = 'show number';
+Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display';
+Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
+Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
 
 /// Ardublockly instances
 Blockly.Msg.NEW_INSTANCE = 'New instance...';
 Blockly.Msg.RENAME_INSTANCE = 'Rename instance...';
 Blockly.Msg.NEW_INSTANCE_TITLE = 'New instance name:';
 Blockly.Msg.RENAME_INSTANCE_TITLE = 'Rename all "%1" instances to:';
-
