@@ -78,3 +78,37 @@ Blockly.Arduino['DHT_readTemp'] = function(block) {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+
+/**
+ * Code generator to read the RH of a DHT.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['DHT_readRH'] = function(block) {
+  var dhtInstanceName = block.getFieldValue('DHT_NAME');
+  var dhtName = 'myDHT' + dhtInstanceName;
+  var dhtNameRH = dhtName + 'RH';
+  var dhtNameRHtmp = dhtName + 'RHtmp';
+
+  Blockly.Arduino.addDeclaration(dhtNameRHtmp, 'float ' + dhtNameRHtmp + ' = 0.;');
+  Blockly.Arduino.addDeclaration(dhtNameRH, 'float ' + dhtNameRH + ' = 0.;');
+  
+  var readTcode = `float DHTNAME_readRH() {
+  DHTNAMERHTMP = DHTNAME.readHumidity();
+  if (! isnan(DHTNAMERHTMP) ) {
+    //override stored RH only on good reading
+    DHTNAMERH = DHTNAMERHTMP;
+  }
+  return DHTNAMERH;
+}
+`
+  Blockly.Arduino.addFunction(dhtNameRH, readTcode
+        .replace(new RegExp('DHTNAMERHTMP', 'g'), dhtNameRHtmp)
+        .replace(new RegExp('DHTNAMERH', 'g'), dhtNameRH)
+        .replace(new RegExp('DHTNAME', 'g'), dhtName)
+                             );
+
+  //var code = dhtName + '.readTemperature()';
+  var code = dhtName + '_readRH()'
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};

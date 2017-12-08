@@ -774,6 +774,8 @@
   	"ARD_DHTHUB_TIP": "Blok die aanduid dat aan een Arduino pin een DHT type sensor is bevestigd",
   	"ARD_DHTHUB_READTEMP": "°C temperatuur gemeten met",
   	"ARD_DHT_READTEMP_TIP": "Meet de temperatuur in graden Celcius van de DHT sensor",
+  	"ARD_DHTHUB_READRH": "Relatieve Vochtigheid gemeten met",
+  	"ARD_DHT_READRH_TIP": "Meet de RV (Relatieve Vochtigheid in %) als een waarde van 0 tot 100 van de DHT sensor",
   	"ARD_DHT_COMPONENT": "DHT sensor",
     "ARD_7SEGMENT_COMPONENT": "7-Segment LED paneel",
     "ARD_7SEGMENT_COMPONENT_TIP": "7-Segment LED paneel kan gebruikt worden om nummers en enkele karakters te tonen. Het bestaat uit 7 segmenten en 1 punt, en vereist daaom 8 digitale pinnen om te gebruiken. Zie de hulp voor meer info.",
