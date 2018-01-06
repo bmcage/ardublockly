@@ -231,7 +231,7 @@ Blockly.Blocks['stepper_step'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
@@ -286,7 +286,7 @@ Blockly.Blocks['stepper_speed'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
@@ -346,7 +346,7 @@ Blockly.Blocks['stepper_rotate'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
@@ -408,7 +408,7 @@ Blockly.Blocks['stepper_rotate_number'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
@@ -460,7 +460,7 @@ Blockly.Blocks['stepper_restart'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
@@ -515,7 +515,7 @@ Blockly.Blocks['stepper_isrotating'] = {
       this.setWarningText(
         Blockly.Msg.ARD_COMPONENT_WARN1.replace(
             '%1', Blockly.Msg.ARD_STEPPER_COMPONENT).replace(
-                '%2', instanceName));
+                '%1', instanceName));
     }
   }
 };
