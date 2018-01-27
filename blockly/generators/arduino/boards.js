@@ -46,6 +46,22 @@ Blockly.Arduino.Boards.generateAnalogIo = function(pinStart, pinEnd) {
 };
 
 /**
+ * Helper function to generate an array of pins (each an array of length 2) for
+ * the digital IO on boards with map to GPIO via D pins.
+ * @param {!integer} pinStart Start number for the IOs pin list to generate.
+ * @param {!integer} pinEnd Last inclusive number for the list to generate.
+ * @return {!array} Two dimensional array with the name and value for the
+ *     digital IO pins.
+ */
+Blockly.Arduino.Boards.generateDigitalDIo = function(pinStart, pinEnd) {
+  var digitalIo = [];
+  for (var i = pinStart; i < (pinEnd + 1); i++) {
+    digitalIo.push(['D' + i.toString(), 'D' + i.toString()]);
+  }
+  return digitalIo;
+};
+
+/**
  * Creates a new Board Profile copying all the attributes from an existing
  * profile, with the exception of the name, and optionally the description and
  * compiler flag.
@@ -558,6 +574,40 @@ Blockly.Arduino.Boards.profiles.diorama = {
   builtinLed: Blockly.Arduino.Boards.profiles.uno.builtinLed,
   interrupt: [['interrupt0', '2'], ['interrupt1', '3'], ['interrupt2', '21'],
               ['interrupt3', '20'], ['interrupt4', '19'], ['interrupt5', '18']]
+};
+
+/** NodeMCU board profile. */
+Blockly.Arduino.Boards.profiles.nodemcu = {
+  name: 'NodeMCU',
+  description: 'NodeMCU board with ESP8266',
+  compilerFlag: 'esp8266:???',
+  analogPins: Blockly.Arduino.Boards.generateAnalogIo(0, 0),
+  digitalPins: Blockly.Arduino.Boards.generateDigitalDIo(0, 10).concat(
+                   Blockly.Arduino.Boards.generateAnalogIo(0, 0)),
+  pwmPins: Blockly.Arduino.Boards.generateDigitalDIo(0, 10),
+  serial: [['serial', 'Serial']],
+  serialPins: { Serial: [['RX', 'D9'], ['TX', 'D10']] },
+  serialSpeed: [['300', '300'], ['600', '600'], ['1200', '1200'],
+                ['2400', '2400'], ['4800', '4800'], ['9600', '9600'],
+                ['14400', '14400'], ['19200', '19200'], ['28800', '28800'],
+                ['31250', '31250'], ['38400', '38400'], ['57600', '57600'],
+                ['115200', '115200']],
+  spi: [['SPI', 'SPI']],
+  spiPins: { SPI: [['MOSI', 'D7'], ['MISO', 'D6'], ['SCK', 'D5']] },
+  spiClockDivide: [['2 (8MHz)', 'SPI_CLOCK_DIV2'],
+                   ['4 (4MHz)', 'SPI_CLOCK_DIV4'],
+                   ['8 (2MHz)', 'SPI_CLOCK_DIV8'],
+                   ['16 (1MHz)', 'SPI_CLOCK_DIV16'],
+                   ['32 (500KHz)', 'SPI_CLOCK_DIV32'],
+                   ['64 (250KHz)', 'SPI_CLOCK_DIV64'],
+                   ['128 (125KHz)', 'SPI_CLOCK_DIV128']],
+  i2c: [['I2C', 'Wire']],
+  i2cPins: { Wire: [['SDA', 'D2'], ['SCL', 'D1']] }, //free to choose actually. We fix
+  i2cSpeed: [['100kHz', '100000L'], ['400kHz', '400000L']],
+  builtinLed: [['BUILTIN_1', 'D0']],
+  interrupt: [['interrupt1', 'D1'], ['interrupt2', 'D2'],['interrupt3', 'D3'], ['interrupt4', 'D4'],
+             ['interrupt5', 'D5'], ['interrupt6', 'D6'],['interrupt7', 'D7'], ['interrupt8', 'D8'],
+             ['interrupt9', 'D9'], ['interrupt10', 'D10']]
 };
 
 /** Set default profile to Arduino standard-compatible board */

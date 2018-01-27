@@ -35,6 +35,7 @@ Blockly.Blocks['core_hub_component'] = {
                  ['Arduino Mega', 'mega'],
                  ['Arduino Leonardo/Yun', 'leonardo'],
                  ['Arduino Nano 328', 'nano_328'],
+                 ['NodeMCU', 'nodemcu'],
                  ['AllBot VR204 Uno', 'allbotVR204uno'],
                  ['AllBot VR204 Mega', 'allbotVR204mega'],
                  ['AllBot VR408 Uno', 'allbotVR408uno'],
