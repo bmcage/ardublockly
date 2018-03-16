@@ -32,6 +32,29 @@ function restore_blocks() {
 }
 
 /**
+* Copy Arduino generated code to clipboard
+* Supported in Chrome, IE, Firefox and Safari
+*/
+function copyCode() {
+    // Arduino code is placed in a <pre>-tag with other tags within it.
+    // We only want the text, so can't select the <pre>-tag.
+    // --> Get inner text and make textArea-element containing the inner text.
+    const content = document.getElementById("content_arduino").innerText;
+    const textArea = document.createElement('textarea');
+    textArea.textContent = content;
+    document.body.append(textArea);
+    textArea.select();
+    try {
+        var success = document.execCommand("Copy");
+        var msg = success ? "successful" : "unsuccesful";
+        console.log("Copy to clipboad was: " + msg);
+    } catch(err) {
+        console.log("Copy to clipboard failed: " + err);				
+    }
+    textArea.remove();
+}
+
+/**
 * Save Arduino generated code to local file.
 */
 function saveCode() {
