@@ -88,7 +88,6 @@ Blockly.Arduino['ledup_hub'] = function(block) {
   return '';
 };
 
-
 /**
  * Function for setting a specific LED of LedUpKidz to a state.
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -139,6 +138,7 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
 /**
  * LEDUPKIDZ V2 blocks
  *
+ * Hub, bitset
  */
 
 /**
@@ -146,7 +146,59 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {array} Completed code with order of operation.
  */
-Blockly.Arduino['ledupkidzv2_digitalwrite'] = function(block) {
+
+Blockly.Arduino['ledup_hub_V2'] = function(block) {
+    
+  function parseInput(block, name, connectors) {
+    var targetBlock = block.getInputTargetBlock(name);
+    if (targetBlock) {
+      targetBlock.setHubConnector(connectors);
+    }
+    var code = Blockly.Arduino.blockToCode(targetBlock);
+    if (!goog.isString(code)) {
+      throw 'Expecting code from statement block "' + targetBlock.type + '".';
+    }
+    if (code) {
+      // blocks should only init data ... 
+      console.log('Unexpected code in mcookie_hub', code);
+    }
+    return code;
+  }
+  
+  var code = '';
+  var nr;
+  
+  var target = block.getFieldValue('TARGET');
+  
+  if (target == "DEST_PROTOTYPE") {
+    var blockinputs = [["latchPin", ['2']], ["clockPin", ['3']], ["dataPin", ['4']]];
+                       
+    code += '// Attiny wiring of the shift register\n' +
+              '/*' +
+              'int latchPin = 1;\n' +             
+              'int clockPin = 0;n' + 
+              'int dataPin = 2;' +
+              '*/\n';
+  } else {
+    var blockinputs = [["latchPin", ['5']], ["clockPin", ['2']], ["dataPin", ['1']]];
+      
+    code += '// Prototype wiring of the LED0 to 5\n' +            
+            '/*' +
+            'int latchPin = 11;\n' +             
+            'int clockPin = 10;n' + 
+            'int dataPin = 12;' +
+            '*/\n';
+  }
+  for (nr in blockinputs) {
+    parseInput(block, blockinputs[nr][0], blockinputs[nr][1]);
+  }
+
+  Blockly.Arduino.addInclude('ledupkidz', code);
+
+  return '';
+}
+
+Blockly.Arduino['ledupkidzv2_led_bitSet'] = function(block) {
   console.log(block);
   return '';
 }
