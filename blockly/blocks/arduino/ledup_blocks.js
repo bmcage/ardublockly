@@ -133,3 +133,49 @@ Blockly.Blocks['ledupkidz_led_onoff']  = {
     this.setTooltip(Blockly.Msg.ARD_LEDUP_LED_ONOFF_TIP);
   }
 };
+
+/**
+ * LEDUPKIDZ V2 blocks
+ *
+ */
+
+Blockly.Blocks['ledupkidzv2_digitalwrite'] = {
+  /**
+   * Block for setting led pin of ledupkidzv2 to a state.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
+    this.setColour(Blockly.Blocks.light.HUE);
+    this.appendValueInput('STATE')
+        .appendField(Blockly.Msg.ARD_LEDLEG_SET)
+        .appendField(
+            new Blockly.FieldDropdown(
+                [['LED 1', '1'],
+                 ['2', '2'],
+                 ['3', '3'],
+                 ['4', '4'],
+                 ['5', '5'],
+                 ['6', '6'],
+                 ['7', '7'],
+                ]), 'LEDNAME')
+        .setCheck(Blockly.Types.BOOLEAN.checkList);
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
+    this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks the instances of ledleg config and attaches a warning to this
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+  }
+};

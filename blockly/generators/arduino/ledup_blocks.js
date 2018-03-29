@@ -135,3 +135,18 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
   var code = 'set_ledupkidz_onoff(' + LEDNumber + ', ' + stateOutput + ');\n';
   return code;
 }
+
+/**
+ * LEDUPKIDZ V2 blocks
+ *
+ */
+
+/**
+ * Function for setting a specific LED of LedUpKidz to a state.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['ledupkidzv2_digitalwrite'] = function(block) {
+  console.log(block);
+  return '';
+}
