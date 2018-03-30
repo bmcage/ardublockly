@@ -149,22 +149,10 @@ Blockly.Blocks['ledup_hub_V2'] = {
         .appendField(new Blockly.FieldDropdown([
 	    [Blockly.Msg.ARD_LEDUP_GADGET, "DEST_GADGET"],   //For the attiny85 gadget
 	    [Blockly.Msg.ARD_LEDUP_PROTO, "DEST_PROTOTYPE"], //For prototype on Arduino Uno
-        ]), "TARGET");
-    this.appendValueInput("latchPin")
-        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.LATCH);
-    this.appendValueInput("clockPin")
-        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.CLOCK); 
-    this.appendValueInput("dataPin")
-        .setCheck(["HUB_DIG", "HUB_DIGOUT"])
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.DATA); 
+        ]), "TARGET");    
     this.setPreviousStatement(false, "MD_BLOCK");
     this.setNextStatement(false, "MD_BLOCK");
-    this.setColour('#70D65C');
+    this.setColour('#a54a59');
     this.setTooltip(Blockly.Msg.ARD_LEDUP_HUB_TIP);
     this.setHelpUrl('http://ingegno.be/01-blockly-4-arduino/');
   },
