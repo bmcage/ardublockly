@@ -88,7 +88,6 @@ Blockly.Arduino['ledup_hub'] = function(block) {
   return '';
 };
 
-
 /**
  * Function for setting a specific LED of LedUpKidz to a state.
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -133,5 +132,102 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
   Blockly.Arduino.addDeclaration('ledupkidz_onoff', setfunc);
   
   var code = 'set_ledupkidz_onoff(' + LEDNumber + ', ' + stateOutput + ');\n';
+  return code;
+}
+
+/**
+ * LEDUPKIDZ V2 blocks
+ *
+ * Hub, bitset
+ */
+
+/**
+ * Function for setting a specific LED of LedUpKidz to a state.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+
+Blockly.Arduino['ledup_hub_V2'] = function(block) {
+    
+    function parseInput(block, name, connectors) {
+    var targetBlock = block.getInputTargetBlock(name);
+    if (targetBlock) {
+      targetBlock.setHubConnector(connectors);
+    }
+    var code = Blockly.Arduino.blockToCode(targetBlock);
+    if (!goog.isString(code)) {
+      throw 'Expecting code from statement block "' + targetBlock.type + '".';
+    }
+    if (code) {
+      // blocks should only init data ... 
+      console.log('Unexpected code in mcookie_hub', code);
+    }
+    return code;
+  }
+  
+  var setfunc = 'void updateShiftRegister() {\n  digitalWrite(latchPin, LOW);\n  shiftOut(dataPin, clockPin, MSBFIRST, leds);\n  digitalWrite(latchPin, HIGH);\n}';
+  var code = '';
+  var nr;
+  
+  var target = block.getFieldValue('TARGET');
+  
+  if (target == "DEST_PROTOTYPE") {
+    var blockinputs = [["latchPin", ['11']], ["clockPin", ['12']], ["dataPin", ['10']] ];
+                       
+    code += '// Attiny wiring of the shift register\n' +
+              '/*' +
+              'int dataPin = 0;\n' +
+              'int latchPin = 1;\n' +             
+              'int clockPin = 2;\n' +               
+              'byte register = 0;' +
+              '*/\n\n\n'+
+              '// Prototype wiring of the shift register\n' +  
+              'int dataPin = 10;\n' +
+              'int latchPin = 11;\n' +             
+              'int clockPin = 12;\n' +              
+              'byte register = 0;' +
+              '\n';
+              
+  } else {
+    var blockinputs = [["latchPin", ['1']], ["clockPin", ['2']], ["dataPin", ['0']] ];
+      
+    code += '// Prototype wiring of the shift register\n' +            
+            '/*' +
+            'int dataPin = 10;\n' +
+            'int latchPin = 11;\n' +             
+            'int clockPin = 12;\n' +             
+            'byte register = 0;' +
+            '*/\n\n\n' +
+            '// Attiny wiring of the shift register\n' +
+            'int dataPin = 0;\n' +
+            'int latchPin = 1;\n' +             
+            'int clockPin = 2;\n' +               
+            'byte register = 0;' +
+            '\n';
+  }
+    
+  Blockly.Arduino.addInclude('ledupkidzV2', code);
+  Blockly.Arduino.addDeclaration('ledupkidz_updateShiftRegister', setfunc);
+  Blockly.Arduino.addSetup('ledupkidzV2', 'pinMode(latchPin, OUTPUT);\n  pinMode(clockPin, OUTPUT);\n  pinMode(dataPin, OUTPUT);\n  register=0;\n  updateShiftRegister();', false);
+
+  return '';
+}
+
+Blockly.Arduino['ledupkidzv2_bitSetClear'] = function(block) {
+
+  var  stateOutput = Blockly.Arduino.valueToCode(
+      block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'true';
+
+  var setfunc = 'void set_ledupkidz_bitSetClear {\n ';
+  var chosenLED = block.getFieldValue('LEDNAME');
+
+  
+  var code = '';
+  if (stateOutput == 'true') {
+      code += 'bitSet(register, ' + chosenLED + ');\nupdateShiftRegister();';
+  } else {
+      code += 'bitClear(register, ' + chosenLED + ');\nupdateShiftRegister();';
+  }
+  
   return code;
 }
