@@ -211,6 +211,7 @@ Blockly.Msg.ARD_SERVO_ROTATEPERC = '% (-100 to 100)';
 Blockly.Msg.ARD_SERVO_ROTATE_TIP = 'Turn a Servo with a specific speed';
 Blockly.Msg.ARD_SERVOHUB_WRITE = 'set 180 degree Servo ';
 Blockly.Msg.ARD_SERVOHUB_READ = 'read Servo ';
+
 Blockly.Msg.REPLACE_EXISTING_BLOCKS = 'Replace existing blocks? "Cancel" will merge.';
 
 //Arduino blocks define as a specific type
