@@ -171,22 +171,24 @@ Blockly.Arduino['ledup_hub_V2'] = function(block) {
   var target = block.getFieldValue('TARGET');
   
   if (target == "DEST_PROTOTYPE") {
-    var blockinputs = [["latchPin", ['2']], ["clockPin", ['3']], ["dataPin", ['4']]];
+    var blockinputs = [["latchPin", ['11']], ["clockPin", ['12']], ["dataPin", ['10']] ];
                        
     code += '// Attiny wiring of the shift register\n' +
               '/*' +
               'int latchPin = 1;\n' +             
-              'int clockPin = 0;n' + 
-              'int dataPin = 2;' +
+              'int clockPin = 2;\n' + 
+              'int dataPin = 0;\n' +
+              'byte register = 0;'
               '*/\n';
   } else {
-    var blockinputs = [["latchPin", ['5']], ["clockPin", ['2']], ["dataPin", ['1']]];
+    var blockinputs = [["latchPin", ['1']], ["clockPin", ['2']], ["dataPin", ['0']] ];
       
     code += '// Prototype wiring of the LED0 to 5\n' +            
             '/*' +
             'int latchPin = 11;\n' +             
-            'int clockPin = 10;n' + 
-            'int dataPin = 12;' +
+            'int clockPin = 12;\n' + 
+            'int dataPin = 10;\n' +
+            'byte register = 0;' +
             '*/\n';
   }
   for (nr in blockinputs) {
@@ -199,6 +201,6 @@ Blockly.Arduino['ledup_hub_V2'] = function(block) {
 }
 
 Blockly.Arduino['ledupkidzv2_led_bitSet'] = function(block) {
-  console.log(block);
-  return '';
+  //console.log(block);
+  //return '';
 }
