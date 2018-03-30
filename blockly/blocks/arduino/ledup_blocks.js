@@ -213,7 +213,7 @@ Blockly.Blocks['ledup_hub_V2'] = {
 };
 
 
-Blockly.Blocks['ledupkidzv2_bitSet'] = {
+Blockly.Blocks['ledupkidzv2_bitSetClear'] = {
   /**
    * Block for setting led pin of ledupkidzv2 to a state.
    * @this Blockly.Block

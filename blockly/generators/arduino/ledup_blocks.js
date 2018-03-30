@@ -149,7 +149,7 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
 
 Blockly.Arduino['ledup_hub_V2'] = function(block) {
     
-  /*function parseInput(block, name, connectors) {
+    function parseInput(block, name, connectors) {
     var targetBlock = block.getInputTargetBlock(name);
     if (targetBlock) {
       targetBlock.setHubConnector(connectors);
@@ -163,7 +163,7 @@ Blockly.Arduino['ledup_hub_V2'] = function(block) {
       console.log('Unexpected code in mcookie_hub', code);
     }
     return code;
-  }*/
+  }
   
   var setfunc = 'void updateShiftRegister() {\n  digitalWrite(latchPin, LOW);\n  shiftOut(dataPin, clockPin, MSBFIRST, leds);\n  digitalWrite(latchPin, HIGH);\n}';
   var code = '';
@@ -207,13 +207,27 @@ Blockly.Arduino['ledup_hub_V2'] = function(block) {
   }
     
   Blockly.Arduino.addInclude('ledupkidzV2', code);
-  Blockly.Arduino.addDeclaration('ledupkidz_bitSetFunction', setfunc);
+  Blockly.Arduino.addDeclaration('ledupkidz_updateShiftRegister', setfunc);
   Blockly.Arduino.addSetup('ledupkidzV2', 'pinMode(latchPin, OUTPUT);\n  pinMode(clockPin, OUTPUT);\n  pinMode(dataPin, OUTPUT);\n  register=0;\n  updateShiftRegister();', false);
 
   return '';
 }
 
-Blockly.Arduino['ledupkidzv2_led_bitSet'] = function(block) {
-  //console.log(block);
-  return '';
+Blockly.Arduino['ledupkidzv2_bitSetClear'] = function(block) {
+
+  var  stateOutput = Blockly.Arduino.valueToCode(
+      block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'true';
+
+  var setfunc = 'void set_ledupkidz_bitSetClear {\n ';
+  var chosenLED = block.getFieldValue('LEDNAME');
+
+  
+  var code = '';
+  if (stateOutput == 'true') {
+      code += 'bitSet(register, ' + chosenLED + ');\nupdateShiftRegister();';
+  } else {
+      code += 'bitClear(register, ' + chosenLED + ');\nupdateShiftRegister();';
+  }
+  
+  return code;
 }
