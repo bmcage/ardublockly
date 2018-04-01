@@ -48,9 +48,7 @@
   <script src="blocks/arduino/servo.js"></script>
   <script src="blocks/arduino/spi.js"></script>
   <script src="blocks/arduino/stepper.js"></script>
-    
   <script src="blocks/arduino/tft.js"></script>
-    
   <script src="blocks/arduino/time.js"></script>
   <script src="blocks/arduino/tone.js"></script>
   <script src="blocks/arduino/variables.js"></script>
@@ -83,9 +81,7 @@
   <script src="generators/arduino/servo.js"></script>
   <script src="generators/arduino/spi.js"></script>
   <script src="generators/arduino/stepper.js"></script>
-    
   <script src="generators/arduino/tft.js"></script>
-    
   <script src="generators/arduino/text.js"></script>
   <script src="generators/arduino/time.js"></script>
   <script src="generators/arduino/tone.js"></script>
@@ -570,15 +566,6 @@
       </value>
     </block>
     <block type="io_notone"></block>
-    <block type="segment_config"></block>
-    <block type="segment_write_number">
-        <value name="SEG_VAL">
-            <block type="math_number">
-                <field name="NUM">1</field>
-            </block>
-        </value>
-    </block>
-    <block type="segment_write_singleseg"></block>
   </category>
   <category id="catMotors" name="Motoren">
     <block type="servo_config_hub"></block>
@@ -645,6 +632,20 @@
     <block type="spi_setup"></block>
     <block type="spi_transfer"></block>
     <block type="spi_transfer_return"></block>
+  </category>
+  <category id="catDisplays" name="Schermen">
+    <block type="tft_config"></block>
+    <block type="tft_text"></block>
+    <block type="tft_backgroundcolor"></block>
+    <block type="segment_config"></block>
+    <block type="segment_write_number">
+        <value name="SEG_VAL">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+    </block>
+    <block type="segment_write_singleseg"></block>
   </category>
   <sep></sep>
   <category id="catExp" name="Extra Sets">
@@ -1016,11 +1017,6 @@
           </value>
         </block>
       </category>
-    </category>
-    <category id="TFTscherm" name="TFT">
-      <block type="tft"></block>
-      <block type="tft_tekst"></block>
-      <block type="kleurachtergrond"></block>
     </category>
     <category id="catDiorama" name="Diorama">
       <block type="diorama_hub_component">

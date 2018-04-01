@@ -534,3 +534,5 @@ Blockly.Msg.ARD_7SEGMENT_WRITE = 'show number';
 Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display. Number must be between 0 and 9, otherwise nothing is shown.';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
+Blockly.Msg.ARD_TFT_COMPONENT = 'TFT-Scherm';
+Blockly.Msg.ARD_TFT_COMPONENT_TIP = 'The ST7735 1.8” Color TFT scherm';

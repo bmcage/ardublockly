@@ -139,6 +139,14 @@ div>span.blocklyTreeIcon.blocklyTreeIconNone{
 	background:url('../media/mark/comuni2.png') no-repeat;
 	background-size: 100% auto; 
 }
+#\:e>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+	background:url('../media/mark/display.png') no-repeat;
+	background-size: 100% auto; 
+}
+#\:e>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+	background:url('../media/mark/display2.png') no-repeat;
+	background-size: 100% auto; 
+}
 
 
 html, body {
