@@ -4,20 +4,9 @@
  */
 
 /**
- * @fileoverview Blocks for Arduino Stepper library.
- *     The Arduino Servo functions syntax can be found in the following URL:
- *     http://arduino.cc/en/Reference/Stepper
- *     Note that this block uses the Blockly.FieldInstance instead of
- *     Blockly.FieldDropdown which generates a unique instance per setup block
- *     in the workspace.
+ * @fileoverview Blocks for TFT Screen.
  */
 
-/** 
- * TO DO
- * Msg maken voor default name
- *
- *
- */
 
 'use strict';
 
@@ -70,42 +59,117 @@ Blockly.Blocks['tft_text'] = {
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
             new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME') ;
-    this.appendDummyInput()
+    this.appendValueInput("TFT_TEXT")
         .appendField("Schrijf tekst")
-        .appendField(new Blockly.FieldTextInput(""), "tekst");
-    var colour = new Blockly.FieldColour('#ff0000');
-    colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
+        .setCheck(Blockly.Types.TEXT.output)
+        .setAlign(Blockly.ALIGN_RIGHT);
+    //var colour = new Blockly.FieldColour('#ff0000');
+    //colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
+    this.appendValueInput('TFT_COL')
+        .appendField("Kleur van de tekst")
+        .setCheck("Colour")
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
-        .appendField("kleur van de tekst")
-        .appendField(colour, "kleurTekst");
-    this.appendDummyInput()
-        .appendField("positie van de tekst  x =")
-        .appendField(new Blockly.FieldNumber(0, 0, 145), "xWaarde")
-        .appendField("y =")
-        .appendField(new Blockly.FieldNumber(0, 0, 145), "yWaarde");
-    this.setPreviousStatement(true, null);
+        .appendField("Grootte")
+        .appendField(
+            new Blockly.FieldDropdown([['1', '1'], ['2', '2'], ['3', '3']]),
+           'TFT_SIZE')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('TFT_X')
+        .appendField("X positie")
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('TFT_Y')
+        .appendField("Y positie")
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(350);
-    this.setTooltip("");
+    this.setTooltip("Write a text to the screen in the given colour at the given position. ");
     this.setHelpUrl("https://docs.google.com/document/d/1rd5WztljQ4R-4YQH1UzbRDuTeg8SeEte_eZYg9qlx8Y/edit?usp=sharing");
-  }
+  },
+    /**
+    * Called whenever anything on the workspace changes.
+    * It checks/warns if the selected stepper instance has a config block.
+    * @this Blockly.Block
+    */
+    onchange: function(event) {
+        if (!this.workspace || event.type == Blockly.Events.MOVE ||
+            event.type == Blockly.Events.UI) {
+            return;  // Block deleted or irrelevant event
+        }
+
+        var instanceName = this.getFieldValue('TFTNAME')
+        if (Blockly.Instances.isInstancePresent(instanceName, 'tft', this)) {
+          this.setWarningText(null);
+        } else {
+          // Set a warning to select a valid tft config block
+          this.setWarningText(
+            Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+                '%1', Blockly.Msg.ARD_TFT_COMPONENT).replace(
+                    '%2', instanceName).replace(
+                    '%1', instanceName));
+        }
+    },
+    /**
+    * Gets the variable type required.
+    * @param {!string} varName Name of the variable selected in this block to
+    *     check.
+    * @return {string} String to indicate the variable type.
+    */
+    getVarType: function(varName) {
+        return Blockly.Types.STRING;
+    }
 };
 
 Blockly.Blocks['tft_backgroundcolor'] = {
-  init: function() {
-    var colour = new Blockly.FieldColour('#ff0000');
-    colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
-        
+  init: function() {        
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
             new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME') ;
-    this.appendDummyInput()
+    this.appendValueInput('TFT_COL')
         .appendField("Kleur van de achtergrond")
-        .appendField(colour, "kleurAchtergrond");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+        .setCheck("Colour")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
     this.setColour(350);
- this.setTooltip("");
- this.setHelpUrl("https://docs.google.com/document/d/1rd5WztljQ4R-4YQH1UzbRDuTeg8SeEte_eZYg9qlx8Y/edit?usp=sharing");
-  }
+   this.setTooltip("Fill the entire screen with the given colour");
+   this.setHelpUrl("https://docs.google.com/document/d/1rd5WztljQ4R-4YQH1UzbRDuTeg8SeEte_eZYg9qlx8Y/edit?usp=sharing");
+  },
+    /**
+    * Called whenever anything on the workspace changes.
+    * It checks/warns if the selected stepper instance has a config block.
+    * @this Blockly.Block
+    */
+    onchange: function(event) {
+        if (!this.workspace || event.type == Blockly.Events.MOVE ||
+            event.type == Blockly.Events.UI) {
+            return;  // Block deleted or irrelevant event
+        }
+
+        var instanceName = this.getFieldValue('TFTNAME')
+        if (Blockly.Instances.isInstancePresent(instanceName, 'tft', this)) {
+          this.setWarningText(null);
+        } else {
+          // Set a warning to select a valid tft config block
+          this.setWarningText(
+            Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+                '%1', Blockly.Msg.ARD_TFT_COMPONENT).replace(
+                    '%2', instanceName).replace(
+                    '%1', instanceName));
+        }
+    },
+    /**
+    * Gets the variable type required.
+    * @param {!string} varName Name of the variable selected in this block to
+    *     check.
+    * @return {string} String to indicate the variable type.
+    */
+    getVarType: function(varName) {
+        return Blockly.Types.STRING;
+    }
 };

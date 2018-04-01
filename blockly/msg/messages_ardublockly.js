@@ -535,4 +535,5 @@ Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment d
 Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
 Blockly.Msg.ARD_TFT_COMPONENT = 'TFT-Scherm';
-Blockly.Msg.ARD_TFT_COMPONENT_TIP = 'The ST7735 1.8” Color TFT scherm';
+Blockly.Msg.ARD_TFT_COMPONENT_TIP = 'The ST7735 1.8” Color TFT scherm. Scherm is 128x160 pixels.';
+Blockly.Msg.COLOUR_RGB255_TOOLTIP = 'Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker';

@@ -438,5 +438,6 @@
     "ARD_7SEGMENT_WRITESEG": "Zet segment",
     "ARD_7SEGMENT_WRITESEG_TIP": "Zet het gegeven segment van het 7-segment led paneel aan of uit",
     "ARD_TFT_COMPONENT": "TFT-Scherm",
-    "ARD_TFT_COMPONENT_TIP": "Het ST7735 1.8inch Color TFT scherm"
+    "ARD_TFT_COMPONENT_TIP": "Het ST7735 1.8inch Color TFT scherm. Scherm is 128x160 pixels.",
+    "COLOUR_RGB255_TOOLTIP": "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker"
 }

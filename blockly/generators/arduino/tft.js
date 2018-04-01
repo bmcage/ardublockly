@@ -41,20 +41,49 @@ Adafruit_ST7735 TFT = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);
 };
 
 Blockly.Arduino['tft_text'] = function(block) {
-  var text_tekst = block.getFieldValue('tekst');
-  var colour_kleurtekst = block.getFieldValue('kleurTekst');
-  var number_xwaarde = block.getFieldValue('xWaarde');
-  var number_ywaarde = block.getFieldValue('yWaarde');
+  var tftName = block.getFieldValue('TFTNAME');
+  var text = Blockly.Arduino.valueToCode(block, 'TFT_TEXT', Blockly.Arduino.ORDER_ATOMIC) || '"Test"'; 
+  var colour = Blockly.Arduino.valueToCode(block, 'TFT_COL', Blockly.Arduino.ORDER_ATOMIC) || "'#000000'";
+  var colR = '0x' + colour.slice(2, 4);
+  var colG = '0x' + colour.slice(4, 6);
+  var colB = '0x' + colour.slice(6, 8);
+  if (colour[0] == '(') {
+    var possplit1 = colour.indexOf(",");
+    colR = colour.slice(1, possplit1);
+    var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
+    colG = colour.slice(possplit1+1, possplit2);
+    colB = colour.slice(possplit2+1, colour.length-1);
+  }
+  var size = block.getFieldValue('TFT_SIZE');
+  var xpos = Blockly.Arduino.valueToCode(block, 'TFT_X', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var ypos = Blockly.Arduino.valueToCode(block, 'TFT_Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
     
-  Blockly.Arduino.addSetup('tft2', 'test' ,false);
-  
-  return '';
+  var code = `
+void MYTFTdrawtext(String text, uint16_t color, int size, int x, int y) {
+  MYTFT.setCursor(x, y);
+  MYTFT.setTextColor(color);
+  MYTFT.setTextSize(size);
+  MYTFT.setTextWrap(true);
+  MYTFT.println(text);
+}
+`
+  Blockly.Arduino.addDeclaration(tftName + '_text', code.replace(new RegExp('MYTFT', 'g'), tftName));
+  return tftName + 'drawtext(' + text + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), ' + size + ', ' + xpos + ', ' + ypos + ');\n';
 };
 
 Blockly.Arduino['tft_backgroundcolor'] = function(block) {
-  var colour_kleurachtergrond = block.getFieldValue('kleurAchtergrond');
-    
-  Blockly.Arduino.addSetup('tft3', tftName + '.fillScreen('+colour_kleurachtergrond+');',false);
+  var tftName = block.getFieldValue('TFTNAME'); 
+  var colour = Blockly.Arduino.valueToCode(block, 'TFT_COL', Blockly.Arduino.ORDER_ATOMIC) || "'#000000'";
+  var colR = '0x' + colour.slice(2, 4);
+  var colG = '0x' + colour.slice(4, 6);
+  var colB = '0x' + colour.slice(6, 8);
+  if (colour[0] == '(') {
+    var possplit1 = colour.indexOf(",");
+    colR = colour.slice(1, possplit1);
+    var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
+    colG = colour.slice(possplit1+1, possplit2);
+    colB = colour.slice(possplit2+1, colour.length-1);
+  }
   
-  return '';
+  return tftName + '.fillScreen(' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + ') );\n';
 };
