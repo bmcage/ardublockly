@@ -16,6 +16,33 @@ goog.provide('Blockly.Arduino.tft');
 goog.require('Blockly.Arduino');
 var tftName = 'myTFT';
 
+/**
+ * pad a number n to width with padding character z
+ */
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+Blockly.Arduino.colour2RGB = function(colour) {
+  var outcolour = {red: 0, green: 0, blue: 0};
+  var colR = '0x' + colour.slice(2, 4);
+  var colG = '0x' + colour.slice(4, 6);
+  var colB = '0x' + colour.slice(6, 8);
+  if (colour[0] == '(') {
+    var possplit1 = colour.indexOf(",");
+    colR = colour.slice(1, possplit1);
+    var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
+    colG = colour.slice(possplit1+1, possplit2);
+    colB = colour.slice(possplit2+1, colour.length-1);
+  }
+  outcolour.red = colR;
+  outcolour.green = colG;
+  outcolour.blue = colB;
+  return outcolour;
+}
+  
 Blockly.Arduino['tft_config'] = function(block) {
   var tftName = block.getFieldValue('TFTNAME');
   Blockly.Arduino.addInclude('Adafruit_GFX', '#include <Adafruit_GFX.h>');
@@ -44,16 +71,10 @@ Blockly.Arduino['tft_text'] = function(block) {
   var tftName = block.getFieldValue('TFTNAME');
   var text = Blockly.Arduino.valueToCode(block, 'TFT_TEXT', Blockly.Arduino.ORDER_ATOMIC) || '"Test"'; 
   var colour = Blockly.Arduino.valueToCode(block, 'TFT_COL', Blockly.Arduino.ORDER_ATOMIC) || "'#000000'";
-  var colR = '0x' + colour.slice(2, 4);
-  var colG = '0x' + colour.slice(4, 6);
-  var colB = '0x' + colour.slice(6, 8);
-  if (colour[0] == '(') {
-    var possplit1 = colour.indexOf(",");
-    colR = colour.slice(1, possplit1);
-    var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
-    colG = colour.slice(possplit1+1, possplit2);
-    colB = colour.slice(possplit2+1, colour.length-1);
-  }
+  var col = Blockly.Arduino.colour2RGB(colour)
+  var colR = col.red;
+  var colG = col.green;
+  var colB = col.blue;
   var size = block.getFieldValue('TFT_SIZE');
   var xpos = Blockly.Arduino.valueToCode(block, 'TFT_X', Blockly.Arduino.ORDER_ATOMIC) || '0';
   var ypos = Blockly.Arduino.valueToCode(block, 'TFT_Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
@@ -74,16 +95,71 @@ void MYTFTdrawtext(String text, uint16_t color, int size, int x, int y) {
 Blockly.Arduino['tft_backgroundcolor'] = function(block) {
   var tftName = block.getFieldValue('TFTNAME'); 
   var colour = Blockly.Arduino.valueToCode(block, 'TFT_COL', Blockly.Arduino.ORDER_ATOMIC) || "'#000000'";
-  var colR = '0x' + colour.slice(2, 4);
-  var colG = '0x' + colour.slice(4, 6);
-  var colB = '0x' + colour.slice(6, 8);
-  if (colour[0] == '(') {
-    var possplit1 = colour.indexOf(",");
-    colR = colour.slice(1, possplit1);
-    var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
-    colG = colour.slice(possplit1+1, possplit2);
-    colB = colour.slice(possplit2+1, colour.length-1);
-  }
+  var col = Blockly.Arduino.colour2RGB(colour)
+  var colR = col.red;
+  var colG = col.green;
+  var colB = col.blue;
   
   return tftName + '.fillScreen(' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + ') );\n';
 };
+
+
+Blockly.Arduino['tft_sprite8x8'] = function(block) {
+  var tftName = block.getFieldValue('TFTNAME');
+  var spriteName = Blockly.Arduino.valueToCode(block, 'SPRITENAME', Blockly.Arduino.ORDER_ATOMIC) || 'MySprite';
+  if (spriteName[0] == '"') spriteName = spriteName.slice(1, spriteName.length-1);
+  var size = block.getFieldValue('TFT_SIZE');
+  var xpos = Blockly.Arduino.valueToCode(block, 'TFT_X', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var ypos = Blockly.Arduino.valueToCode(block, 'TFT_Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  // we loop through all pixels
+  var codesprite = 'static unsigned int ' + spriteName + '8x8[] =\n{ ';
+  for (var i=1; i<9; i++) {
+    for (var j=1; j<9; j++) {
+      var pixelname = 'sp' + pad(i, 2, '0') + pad(j, 2, '0');
+      var colour = block.getFieldValue(pixelname) || "'#000000'";
+      var col = Blockly.Arduino.colour2RGB(colour)
+      var colR = col.red;
+      var colG = col.green;
+      var colB = col.blue;
+      codesprite += tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), '
+    }
+    codesprite += '\n';
+  }
+  codesprite = codesprite.slice(0, codesprite.length-3) + '\n};\n\n';
+  codesprite += 
+    '#define ' + spriteName + 'W            8     // sprite width\n' +
+    '#define ' + spriteName + 'H            8     // mario height\n' +
+    '#define ' + spriteName + 'W2           4     // half width\n' +
+    '#define ' + spriteName + 'H2           4     // half height\n' +
+    'unsigned char ' + spriteName + 'px;\n';
+  var codedrawpixel = `
+// ---------------
+// draw pixel
+// ---------------
+// faster drawPixel method by inlining calls and using setAddrWindow and pushColor
+// using macro to force inlining
+#define MYTFTdrawPixel(a, b, c) MYTFT.setAddrWindow(a, b, a, b); MYTFT.pushColor(c)
+
+// temporary x and y var
+static short MYTFTtmpx, MYTFTtmpy;
+
+`
+  Blockly.Arduino.addDeclaration(spriteName, codesprite);
+  Blockly.Arduino.addDeclaration(tftName + 'drawpixel', codedrawpixel.replace(new RegExp('MYTFT', 'g'), tftName));
+  
+  var codedraw = `
+// sprite
+// ---------------
+MYTFTtmpx = SPRITEW - 1; //width sprite
+do {
+  SPRITEpx = XPOS + MYTFTtmpx + SPRITEW;
+  // draw SPRITE at new position
+  MYTFTtmpy = SPRITEH - 1;
+  do {
+    MYTFTdrawPixel(SPRITEpx, YPOS + MYTFTtmpy, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
+  } while (MYTFTtmpy--);
+} while (MYTFTtmpx--);
+`
+  return codedraw.replace(new RegExp('MYTFT', 'g'), tftName).replace(new RegExp('SPRITE', 'g'), spriteName).replace(new RegExp('XPOS', 'g'), xpos).replace(new RegExp('YPOS', 'g'), ypos);
+};
+

@@ -439,5 +439,14 @@
     "ARD_7SEGMENT_WRITESEG_TIP": "Zet het gegeven segment van het 7-segment led paneel aan of uit",
     "ARD_TFT_COMPONENT": "TFT-Scherm",
     "ARD_TFT_COMPONENT_TIP": "Het ST7735 1.8inch Color TFT scherm. Scherm is 128x160 pixels.",
-    "COLOUR_RGB255_TOOLTIP": "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker"
+    "COLOUR_RGB255_TOOLTIP": "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker",
+    "ARD_TFT_TEXT_WRITE": "Schrijf tekst",
+    "ARD_TFT_TEXT_COLOUR": "Kleur van de tekst",
+    "ARD_TFT_TEXT_SIZE": "Grootte",
+    "ARD_TFT_TEXT_XPOS": "X positie",
+    "ARD_TFT_TEXT_YPOS": "Y positie",
+    "ARD_TFT_TEXT_TIP": "Schrijf een tekst op het scherm in de gegeven kleur op de gegeven poitie.",
+    "ARD_TFT_BG_COLOUR": "Kleur van de achtergrond",
+    "ARD_TFT_BG_TIP": "Vul het volledige scherm met de gegeven kleur",
+    "ARD_TFT_SPRITE_NAME": "Sprite met naam"
 }
