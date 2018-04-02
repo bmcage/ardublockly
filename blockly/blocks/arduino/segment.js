@@ -63,8 +63,8 @@ Blockly.Blocks['segment_config'] = {
           .appendField(new Blockly.FieldDropdown(
            Blockly.Arduino.Boards.selected.digitalPins), 'SEG_DP');
       this.setColour(Blockly.Blocks.segment.HUE);
-      this.setPreviousStatement(false, "MD_BLOCK");
-      this.setNextStatement(false, "MD_BLOCK");
+      this.setPreviousStatement(true, "ARD_COMP_BLOCK");
+      this.setNextStatement(true, 'ARD_COMP_BLOCK');
       this.setInputsInline(false);
       this.setTooltip(Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP);
       this.setHelpUrl("http://www.instructables.com/id/7-Segment-Display-On-Arduino/");

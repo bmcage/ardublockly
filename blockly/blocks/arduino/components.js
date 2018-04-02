@@ -46,6 +46,7 @@ Blockly.Blocks['core_hub_component'] = {
                  ['AllBot VR612 Mega', 'allbotVR612mega'],
                  ['AllBot VR618 Mega', 'allbotVR618mega']
                 ]), 'BOARD');
+    this.setNextStatement(true, 'ARD_COMP_BLOCK');
     this.setMutator(new Blockly.Mutator(['core_hub_digpin',
                                          'core_hub_anapin',
                                          'core_hub_pwmpin',

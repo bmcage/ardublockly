@@ -25,8 +25,8 @@ Blockly.Blocks['tft_config'] = {
         .appendField(
             new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')                      
     this.setColour(350);
-    this.setPreviousStatement(false, "MD_BLOCK");
-    this.setNextStatement(false, "MD_BLOCK");
+    this.setPreviousStatement(true, "ARD_COMP_BLOCK");
+    this.setNextStatement(true, 'ARD_COMP_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP);
     this.setHelpUrl("https://docs.google.com/document/d/1rd5WztljQ4R-4YQH1UzbRDuTeg8SeEte_eZYg9qlx8Y/edit?usp=sharing");
   }

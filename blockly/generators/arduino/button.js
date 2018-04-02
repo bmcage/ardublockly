@@ -70,6 +70,18 @@ Blockly.Arduino['button_input_pullup_setup'] = function(block) {
 };
 
 /**
+ * Function for reading a button.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['button_read'] = function(block) {
+  var btnName = block.getFieldValue('BUTTONNAME');
+  
+  var code = '(digitalRead(' + btnName + ') == ' + btnName + '_PRESSED)';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+/**
  * Function for waiting on an input of a button.
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {array} Completed code with order of operation.

@@ -27,15 +27,21 @@ function pad(n, width, z) {
 
 Blockly.Arduino.colour2RGB = function(colour) {
   var outcolour = {red: 0, green: 0, blue: 0};
-  var colR = '0x' + colour.slice(2, 4);
-  var colG = '0x' + colour.slice(4, 6);
-  var colB = '0x' + colour.slice(6, 8);
+  var colR, colG, colB;
   if (colour[0] == '(') {
     var possplit1 = colour.indexOf(",");
     colR = colour.slice(1, possplit1);
     var possplit2 = possplit1+1 + colour.slice(possplit1+1, colour.length).indexOf(",");
     colG = colour.slice(possplit1+1, possplit2);
     colB = colour.slice(possplit2+1, colour.length-1);
+  } else if (colour[0] == "'") {
+    colR = '0x' + colour.slice(2, 4);
+    colG = '0x' + colour.slice(4, 6);
+    colB = '0x' + colour.slice(6, 8);
+  } else {
+    colR = '0x' + colour.slice(1, 3);
+    colG = '0x' + colour.slice(3, 5);
+    colB = '0x' + colour.slice(5, 7);
   }
   outcolour.red = colR;
   outcolour.green = colG;
@@ -131,7 +137,7 @@ Blockly.Arduino['tft_sprite8x8'] = function(block) {
     '#define ' + spriteName + 'H            8     // mario height\n' +
     '#define ' + spriteName + 'W2           4     // half width\n' +
     '#define ' + spriteName + 'H2           4     // half height\n' +
-    'unsigned char ' + spriteName + 'px;\n';
+    'unsigned char ' + spriteName + 'px, ' + spriteName + 'py;\n';
   var codedrawpixel = `
 // ---------------
 // draw pixel
@@ -141,25 +147,33 @@ Blockly.Arduino['tft_sprite8x8'] = function(block) {
 #define MYTFTdrawPixel(a, b, c) MYTFT.setAddrWindow(a, b, a, b); MYTFT.pushColor(c)
 
 // temporary x and y var
-static short MYTFTtmpx, MYTFTtmpy;
+static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;
 
 `
   Blockly.Arduino.addDeclaration(spriteName, codesprite);
   Blockly.Arduino.addDeclaration(tftName + 'drawpixel', codedrawpixel.replace(new RegExp('MYTFT', 'g'), tftName));
   
   var codedraw = `
-// sprite
+// draw sprite
 // ---------------
 MYTFTtmpx = SPRITEW - 1; //width sprite
 do {
-  SPRITEpx = XPOS + MYTFTtmpx + SPRITEW;
+  SPRITEpx = XPOS + SIZE * MYTFTtmpx;
   // draw SPRITE at new position
   MYTFTtmpy = SPRITEH - 1;
   do {
-    MYTFTdrawPixel(SPRITEpx, YPOS + MYTFTtmpy, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
+    SPRITEpy = YPOS + SIZE * MYTFTtmpy ;
+    MYTFTtmps1 = SIZE - 1; //scale
+    do {
+      MYTFTtmps2 = SIZE - 1; //scale
+      do {
+        MYTFTdrawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
+        } while (MYTFTtmps2--);
+    } while (MYTFTtmps1--);
   } while (MYTFTtmpy--);
 } while (MYTFTtmpx--);
+
 `
-  return codedraw.replace(new RegExp('MYTFT', 'g'), tftName).replace(new RegExp('SPRITE', 'g'), spriteName).replace(new RegExp('XPOS', 'g'), xpos).replace(new RegExp('YPOS', 'g'), ypos);
+  return codedraw.replace(new RegExp('MYTFT', 'g'), tftName).replace(new RegExp('SPRITE', 'g'), spriteName).replace(new RegExp('XPOS', 'g'), xpos).replace(new RegExp('YPOS', 'g'), ypos).replace(new RegExp('SIZE', 'g'), size);
 };
 
