@@ -15,10 +15,6 @@ goog.provide('Blockly.Blocks.colour2');
 goog.require('Blockly.Blocks');
 
 
-/** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.button.HUE = 250;
-
-
 Blockly.Blocks['colour_rgb255'] = {
   /**
    * Block for composing a colour from RGB components.
