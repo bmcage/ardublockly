@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2018-01-06 17:45:13.233682",
+		"lastupdated": "2018-04-03 09:24:39.099691",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -436,5 +436,17 @@
 	"ARD_7SEGMENT_WRITE": "show number",
 	"ARD_7SEGMENT_WRITE_TIP": "Write a specific number to the 7-segment display. Number must be between 0 and 9, otherwise nothing is shown.",
 	"ARD_7SEGMENT_WRITESEG": "Set segment",
-	"ARD_7SEGMENT_WRITESEG_TIP": "Set a specific segment of the 7-Segment display high"
+	"ARD_7SEGMENT_WRITESEG_TIP": "Set a specific segment of the 7-Segment display high",
+	"ARD_TFT_COMPONENT": "TFT-Scherm",
+	"ARD_TFT_COMPONENT_TIP": "The ST7735 1.8” Color TFT scherm. Scherm is 128x160 pixels.",
+	"COLOUR_RGB255_TOOLTIP": "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker",
+	"ARD_TFT_TEXT_WRITE": "Write text",
+	"ARD_TFT_TEXT_COLOUR": "Colour of the text",
+	"ARD_TFT_TEXT_SIZE": "Size",
+	"ARD_TFT_TEXT_XPOS": "X Position",
+	"ARD_TFT_TEXT_YPOS": "Y Position",
+	"ARD_TFT_TEXT_TIP": "Write a text to the screen in the given colour at the given position.",
+	"ARD_TFT_BG_COLOUR": "Color of the background",
+	"ARD_TFT_BG_TIP": "Fill the entire screen with the given colour",
+	"ARD_TFT_SPRITE_NAME": "Sprite named"
 }
