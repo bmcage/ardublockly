@@ -211,6 +211,7 @@ Blockly.Msg.ARD_SERVO_ROTATEPERC = '% (-100 to 100)';
 Blockly.Msg.ARD_SERVO_ROTATE_TIP = 'Turn a Servo with a specific speed';
 Blockly.Msg.ARD_SERVOHUB_WRITE = 'set 180 degree Servo ';
 Blockly.Msg.ARD_SERVOHUB_READ = 'read Servo ';
+
 Blockly.Msg.REPLACE_EXISTING_BLOCKS = 'Replace existing blocks? "Cancel" will merge.';
 
 //Arduino blocks define as a specific type
@@ -533,3 +534,15 @@ Blockly.Msg.ARD_7SEGMENT_WRITE = 'show number';
 Blockly.Msg.ARD_7SEGMENT_WRITE_TIP = 'Write a specific number to the 7-segment display. Number must be between 0 and 9, otherwise nothing is shown.';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG = 'Set segment';
 Blockly.Msg.ARD_7SEGMENT_WRITESEG_TIP = 'Set a specific segment of the 7-Segment display high';
+Blockly.Msg.ARD_TFT_COMPONENT = 'TFT-Scherm';
+Blockly.Msg.ARD_TFT_COMPONENT_TIP = 'The ST7735 1.8” Color TFT scherm. Scherm is 128x160 pixels.';
+Blockly.Msg.COLOUR_RGB255_TOOLTIP = 'Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 255. See https://www.google.be/search?q=color+picker';
+Blockly.Msg.ARD_TFT_TEXT_WRITE = 'Write text';
+Blockly.Msg.ARD_TFT_TEXT_COLOUR = 'Colour of the text';
+Blockly.Msg.ARD_TFT_TEXT_SIZE = 'Size';
+Blockly.Msg.ARD_TFT_TEXT_XPOS = 'X Position';
+Blockly.Msg.ARD_TFT_TEXT_YPOS = 'Y Position';
+Blockly.Msg.ARD_TFT_TEXT_TIP = 'Write a text to the screen in the given colour at the given position.';
+Blockly.Msg.ARD_TFT_BG_COLOUR = 'Color of the background';
+Blockly.Msg.ARD_TFT_BG_TIP = 'Fill the entire screen with the given colour';
+Blockly.Msg.ARD_TFT_SPRITE_NAME = 'Sprite named';

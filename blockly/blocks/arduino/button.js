@@ -96,6 +96,48 @@ Blockly.Blocks['button_input_pullup_setup'] = {
   }
 };
 
+Blockly.Blocks['button_read'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_BUTTON_READ)
+        .appendField(
+            new Blockly.FieldInstance('Button',
+                                      Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
+                                      false, true, false),
+            'BUTTONNAME');
+    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setColour(Blockly.Blocks.button.HUE);
+    this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+    this.setHelpUrl('');
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  },
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('BUTTONNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Button', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_BUTTON_COMPONENT).replace(
+                '%2', instanceName));
+    }
+  }
+};
+
 Blockly.Blocks['button_input'] = {
   init: function() {
     this.appendDummyInput()

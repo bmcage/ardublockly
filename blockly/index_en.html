@@ -32,6 +32,7 @@
   <script src="blocks/component_variable.js"></script>
   <script src="blocks/arduino/allbot.js"></script>
   <script src="blocks/arduino/button.js"></script>
+  <script src="blocks/arduino/colour2.js"></script>
   <script src="blocks/arduino/components.js"></script>
   <script src="blocks/arduino/component_diorama.js"></script>
   <script src="blocks/arduino/declare.js"></script>
@@ -48,6 +49,7 @@
   <script src="blocks/arduino/servo.js"></script>
   <script src="blocks/arduino/spi.js"></script>
   <script src="blocks/arduino/stepper.js"></script>
+  <script src="blocks/arduino/tft.js"></script>
   <script src="blocks/arduino/time.js"></script>
   <script src="blocks/arduino/tone.js"></script>
   <script src="blocks/arduino/variables.js"></script>
@@ -80,6 +82,7 @@
   <script src="generators/arduino/servo.js"></script>
   <script src="generators/arduino/spi.js"></script>
   <script src="generators/arduino/stepper.js"></script>
+  <script src="generators/arduino/tft.js"></script>
   <script src="generators/arduino/text.js"></script>
   <script src="generators/arduino/time.js"></script>
   <script src="generators/arduino/tone.js"></script>
@@ -308,6 +311,7 @@
     <block type="button_setup"></block>
     <block type="button_input_pullup_setup"></block>
     <block type="button_input"></block>
+    <block type="button_read"></block>
     <block type="digitaloutput_config_hub"></block>
     <block type="digitaloutput_write"></block>
     <block type="pwmoutput_config_hub"></block>
@@ -565,15 +569,6 @@
       </value>
     </block>
     <block type="io_notone"></block>
-    <block type="segment_config"></block>
-    <block type="segment_write_number">
-        <value name="SEG_VAL">
-            <block type="math_number">
-                <field name="NUM">1</field>
-            </block>
-        </value>
-    </block>
-    <block type="segment_write_singleseg"></block>
   </category>
   <category id="catMotors" name="Motors">
     <block type="servo_config_hub"></block>
@@ -640,6 +635,25 @@
     <block type="spi_setup"></block>
     <block type="spi_transfer"></block>
     <block type="spi_transfer_return"></block>
+  </category>
+  <category id="catDisplays" name="Screens">
+    <block type="tft_config"></block>
+    <block type="tft_text"></block>
+    <block type="tft_backgroundcolor"></block>
+    <block type="tft_sprite8x8"></block>
+    <block type="colour_picker"></block>
+    <block type="colour_random"></block>
+    <block type="colour_rgb255"></block>
+    <!--block type="colour_blend"></block-->
+    <block type="segment_config"></block>
+    <block type="segment_write_number">
+        <value name="SEG_VAL">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>
+    </block>
+    <block type="segment_write_singleseg"></block>
   </category>
   <sep></sep>
   <category id="catExp" name="Extra Sets">
