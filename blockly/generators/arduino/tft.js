@@ -262,10 +262,10 @@ Blockly.Arduino['tft_line'] = function(block) {
 void MYTFTdrawline(uint16_t color, int x1, int y1, int x2, int y2) {
   if (x1 == x2) {
     //horizontal line 
-    MYTFT.drawFastHLine(x1, y1, y2-y1, color);
+    MYTFT.drawFastVLine(x1, y1, y2-y1, color);
   } else if (y1 == y2) {
     //vertical line 
-    MYTFT.drawFastVLine(x1, y1, x2-x1, color);
+    MYTFT.drawFastHLine(x1, y1, x2-x1, color);
   } else {
     MYTFT.drawLine(x1, y1, x2, y2, color);
   }
