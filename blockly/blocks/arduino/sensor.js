@@ -169,3 +169,76 @@ Blockly.Blocks['DHT_readRH'] = {
     }
   }
 };
+
+Blockly.Blocks['sonic_config_hub'] = {
+  /**
+   * Block for adding a Sonic sensor.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("media/arduino/hc-sr04.png", 60, 40, "*"))
+        .appendField(Blockly.Msg.ARD_SONICHUB)
+        .appendField(
+            new Blockly.FieldInstance('Supersonic',
+                                      Blockly.Msg.ARD_SONIC_DEFAULT_NAME,
+                                      true, true, false),
+            'NAMESONIC')
+    this.appendDummyInput()
+        .appendField('Echo pin:')
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(new Blockly.FieldDropdown(
+            Blockly.Arduino.Boards.selected.digitalPins), 'ECHO')
+        .appendField('Trigger pin:')
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(new Blockly.FieldDropdown(
+            Blockly.Arduino.Boards.selected.digitalPins), 'TRIGGER')
+    this.appendValueInput('SONIC_TIME')
+        .appendField(Blockly.Msg.ARD_SONIC_TEXT_TIME)
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setColour(Blockly.Blocks.sensor.HUE);
+    this.setTooltip(Blockly.Msg.ARD_DHTHUB_TIP);
+    this.setHelpUrl('');
+  },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
+  setHubConnector: function(connector) {
+    this['connector'] = connector;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  }
+};
+
+Blockly.Blocks['sonic_read'] = {
+  /**
+   * Block for reading the distance of a supersonic distance sensor.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('');
+    this.setColour(Blockly.Blocks.sensor.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_SONIC_READ)
+        .appendField(
+                new Blockly.FieldInstance('Supersonic', 
+                                          Blockly.Msg.ARD_SONIC_DEFAULT_NAME,
+                                          false, true, false), 'NAMESONIC');
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setTooltip(Blockly.Msg.ARD_SERVO_READ_TIP);
+  },
+  /** @return {string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.NUMBER;
+  }
+};

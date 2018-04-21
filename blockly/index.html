@@ -15,11 +15,11 @@
   
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version-->
-  <script src="blockly_compressed.js"></script>
+  <!--<script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script>-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -93,7 +93,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
 
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
@@ -1077,6 +1077,14 @@
       <block type="DHT_config_hub"></block>      
       <block type="DHT_readTemp"></block>    
       <block type="DHT_readRH"></block>
+      <block type="sonic_config_hub">
+          <value name="SONIC_TIME">
+            <block type="math_number">
+                <field name="NUM">2000</field>
+            </block>
+        </value>
+      </block>
+      <block type="sonic_read"></block>
     </category>
   </category>
 </xml>;
