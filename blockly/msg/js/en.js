@@ -688,6 +688,7 @@ Blockly.Msg.ARD_OLED = "OLED";
 Blockly.Msg.ARD_OLED_CURSORX = "set cursor position X";
 Blockly.Msg.ARD_OLED_CURSORY = "Y";
 Blockly.Msg.ARD_OLED_PRINT = "print";
+Blockly.Msg.ARD_OLED_FONT_SIZE = "choose font size";
 Blockly.Msg.ARD_OLED_WRITE = "write to display";
 Blockly.Msg.ARD_OUTPUT_WRITE_TO = "value";
 Blockly.Msg.ARD_PIN_AN = "analog pin";

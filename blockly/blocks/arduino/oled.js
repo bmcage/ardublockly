@@ -37,6 +37,27 @@ Blockly.Blocks['oled_config'] = {
     }
 };
 
+/** Sets the font and font-size of the text */
+Blockly.Blocks['oled_font'] = {
+    init: function () {
+        this.setColour(Blockly.Blocks.oled.HUE);
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.ARD_OLED)
+            .appendField(
+                new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME, false, true, false), 'OLED_NAME')
+            .appendField(Blockly.Msg.ARD_OLED_FONT_SIZE)
+            .appendField(new Blockly.FieldDropdown(
+            [['8px','08'],
+            ['14px', '14'],
+            ['24px', '24']]) // msg, state
+                         , 'OLED_FONT_SIZE');
+        this.setPreviousStatement(true, 'ARD_BLOCK');
+        this.setNextStatement(true, 'ARD_BLOCK');
+        this.setTooltip('');
+        this.setHelpUrl('');
+    }
+};
+
 /** Block to set cursor position on the screen and print given text */
 Blockly.Blocks['oled_print'] = {
     init: function () {

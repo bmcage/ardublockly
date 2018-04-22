@@ -39,18 +39,29 @@ Blockly.Arduino['oled_config'] = function(block) {
     /** 
      * Each resolution needs another setup!! 
      * If other resolution screen are used,
-     * Add them with else-if
+     * Add them with if-else
      */
     if(oledResolution == '128x32') {
-        declarationCode = `U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);`
+        declarationCode = 'U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
     }
     Blockly.Arduino.addDeclaration(oledName, declarationCode);
     
     var setupCode = 'u8g2.begin();';
     Blockly.Arduino.addSetup(oledName, setupCode, true);
     
-    var returnCode = 'u8g2.clearBuffer(); // clear internal memory\n' + 
-    'u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font\n'
+    var returnCode = 'u8g2.clearBuffer(); // clear internal memory\n';
+    return returnCode;
+};
+
+/**
+ * The OLED Font block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['oled_font'] = function(block) {
+    var fontSize = block.getFieldValue('OLED_FONT_SIZE')
+    
+    var returnCode = 'u8g2.setFont(u8g2_font_ncenB' + fontSize + '_tr); // choose a suitable font\n';
     return returnCode;
 };
 
