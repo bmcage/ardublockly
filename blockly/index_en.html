@@ -104,7 +104,7 @@
   <script type="text/javascript" src="blockly4Arduino/blockly_helper.js"></script>
 
 </head>
-<body>
+<body onload='checkExtension(), populatePorts()'>
   <table height="100%" width="100%">
     <tr>
       <td>
@@ -235,7 +235,37 @@
   <!--textarea id="content_arduino" class="content" readonly wrap="off"></textarea-->
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 
-  <div id="content_codebender" class="content" style="visibility:hidden"><!--iframe id="codebender_iframe" style="margin: 10px 0 10px; width:100%; height:100%" allowTransparency="true" src="https://codebender.cc/sketch:282881" frameborder="0"></iframe-->Use one of the following tools to program your Arduino:
+  <div id="content_codebender" class="content" style="visibility:hidden">
+      <div>
+        Choose type of board:
+        <select class="form-control" id="boardType">
+            <option value='{"builder":"arduino:avr:uno","ext":"uno"}'>Arduino  Uno</option>
+            <option value='{"builder":"arduino:avr:mega:cpu=atmega1280","ext":"mega"}'>Arduino  Mega1280</option>
+            <option value='{"builder":"arduino:avr:mega:cpu=atmega2560","ext":"mega"}'>Arduino  Mega2560</option>
+            <option value='{"builder":"arduino:avr:megaAdk","ext":"adk"}'>Arduino  ADK</option>
+            <option value='{"builder":"arduino:avr:leonardo","ext":"leonardo"}'>Arduino  Leonardo</option>
+            <option value='{"builder":"arduino:avr:micro","ext":"micro"}'>Arduino  Micro</option>
+            <option value='{"builder":"arduino:avr:nano:cpu=atmega328","ext":"nano"}'>Arduino Nano328</option>
+            <option value='{"builder":"arduino:avr:lilypad-usb","ext":"lilypad-usb"}'>Arduino Lilypad USB</option>
+            <option value='{"builder":"arduino:avr:diecimila:cpu=atmega168","ext":"duemilanove168"}'>Arduino Duemilanove168</option>
+            <option value='{"builder":"arduino:avr:yun","ext":"yun"}'>Arduino Yun</option>
+        </select>
+        Choose port:
+        <select class="form-control" id="portType">		
+        </select><br/>
+        <button type="button" class="btn btn-default btn-md" onclick="verifyCode()">
+          <a class="b4ard_tt" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verifiëren">
+            <span class="glyphicon glyphicon-check"></span>
+          </a>
+        </button>
+        <button type="button" class="btn btn-default btn-md" onclick="uploadCode()">
+          <a class="b4ard_tt" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Opladen">
+            <span class="glyphicon glyphicon-play-circle"></span>
+          </a>
+        </button>
+      </div><br/>
+      Status:
+      <div id="lblStatus" style="overflow: auto; white-space: pre; height: 150px"></div><br/><!--iframe id="codebender_iframe" style="margin: 10px 0 10px; width:100%; height:100%" allowTransparency="true" src="https://codebender.cc/sketch:282881" frameborder="0"></iframe-->Use one of the following tools to program your Arduino:
     <ul>
       <li style="list-style-type: circle;margin-left: 20px;">Chrome OS or Chrome browser: <a href="https://chrome.google.com/webstore/detail/chromeduino/dmkincdpchiadkhhocmbpjljebfifgbl">ChromeDuino</a>. Once you install this app in Chrome, you can start it via the <b>Launch</b> button or using the Apps start screen.
         <!--div id="" class="app-contents">
