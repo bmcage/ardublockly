@@ -345,7 +345,7 @@ function populatePorts() {
 }
 
 /**
-*
+* Function getCode() will return the generated Arduino Code
 */ 
 function getCode() {
     const content = document.getElementById("content_arduino").innerText;
@@ -432,9 +432,25 @@ function uploadCode(){
     }
 }
 
-// open long lived connection with extension (it takes time for flash to complete)
+/*
+* Function setCompilerAddress will change the IP-address where the verify -and upload
+* function will send their HTTP POST-messages to
+*/
+function setCompilerAddress(){
+    newUrl = window.prompt('New IP Address Compiler', compilerUrl);
+    if(newUrl == null || newUrl == ''){
+        console.log('User cancelled the IP Address prompt');
+    } else {
+        compilerUrl = newUrl;
+        console.log('New compilerUrl: ' + compilerUrl);
+    }
+}
+
+// Requires the extensionId if the wants to connect to the extension
 var extensionid = 'gdahkmncihlpfmcfbokcdapegfikgpcm';
+// open long lived connection with extension (it takes time for flash to complete)
 var port = chrome.runtime.connect(extensionid);
+// Standard URL where the compiler is located
 var compilerUrl = 'http://localhost:7000/compile';
 // log out any responses we get from the chrome app
 port.onMessage.addListener(function(msg) {
