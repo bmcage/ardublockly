@@ -468,5 +468,14 @@
     "ARD_TFT_CIRC_XPOS": "X Positie Centrum",
     "ARD_TFT_CIRC_YPOS": "Y Positie Centrum",
     "ARD_TFT_CIRC_RADIUS": "Straal",
-    "ARD_TFT_CIRC_TIP": "Teken een cirkel op het scherm met de gegeven coordinaten in de gegeven kleur. Als 'Vul' aan staat zal de cirkel gevuld worden met de kleur, anders wordt enkel de rand getekend."
+    "ARD_TFT_CIRC_TIP": "Teken een cirkel op het scherm met de gegeven coordinaten in de gegeven kleur. Als 'Vul' aan staat zal de cirkel gevuld worden met de kleur, anders wordt enkel de rand getekend.",
+    "ARD_OLED_INIT": "OLED Initialiseer",
+    "ARD_OLED_DEFAULT_NAME": "OLED1",
+    "ARD_OLED_RESOLUTIE": "met resolutie",
+    "ARD_OLED": "OLED",
+    "ARD_OLED_CURSORX": "zet cursor positie X",
+    "ARD_OLED_CURSORY": "Y",
+    "ARD_OLED_FONT_SIZE": "kies font grootte",
+    "ARD_OLED_PRINT": "print",
+    "ARD_OLED_WRITE": "schrijf naar display"
 }

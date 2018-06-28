@@ -567,3 +567,13 @@ Blockly.Msg.ARD_TFT_CIRC_YPOS = 'Y Position Center';
 Blockly.Msg.ARD_TFT_CIRC_RADIUS = 'Radius';
 Blockly.Msg.ARD_TFT_CIRC_HEIGHT = 'Height';
 Blockly.Msg.ARD_TFT_CIRC_TIP = 'Draw a circle on the screen with the given coordinates in the given colour. If Filled is checked the circle is filled, otherwise only an outline';
+Blockly.Msg.ARD_OLED_INIT = 'OLED Initialise';
+Blockly.Msg.ARD_OLED_DEFAULT_NAME = 'OLED1';
+Blockly.Msg.ARD_OLED_RESOLUTIE = 'with resolution';
+Blockly.Msg.ARD_OLED = 'OLED';
+Blockly.Msg.ARD_OLED_CURSORX = 'set cursor position X';
+Blockly.Msg.ARD_OLED_CURSORY = 'Y';
+Blockly.Msg.ARD_OLED_PRINT = 'print';
+Blockly.Msg.ARD_OLED_FONT_SIZE = 'choose font size';
+Blockly.Msg.ARD_OLED_WRITE = 'write to display';
+
