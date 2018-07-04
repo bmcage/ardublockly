@@ -571,9 +571,15 @@ Blockly.Msg.ARD_OLED_INIT = 'OLED Initialise';
 Blockly.Msg.ARD_OLED_DEFAULT_NAME = 'OLED1';
 Blockly.Msg.ARD_OLED_RESOLUTIE = 'with resolution';
 Blockly.Msg.ARD_OLED = 'OLED';
+Blockly.Msg.ARD_OLED_CONFIG_TIP = 'Define a display of the given resolution to use to write text to';
 Blockly.Msg.ARD_OLED_CURSORX = 'set cursor position X';
 Blockly.Msg.ARD_OLED_CURSORY = 'Y';
 Blockly.Msg.ARD_OLED_PRINT = 'print';
 Blockly.Msg.ARD_OLED_FONT_SIZE = 'choose font size';
+Blockly.Msg.ARD_OLED_FONT_TIP = 'Select the font size to use to write text from now on';
+Blockly.Msg.ARD_OLED_PRINT_TIP = 'Prepare to show the given text on the display in the given size. You need to use the write block to actually see it!';
 Blockly.Msg.ARD_OLED_WRITE = 'write to display';
+Blockly.Msg.ARD_OLED_WRITE_TIP = 'After you have printed text on the display, use this block to actually show the text.';
+Blockly.Msg.ARD_OLED_CLEAR = 'clear display';
+Blockly.Msg.ARD_OLED_CLEAR_TIP = 'Before writing new text to the display, use this block to clear it first.';
 

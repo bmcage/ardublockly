@@ -25,14 +25,15 @@ Blockly.Blocks['oled_config'] = {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ARD_OLED_INIT)
             .appendField(
-                new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME, false, true, false), 'OLED_NAME')
+                new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME,
+                                           false, true, false), 'OLED_NAME')
             .appendField(Blockly.Msg.ARD_OLED_RESOLUTIE)
             .appendField(new Blockly.FieldDropdown(
             [['128x32','128x32']]) // msg, state
                          , 'OLED_RES');
-        this.setPreviousStatement(true, 'ARD_BLOCK');
-        this.setNextStatement(true, 'ARD_BLOCK');
-        this.setTooltip('');
+        this.setPreviousStatement(true, 'ARD_COMP_BLOCK');
+        this.setNextStatement(true, 'ARD_COMP_BLOCK');
+        this.setTooltip(Blockly.Msg.ARD_OLED_CONFIG_TIP);
         this.setHelpUrl('');
     }
 };
@@ -53,7 +54,7 @@ Blockly.Blocks['oled_font'] = {
                          , 'OLED_FONT_SIZE');
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');
-        this.setTooltip('');
+        this.setTooltip(Blockly.Msg.ARD_OLED_FONT_TIP);
         this.setHelpUrl('');
     }
 };
@@ -77,7 +78,25 @@ Blockly.Blocks['oled_print'] = {
         this.setInputsInline(true);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');
-        this.setTooltip('');
+        this.setTooltip(Blockly.Msg.ARD_OLED_PRINT_TIP);
+        this.setHelpUrl('');
+    }
+};
+
+/** Block to clear everything to the display */
+Blockly.Blocks['oled_clear'] = {
+    init: function () {
+        this.setColour(Blockly.Blocks.oled.HUE);
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.ARD_OLED)
+            .appendField(
+                new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME,
+                                          false, true, false), 'OLED_NAME')
+            .appendField(Blockly.Msg.ARD_OLED_CLEAR);
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, 'ARD_BLOCK');
+        this.setNextStatement(true, 'ARD_BLOCK');
+        this.setTooltip(Blockly.Msg.ARD_OLED_CLEAR_TIP);
         this.setHelpUrl('');
     }
 };
@@ -94,7 +113,7 @@ Blockly.Blocks['oled_show'] = {
         this.setInputsInline(false);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');
-        this.setTooltip('');
+        this.setTooltip(Blockly.Msg.ARD_OLED_WRITE_TIP);
         this.setHelpUrl('');
     }
 };
