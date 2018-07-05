@@ -33,6 +33,31 @@ goog.require('Blockly.Msg');
  */
 
 /**
+ * Blockly4Arduino Website Messages
+ */
+
+/// Message when Chrome is not used
+Blockly.Msg.B4A_NO_CHROME = 'You need to use Google Chrome to use this Upload functionality';
+/// Message when Chrome extension is not available
+Blockly.Msg.B4A_NO_EXTENSION = 'Chrome Extension is not installed';
+/// Verify the code failed
+Blockly.Msg.B4A_VERIFY_FAIL = 'Verify failed. Chrome Extension is not installed';
+/// Uploading the code failed
+Blockly.Msg.B4A_UPLOAD_FAIL = 'Upload failed. Chrome Extension is not installed';
+/// Message on error on upload or verify
+Blockly.Msg.B4A_ERROR = 'ERROR!';
+/// Message on success on upload or verify
+Blockly.Msg.B4A_SUCCESS = 'SUCCESS!';
+/// Indication flashing in progress to Arduino
+Blockly.Msg.B4A_FLASHING = 'Flashing to device';
+/// Indication of error with compiler returning empty file
+Blockly.Msg.B4A_COMPILE_EMPTY = 'Compiler returned empty file - Device not flashed';
+/// Dialog box message requesting IP address
+Blockly.Msg.B4A_SET_IP_COMPILER = 'New IP Address Compiler';
+/// Notify user of return message of the chrome extension
+Blockly.Msg.B4A_MSG_EXTENSION = 'Message from extension: ';
+
+/**
  * Ardublockly Types
  */
 /// Arduino Types - Character C type char

@@ -12,6 +12,7 @@
 goog.provide('Blockly.Blocks.sensor');
 
 goog.require('Blockly.Blocks');
+goog.require('Blockly.Blocks.io');
 goog.require('Blockly.Types');
 
 
