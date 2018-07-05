@@ -1,10 +1,20 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2018-04-15 12:17:37.898085",
+		"lastupdated": "2018-07-05 16:47:57.410383",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
+	"B4A_NO_CHROME": "You need to use Google Chrome to use this Upload functionality",
+	"B4A_NO_EXTENSION": "Chrome Extension is not installed",
+	"B4A_VERIFY_FAIL": "Verify failed. Chrome Extension is not installed",
+	"B4A_UPLOAD_FAIL": "Upload failed. Chrome Extension is not installed",
+	"B4A_ERROR": "ERROR!",
+	"B4A_SUCCESS": "SUCCESS!",
+	"B4A_FLASHING": "Flashing to device",
+	"B4A_COMPILE_EMPTY": "Compiler returned empty file - Device not flashed",
+	"B4A_SET_IP_COMPILER": "New IP Address Compiler",
+	"B4A_MSG_EXTENSION": "Message from extension: ",
 	"ARD_TYPE_CHAR": "Character",
 	"ARD_TYPE_TEXT": "Text",
 	"ARD_TYPE_BOOL": "Boolean",
@@ -469,5 +479,20 @@
 	"ARD_TFT_CIRC_YPOS": "Y Position Center",
 	"ARD_TFT_CIRC_RADIUS": "Radius",
 	"ARD_TFT_CIRC_HEIGHT": "Height",
-	"ARD_TFT_CIRC_TIP": "Draw a circle on the screen with the given coordinates in the given colour. If Filled is checked the circle is filled, otherwise only an outline"
+	"ARD_TFT_CIRC_TIP": "Draw a circle on the screen with the given coordinates in the given colour. If Filled is checked the circle is filled, otherwise only an outline",
+	"ARD_OLED_INIT": "OLED Initialise",
+	"ARD_OLED_DEFAULT_NAME": "OLED1",
+	"ARD_OLED_RESOLUTIE": "with resolution",
+	"ARD_OLED": "OLED",
+	"ARD_OLED_CONFIG_TIP": "Define a display of the given resolution to use to write text to",
+	"ARD_OLED_CURSORX": "set cursor position X",
+	"ARD_OLED_CURSORY": "Y",
+	"ARD_OLED_PRINT": "print",
+	"ARD_OLED_FONT_SIZE": "choose font size",
+	"ARD_OLED_FONT_TIP": "Select the font size to use to write text from now on",
+	"ARD_OLED_PRINT_TIP": "Prepare to show the given text on the display in the given size. You need to use the write block to actually see it!",
+	"ARD_OLED_WRITE": "write to display",
+	"ARD_OLED_WRITE_TIP": "After you have printed text on the display, use this block to actually show the text.",
+	"ARD_OLED_CLEAR": "clear display",
+	"ARD_OLED_CLEAR_TIP": "Before writing new text to the display, use this block to clear it first."
 }
