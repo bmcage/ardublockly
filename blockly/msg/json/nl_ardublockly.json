@@ -4,6 +4,17 @@
 			"Benny Malengier"
 		]
 	},
+  
+	"B4A_NO_CHROME": "Je moet Google Chrome gebruiken om deze Upload functionaliteit te kunnen gebruiken",
+	"B4A_NO_EXTENSION": "Chrome Extensie is niet  geïnstalleerd",
+	"B4A_VERIFY_FAIL": "Verifieren mislukt. Chrome Extensie is niet  geïnstalleerd",
+	"B4A_UPLOAD_FAIL": "Upload mislukt. Chrome Extensie is niet  geïnstalleerd",
+	"B4A_ERROR": "FOUTEN!",
+	"B4A_SUCCESS": "SUCCES!",
+	"B4A_FLASHING": "Code aan het uploaden naar het toestel",
+	"B4A_COMPILE_EMPTY": "Compiler gaf leeg bestand terug - Code niet opgeladen naar toestel",
+	"B4A_SET_IP_COMPILER": "Nieuw IP Address voor de compiler",
+	"B4A_MSG_EXTENSION": "Bericht van de extensie: ",
 	"ARD_TYPE_CHAR": "Letter",
 	"ARD_TYPE_TEXT": "Tekst",
 	"ARD_TYPE_BOOL": "Bool (0 of 1)",
