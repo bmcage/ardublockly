@@ -459,8 +459,22 @@ function setCompilerAddress(){
     }
 }
 
+/*
+* Function setCompilerAddress will change the IP-address where the verify and upload
+* function will send their HTTP POST-messages to
+*/
+function setExtensionId(){
+    newId = window.prompt(Blockly.Msg.B4A_SET_EXT_ID, extensionid);
+    if(newId == null || newId == ''){
+        console.log('User cancelled the Extension ID prompt');
+    } else {
+        extensionid = newId;
+        console.log('New ExtensionId: ' + extensionid);
+    }
+}
+
 // Requires the extensionId if the wants to connect to the extension
-var extensionid = 'gdahkmncihlpfmcfbokcdapegfikgpcm';
+var extensionid = 'limahhklinobffpljkonpenchljefiag';
 // open long lived connection with extension (it takes time for flash to complete)
 var port;
 if (typeof chrome !== 'undefined') {
