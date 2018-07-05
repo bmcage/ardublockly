@@ -470,6 +470,7 @@ function setExtensionId(){
     } else {
         extensionid = newId;
         console.log('New ExtensionId: ' + extensionid);
+        checkExtension();
     }
 }
 
