@@ -6,6 +6,11 @@ Blockly4Arduino differs from Ardublockly in that an Arduino block is present to 
 
 ![Blockly4Arduino site screenshot][blockly4arduino_screenshot]
 
+## ArduinoBuilder integration
+Blockly4Arduino can use [ArduinoBuilder][19] to integrate cloud compilation of Arduino Sketches. The chrome extension required locally is: https://chrome.google.com/webstore/detail/limahhklinobffpljkonpenchljefiag/ 
+
+See the ArduinoBuilder link for how to install it on your server.
+
 # Ardublockly
 The `ArdublocklyServer` Python package initialises a local server to be able to compile and load the Arduino code using the [Arduino IDE][2].
 
@@ -131,6 +136,7 @@ limitations under the License.
 [16]: https://github.com/BlocklyDuino/BlocklyDuino
 [17]: blockly/README.md
 [18]: http://blokkencode.ingegno.be
+[19]: https://github.com/RMeurisse/ArduinoBuilder
 
 [desktop_screeshot]: http://carlosperate.github.io/ardublockly/images/screenshot_desktop_1.png
 [web_screenshot_responsive]: http://carlosperate.github.io/ardublockly/images/screenshot_material_all_small.jpg
