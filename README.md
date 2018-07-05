@@ -1,6 +1,12 @@
-# Ardublockly
-Ardublockly is a visual programming editor for Arduino. It is based on Google's [Blockly][1], which has been forked to generate [Arduino][15] code.
+# General Ardublockly
+Ardublockly is a visual programming editor for Arduino. It is based on Google's [Blockly][1], which has been forked to generate [Arduino][15] code. This fork of Ardublockly maintains a different approach to the block layout, used in the end website [Blockly4Arduino][18].
 
+# Blockly4Arduino
+Blockly4Arduino differs from Ardublockly in that an Arduino block is present to which components are attached. This resembles the physical layout of your project. Based on the components, functionality can then be implemented using the component blocks.
+
+![Blockly4Arduino site screenshot][blockly4arduino_screenshot]
+
+# Ardublockly
 The `ArdublocklyServer` Python package initialises a local server to be able to compile and load the Arduino code using the [Arduino IDE][2].
 
 This is all packaged in a self contained executable desktop application for Windows, Mac OS X, and Linux.
@@ -124,12 +130,14 @@ limitations under the License.
 [15]: http://www.arduino.cc
 [16]: https://github.com/BlocklyDuino/BlocklyDuino
 [17]: blockly/README.md
+[18]: http://blokkencode.ingegno.be
 
 [desktop_screeshot]: http://carlosperate.github.io/ardublockly/images/screenshot_desktop_1.png
 [web_screenshot_responsive]: http://carlosperate.github.io/ardublockly/images/screenshot_material_all_small.jpg
 [web_screenshot_classic]: http://carlosperate.github.io/ardublockly/images/screenshot_1.png
+[blockly4arduino_screenshot]: http://bmcage.github.io/ardublockly/images/Screenshot_blockly4arduino.png
 
-## blockly4arduino branch
+# Blockly4arduino branch details
 Here development happens for the Blockly4Arduino website version of ArduBlockly.
 
 In master: `git pull https://github.com/carlosperate/ardublockly.git master`
