@@ -311,6 +311,7 @@ function checkExtension() {
     if (typeof chrome !== 'undefined') {
       chrome.runtime.sendMessage(extensionid, 'check', response => {
           if(!response) {
+              console.log("No response received. " + response);
               lblStatus.innerHTML +=  Blockly.Msg.B4A_NO_EXTENSION + '\n';
               extensionActive = false;
           } else {
@@ -392,11 +393,9 @@ function verifyCode(){
     var boardType = document.getElementById('boardType');
     var lblStatus = document.getElementById('lblStatus');
     lblStatus.innerHTML = "";
-    // First check if extension is installed.
-    if(!extensionActive) { 
-        lblStatus.innerHTML += Blockly.Msg.B4A_VERIFY_FAIL + '\n';
-    } else {
-      $.post(compilerUrl, {'data': getCode(), 'boardName': JSON.parse(boardType.value)['builder']}, function(data){
+    $.post('http://' + compilerUrl + ':' + compilerPort + '/compile',
+      {'data': getCode(), 'boardName': JSON.parse(boardType.value)['builder']},
+      function(data){
           console.log(data);
           if(data['err'] !== '') {
               lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_ERROR + '</b> ' + data['err'] + '\n';
@@ -404,7 +403,6 @@ function verifyCode(){
               lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_SUCCESS + '</b> ' + data['out'] + '\n';
           }
       });
-    }
 }
 /**
 * Function uploadtxt() will flash the code in the textbox to the connected device
@@ -421,27 +419,29 @@ function uploadCode(){
     if(!extensionActive) { 
         lblStatus.innerHTML += Blockly.Msg.B4A_UPLOAD_FAIL + '\n';
     } else {
-        $.post(compilerUrl, {'data': getCode(), 'boardName': JSON.parse(boardType.value)['builder']}, function(data){
-            console.log(data);
-            if(data['err'] !== '') {
-                lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_ERROR + '</b> ' + data['err'] + '\n';
-            } else if(JSON.stringify(data['hex']) !== '') {
-                // get the message payload ready to send to the chrome app	
-                lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_SUCCESS + '</b> ' + data['out'] + '\n';
-                var message = {
-                    board: JSON.parse(boardType.value)['ext'], 
-                    port: portType.value,
-                    file: data['hex']
-                };
-                // post object to extension so that it will flash the file		
-                lblStatus.innerHTML += Blockly.Msg.B4A_FLASHING + "\n";						
-                console.log("Flashing file to device");					
-                port.postMessage(message);
-            } else {
-                console.log("Compiler returned empty file - Device not flashed.");
-                lblStatus.innerHTML += Blockly.Msg.B4A_COMPILE_EMPTY + "\n";
-            }
-        });
+        $.post('http://' + compilerUrl + ':' + compilerPort + '/compile',
+            {'data': getCode(), 'boardName': JSON.parse(boardType.value)['builder']},
+            function(data){
+                console.log(data);
+                if(data['err'] !== '') {
+                    lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_ERROR + '</b> ' + data['err'] + '\n';
+                } else if(JSON.stringify(data['hex']) !== '') {
+                    // get the message payload ready to send to the chrome app
+                    lblStatus.innerHTML += '<b>' + Blockly.Msg.B4A_SUCCESS + '</b> ' + data['out'] + '\n';
+                    var message = {
+                        board: JSON.parse(boardType.value)['ext'],
+                        port: portType.value,
+                        file: data['hex']
+                    };
+                    // post object to extension so that it will flash the file
+                    lblStatus.innerHTML += Blockly.Msg.B4A_FLASHING + "\n";
+                    console.log("Flashing file to device");
+                    port.postMessage(message);
+                } else {
+                    console.log("Compiler returned empty file - Device not flashed.");
+                    lblStatus.innerHTML += Blockly.Msg.B4A_COMPILE_EMPTY + "\n";
+                }
+            });
     }
 }
 
@@ -460,6 +460,20 @@ function setCompilerAddress(){
 }
 
 /*
+* Function setCompilerPort will change the Port where the verify -and upload
+* function will send their HTTP POST-messages to
+*/
+function setCompilerPort(){
+    newPort = window.prompt(Blockly.Msg.B4A_SET_IP_COMPILER, compilerPort);
+    if(newPort == null || newPort == ''){
+        console.log('User cancelled the Port prompt');
+    } else {
+        compilerPort = newPort;
+        console.log('New compilerPort: ' + compilerPort);
+    }
+}
+
+/*
 * Function setCompilerAddress will change the IP-address where the verify and upload
 * function will send their HTTP POST-messages to
 */
@@ -470,23 +484,44 @@ function setExtensionId(){
     } else {
         extensionid = newId;
         console.log('New ExtensionId: ' + extensionid);
+        if (typeof chrome !== 'undefined') {
+            port = chrome.runtime.connect(extensionid);
+            console.log('Connected to ext ', extensionid, ' as Port ', port )
+            // log out any responses we get from the chrome app
+            if (port) {
+                port.onMessage.addListener(function(msg) {
+                    console.log('Message from extension:', msg);
+                    lblStatus.innerHTML += Blockly.Msg.B4A_MSG_EXTENSION + JSON.stringify(msg) + '\n';
+                });
+            } else {
+                console.log('No connection available to extension !')
+            }
+        }
         checkExtension();
     }
 }
 
+// Standard URL where the compiler is located
+var compilerUrl = 'localhost';
+// Port of the compiler
+var compilerPort = '7000';
+
 // Requires the extensionId if the wants to connect to the extension
-var extensionid = 'limahhklinobffpljkonpenchljefiag';
+//var extensionid = 'dclnahpacbkcmjampfcfjccegljfcbdd'; //local avrgirl
+//var extensionid = 'ljljmcfflicbmldibmdpebbgfmbjhbigc'; // local extension
+var extensionid = 'limahhklinobffpljkonpenchljefiag';  // Chrome Store Extension
 // open long lived connection with extension (it takes time for flash to complete)
 var port;
 if (typeof chrome !== 'undefined') {
-  var port = chrome.runtime.connect(extensionid);
+  port = chrome.runtime.connect(extensionid);
+  console.log('Connected to ext ', extensionid, ' as Port ', port )
 }
-// Standard URL where the compiler is located
-var compilerUrl = 'http://localhost:7000/compile';
 // log out any responses we get from the chrome app
 if (port) {
-  port.onMessage.addListener(function(msg) {
+    port.onMessage.addListener(function(msg) {
       console.log('Message from extension:', msg);
       lblStatus.innerHTML += Blockly.Msg.B4A_MSG_EXTENSION + JSON.stringify(msg) + '\n';
-  });
+    });
+} else {
+    console.log('No connection available to extension !')
 }
