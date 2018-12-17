@@ -112,3 +112,60 @@ Blockly.Arduino['DHT_readRH'] = function(block) {
   var code = dhtName + '_readRH()'
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+/**
+ * The Sonic Sensor HC-SR04 setup block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['sonic_config_hub'] = function(block) {
+    var sonicName = block.getFieldValue('NAMESONIC');
+    var sonicTime = Blockly.Arduino.valueToCode(block, 'SONIC_TIME',
+      Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var sonicDistance = 0;
+    
+    Blockly.Arduino.addVariable(sonicName + '_Echo', 
+                                'int ' + sonicName + '_Echo = ' + block.getFieldValue('ECHO')
+                                + ';\nint ' + sonicName + '_Trigger = ' + 
+                               block.getFieldValue('TRIGGER') + ';\nint ' + 
+                                sonicName + '_Distance = ' + sonicDistance + ';\nint ' + 
+                                sonicName + '_Time = ' + sonicTime + ';\nlong ' + 
+                                sonicName + '_Duration;', true);
+    Blockly.Arduino.reservePin(block, block.getFieldValue('ECHO'), Blockly.Arduino.PinTypes.INPUT, 'SONIC ECHO');
+    Blockly.Arduino.reservePin(block, block.getFieldValue('TRIGGER'), Blockly.Arduino.PinTypes.OUTPUT, 'SONIC TRIGGER');
+    var pinSetupCodeEcho = 'pinMode(' + sonicName + '_Echo, INPUT);';
+    var pinSetupCodeTrigger = 'pinMode(' + sonicName + 
+        '_Trigger, OUTPUT);';
+    Blockly.Arduino.addSetup('io_' + sonicName + '_Echo', pinSetupCodeEcho, false);
+    Blockly.Arduino.addSetup('io_' + sonicName + '_Trigger', pinSetupCodeTrigger, false);
+    return '';
+};
+
+/**
+ * Code generator to read the distance from a sonic distance sensor.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['sonic_read'] = function(block) {
+  var sonicName = block.getFieldValue('NAMESONIC');
+
+  /**
+  * Method to read the distance
+  * First delay is to clear the Trigger pin in case Trigger is not LOW
+  */
+  var methodCode = `float SONICNAME_readDistance() {
+    digitalWrite(SONICNAME_Trigger, LOW);
+    delayMicroseconds(2);
+    digitalWrite(SONICNAME_Trigger, HIGH);
+    delayMicroseconds(10);
+    SONICNAME_Duration = pulseIn(SONICNAME_Echo, HIGH, SONICNAME_Time);
+    SONICNAME_Distance = 0.034/2 * SONICNAME_Duration;
+    return SONICNAME_Distance;
+}
+`
+  Blockly.Arduino.addFunction(sonicName + '_read', methodCode
+                              .replace(new RegExp('SONICNAME', 'g'), sonicName));
+    
+  var returnCode = sonicName + '_readDistance()';
+  return [returnCode, Blockly.Arduino.ORDER_ATOMIC];
+};
