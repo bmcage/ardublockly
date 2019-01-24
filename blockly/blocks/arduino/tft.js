@@ -58,7 +58,7 @@ Blockly.Blocks['tft_backgroundcolor'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME') ;
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME') ;
     this.appendValueInput('TFT_COL')
         .appendField(Blockly.Msg.ARD_TFT_BG_COLOUR)
         .setCheck("Colour")
@@ -108,7 +108,7 @@ Blockly.Blocks['tft_text'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME') ;
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME') ;
     this.appendValueInput("TFT_TEXT")
         .appendField(Blockly.Msg.ARD_TFT_TEXT_WRITE)
         .setCheck(Blockly.Types.TEXT.output)
@@ -181,7 +181,7 @@ Blockly.Blocks['tft_sprite8x8'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME')
         .appendField(Blockly.Msg.ARD_TFT_SPRITE_NAME) ;
     this.appendDummyInput()
         .appendField(new Blockly.FieldColour('#666666'), 'sp0101')
@@ -316,7 +316,7 @@ Blockly.Blocks['tft_sprite16x16'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME')
         .appendField(Blockly.Msg.ARD_TFT_SPRITE_NAME) ;
     this.appendDummyInput()
         .appendField(new Blockly.FieldColour('#666666'), 'sp0101')
@@ -650,7 +650,7 @@ Blockly.Blocks['tft_line'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME')
         .appendField(Blockly.Msg.ARD_TFT_MAKE_LINE) ;
     this.appendValueInput('TFT_COL')
         .appendField(Blockly.Msg.ARD_TFT_LINE_COLOUR)
@@ -718,7 +718,7 @@ Blockly.Blocks['tft_rect'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME')
         .appendField(Blockly.Msg.ARD_TFT_MAKE_RECT) ;
     this.appendValueInput('TFT_COL')
         .appendField(Blockly.Msg.ARD_TFT_RECT_COLOUR)
@@ -791,7 +791,7 @@ Blockly.Blocks['tft_circ'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
-            new Blockly.FieldInstance('tft', 'TFT1', true, true, false), 'TFTNAME')
+            new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME')
         .appendField(Blockly.Msg.ARD_TFT_MAKE_CIRC);
     this.appendValueInput('TFT_COL')
         .appendField(Blockly.Msg.ARD_TFT_RECT_COLOUR)
