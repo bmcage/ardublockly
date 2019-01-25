@@ -52,7 +52,7 @@ Blockly.Arduino.colour2RGB = function(colour) {
 Blockly.Arduino['tft_config'] = function(block) {
   var tftName = block.getFieldValue('TFTNAME');
   Blockly.Arduino.addInclude('Adafruit_GFX', '#include <Adafruit_GFX.h> // version 1.3.6');
-  Blockly.Arduino.addInclude('Adafruit_ST7735', '#include <Adafruit_ST7735.h> // version 1.0.8');
+  Blockly.Arduino.addInclude('Adafruit_ST7735', '#include <Adafruit_ST7735.h> // version 1.2.7');
   Blockly.Arduino.addInclude('SPI', '#include <SPI.h>');
 
   var code = `
@@ -95,7 +95,7 @@ void MYTFTdrawtext(String text, uint16_t color, int size, int x, int y) {
 }
 `
   Blockly.Arduino.addDeclaration(tftName + '_text', code.replace(new RegExp('MYTFT', 'g'), tftName));
-  return tftName + 'drawtext(' + text + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), ' + size + ', ' + xpos + ', ' + ypos + ');\n';
+  return tftName + 'drawtext(' + text + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), ' + size + ', ' + xpos + ', ' + ypos + ');\n';
 };
 
 Blockly.Arduino['tft_backgroundcolor'] = function(block) {
@@ -106,7 +106,7 @@ Blockly.Arduino['tft_backgroundcolor'] = function(block) {
   var colG = col.green;
   var colB = col.blue;
   
-  return tftName + '.fillScreen(' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + ') );\n';
+  return tftName + '.fillScreen(' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + ') );\n';
 };
 
 
@@ -127,7 +127,7 @@ Blockly.Arduino['tft_sprite8x8'] = function(block) {
       var colR = col.red;
       var colG = col.green;
       var colB = col.blue;
-      codesprite += tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), '
+      codesprite += tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), '
     }
     codesprite += '\n';
   }
@@ -195,7 +195,7 @@ Blockly.Arduino['tft_sprite16x16'] = function(block) {
       var colR = col.red;
       var colG = col.green;
       var colB = col.blue;
-      codesprite += tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), '
+      codesprite += tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), '
     }
     codesprite += '\n';
   }
@@ -272,7 +272,7 @@ void MYTFTdrawline(uint16_t color, int x1, int y1, int x2, int y2) {
 }
 `
   Blockly.Arduino.addDeclaration(tftName + '_line', code.replace(new RegExp('MYTFT', 'g'), tftName));
-  return tftName + 'drawline(' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '), ' + xpos1 + ', ' + ypos1 + ', ' + xpos2 + ', ' + ypos2 + ');\n';
+  return tftName + 'drawline(' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), ' + xpos1 + ', ' + ypos1 + ', ' + xpos2 + ', ' + ypos2 + ');\n';
 };
 
 Blockly.Arduino['tft_rect'] = function(block) {
@@ -291,9 +291,9 @@ Blockly.Arduino['tft_rect'] = function(block) {
   
   var code;
   if (checkbox_name) {
-    code = tftName + '.fillRect(' + xpos1 + ', ' + ypos1 + ', ' + width + ', ' + height + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
+    code = tftName + '.fillRect(' + xpos1 + ', ' + ypos1 + ', ' + width + ', ' + height + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
   } else {
-    code = tftName + '.drawRect(' + xpos1 + ', ' + ypos1 + ', ' + width + ', ' + height + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
+    code = tftName + '.drawRect(' + xpos1 + ', ' + ypos1 + ', ' + width + ', ' + height + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
   }
       
   return code;
@@ -315,9 +315,9 @@ Blockly.Arduino['tft_circ'] = function(block) {
   
   var code;
   if (checkbox_name) {
-    code = tftName + '.fillCircle(' + xpos1 + ', ' + ypos1 + ', ' + radius + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
+    code = tftName + '.fillCircle(' + xpos1 + ', ' + ypos1 + ', ' + radius + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
   } else {
-    code = tftName + '.drawCircle(' + xpos1 + ', ' + ypos1 + ', ' + radius + ', ' + tftName + '.Color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
+    code = tftName + '.drawCircle(' + xpos1 + ', ' + ypos1 + ', ' + radius + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '));\n';
   }
       
   return code;
