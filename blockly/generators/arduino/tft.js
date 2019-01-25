@@ -51,8 +51,8 @@ Blockly.Arduino.colour2RGB = function(colour) {
   
 Blockly.Arduino['tft_config'] = function(block) {
   var tftName = block.getFieldValue('TFTNAME');
-  Blockly.Arduino.addInclude('Adafruit_GFX', '#include <Adafruit_GFX.h>');
-  Blockly.Arduino.addInclude('Adafruit_ST7735', '#include <Adafruit_ST7735.h>');
+  Blockly.Arduino.addInclude('Adafruit_GFX', '#include <Adafruit_GFX.h> // version 1.3.6');
+  Blockly.Arduino.addInclude('Adafruit_ST7735', '#include <Adafruit_ST7735.h> // version 1.2.7');
   Blockly.Arduino.addInclude('SPI', '#include <SPI.h>');
 
   var code = `

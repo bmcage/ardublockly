@@ -33,7 +33,7 @@ Blockly.Arduino['DHT_config_hub'] = function(block) {
   Blockly.Arduino.addVariable(dht,
     'int ' + dht + ' = ' + pin + ';', true);
   
-  Blockly.Arduino.addInclude('dht', '#include <DHT.h>');
+  Blockly.Arduino.addInclude('dht', '#include <DHT.h>  // version 1.3.1');
   Blockly.Arduino.addDeclaration('dht_' + dhtName, 'DHT ' + dhtName + '(' + 
                                  dht + ', ' + dhtType + ');');
   Blockly.Arduino.reservePin(block, pin, Blockly.Arduino.PinTypes.INPUT, 'DHT Read');
