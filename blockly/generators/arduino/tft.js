@@ -139,13 +139,9 @@ Blockly.Arduino['tft_sprite8x8'] = function(block) {
     '#define ' + spriteName + 'H2           4     // half height\n' +
     'unsigned char ' + spriteName + 'px, ' + spriteName + 'py;\n';
   var codedrawpixel = `
-// ---------------
-// draw pixel
-// ---------------
-// faster drawPixel method by inlining calls and using setAddrWindow and pushColor
-// using macro to force inlining
-#define MYTFTdrawPixel(a, b, c) MYTFT.setAddrWindow(a, b, a, b); MYTFT.pushColor(c)
-
+// ----------------------
+// draw Sprites variables
+// ----------------------
 // temporary x and y var
 static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;
 
@@ -167,7 +163,7 @@ do {
     do {
       MYTFTtmps2 = SIZE - 1; //scale
       do {
-        MYTFTdrawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
+        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
         } while (MYTFTtmps2--);
     } while (MYTFTtmps1--);
   } while (MYTFTtmpy--);
@@ -207,12 +203,9 @@ Blockly.Arduino['tft_sprite16x16'] = function(block) {
     '#define ' + spriteName + 'H2           8     // half height\n' +
     'unsigned char ' + spriteName + 'px, ' + spriteName + 'py;\n';
   var codedrawpixel = `
-// ---------------
-// draw pixel
-// ---------------
-// faster drawPixel method by inlining calls and using setAddrWindow and pushColor
-// using macro to force inlining
-#define MYTFTdrawPixel(a, b, c) MYTFT.setAddrWindow(a, b, a, b); MYTFT.pushColor(c)
+// ----------------------
+// draw Sprites variables
+// ----------------------
 
 // temporary x and y var
 static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;
@@ -235,7 +228,7 @@ do {
     do {
       MYTFTtmps2 = SIZE - 1; //scale
       do {
-        MYTFTdrawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE16x16[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
+        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE16x16[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
         } while (MYTFTtmps2--);
     } while (MYTFTtmps1--);
   } while (MYTFTtmpy--);
