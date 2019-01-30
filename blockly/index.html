@@ -14,12 +14,12 @@
   <script src="libs/bootstrap/js/bootstrap.min.js"></script>
   
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
-  <!-- Blockly4Arduino - These three files contain the compress version-->
+  <!-- Blockly4Arduino - These three files contain the compress version>
   <script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -95,7 +95,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
 
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
@@ -708,6 +708,7 @@
     <block type="oled_config"></block>
     <block type="oled_font"></block>
     <block type="oled_print"></block>
+    <block type="oled_print_number"></block>
     <block type="oled_show"></block>
     <block type="oled_clear"></block>
     <block type="segment_config"></block>
@@ -726,6 +727,54 @@
   </category>
   <sep></sep>
   <category id="catExp" name="Extra Sets">
+    <category id="catSensors" name="Sensors">
+      <block type="DHT_config_hub"></block>      
+      <block type="DHT_readTemp"></block>    
+      <block type="DHT_readRH"></block>
+    </category>
+    <category id="catDiorama" name="Diorama">
+      <block type="diorama_hub_component">
+        <field name="STEPPER_NAME">StepperDiorama</field>
+        <value name="STEPPER_STEPS">
+          <block type="math_number">
+            <field name="NUM">2050</field>
+          </block>
+        </value>
+        <value name="STEPPER_SPEED">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="diorama_button_declaration"></block>
+      <block type="dio_playtrack">
+        <value name="TRACK">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_displaytext">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">HELLO</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_louder"></block>
+      <block type="dio_quieter"></block>
+      <block type="dio_setvolume">
+        <value name="VOLUME">
+          <block type="math_number">
+            <field name="NUM">7</field>
+          </block>
+        </value>
+      </block>
+      <block type="dio_trackplaying"></block>
+      <block type="dio_resetbtnpress"></block>
+      <block type="dio_resetbtnnrpress"></block>
+      <block type="dio_stoptrack"></block>
+    </category>
     <category id="catMD" name="Microduino">
       <category id="catMDCore" name="Modules">
         <block type="md_modules"></block>
@@ -1094,54 +1143,6 @@
           </value>
         </block>
       </category>
-    </category>
-    <category id="catDiorama" name="Diorama">
-      <block type="diorama_hub_component">
-        <field name="STEPPER_NAME">StepperDiorama</field>
-        <value name="STEPPER_STEPS">
-          <block type="math_number">
-            <field name="NUM">2050</field>
-          </block>
-        </value>
-        <value name="STEPPER_SPEED">
-          <block type="math_number">
-            <field name="NUM">5</field>
-          </block>
-        </value>
-      </block>
-      <block type="diorama_button_declaration"></block>
-      <block type="dio_playtrack">
-        <value name="TRACK">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-      <block type="dio_displaytext">
-        <value name="TEXT">
-          <block type="text">
-            <field name="TEXT">HELLO</field>
-          </block>
-        </value>
-      </block>
-      <block type="dio_louder"></block>
-      <block type="dio_quieter"></block>
-      <block type="dio_setvolume">
-        <value name="VOLUME">
-          <block type="math_number">
-            <field name="NUM">7</field>
-          </block>
-        </value>
-      </block>
-      <block type="dio_trackplaying"></block>
-      <block type="dio_resetbtnpress"></block>
-      <block type="dio_resetbtnnrpress"></block>
-      <block type="dio_stoptrack"></block>
-    </category>
-    <category id="catSensors" name="Sensors">
-      <block type="DHT_config_hub"></block>      
-      <block type="DHT_readTemp"></block>    
-      <block type="DHT_readRH"></block>
     </category>
   </category>
 </xml>;

@@ -32,7 +32,7 @@ Blockly.Arduino['oled_config'] = function(block) {
     }
   }
     
-  var includeCode = `#include <U8g2lib.h>
+  var includeCode = `#include <U8g2lib.h> //version 2.24.3
 #ifdef U8X8_HAVE_HW_SPI
 #include <SPI.h>
 #endif
@@ -54,7 +54,13 @@ Blockly.Arduino['oled_config'] = function(block) {
                       + ' and ' + i2cPins[1][0] + ' = ' + i2cPins[1][1] + '\n'
   }
   if(oledResolution == '128x32') {
-    declarationCode += 'U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
+    declarationCode += '// Select correct initialization for your screen, select from https://github.com/olikraus/u8g2/wiki/u8g2setupcpp\n' 
+    + '// Here init for a 4pin 128x32 OLED done via software I2C\n'
+    + 'U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
+  } else if (oledResolution == '128x64') {
+    declarationCode += '//Select correct initialization for your screen, select from https://github.com/olikraus/u8g2/wiki/u8g2setupcpp\n' 
+    + '// Here init for a 4pin 128x64 OLED done via software I2C\n'
+    + 'U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
   }
   Blockly.Arduino.addDeclaration(oledName, declarationCode);
     
@@ -90,13 +96,28 @@ Blockly.Arduino['oled_print'] = function(block) {
     
     return code;
 };
+/**
+
+ * The OLED print number block
+ * Sets the x -and y-position of the cursor
+ * Prints the given number with the required digits
+ */
+Blockly.Arduino['oled_print_number'] = function(block) {
+    var xpos = Blockly.Arduino.valueToCode(block, 'OLED_X', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var ypos = Blockly.Arduino.valueToCode(block, 'OLED_Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var number = Blockly.Arduino.valueToCode(block, 'OLED_PRINT', Blockly.Arduino.ORDER_ATOMIC) || '';
+    var digits = Blockly.Arduino.valueToCode(block, 'OLED_DIGITS', Blockly.Arduino.ORDER_ATOMIC) || '';
+    var code = 'u8g2.setCursor(' + xpos + ',' + ypos + ');u8g2.print(' + number + ', ' + digits + ');\n'
+    
+    return code;
+};
 
 /**
  * The OLED clear block
  * empties the display
  */
 Blockly.Arduino['oled_clear'] = function(block) {
-    return 'u8g2.clearBuffer(); // clear internal memory';
+    return 'u8g2.clearBuffer(); // clear internal memory\n';
 };
 
 /**
@@ -104,5 +125,5 @@ Blockly.Arduino['oled_clear'] = function(block) {
  * Puts the internal memory on the display
  */
 Blockly.Arduino['oled_show'] = function(block) {
-    return 'u8g2.sendBuffer();';
+    return 'u8g2.sendBuffer();\n';
 };
