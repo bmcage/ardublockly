@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2018-07-07 18:51:39.303298",
+		"lastupdated": "2019-01-30 21:39:15.519987",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -487,6 +487,9 @@
 	"ARD_OLED_CONFIG_TIP": "Define a display of the given resolution to use to write text to",
 	"ARD_OLED_CURSORX": "set cursor position X",
 	"ARD_OLED_CURSORY": "Y",
+	"ARD_OLED_PRINT": "print text",
+	"ARD_OLED_PRINT_NUMBER": "print number",
+	"ARD_OLED_PRINT_NUMBER_DIGITS": "with #digits:",
 	"ARD_OLED_PRINT": "print",
 	"ARD_OLED_FONT_SIZE": "choose font size",
 	"ARD_OLED_FONT_TIP": "Select the font size to use to write text from now on",

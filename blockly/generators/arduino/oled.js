@@ -58,7 +58,7 @@ Blockly.Arduino['oled_config'] = function(block) {
     + '// Here init for a 4pin 128x32 OLED done via software I2C\n'
     + 'U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
   } else if (oledResolution == '128x64') {
-    declarationCode += '//Select correct initialization for your screen, select from https://github.com/olikraus/u8g2/wiki/u8g2setupcpp\n' 
+    declarationCode += '// Select correct initialization for your screen, select from https://github.com/olikraus/u8g2/wiki/u8g2setupcpp\n' 
     + '// Here init for a 4pin 128x64 OLED done via software I2C\n'
     + 'U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);'
   }
