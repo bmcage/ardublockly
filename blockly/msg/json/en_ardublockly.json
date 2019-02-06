@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2019-01-30 21:39:15.519987",
+		"lastupdated": "2019-02-06 16:33:41.590613",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -439,6 +439,8 @@
 	"ARD_DHT_READTEMP_TIP": "Obtain the temperature in degree Celcius of a DHT sensor",
 	"ARD_DHTHUB_READRH": "Relative Humidity at",
 	"ARD_DHT_READRH_TIP": "Obtain the RH (Relative Humidity in %) as a value from 0 to 100 a DHT sensor",
+	"ARD_DHTHUB_READHEATINDEX": "Heat Index at",
+	"ARD_DHT_READHEATINDEX_TIP": "Obtain the Heat Index ( human-perceived equivalent temperature in °C) of a DHT sensor",
 	"ARD_DHT_COMPONENT": "DHT sensor",
 	"ARD_7SEGMENT_COMPONENT": "7-Segment Display",
 	"ARD_7SEGMENT_COMPONENT_TIP": "7-Segment LED Display can be used to show numbers and some characters. It has 7 segments and 1 dot, requiring 8 digital pins on the Arduino to use.",
