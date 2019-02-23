@@ -33,7 +33,7 @@ Blockly.Arduino['DHT_config_hub'] = function(block) {
   Blockly.Arduino.addVariable(dht,
     'int ' + dht + ' = ' + pin + ';', true);
   
-  Blockly.Arduino.addInclude('dht', '#include <DHT.h>');
+  Blockly.Arduino.addInclude('dht', '#include <DHT.h>  // version 1.3.1');
   Blockly.Arduino.addDeclaration('dht_' + dhtName, 'DHT ' + dhtName + '(' + 
                                  dht + ', ' + dhtType + ');');
   Blockly.Arduino.reservePin(block, pin, Blockly.Arduino.PinTypes.INPUT, 'DHT Read');
@@ -59,7 +59,7 @@ Blockly.Arduino['DHT_readTemp'] = function(block) {
   Blockly.Arduino.addDeclaration(dhtNameTemp, 'float ' + dhtNameTemp + ' = 200;');
   
   var readTcode = `float DHTNAME_readT() {
-  DHTNAMETEMPTMP = DHTNAME.readTemperature();
+  DHTNAMETEMPTMP = DHTNAME.readTemperature(false); //read Celsius
   if (! isnan(DHTNAMETEMPTMP) ) {
     //override stored temperature only on good reading
     DHTNAMETEMP = DHTNAMETEMPTMP;
@@ -110,5 +110,38 @@ Blockly.Arduino['DHT_readRH'] = function(block) {
 
   //var code = dhtName + '.readTemperature()';
   var code = dhtName + '_readRH()'
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+/**
+ * Code generator to read the Heat Index of a DHT.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['DHT_readHeatIndex'] = function(block) {
+  var dhtInstanceName = block.getFieldValue('DHT_NAME');
+  var dhtName = 'myDHT' + dhtInstanceName;
+  var dhtNameHI = dhtName + 'HI';
+  var dhtNameHItmp = dhtName + 'HItmp';
+
+  Blockly.Arduino.addDeclaration(dhtNameHItmp, 'float ' + dhtNameHItmp + ' = 200;');
+  Blockly.Arduino.addDeclaration(dhtNameHI, 'float ' + dhtNameHI + ' = 200;');
+  
+  var readTcode = `float DHTNAME_readHI() {
+  DHTNAMEHITMP = DHTNAME.computeHeatIndex(DHTNAME.readTemperature(false), DHTNAME.readHumidity(), false);
+  if (! isnan(DHTNAMEHITMP) ) {
+    //override stored temperature only on good reading
+    DHTNAMEHI = DHTNAMEHITMP;
+  }
+  return DHTNAMEHI;
+}
+`
+  Blockly.Arduino.addFunction(dhtNameHI, readTcode
+        .replace(new RegExp('DHTNAMEHITMP', 'g'), dhtNameHItmp)
+        .replace(new RegExp('DHTNAMEHI', 'g'), dhtNameHI)
+        .replace(new RegExp('DHTNAME', 'g'), dhtName)
+                             );
+
+  var code = dhtName + '_readHI()'
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };

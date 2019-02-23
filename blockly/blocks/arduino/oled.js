@@ -29,7 +29,7 @@ Blockly.Blocks['oled_config'] = {
                                            false, true, false), 'OLED_NAME')
             .appendField(Blockly.Msg.ARD_OLED_RESOLUTIE)
             .appendField(new Blockly.FieldDropdown(
-            [['128x32','128x32']]) // msg, state
+            [['128x32','128x32'], ['128x64','128x64']]) // msg, state
                          , 'OLED_RES');
         this.setPreviousStatement(true, 'ARD_COMP_BLOCK');
         this.setNextStatement(true, 'ARD_COMP_BLOCK');
@@ -74,7 +74,36 @@ Blockly.Blocks['oled_print'] = {
             .appendField(Blockly.Msg.ARD_OLED_CURSORY)
             .setCheck(Blockly.Types.NUMBER.checkList);
         this.appendValueInput('OLED_PRINT')
-            .appendField(Blockly.Msg.ARD_OLED_PRINT);
+            .appendField(Blockly.Msg.ARD_OLED_PRINT)
+            .setCheck(Blockly.Types.TEXT.checkList);
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, 'ARD_BLOCK');
+        this.setNextStatement(true, 'ARD_BLOCK');
+        this.setTooltip(Blockly.Msg.ARD_OLED_PRINT_TIP);
+        this.setHelpUrl('');
+    }
+};
+
+/** Block to set cursor position on the screen and print given number */
+Blockly.Blocks['oled_print_number'] = {
+    init: function () {
+        this.setColour(Blockly.Blocks.oled.HUE);
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.ARD_OLED)
+            .appendField(
+                new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME, false, true, false), 'OLED_NAME');
+        this.appendValueInput('OLED_X')
+            .appendField(Blockly.Msg.ARD_OLED_CURSORX)
+            .setCheck(Blockly.Types.NUMBER.checkList);
+        this.appendValueInput('OLED_Y')
+            .appendField(Blockly.Msg.ARD_OLED_CURSORY)
+            .setCheck(Blockly.Types.NUMBER.checkList);
+        this.appendValueInput('OLED_PRINT')
+            .appendField(Blockly.Msg.ARD_OLED_PRINT_NUMBER)
+            .setCheck(Blockly.Types.NUMBER.checkList);
+        this.appendValueInput('OLED_DIGITS')
+            .appendField(Blockly.Msg.ARD_OLED_PRINT_NUMBER_DIGITS)
+            .setCheck(Blockly.Types.NUMBER.checkList);
         this.setInputsInline(true);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');

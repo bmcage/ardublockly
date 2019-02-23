@@ -190,7 +190,7 @@ Blockly.Arduino['arduino_declareupfront'] = function(block) {
 /**
  * Code generator to create effect statement.
  * @param {!Blockly.Block} block Block to generate the code from.
- * @return {string} Completed code.
+ * @return {null} There is no code added to loop.
  */
 Blockly.Arduino['controls_effect'] = function(block) {
   
@@ -209,8 +209,7 @@ Blockly.Arduino['controls_effect'] = function(block) {
 'int ard_effect' + seffectnr + '_status = -1;\n' +
 'unsigned long ard_effect' + seffectnr + '_start, ard_effect' + seffectnr + '_time;\n' +
 '#define EFFECT' + seffectnr + '_PERIOD ' + duration + '\n';
-  var declare_effect_function = '\n' + 
-'void ' + funcName + '() {\n' +
+  var declare_effect_function = 'void ' + funcName + '() {\n' +
 '  //Variables of this effect are reffered to with ard_effect' + seffectnr + '\n' +
 '  boolean restart = false;\n' +
 '  ard_effect' + seffectnr + '_time = millis() - ard_effect' + seffectnr + '_start;\n';
@@ -266,10 +265,11 @@ Blockly.Arduino['controls_effect'] = function(block) {
     declare_effect_function += '  }\n'
   }
   declare_effect_function += '}\n';
-    
-  var code = Blockly.Arduino.scrub_(block, declare_effect_branch + declare_effect_function);
+
+  //add comment of the effect in front of the function
+  var code = declare_effect_branch + '\n' + Blockly.Arduino.scrub_(block, declare_effect_function);
   Blockly.Arduino.userFunctions_['ard_effect' + seffectnr] = code;
-  return '';
+  return null;
 };
 
 

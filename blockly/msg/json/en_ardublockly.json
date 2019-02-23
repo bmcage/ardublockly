@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2018-07-07 18:51:39.303298",
+		"lastupdated": "2019-02-06 16:33:41.590613",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -439,6 +439,8 @@
 	"ARD_DHT_READTEMP_TIP": "Obtain the temperature in degree Celcius of a DHT sensor",
 	"ARD_DHTHUB_READRH": "Relative Humidity at",
 	"ARD_DHT_READRH_TIP": "Obtain the RH (Relative Humidity in %) as a value from 0 to 100 a DHT sensor",
+	"ARD_DHTHUB_READHEATINDEX": "Heat Index at",
+	"ARD_DHT_READHEATINDEX_TIP": "Obtain the Heat Index ( human-perceived equivalent temperature in °C) of a DHT sensor",
 	"ARD_DHT_COMPONENT": "DHT sensor",
 	"ARD_7SEGMENT_COMPONENT": "7-Segment Display",
 	"ARD_7SEGMENT_COMPONENT_TIP": "7-Segment LED Display can be used to show numbers and some characters. It has 7 segments and 1 dot, requiring 8 digital pins on the Arduino to use.",
@@ -487,6 +489,9 @@
 	"ARD_OLED_CONFIG_TIP": "Define a display of the given resolution to use to write text to",
 	"ARD_OLED_CURSORX": "set cursor position X",
 	"ARD_OLED_CURSORY": "Y",
+	"ARD_OLED_PRINT": "print text",
+	"ARD_OLED_PRINT_NUMBER": "print number",
+	"ARD_OLED_PRINT_NUMBER_DIGITS": "with #digits:",
 	"ARD_OLED_PRINT": "print",
 	"ARD_OLED_FONT_SIZE": "choose font size",
 	"ARD_OLED_FONT_TIP": "Select the font size to use to write text from now on",
