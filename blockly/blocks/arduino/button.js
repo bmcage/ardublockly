@@ -110,6 +110,10 @@ Blockly.Blocks['button_read'] = {
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     this.setHelpUrl('');
   },
+  /** @return {!string} The type of return value for the block, a bool. */
+  getBlockType: function() {
+    return Blockly.Types.BOOLEAN;
+  },
   /**
    * Gets the variable type required.
    * @param {!string} varName Name of the variable selected in this block to
