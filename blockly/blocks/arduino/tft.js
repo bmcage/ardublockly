@@ -27,7 +27,7 @@ Blockly.Blocks['tft_config'] = {
     this.setColour(350);
     this.setPreviousStatement(true, "ARD_COMP_BLOCK");
     this.setNextStatement(true, 'ARD_COMP_BLOCK');
-    this.setTooltip(Blockly.Msg.ARD_7SEGMENT_COMPONENT_TIP);
+    this.setTooltip(Blockly.Msg.ARD_TFT_COMPONENT_TIP);
     this.setHelpUrl("https://docs.google.com/document/d/1rd5WztljQ4R-4YQH1UzbRDuTeg8SeEte_eZYg9qlx8Y/edit?usp=sharing");
   }
 ,
