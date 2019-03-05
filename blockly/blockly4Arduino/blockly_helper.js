@@ -455,6 +455,7 @@ function setCompilerAddress(){
         console.log('User cancelled the IP Address prompt');
     } else {
         compilerUrl = newUrl;
+        localStorage['compilerUrl'] = compilerUrl;
         console.log('New compilerUrl: ' + compilerUrl);
     }
 }
@@ -469,6 +470,7 @@ function setCompilerPort(){
         console.log('User cancelled the Port prompt');
     } else {
         compilerPort = newPort;
+        localStorage['compilerPort'] = compilerPort;
         console.log('New compilerPort: ' + compilerPort);
     }
 }
@@ -483,6 +485,7 @@ function setExtensionId(){
         console.log('User cancelled the Extension ID prompt');
     } else {
         extensionid = newId;
+        localStorage['extensionid'] = extensionid;
         console.log('New ExtensionId: ' + extensionid);
         if (typeof chrome !== 'undefined') {
             port = chrome.runtime.connect(extensionid);
@@ -502,14 +505,14 @@ function setExtensionId(){
 }
 
 // Standard URL where the compiler is located
-var compilerUrl = 'localhost';
+var compilerUrl = localStorage['compilerUrl'] || 'localhost';
 // Port of the compiler
-var compilerPort = '7000';
+var compilerPort = localStorage['compilerPort'] || '7000';
 
 // Requires the extensionId if the wants to connect to the extension
 //var extensionid = 'dclnahpacbkcmjampfcfjccegljfcbdd'; //local avrgirl
 //var extensionid = 'ljljmcfflicbmldibmdpebbgfmbjhbigc'; // local extension
-var extensionid = 'limahhklinobffpljkonpenchljefiag';  // Chrome Store Extension
+var extensionid = localStorage['extensionid'] || 'limahhklinobffpljkonpenchljefiag';
 // open long lived connection with extension (it takes time for flash to complete)
 var port;
 if (typeof chrome !== 'undefined') {
