@@ -36,6 +36,8 @@ Blockly.Blocks['core_hub_component'] = {
                  ['Arduino Leonardo/Yun', 'leonardo'],
                  ['Arduino Nano 328', 'nano_328'],
                  ['NodeMCU', 'nodemcu'],
+                 ['ATtiny85', 'attiny85'],
+                 ['ATtiny85 No Reset', 'attiny85_noreset'],
                  ['AllBot VR204 Uno', 'allbotVR204uno'],
                  ['AllBot VR204 Mega', 'allbotVR204mega'],
                  ['AllBot VR408 Uno', 'allbotVR408uno'],
