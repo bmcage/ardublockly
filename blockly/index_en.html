@@ -31,6 +31,7 @@
   <script src="blocks/procedures.js"></script>
   <script src="blocks/component_variable.js"></script>
   <script src="blocks/arduino/allbot.js"></script>
+  <script src="blocks/arduino/array.js"></script>
   <script src="blocks/arduino/button.js"></script>
   <script src="blocks/arduino/colour2.js"></script>
   <script src="blocks/arduino/components.js"></script>
@@ -62,6 +63,7 @@
   <script src="blocks/arduino/ledup_blocks.js"></script>
   <script src="generators/arduino.js"></script>
   <script src="generators/arduino/allbot.js"></script>
+  <script src="generators/arduino/array.js"></script>
   <script src="generators/arduino/boards.js"></script>
   <script src="generators/arduino/button.js"></script>
   <script src="generators/arduino/components.js"></script>
@@ -456,6 +458,14 @@
     </block>
     <block type="math_random_float"></block>
     <block type="base_map"></block>
+    <block type="array_create_with"></block>
+    <block type="array_getIndex">
+      <value name="AT">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
   </category>
   <category id="catText" name="Text">
     <block type="text"></block>

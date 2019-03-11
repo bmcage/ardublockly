@@ -4,7 +4,7 @@
  */
 
 /**
- * @fileoverview Block for the Microduino functions.
+ * @fileoverview Block for the LedUpKidz functions.
  *     The Arduino built in functions syntax can be found at:
  *     https://arduino.cc/en/Reference/HomePage
  */
