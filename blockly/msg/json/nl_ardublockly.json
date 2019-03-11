@@ -498,6 +498,16 @@
     "ARD_OLED_WRITE": "schrijf naar display",
     "ARD_OLED_WRITE_TIP": "Nadat je tekst geprint hebt op display gebruik je dit blok om de tekst te doen verschijnen.",
     "ARD_OLED_CLEAR": "clear display",
-    "ARD_OLED_CLEAR_TIP": "Before writing new text to the display, use this block to clear it first."
-
+    "ARD_OLED_CLEAR_TIP": "Before writing new text to the display, use this block to clear it first.",
+    "ARRAY_CREATE_WITH_TOOLTIP": "Maak een lijst met gegeven items",
+    "ARRAY_CREATE_EMPTY_TITLE": "",
+    "ARRAY_CREATE_WITH_INPUT_WITH": "Maak een lijst met",
+    "ARRAY_CREATE_WITH_ITEM_TITLE": "item",
+    "ARRAY_CREATE_WITH_ITEM_TOOLTIP": "Voeg een item toe aan de lijst.",
+    "ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD": "lijst",
+    "ARRAY_CREATE_WITH_CONTAINER_TOOLTIP": "Voeg toe, verwijder, of herorden secties om het lijst block te wijzigen.",
+    "ARRAY_GETINDEX_ITEM": "in Lijst variable",
+    "ARRAY_GETINDEX_AT": "neem element met index",
+    "ARRAY_GETINDEX_TOOLTIP": "Verkrijg een element in de lijst op een bepaalde index"
+  
 }

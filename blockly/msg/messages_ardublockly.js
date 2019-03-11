@@ -612,4 +612,13 @@ Blockly.Msg.ARD_OLED_WRITE = 'write to display';
 Blockly.Msg.ARD_OLED_WRITE_TIP = 'After you have printed text on the display, use this block to actually show the text.';
 Blockly.Msg.ARD_OLED_CLEAR = 'clear display';
 Blockly.Msg.ARD_OLED_CLEAR_TIP = 'Before writing new text to the display, use this block to clear it first.';
-
+Blockly.Msg.ARRAY_CREATE_WITH_TOOLTIP = 'Create an array with any number of items';
+Blockly.Msg.ARRAY_CREATE_EMPTY_TITLE = '';
+Blockly.Msg.ARRAY_CREATE_WITH_INPUT_WITH = 'Create array with';
+Blockly.Msg.ARRAY_CREATE_WITH_ITEM_TITLE = 'item';
+Blockly.Msg.ARRAY_CREATE_WITH_ITEM_TOOLTIP = 'Add an item to the array.';
+Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD = 'array';
+Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TOOLTIP = 'Add, remove, or reorder sections to reconfigure this array block.';
+Blockly.Msg.ARRAY_GETINDEX_ITEM = 'in Array variable';
+Blockly.Msg.ARRAY_GETINDEX_AT = 'get element with index';
+Blockly.Msg.ARRAY_GETINDEX_TOOLTIP = 'Obtain element in the array at given index';
