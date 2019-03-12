@@ -151,7 +151,7 @@ Blockly.Arduino['array_setIndex'] = function(block) {
   var value = Blockly.Arduino.valueToCode(block, 'VALUE',
                                           Blockly.Arduino.ORDER_ATOMIC) || '0';
 
-  var code = arrayName + '[' + at + '] = ' + value + ';';
+  var code = arrayName + '[' + at + '] = ' + value + ';\n';
   
   // give an error if at is a number, and not 0 to n-1 !
   if (at<=0 || at >0) {
