@@ -12,13 +12,30 @@ Blockly.Blocks.array.HUE=260;
 
 Blockly.Blocks['array_create_with'] = {
   init:function(){
-    this.setHelpUrl('https://www.arduino.cc/reference/en/language/variables/data-types/array/');
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ARRAY_CREATE_TITLE)
+        .appendField(
+            new Blockly.FieldInstance('IntArray',
+                                      Blockly.Msg.ARD_INTARRAY_DEFAULT_NAME,
+                                      true, true, false),
+            'INTARRAYNAME')
+        .appendField(Blockly.Msg.ARD_ARRAY_CREATE_TITLE2);
+    this.setHelpUrl( 'https://www.arduino.cc/reference/en/language/variables/data-types/array/');
     this.setColour(Blockly.Blocks.array.HUE);
     this.itemCount_=3;
     this.updateShape_();
     this.setOutput(true, Blockly.Types.NUMBER.output);
     this.setMutator(new Blockly.Mutator(["array_create_with_item"]));
-    this.setTooltip(Blockly.Msg.ARRAY_CREATE_WITH_TOOLTIP)
+    this.setTooltip(Blockly.Msg.ARD_ARRAY_CREATE_WITH_TOOLTIP);
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
@@ -64,16 +81,18 @@ Blockly.Blocks['array_create_with'] = {
     }
   },
   updateShape_:function(){
-    if (this.getInput("EMPTY")) 
-      this.removeInput("EMPTY");
-    else for(var a=0;this.getInput("ADD"+a);) 
+    //if (this.getInput("EMPTY")) 
+    //  this.removeInput("EMPTY");
+    
+    for(var a=0;this.getInput("ADD"+a);) 
       this.removeInput("ADD"+a),a++;
-    if(0==this.itemCount_) 
-      this.appendDummyInput("EMPTY").appendField(Blockly.Msg.ARRAY_CREATE_EMPTY_TITLE);
-    else for(a=0;a<this.itemCount_;a++){
-      var b=this.appendValueInput("ADD"+a); 
-      0==a&&b.appendField(Blockly.Msg.ARRAY_CREATE_WITH_INPUT_WITH)
-    }
+    if(0<this.itemCount_) 
+     // this.appendDummyInput("EMPTY").appendField(Blockly.Msg.ARD_ARRAY_CREATE_EMPTY_TITLE);
+    //else 
+      for(a=0;a<this.itemCount_;a++){
+        var b=this.appendValueInput("ADD"+a); 
+        //0==a&&b.appendField(Blockly.Msg.ARD_ARRAY_CREATE_WITH_INPUT_WITH)
+      }
   }
 };
 
@@ -81,10 +100,10 @@ Blockly.Blocks['array_create_with_item'] = {
   init:function(){
     this.setColour(Blockly.Blocks.array.HUE);
     this.appendDummyInput()
-      .appendField(Blockly.Msg.ARRAY_CREATE_WITH_ITEM_TITLE);
+      .appendField(Blockly.Msg.ARD_ARRAY_CREATE_WITH_ITEM_TITLE);
     this.setPreviousStatement(!0);
     this.setNextStatement(!0);
-    this.setTooltip(Blockly.Msg.ARRAY_CREATE_WITH_ITEM_TOOLTIP);
+    this.setTooltip(Blockly.Msg.ARD_ARRAY_CREATE_WITH_ITEM_TOOLTIP);
     this.contextMenu=!1
   }
 };
@@ -93,9 +112,9 @@ Blockly.Blocks['array_create_with_container'] = {
   init:function(){
     this.setColour(Blockly.Blocks.array.HUE);
     this.appendDummyInput()
-      .appendField(Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD);
+      .appendField(Blockly.Msg.ARD_ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD);
     this.appendStatementInput("STACK");
-    this.setTooltip(Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TOOLTIP);
+    this.setTooltip(Blockly.Msg.ARD_ARRAY_CREATE_WITH_CONTAINER_TOOLTIP);
     this.contextMenu=!1
   }
 };
@@ -106,13 +125,13 @@ Blockly.Blocks['array_getIndex'] = {
     this.setColour(Blockly.Blocks.array.HUE);
     this.appendValueInput("ITEM")
         .setCheck(Blockly.Types.NUMBER.output)
-        .appendField(Blockly.Msg.ARRAY_GETINDEX_ITEM);
+        .appendField(Blockly.Msg.ARD_ARRAY_GETINDEX_ITEM);
     this.appendValueInput("AT")
         .setCheck(Blockly.Types.NUMBER.output)
-        .appendField(Blockly.Msg.ARRAY_GETINDEX_AT);
+        .appendField(Blockly.Msg.ARD_ARRAY_GETINDEX_AT);
     this.setInputsInline(!0);
     this.setOutput(true, Blockly.Types.NUMBER.output);
-    this.setTooltip(Blockly.Msg.ARRAY_GETINDEX_TOOLTIP)
+    this.setTooltip(Blockly.Msg.ARD_ARRAY_GETINDEX_TOOLTIP)
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
