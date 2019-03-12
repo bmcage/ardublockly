@@ -97,8 +97,7 @@ Blockly.Arduino['io_analogwrite'] = function(block) {
 
   // Warn if the input value is out of range
   if ((stateOutput < 0) || (stateOutput > 255)) {
-    block.setWarningText('The analogue value set must be between 0 and 255',
-                         'pwm_value');
+    block.setWarningText(Blockly.Msg.ARD_ANALOGWRITE_ERROR, 'pwm_value');
   } else {
     block.setWarningText(null, 'pwm_value');
   }

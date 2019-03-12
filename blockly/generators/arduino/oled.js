@@ -20,7 +20,7 @@ goog.require('Blockly.Arduino');
 Blockly.Arduino['oled_config'] = function(block) {
 
   var oledName = block.getFieldValue('OLED_NAME');
-  var oledResolution = block.getFieldValue('OLED_RES')
+  var oledResolution = block.getFieldValue('OLED_RES');
 
   var i2cPins = Blockly.Arduino.Boards.selected.i2cPins['Wire'];
 
