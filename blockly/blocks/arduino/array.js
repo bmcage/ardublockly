@@ -325,3 +325,61 @@ Blockly.Blocks['array_setIndex'] = {
     }
   }
 };
+
+
+Blockly.Blocks['array_getLength'] = {
+  init:function(){
+    this.setHelpUrl('https://www.arduino.cc/reference/en/language/variables/data-types/array/');
+    this.setColour(Blockly.Blocks.array.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_ARRAY_GETLENGTH)
+        .appendField(
+            new Blockly.FieldInstance('Array',
+                                      Blockly.Msg.ARD_ARRAY_DEFAULT_NAME,
+                                      false, true, false),
+            'ARRAYNAME');
+    this.setInputsInline(true);
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setTooltip(Blockly.Msg.ARD_ARRAY_GETLENGTH_TOOLTIP);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    //not present, assume it will be number
+    return Blockly.Types.NUMBER;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+   
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks the instances of analogsensor config and attaches a warning to this
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+    
+    //verify no two instances present
+    var instanceName = this.getFieldValue('ARRAYNAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Array', this)) {
+      this.setWarningText(null, 'instance');
+    } else {
+      // Set a warning to select a valid config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', Blockly.Msg.ARD_TYPE_ARRAY).replace(
+                '%2', instanceName), 'instance');
+    } 
+  }
+};
+

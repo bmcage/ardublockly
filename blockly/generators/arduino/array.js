@@ -191,3 +191,26 @@ Blockly.Arduino['array_setIndex'] = function(block) {
   }
   return code;
 };
+
+Blockly.Arduino['array_getLength'] = function(block) {
+  var arrayName = block.getFieldValue('ARRAYNAME');
+  
+  // Search for the length of the array
+  // Iterate through top level blocks to find array instance
+  var blocks = Blockly.mainWorkspace.getAllBlocks();
+  var setupInstancePresent = false;
+  var arlength = 0;
+  for (var x = 0; x < blocks.length; x++) {
+    var func = blocks[x].getArrayInstance;
+    if (func) {
+      var setupBlockInstanceName = func.call(blocks[x]);
+      if (arrayName == setupBlockInstanceName) {
+        setupInstancePresent = true;
+        arlength = blocks[x].getLengthArrayInstance();
+        break;
+      }
+    }
+  }
+  
+  return [arlength, Blockly.Arduino.ORDER_ATOMIC];
+};
