@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2019-03-12 12:31:53.921568",
+		"lastupdated": "2019-03-14 12:57:37.467832",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -370,5 +370,9 @@
 	"PROCEDURES_CREATE_DO": "Create '%1'",
 	"PROCEDURES_IFRETURN_TOOLTIP": "If a value is true, then return a second value.",
 	"PROCEDURES_IFRETURN_HELPURL": "http://c2.com/cgi/wiki?GuardClause",
-	"PROCEDURES_IFRETURN_WARNING": "Warning: This block may be used only within a function definition."
+	"PROCEDURES_IFRETURN_WARNING": "Warning: This block may be used only within a function definition.",
+	"TYPE_WARN01": "The variable '",
+	"TYPE_WARN02": "' has been first assigned to the '",
+	"TYPE_WARN03": "' type and this block tries to assign the type '",
+	"TYPE_WARN04": "'!"
 }
