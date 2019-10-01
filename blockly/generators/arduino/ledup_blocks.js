@@ -120,8 +120,8 @@ Blockly.Arduino['ledupkidz_led_onoff'] = function(block) {
     for (hubblocknr in blockinputs) {
       LEDvar = 'LED' + blockinputs[hubblocknr][1];
       var targetBlock = hub.getInputTargetBlock(blockinputs[hubblocknr][0]);
-      if (targetBlock && targetBlock.getVars && targetBlock.getVars()[0]) {
-        LEDvar = targetBlock.getVars()[0];
+      if (targetBlock && targetBlock.getFieldValue && targetBlock.getFieldValue('LEDNAME')) {
+        LEDvar = targetBlock.getFieldValue('LEDNAME');
       }
       setfunc += "  " + start + " (lednr == " + blockinputs[hubblocknr][1] + " && state)  { digitalWrite(" + LEDvar + ",  " + LEDvar + "_ON);}\n";
       start = "else if";

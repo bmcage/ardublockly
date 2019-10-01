@@ -57,14 +57,6 @@ Blockly.Blocks['led_config_hub'] = {
    */
   getVarType: function(varName) {
     return Blockly.Types.NUMBER;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
   }
 };
 
@@ -117,14 +109,6 @@ Blockly.Blocks['neopixel_config_hub'] = {
    */
   getVarType: function(varName) {
     return Blockly.Types.NUMBER;
-  },
-  /**
-   * Return all variables referenced by this block.
-   * @return {!Array.<string>} List of variable names.
-   * @this Blockly.Block
-   */
-  getVars: function() {
-    return [this.getFieldValue('LEDNAME')];
   }
 };
 
