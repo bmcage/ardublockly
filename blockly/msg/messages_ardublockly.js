@@ -632,12 +632,14 @@ Blockly.Msg.ARD_ARRAY_NOT_NUMBER = 'Only assign numbers, not variables when defi
 Blockly.Msg.ARD_ARRAY_LEN_ERR1 = 'Length of array must be 1 or more';
 Blockly.Msg.ARD_ARRAY_LEN_ERR2 = 'Length of array must be an integer number';
 Blockly.Msg.ARD_ARRAY_LEN_ERR3 = 'Length of array must be a number, not a variable';
-Blockly.Msg.ARD_ARRAY_GETINDEX_ITEM = 'in Array variable';
+Blockly.Msg.ARD_ARRAY_GETINDEX_ITEM = 'in array';
 Blockly.Msg.ARD_ARRAY_GETINDEX_AT = 'get element with index';
 Blockly.Msg.ARD_ARRAY_GETINDEX_TOOLTIP = 'Obtain element in the array at given index. Index must be a number from 0 to the length minus 1!';
 Blockly.Msg.ARD_ARRAY_IND_ERR1 = 'Index must be number >= 0';
 Blockly.Msg.ARD_ARRAY_IND_ERR2 = 'Index must be number < length array';
-Blockly.Msg.ARD_ARRAY_SETINDEX_ITEM = 'Set in Array variable';
+Blockly.Msg.ARD_ARRAY_SETINDEX_ITEM = 'Set in array';
 Blockly.Msg.ARD_ARRAY_SETINDEX_AT = 'the element with index';
 Blockly.Msg.ARD_ARRAY_SETINDEX_VALUE = 'to the value';
 Blockly.Msg.ARD_ARRAY_SETINDEX_TOOLTIP = 'Set an element in the array at given index equal to the given value. Index must be a number from 0 to the length minus 1!';
+Blockly.Msg.ARD_ARRAY_GETLENGTH = 'Length of array';
+Blockly.Msg.ARD_ARRAY_GETLENGTH_TOOLTIP = 'Return the length (=number of elements) of the selected array';
