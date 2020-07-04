@@ -32,7 +32,7 @@ Blockly4Arduino.DEFAULT_LANG_TEXT = {};
  * The example base link URL
  * @return {string}
  */
-Blockly4Arduino.EXAMPLE_HTTPURL = 'http://blokkencode.ingegno.be/blockly4Arduino/examples/';
+Blockly4Arduino.EXAMPLE_HTTPURL = '/blockly4Arduino/examples/';
 
 /** Initialize the page language. */
 Blockly4Arduino.initLanguage = function() {
