@@ -167,7 +167,7 @@ void DIOinitSD()
 // DIOinitMP3Player() sets up all of the initialization for the
 // MP3 Player Shield. It runs the begin() function, checks
 // for errors, applies a patch if found, and sets the volume/
-// stero mode.
+// stereo mode.
 void DIOinitMP3Player()
 {
   uint8_t result = DIOMP3player.begin(); // init the mp3 player shield
