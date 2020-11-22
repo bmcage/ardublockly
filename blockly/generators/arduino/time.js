@@ -71,3 +71,23 @@ goog.require('Blockly.Arduino');
  Blockly.Arduino['infinite_loop'] = function(block) {
   return 'while(true);\n';
 };
+
+Blockly.Arduino["tempo_sans_delay"]=function(block){
+    var _u=block.getFieldValue("unite");
+    var delay_time=Blockly.Arduino.valueToCode(block, "DELAY_TIME", Blockly.Arduino.ORDER_ATOMIC);
+	var faire=Blockly.Arduino.statementToCode(block, "branche");
+	var temps="temps"+delay_time;
+	Blockly.Arduino.definitions_["temporisation"+delay_time]="long "+temps+"=0 ;";
+    switch (_u) {
+        case "u":
+            var code="if ((micros()-"+temps+")>=" + delay_time + ") {\n  "+temps+"=micros();\n"+faire+"}\n";
+            break;
+        case "m":
+            var code="if ((millis()-"+temps+")>=" + delay_time + ") {\n  "+temps+"=millis();\n"+faire+"}\n";
+            break;
+        case "s":
+            code="if ((millis()-"+temps+")>=" + delay_time + "*1000) {\n  "+temps+"=millis();\n"+faire+"}\n";
+            break
+    };
+    return code
+};

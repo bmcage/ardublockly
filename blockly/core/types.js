@@ -41,6 +41,13 @@ Blockly.Types.SHORT_NUMBER = new Blockly.Type({
   compatibleTypes: []    // Circular dependencies, add after all declarations
 });
 
+/** Unsigned integer number. */
+Blockly.Types.UNSIGNED_NUMBER = new Blockly.Type({
+  typeId: 'Unsigned Number',
+  typeMsgName: 'ARD_TYPE_UNSIGNED_NUMBER',
+  compatibleTypes: []    // Circular dependencies, add after all declarations
+});
+
 /** Integer number. */
 Blockly.Types.NUMBER = new Blockly.Type({
   typeId: 'Number',
@@ -61,6 +68,7 @@ Blockly.Types.DECIMAL = new Blockly.Type({
   typeMsgName: 'ARD_TYPE_DECIMAL',
   compatibleTypes: [Blockly.Types.BOOLEAN,
                     Blockly.Types.SHORT_NUMBER,
+                    Blockly.Types.UNSIGNED_NUMBER,
                     Blockly.Types.NUMBER,
                     Blockly.Types.LARGE_NUMBER]
 });
@@ -100,19 +108,29 @@ Blockly.Types.CHILD_BLOCK_MISSING = new Blockly.Type({
 Blockly.Types.NUMBER.addCompatibleTypes([
     Blockly.Types.BOOLEAN,
     Blockly.Types.SHORT_NUMBER,
+    Blockly.Types.UNSIGNED_NUMBER,
     Blockly.Types.LARGE_NUMBER,
     Blockly.Types.DECIMAL]);
 
 Blockly.Types.SHORT_NUMBER.addCompatibleTypes([
     Blockly.Types.BOOLEAN,
     Blockly.Types.NUMBER,
+    Blockly.Types.UNSIGNED_NUMBER,
     Blockly.Types.LARGE_NUMBER,
     Blockly.Types.DECIMAL]);
 
 Blockly.Types.LARGE_NUMBER.addCompatibleTypes([
     Blockly.Types.BOOLEAN,
     Blockly.Types.SHORT_NUMBER,
+    Blockly.Types.UNSIGNED_NUMBER,
     Blockly.Types.NUMBER,
+    Blockly.Types.DECIMAL]);
+
+Blockly.Types.UNSIGNED_NUMBER.addCompatibleTypes([
+    Blockly.Types.BOOLEAN,
+    Blockly.Types.SHORT_NUMBER,
+    Blockly.Types.NUMBER,
+    Blockly.Types.LARGE_NUMBER,
     Blockly.Types.DECIMAL]);
 
 

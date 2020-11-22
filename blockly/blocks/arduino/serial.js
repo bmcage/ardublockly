@@ -128,3 +128,20 @@ Blockly.Blocks['serial_print'] = {
         this, 'SERIAL_ID', 'serial');
   }
 };
+
+Blockly.Blocks['file_setup'] = {
+	  /**
+	   * Block for predefining a filename.
+	   * @this Blockly.Block
+	   */
+	  init: function() {
+	    this.setHelpUrl('');
+	    this.setColour(Blockly.Blocks.serial.HUE);
+	   // this.appendDummyInput()
+	   //     .appendField("Save script as");
+	    this.appendValueInput('TEXT')
+        	.setCheck(Blockly.Types.TEXT.checkList)
+        	.appendField(Blockly.Msg.SAVE_FILE_AS);
+        this.setInputsInline(true);
+	  }
+};

@@ -95,7 +95,7 @@ Blockly.FieldInstance.prototype.init = function() {
   } else {
       if (this.uniqueName_) {
         // Ensure the given name is unique in the workspace, but not in flyout
-        if (!this.sourceBlock_.isInFlyout) {
+        if (!this.sourceBlock_.isInFlyout && !document.getElementById('load').value) {
           this.setValue(
               Blockly.Instances.convertToUniqueNameBlock(
                   this.getValue(), this.sourceBlock_));

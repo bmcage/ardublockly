@@ -396,6 +396,8 @@ Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
       return 'char';
     case Blockly.Types.NUMBER.typeId:
       return 'int';
+    case Blockly.Types.UNSIGNED_NUMBER.typeId:
+        return 'unsigned int';
     case Blockly.Types.LARGE_NUMBER.typeId:
       return 'long';
     case Blockly.Types.DECIMAL.typeId:

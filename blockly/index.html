@@ -7,6 +7,7 @@
   <!-- Materialize, Prettify, and Ardublockly CSS -->
   <link rel="stylesheet" href="blockly4Arduino/materialize/materialize.css" media="screen,projection"/>
   <link rel="stylesheet" href="blockly4Arduino/prettify/arduino.css"/>
+  <link rel="stylesheet" href="../closure-library/closure/goog/css/hsvpalette.css" />
   <link rel="stylesheet" type="text/css" href="blockly4Arduino/color.css" media="screen,projection"/>
 
   <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
@@ -15,11 +16,11 @@
   
   <link rel="shortcut icon" href="blockly4Arduino/favicon3.png"/>
   <!-- Blockly4Arduino - These three files contain the compress version-->
-  <script src="blockly_compressed.js"></script>
+  <!--script src="blockly_compressed.js"></script>
   <script src="blocks_compressed.js"></script>
-  <script src="arduino_compressed.js"></script>
+  <script src="arduino_compressed.js"></script-->
   <!-- To use the uncompressed version comment out the above and comment in the ones below -->
-  <!--script src="blockly_uncompressed.js"></script>
+  <script src="blockly_uncompressed.js"></script>
   <script src="../closure-library/closure/goog/base.js"></script>
   <script src="blocks/logic.js"></script>
   <script src="blocks/loops.js"></script>
@@ -42,11 +43,13 @@
   <script src="blocks/arduino/io_extra.js"></script>
   <script src="blocks/arduino/light.js"></script>
   <script src="blocks/arduino/logo.js"></script>
+  <script src="blocks/arduino/logic.js"></script>
   <script src="blocks/arduino/map.js"></script>
   <script src="blocks/arduino/oled.js"></script>
   <script src="blocks/arduino/procedures.js"></script>
   <script src="blocks/arduino/segment.js"></script>
   <script src="blocks/arduino/sensor.js"></script>
+  <script src="blocks/arduino/bluetooth.js"></script>
   <script src="blocks/arduino/serial.js"></script>
   <script src="blocks/arduino/servo.js"></script>
   <script src="blocks/arduino/spi.js"></script>
@@ -83,6 +86,7 @@
   <script src="generators/arduino/procedures.js"></script>
   <script src="generators/arduino/segment.js"></script>
   <script src="generators/arduino/sensor.js"></script>
+  <script src="generators/arduino/bluetooth.js"></script>
   <script src="generators/arduino/serial.js"></script>
   <script src="generators/arduino/servo.js"></script>
   <script src="generators/arduino/spi.js"></script>
@@ -97,7 +101,7 @@
   <script src="generators/arduino/md_actuator.js"></script>
   <script src="generators/arduino/md_audio.js"></script>
   <script src="generators/arduino/md_light.js"></script>
-  <script src="generators/arduino/ledup_blocks.js"></script-->
+  <script src="generators/arduino/ledup_blocks.js"></script>
 
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
@@ -411,7 +415,8 @@
   </category>
   <category id="catLogic" name="Logica">
     <block type="controls_if"></block>
-    <block type="logic_compare"></block>
+	<block type="controls_switch"></block>
+	<block type="logic_compare"></block>
     <block type="logic_operation"></block>
     <block type="logic_negate"></block>
     <block type="logic_boolean"></block>
@@ -524,6 +529,14 @@
     <block type="time_millis"></block>
     <block type="time_micros"></block>
     <block type="infinite_loop"></block>
+    <block type="tempo_sans_delay">
+      <value name="DELAY_TIME">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    
   </category>
   <sep></sep>
   <category id="catComponent" name="Componenten">
@@ -578,6 +591,13 @@
         </block>
       </value>
     </block>
+    <block type="neopixel_HSVcolourpick_write">
+      <value name="LEDPIXEL">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
     <block type="neopixel_colourpick_dim_write">
       <value name="LEDPIXEL">
         <block type="math_number">
@@ -589,6 +609,42 @@
           <field name="NUM">100</field>
         </block>
       </value>
+    </block>
+    <block type="neopixel_dim_write">
+      <value name="BRIGHTNESS">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    
+    <block type="neopixel_write_dimmed">
+      <value name="LEDPIXEL">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="RED">
+        <block type="math_number">
+          <field name="NUM">255</field>
+        </block>
+      </value>
+      <value name="GREEN">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="BLUE">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="BRIGHTNESS">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+      
     </block>
     <block type="neopixel_write">
       <value name="LEDPIXEL">
@@ -612,6 +668,7 @@
         </block>
       </value>
     </block>
+    <block type="neopixel_get_numpixels"></block>
     <block type="io_toneduration">
       <value name="FREQUENCY">
         <shadow type="math_number">
@@ -706,6 +763,13 @@
   </category>
   <category id="catComms" name="Comms">
     <block type="serial_setup"><field name="SPEED">9600</field></block>
+    <block type="file_setup">
+      <value name="TEXT">
+        <block type="text">
+          <field name="TEXT">mijn project</field>
+        </block>
+      </value>
+    </block>    
     <block type="serial_print"></block>
     <block type="text_prompt_ext">
       <value name="TEXT">
@@ -752,6 +816,137 @@
       <block type="DHT_readTemp"></block>
       <block type="DHT_readRH"></block>
       <block type="DHT_readHeatIndex"></block>
+      <block type="IR_config_hub"></block>
+      <block type="IR_readCode"></block>
+    </category>
+    <category id="BTSensors" name="Bluetooth">
+      <block type="BT_config_hub"></block>
+      <block type="BT_readCodeFromApp"></block>
+      <block type="text_isColour"></block>
+      <block type="text_isBrightness"></block>
+      <block type="colour_RGB_extractor"></block>
+      <block type="effect_extractor"></block>
+      <block type="BT_isAvailable"></block>
+      <block type="neopixel_hue_write">
+        <value name="LEDPIXEL">
+        	<block type="math_number">
+          		<field name="NUM">1</field>
+        	</block>
+      	</value>
+      	<value name="HUE">
+        	<block type="math_number">
+          		<field name="NUM">0</field>
+        	</block>
+      	</value>
+       	<value name="SATURATION">
+        	<block type="math_number">
+          		<field name="NUM">100</field>
+        	</block>
+      	</value>
+       	<value name="VALUE">
+        	<block type="math_number">
+          		<field name="NUM">100</field>
+        	</block>
+      	</value>
+      </block>
+      <block type="neopixel_fill">
+	      <value name="RED">
+	        <block type="math_number">
+	          <field name="NUM">255</field>
+	        </block>
+	      </value>
+	      <value name="GREEN">
+	        <block type="math_number">
+	          <field name="NUM">0</field>
+	        </block>
+	      </value>
+	      <value name="BLUE">
+	        <block type="math_number">
+	          <field name="NUM">0</field>
+	        </block>
+	      </value>
+    </block>
+    <block type="neopixel_clear"></block>
+    <block type="neopixel_rainbow">
+        <value name="delay">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+   </block>
+    <block type="neopixel_theaterchaserainbow">
+        <value name="delay">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+   </block>
+   <block type="neopixel_colorwipe">
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="delay">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+    </block>
+    <block type="neopixel_theaterchase">
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+    </block>
+    <block type="neopixel_effects">
+       <value name="delay">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+       <value name="COUNT">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>    
+    </block>      
     </category>
     <category id="catDiorama" name="Diorama">
       <block type="diorama_hub_component">
