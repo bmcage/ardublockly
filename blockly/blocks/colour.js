@@ -45,7 +45,7 @@ Blockly.Blocks['colour_picker'] = {
       "message0": "%1",
       "args0": [
         {
-          "type": "field_colour",
+          "type": "field_HSVcolour",
           "name": "COLOUR",
           "colour": "#ff0000"
         }

@@ -223,3 +223,97 @@ Blockly.Blocks['DHT_readHeatIndex'] = {
     }
   }
 };
+
+
+Blockly.Blocks['IR_config_hub'] = {
+  /**
+   * Block for adding a IR sensor to a hub.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("media/arduino/IRReceiver.png", 40, 20, "*"))
+        .appendField(Blockly.Msg.ARD_IRHUB)
+        .appendField(
+            new Blockly.FieldInstance('IR',
+                                      Blockly.Msg.ARD_IR_DEFAULT_NAME,
+                                      true, true, false),
+            'NAMEIR')
+    this.setOutput(true, "HUB_DIGOUT");
+    this.setColour(Blockly.Blocks.sensor.HUE);
+    this.setTooltip(Blockly.Msg.ARD_IRHUB_TIP);
+    this.setHelpUrl('https://learn.adafruit.com/ir-sensor');
+  },
+  /**
+   * Set the connection pins that the component connects to
+   * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
+   * @this Blockly.Block
+   */
+  setHubConnector: function(connector) {
+    this['connector'] = connector;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  }
+};
+
+Blockly.Blocks['IR_readCode'] = {
+  /**
+   * Block for reading the HEX code from an IR-Receiver.
+   * @this Blockly.Block
+   */
+  init: function() {
+//    this.setHelpUrl('https://learn.adafruit.com/ir-sensor');
+    this.setColour(Blockly.Blocks.sensor.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ARD_IRHUB_READCODE)
+        .appendField(
+            new Blockly.FieldInstance('IR',
+                                      Blockly.Msg.ARD_IR_DEFAULT_NAME,
+                                      false, true, false),
+            'IR_NAME');
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setTooltip(Blockly.Msg.ARD_IR_READCODE_TIP);
+  },
+  /** @return {string} The type of return value for the block, a float. */
+  getBlockType: function() {
+    return Blockly.Types.DECIMAL;
+  },
+  /**
+   * Gets the variable type required.
+   * @param {!string} varName Name of the variable selected in this block to
+   *     check.
+   * @return {string} String to indicate the variable type.
+   */
+  getVarType: function(varName) {
+    return Blockly.Types.NUMBER;
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks the instances of dhts and attaches a warning to this
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('IR_NAME');
+    if (Blockly.Instances.isInstancePresent(instanceName, 'IR', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid config
+      this.setWarningText(Blockly.Msg.ARD_COMPONENT_WARN1.replace('%1', Blockly.Msg.ARD_IR_COMPONENT).replace('%2', Blockly.Msg.ARD_IR_COMPONENT));
+    }
+  }
+};
+
+	

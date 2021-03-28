@@ -145,3 +145,64 @@ Blockly.Arduino['DHT_readHeatIndex'] = function(block) {
   var code = dhtName + '_readHI()'
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+/**
+ * The IRReceiver setup block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['IR_config_hub'] = function(block) {
+  var ir = block.getFieldValue('NAMEIR');
+  
+  //the hub saved the connector in the attached block
+  var hubconnector = block['connector'] || ['0']
+  //compute the pins, normally only possible to attach at valid pins
+  var pin = hubconnector[0];
+//IR myIRIR_Sensor(IR_Sensor);
+  var irName = 'myIR' + ir;
+  //ir is a variable containing the used pins
+  Blockly.Arduino.addVariable(ir,
+    'int ' + ir + ' = ' + pin + ';', true);
+    
+  Blockly.Arduino.addInclude('ir', '#include <IRremote.h>  // version 2.0.1');
+  Blockly.Arduino.addDeclaration('ir_' + irName, 'IRrecv ' + irName + '(' + 
+                                 ir + ');');
+  Blockly.Arduino.reservePin(block, pin, Blockly.Arduino.PinTypes.INPUT, 'IR Read');
+
+  var setupCode = irName + '.enableIRIn();';
+  Blockly.Arduino.addSetup('ir_' + irName, setupCode, true);
+
+  return '';
+};
+
+/**
+ * Code generator to read the HEX value of a IR receiver.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['IR_readCode'] = function(block) {
+  var irInstanceName = block.getFieldValue('IR_NAME');
+  var irName = 'myIR' + irInstanceName;
+  var irNameCode = irName + 'Code';
+
+  //Blockly.Arduino.addDeclaration(irNameCode, 'unsigned long ' + irNameCode + ' = 200;');
+  Blockly.Arduino.addDeclaration('result', 'decode_results ' + 'result;');
+  
+  var readTcode = `unsigned long IRNAME_readT() {
+  while(!IRNAME.decode(&result)) {
+	  delay(500);
+  }
+  unsigned long retCode = result.value;
+  IRNAME.resume();
+  return retCode;
+}
+`
+  Blockly.Arduino.addFunction(irNameCode, readTcode
+//        .replace(new RegExp('IRNAMECODE', 'g'), irNameCode)
+        .replace(new RegExp('IRNAME', 'g'), irName)
+                             );
+
+  var code = irName + '_readT()'
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+

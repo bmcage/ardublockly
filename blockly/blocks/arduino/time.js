@@ -115,3 +115,15 @@ Blockly.Blocks['infinite_loop'] = {
     this.setTooltip(Blockly.Msg.ARD_TIME_INF_TIP);
   }
 };
+
+Blockly.Blocks['tempo_sans_delay']={init:function() {
+	this.appendValueInput("DELAY_TIME", "Number").setCheck("Number").appendField(Blockly.Msg.ARD_TIME_EVERY);
+		this.appendDummyInput().appendField(new Blockly.FieldDropdown(Blockly.Msg.ARD_TIME_UNITS), "unite");
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null)
+	this.appendStatementInput("branche").appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
+	this.setInputsInline(true);
+	this.setColour(Blockly.Blocks.time.HUE);
+	this.setTooltip("");
+	}
+};

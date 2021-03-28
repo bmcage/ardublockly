@@ -72,8 +72,14 @@ function saveCode() {
  */
 function save() {
   var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  var file_block_iter = document.evaluate( "//block[@type='file_setup']/value/block/field", xml, null, XPathResult.ANY_TYPE, null );
+  var file_block = file_block_iter.iterateNext();
+  var fileS = file_block.textContent;
+  if (!fileS) {
+	  fileS = "Blockly4Arduino";
+  }
   var data = Blockly.Xml.domToText(xml);
-  var fileName = window.prompt(Blockly.Msg.WHAT_NAME_FOR_FILE, 'Blockly4Arduino');
+  var fileName = window.prompt(Blockly.Msg.WHAT_NAME_FOR_FILE, fileS);
   // Store data in blob.
   // var builder = new BlobBuilder();
   // builder.append(data);
