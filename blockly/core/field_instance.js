@@ -15,7 +15,7 @@ goog.require('Blockly.Instances');
 goog.require('Blockly.Msg');
 goog.require('Blockly.utils');
 goog.require('Blockly.utils.object');
-goog.require('goog.string');
+goog.require('Blockly.utils.string');
 
 
 /**
@@ -56,6 +56,17 @@ Blockly.FieldInstance = function(
       opt_editDropdownData : null;
 };
 Blockly.utils.object.inherits(Blockly.FieldInstance, Blockly.FieldDropdown);
+
+/**
+ * Construct a FieldInstance from a JSON arg object.
+ * @param {!Object} options A JSON object with options (options).
+ * @return {!Blockly.FieldInstance} The new field instance.
+ * @package
+ * @nocollapse
+ */
+Blockly.FieldInstance.fromJson = function(options) {
+  return new Blockly.FieldInstance(options['options'], undefined, undefined, options);
+};
 
 /**
  * Sets a new change handler for instance field.
@@ -131,9 +142,9 @@ Blockly.FieldInstance.prototype.init = function() {
 //  return this.getText();
 //};
 
-//Blockly.FieldInstance.prototype.getInstanceTypeValue = function(instanceType) {
-//  return (instanceType === this.instanceType_) ? this.getText() : undefined;
-//};
+Blockly.FieldInstance.prototype.getInstanceTypeValue = function(instanceType) {
+  return (instanceType === this.instanceType_) ? this.getText() : undefined;
+};
 
 /**
  * Return a sorted list of instance names for instance dropdown menus.
@@ -153,7 +164,7 @@ Blockly.FieldInstance.prototype.dropdownCreate = function() {
   if (name && instanceList.indexOf(name) == -1) {
     instanceList.push(name);
   }
-  instanceList.sort(goog.string.caseInsensitiveCompare);
+  instanceList.sort(Blockly.utils.string.caseInsensitiveCompare);
   if (!this.lockRename_) {
     instanceList.push(Blockly.Msg.RENAME_INSTANCE);
   }

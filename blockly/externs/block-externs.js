@@ -25,6 +25,7 @@ goog.provide('Blockly.Mutator');
 goog.provide('Blockly.Warning');
 goog.provide('Blockly.Types');
 goog.provide('Blockly.utils.object');
+goog.provide('Blockly.utils.string');
 goog.provide('Blockly.Instances');
 goog.provide('Blockly.FieldInstance');
 

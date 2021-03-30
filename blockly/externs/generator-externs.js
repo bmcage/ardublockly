@@ -15,5 +15,6 @@ goog.provide('Blockly.inputTypes');
 goog.provide('Blockly.utils.global');
 goog.provide('Blockly.utils.string');
 goog.provide('Blockly.StaticTyping');
+goog.provide('goog.string');
 
 var Blockly;

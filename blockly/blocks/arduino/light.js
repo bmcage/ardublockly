@@ -227,71 +227,6 @@ Blockly.Blocks['led_digitalwrite_onoff'] = {
   }
 };
 
-/**
- * The neopixel set block with dropdown of HSVcolor to show
- * @param {!Blockly.Block} block Block to generate the code from.
- * @return {string} Completed code.
- */
-Blockly.Blocks['neopixel_HSVcolourpick_write'] = {
-  init: function() {
-    this.setColour(Blockly.Blocks.light.HUE);
-    this.appendDummyInput("")
-        .appendField(Blockly.Msg.ARD_NEOPIXEL_SET)
-        .appendField(
-            new Blockly.FieldInstance('LedStrip',
-                                      Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
-                                      false, true, false),
-            'NEONAME')
-        .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
-    
-    this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.getcheckList())
-        .setAlign(Blockly.ALIGN_RIGHT)
-    
-    var colour = new Blockly.FieldHSVColour('#ff0000');
-    this.appendDummyInput("")
-        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONHSVCOLOUR)
-        .appendField(colour, 'COLOUR');
-
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, 'ARD_BLOCK');
-    this.setNextStatement(true, 'ARD_BLOCK');
-    this.setTooltip(Blockly.Msg.ARD_DIGITALWRITE_TIP);
-    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
-    },
-  /**
-   * Gets the variable type required.
-   * @param {!string} varName Name of the variable selected in this block to
-   *     check.
-   * @return {string} String to indicate the variable type.
-   */
-  getVarType: function(varName) {
-    return Blockly.Types.NUMBER;
-  },
-  /**
-   * Called whenever anything on the workspace changes.
-   * It checks the instances of neopixel config and attaches a warning to this
-   * block if not valid data is found.
-   * @this Blockly.Block
-   */
-  onchange: function(event) {
-    if (!this.workspace || event.type == Blockly.Events.MOVE ||
-        event.type == Blockly.Events.UI) {
-        return;  // Block deleted or irrelevant event
-    }
-
-    var instanceName = this.getFieldValue('NEONAME')
-    if (Blockly.Instances.isInstancePresent(instanceName, 'LedStrip', this)) {
-      this.setWarningText(null);
-    } else {
-      // Set a warning to select a valid config block
-      this.setWarningText(
-        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
-            '%1', Blockly.Msg.ARD_NEOPIXEL_COMPONENT).replace(
-                '%2', instanceName));
-    }
-  }
-};
 
 /**
  * The neopixel set block with dropdown of color to show
@@ -1016,16 +951,6 @@ Blockly.Blocks['neopixel_effects'] = {
 		   * @this Blockly.Block
 		   */
 		  init: function() {
-		    var PROPERTIES =
-		        [[Blockly.Msg.ARD_NEOPIXEL_EFF_COLORWIPE, 'colorwipe'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_RAINBOW, 'rainbow'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASE, 'theaterchase'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASERAINBOW, 'theaterchaserainbow'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_SNAKE, 'snake'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_SCANNER, 'scanner'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_SNOW, 'snow'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_METEOOR, 'meteoor'],
-		        [Blockly.Msg.ARD_NEOPIXEL_EFF_STROBE, 'strobe']];
 		    var effect_props = new Map();
 		    effect_props.set('colorwipe', {colours: true, enddelay: false, count: true, fade: false});
 		    effect_props.set('rainbow', {colours: false, enddelay: false, count: false, fade: false});
@@ -1047,7 +972,17 @@ Blockly.Blocks['neopixel_effects'] = {
 		            'NEONAME')
 		    this.appendDummyInput()
 		        .appendField('effect')
-            .appendField(new Blockly.FieldDropdown(PROPERTIES, this.handleTypeSelection.bind(this)), 'PROPERTY');
+                .appendField(new Blockly.FieldDropdown(
+                  [[Blockly.Msg.ARD_NEOPIXEL_EFF_COLORWIPE, 'colorwipe'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_RAINBOW, 'rainbow'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASE, 'theaterchase'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASERAINBOW, 'theaterchaserainbow'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_SNAKE, 'snake'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_SCANNER, 'scanner'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_SNOW, 'snow'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_METEOOR, 'meteoor'],
+                  [Blockly.Msg.ARD_NEOPIXEL_EFF_STROBE, 'strobe']],
+                          this.handleTypeSelection.bind(this)), 'PROPERTY');
 	        this.effectType = this.getFieldValue('PROPERTY');
 		    this.appendValueInput('delay')
 		        .setCheck(Blockly.Types.NUMBER.getcheckList())

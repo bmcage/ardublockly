@@ -275,7 +275,7 @@ Blockly.Blocks['allbot_chirp'] = {
 Blockly.Blocks['allbot_scared'] = {
   init: function() {
     this.appendValueInput('SHAKES')
-        .setCheck(Blockly.Types.NUMBER.getcheckList().getcheckList().getcheckList())
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_SCARED);
     this.appendValueInput('BEEPS')
         .setCheck(Blockly.Types.NUMBER.getcheckList())

@@ -22,7 +22,7 @@ Blockly.Blocks['colour_rgb255'] = {
    */
   init: function() {
     this.setHelpUrl(Blockly.Msg.COLOUR_RGB_HELPURL);
-    this.setColour(Blockly.Blocks.colour.HUE);
+    this.setColour(Blockly.Msg['COLOUR_HUE']);
     this.appendValueInput('RED')
         .setCheck(Blockly.Types.NUMBER.checkList)
         .setAlign(Blockly.ALIGN_RIGHT)

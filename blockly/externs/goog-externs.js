@@ -13,6 +13,5 @@
  * @type {!Object}
  */
 
-goog.provide('goog.string');
 
 var goog = {};

@@ -179,6 +179,8 @@ Blockly.Blocks['io_highlow'] = {
    * @this Blockly.Block
    */
   init: function() {
+      console.log('test trans1', Blockly.Msg['ARD_HIGH']);
+      console.log('test trans', Blockly.Msg['ARD_BT_EFFECT2']);
     this.setHelpUrl('http://arduino.cc/en/Reference/Constants');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
@@ -267,11 +269,9 @@ Blockly.Blocks['io_pulsetimeout'] = {
 /** Attach a generic analog sensor to the hub*/
 Blockly.Blocks['analogsensor_config_hub'] = {
   init: function() {
-    console.log('test0', Blockly.FieldInstance);
     var digoutInstance = new Blockly.FieldInstance('AnalogSensor',
                                       Blockly.Msg['ARD_ANASENSOR_DEFAULT_NAME'],
                                       true, true, false);
-    console.log('test1', digoutInstance);
     this.appendDummyInput()
         //.appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_ANASENSOR)

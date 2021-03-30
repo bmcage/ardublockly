@@ -29,6 +29,7 @@ goog.provide('Blockly.Blocks.ComponentFieldVariable');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.FieldVariable');
 goog.require('Blockly.utils.object');
+goog.require('Blockly.utils.string');
 
 
 /**
@@ -104,7 +105,7 @@ Blockly.Blocks.ComponentFieldVariable.prototype.dropdownCreate = function() {
   if (name && variableList.indexOf(name) == -1) {
     variableList.push(name);
   }
-  variableList.sort(goog.string.caseInsensitiveCompare);
+  variableList.sort(Blockly.utils.string.caseInsensitiveCompare);
   variableList.push(Blockly.Msg.RENAME_VARIABLE);
   variableList.push(Blockly.Msg.NEW_VARIABLE);
   // Variables are not language-specific, use the name as both the user-facing

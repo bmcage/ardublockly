@@ -282,3 +282,30 @@ Blockly.utils.string.wrapToText_ = function(words, wordBreaks) {
   return text.join('');
 };
 
+/**
+ * 
+ * Copied from Closure's goog.string.internal.caseInsensitiveCompare.
+ * A string comparator that ignores case.
+ * -1 = str1 less than str2
+ *  0 = str1 equals str2
+ *  1 = str1 greater than str2
+ *
+ * @param {string} str1 The string to compare.
+ * @param {string} str2 The string to compare `str1` to.
+ * @return {number} The comparator result, as described above.
+ * @see goog.string.caseInsensitiveCompare
+ */
+Blockly.utils.string.caseInsensitiveCompare = function(str1, str2) {
+  'use strict';
+  var test1 = String(str1).toLowerCase();
+  var test2 = String(str2).toLowerCase();
+
+  if (test1 < test2) {
+    return -1;
+  } else if (test1 == test2) {
+    return 0;
+  } else {
+    return 1;
+  }
+};
+

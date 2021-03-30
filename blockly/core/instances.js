@@ -11,8 +11,6 @@
 goog.provide('Blockly.Instances');
 
 goog.require('Blockly.Workspace');
-goog.require('goog.string');
-
 
 /**
  * Category to separate instance names from instances, procedures and

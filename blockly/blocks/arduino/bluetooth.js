@@ -32,7 +32,7 @@ Blockly.Blocks['BT_config_hub'] = {
     this.setColour(Blockly.Blocks.sensor.HUE);
     this.setTooltip(Blockly.Msg.ARD_BTHUB_TIP);
     this.setHelpUrl('https://classes.engineering.wustl.edu/ese205/core/index.php?title=Bluetooth_Module_(HC-06)_%2B_Arduino');
-  }, //https://classes.engineering.wustl.edu/ese205/core/index.php?title=Bluetooth_Module_(HC-06)_%2B_Arduino
+  }, 
   /**
    * Set the connection pins that the component connects to
    * @param {array} array of the connections (as string, eg '1', 'SDA', 'A1', ...
@@ -162,17 +162,14 @@ Blockly.Blocks['colour_RGB_extractor'] = {
 		  /**
 		   * Block extracting the R , G, or B value from a given RGB value in the format xxx.xxx.xxx
 		   */
-		  init: function() {
-		    var PROPERTIES =
-		        [[Blockly.Msg.COLOUR_RGB_RED, 'ROOD'],
-		         [Blockly.Msg.COLOUR_RGB_GREEN, 'GROEN'],
-		         [Blockly.Msg.COLOUR_RGB_BLUE, 'BLAUW'],
-		         [Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS,'HELDERHEID']];
-		         
+		  init: function() {		         
 		    this.setColour(Blockly.Blocks.sensor.HUE);
 		    this.appendValueInput('COLOUR_TO_CHECK')
 		        .setCheck(Blockly.Types.TEXT.getcheckList());
-		    var dropdown = new Blockly.FieldDropdown(PROPERTIES);
+		    var dropdown = new Blockly.FieldDropdown([[Blockly.Msg.COLOUR_RGB_RED, 'ROOD'],
+		         [Blockly.Msg.COLOUR_RGB_GREEN, 'GROEN'],
+		         [Blockly.Msg.COLOUR_RGB_BLUE, 'BLAUW'],
+		         [Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS,'HELDERHEID']]);
 		    this.appendDummyInput()
 		        .appendField(dropdown, 'PROPERTY');
 		    this.setInputsInline(true);
@@ -189,20 +186,18 @@ Blockly.Blocks['effect_extractor'] = {
 	   * Block extracting the effect type
 	   */
 	  init: function() {
-	    var PROPERTIES =
-	        [[Blockly.Msg.ARD_BT_EFFECT1, 'EFF1'],
-	         [Blockly.Msg.ARD_BT_EFFECT2, 'EFF2'],
-	         [Blockly.Msg.ARD_BT_EFFECT3, 'EFF3'],
-	         [Blockly.Msg.ARD_BT_EFFECT4, 'EFF4'],
-	         [Blockly.Msg.ARD_BT_EFFECT5, 'EFF5'],
-	         [Blockly.Msg.ARD_BT_EFFECT6, 'EFF6'],
-	         [Blockly.Msg.ARD_BT_EFFECT7, 'EFF7'],
-	         [Blockly.Msg.ARD_BT_EFFECT8, 'EFF8']];
-	         
+        console.log('test trans', Blockly.Msg['ARD_BT_EFFECT2']);
 	    this.setColour(Blockly.Blocks.sensor.HUE);
 	    this.appendValueInput('EFFECT_TO_CHECK')
 	        .setCheck(Blockly.Types.TEXT.getcheckList());
-	    var dropdown = new Blockly.FieldDropdown(PROPERTIES);
+	    var dropdown = new Blockly.FieldDropdown([[Blockly.Msg['ARD_BT_EFFECT1'], 'EFF1'],
+	         [Blockly.Msg['ARD_BT_EFFECT2'], 'EFF2'],
+	         [Blockly.Msg['ARD_BT_EFFECT3'], 'EFF3'],
+	         [Blockly.Msg['ARD_BT_EFFECT4'], 'EFF4'],
+	         [Blockly.Msg['ARD_BT_EFFECT5'], 'EFF5'],
+	         [Blockly.Msg['ARD_BT_EFFECT6'], 'EFF6'],
+	         [Blockly.Msg['ARD_BT_EFFECT7'], 'EFF7'],
+	         [Blockly.Msg['ARD_BT_EFFECT8'], 'EFF8']]);
 	    this.appendDummyInput()
 	        .appendField(dropdown, 'PROPERTY');
 	    this.setInputsInline(true);
