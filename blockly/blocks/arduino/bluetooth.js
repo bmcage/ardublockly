@@ -7,12 +7,11 @@
 goog.provide('Blockly.Blocks.bluetooth');
 
 goog.require('Blockly.Blocks');
-goog.require('Blockly.Blocks.io');
 goog.require('Blockly.Types');
 
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.sensor.HUE = Blockly.Blocks.io.HUE;
+Blockly.Blocks.sensor.HUE = 250;
 
 
 Blockly.Blocks['BT_config_hub'] = {
@@ -67,7 +66,7 @@ Blockly.Blocks['BT_readCodeFromApp'] = {
 		                                      Blockly.Msg.ARD_BT_DEFAULT_NAME,
 		                                      false, true, false),
 		            'BT_NAME');
-		    this.setOutput(true, Blockly.Types.TEXT.output);
+		    this.setOutput(true, Blockly.Types.TEXT.getoutput());
 		    this.setTooltip(Blockly.Msg.ARD_BT_READCODEAPP_TIP);
 		  },
 		  /** @return {string} The type of return value for the block, a STRING. */
@@ -117,10 +116,10 @@ Blockly.Blocks['text_isColour'] = {
 			        {
 			          "type": "input_value",
 			          "name": "VALUE",
-			          "check": Blockly.Types.TEXT.checkList.concat('Array'),
+			          "check": Blockly.Types.TEXT.getcheckList().concat('Array'),
 			        }
 			      ],
-			      "output": Blockly.Types.BOOLEAN.output,
+			      "output": Blockly.Types.BOOLEAN.getoutput(),
 			      "colour": Blockly.Blocks.sensor.HUE,
 			      "tooltip": Blockly.Msg.ARD_BT_TEXT_ISCOLOUR_TOOLTIP,
 			     // "helpUrl": Blockly.Msg.TEXT_ARD_BT_ISEMPTY_HELPURL
@@ -144,10 +143,10 @@ Blockly.Blocks['text_isBrightness'] = {
 			        {
 			          "type": "input_value",
 			          "name": "VALUE",
-			          "check": Blockly.Types.TEXT.checkList.concat('Array'),
+			          "check": Blockly.Types.TEXT.getcheckList().concat('Array'),
 			        }
 			      ],
-			      "output": Blockly.Types.BOOLEAN.output,
+			      "output": Blockly.Types.BOOLEAN.getoutput(),
 			      "colour": Blockly.Blocks.sensor.HUE,
 			      "tooltip": Blockly.Msg.ARD_BT_TEXT_ISBRIGHTNESS_TOOLTIP,
 			     // "helpUrl": Blockly.Msg.TEXT_ARD_BT_ISEMPTY_HELPURL
@@ -172,12 +171,12 @@ Blockly.Blocks['colour_RGB_extractor'] = {
 		         
 		    this.setColour(Blockly.Blocks.sensor.HUE);
 		    this.appendValueInput('COLOUR_TO_CHECK')
-		        .setCheck(Blockly.Types.TEXT.checkList);
+		        .setCheck(Blockly.Types.TEXT.getcheckList());
 		    var dropdown = new Blockly.FieldDropdown(PROPERTIES);
 		    this.appendDummyInput()
 		        .appendField(dropdown, 'PROPERTY');
 		    this.setInputsInline(true);
-		    this.setOutput(true, Blockly.Types.NUMBER.output);
+		    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
 		    this.setTooltip(Blockly.Msg.ARD_BT_COLOUR_TOOLTIP);
 		  },
 		  getBlockType: function() {
@@ -202,12 +201,12 @@ Blockly.Blocks['effect_extractor'] = {
 	         
 	    this.setColour(Blockly.Blocks.sensor.HUE);
 	    this.appendValueInput('EFFECT_TO_CHECK')
-	        .setCheck(Blockly.Types.TEXT.checkList);
+	        .setCheck(Blockly.Types.TEXT.getcheckList());
 	    var dropdown = new Blockly.FieldDropdown(PROPERTIES);
 	    this.appendDummyInput()
 	        .appendField(dropdown, 'PROPERTY');
 	    this.setInputsInline(true);
-	    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+	    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
 	    this.setTooltip(Blockly.Msg.ARD_BT_EFFECT_TOOLTIP);
 	  },
 	  getBlockType: function() {
@@ -233,7 +232,7 @@ Blockly.Blocks['BT_isAvailable'] = {
 	            'BT_NAME')
 //	        .appendField("heeft een code ontvangen");
 	    	.appendField(Blockly.Msg.ARD_BT_RECEIVED);
-	    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+	    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
 	    this.setTooltip(Blockly.Msg.ARD_BT_RECEIVED_TIP);
 	  },
 	  /** @return {string} The type of return value for the block, a long. */

@@ -112,7 +112,7 @@ Blockly.Blocks['dio_quieter'] = {
 Blockly.Blocks['dio_setvolume'] = {
   init: function() {
     this.appendValueInput('VOLUME')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_DIO_SETLOUDNESS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -162,7 +162,7 @@ Blockly.Blocks['dio_setvolume'] = {
 Blockly.Blocks['dio_playtrack'] = {
   init: function() {
     this.appendValueInput('TRACK')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_DIO_PLAYTRACK);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -258,7 +258,7 @@ Blockly.Blocks['dio_trackplaying'] = {
         .appendField(Blockly.Msg.ARD_DIO_TRACKPLAYING);
     this.setColour(Blockly.Blocks.diorama.HUE);
     this.setTooltip(Blockly.Msg.ARD_DIO_TRACKPLAYING_TIP);
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setHelpUrl('');
   },
   onchange: function(event) {
@@ -394,7 +394,7 @@ Blockly.Blocks['dio_resetbtnnrpress'] = {
 Blockly.Blocks['dio_displaytext'] = {
   init: function() {
     this.appendValueInput('TEXT')
-        .setCheck(Blockly.Types.TEXT.checkList)
+        .setCheck(Blockly.Types.TEXT.getcheckList())
         .appendField(Blockly.Msg.ARD_DIO_DISPLAYTEXT);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');

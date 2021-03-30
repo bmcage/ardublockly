@@ -194,11 +194,11 @@ Blockly.Procedures.flyoutCategory = function(workspace) {
   var xmlList = [];
   if (Blockly.Blocks['arduino_functions']) {
     // <block type="arduino_functions" gap="16"></block>
-    var block = goog.dom.createDom('block');
+    var block = Blockly.utils.xml.createElement('block');
     block.setAttribute('type', 'arduino_functions');
     block.setAttribute('gap', 16);
     // If this parent block present already in the workspace show as disabled 
-    var workspaceTopBlocks = workspace.getTopBlocks();
+    var workspaceTopBlocks = workspace.getTopBlocks(false);
     for (var i = 0; i < workspaceTopBlocks.length; i++) {
       if (workspaceTopBlocks[i].getArduinoLoopsInstance &&
           workspaceTopBlocks[i].getArduinoLoopsInstance()) {
@@ -208,11 +208,11 @@ Blockly.Procedures.flyoutCategory = function(workspace) {
     xmlList.push(block);
   }
   if (Blockly.Blocks['arduino_declareupfront']) {
-    var block = goog.dom.createDom('block');
+    var block = Blockly.utils.xml.createElement('block');
     block.setAttribute('type', 'arduino_declareupfront');
     block.setAttribute('gap', 16);
     // If this parent block present already in the workspace show as disabled 
-    var workspaceTopBlocks = workspace.getTopBlocks();
+    var workspaceTopBlocks = workspace.getTopBlocks(false);
     for (var i = 0; i < workspaceTopBlocks.length; i++) {
       if (workspaceTopBlocks[i].getArduinoDeclareUpfrontInstance &&
           workspaceTopBlocks[i].getArduinoDeclareUpfrontInstance()) {
@@ -257,7 +257,7 @@ Blockly.Procedures.flyoutCategory = function(workspace) {
     xmlList.push(block);
   }
   if (Blockly.Blocks['controls_effect']) {
-    var block = goog.dom.createDom('block');
+    var block = Blockly.utils.xml.createElement('block');
     block.setAttribute('type', 'controls_effect');
     block.setAttribute('gap', 16);
     xmlList.push(block);

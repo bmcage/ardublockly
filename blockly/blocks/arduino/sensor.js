@@ -80,7 +80,7 @@ Blockly.Blocks['DHT_readTemp'] = {
                                       Blockly.Msg.ARD_DHT_DEFAULT_NAME,
                                       false, true, false),
             'DHT_NAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DHT_READTEMP_TIP);
   },
   /** @return {string} The type of return value for the block, a float. */
@@ -133,7 +133,7 @@ Blockly.Blocks['DHT_readRH'] = {
                                       Blockly.Msg.ARD_DHT_DEFAULT_NAME,
                                       false, true, false),
             'DHT_NAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DHT_READRH_TIP);
   },
   /** @return {string} The type of return value for the block, a float. */
@@ -186,7 +186,7 @@ Blockly.Blocks['DHT_readHeatIndex'] = {
                                       Blockly.Msg.ARD_DHT_DEFAULT_NAME,
                                       false, true, false),
             'DHT_NAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DHT_READHEATINDEX_TIP);
   },
   /** @return {string} The type of return value for the block, a float. */
@@ -278,7 +278,7 @@ Blockly.Blocks['IR_readCode'] = {
                                       Blockly.Msg.ARD_IR_DEFAULT_NAME,
                                       false, true, false),
             'IR_NAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_IR_READCODE_TIP);
   },
   /** @return {string} The type of return value for the block, a float. */

@@ -69,7 +69,7 @@ Blockly.Blocks['mcookie_button_digitalread'] = {
                                       Blockly.Msg.ARD_MD_CRASHBUTTON_DEFAULT_NAME,
                                       false, true, false),
             'BUTTONNAME');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */

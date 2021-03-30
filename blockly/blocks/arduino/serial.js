@@ -140,7 +140,7 @@ Blockly.Blocks['file_setup'] = {
 	   // this.appendDummyInput()
 	   //     .appendField("Save script as");
 	    this.appendValueInput('TEXT')
-        	.setCheck(Blockly.Types.TEXT.checkList)
+        	.setCheck(Blockly.Types.TEXT.getcheckList())
         	.appendField(Blockly.Msg.SAVE_FILE_AS);
         this.setInputsInline(true);
 	  }

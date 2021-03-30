@@ -16,7 +16,6 @@ goog.require('Blockly.Block');
 goog.require('Blockly.Type');
 goog.require('Blockly.Types');
 goog.require('Blockly.Workspace');
-goog.require('goog.asserts');
 
 /**
  * Class for Static Typing.
@@ -32,7 +31,7 @@ Blockly.StaticTyping = function() {
  * their type into an associative array with the variable names as the keys and
  * the type as the values.
  * @param {Blockly.Workspace} workspace Blockly Workspace to collect variables.
- * @return {Object{ String: Blockly.Type, } Associative array with the variable
+ * @return {Object} Associative array with the variable
  *     names as the keys and the type as the values.
  */
 Blockly.StaticTyping.prototype.collectVarsWithTypes = function(workspace) {
@@ -44,16 +43,16 @@ Blockly.StaticTyping.prototype.collectVarsWithTypes = function(workspace) {
     // Each statement block iterates through its input children collecting vars
     var blockVarAndTypes = Blockly.StaticTyping.getBlockVars(blocks[i]);
     for (var j = 0; j < blockVarAndTypes.length; j++) {
-      var variableName = blockVarAndTypes[j][0];
+      var variableName = blockVarAndTypes[j][0] || "default";
       var variableType = blockVarAndTypes[j][1];
       // If the type comes from a variable, so it's not directly defined, it
       // returns an Array<String(block type), String(source variable name)>
-      if (goog.isArray(variableType)) {
+      if (Array.isArray(variableType)) {
         if (this.varTypeDict[variableType[1]]) {
           variableType = this.varTypeDict[variableType[1]];
         } else {
           // Dependant variable undefined, add this var to the pending list
-          if (!goog.isArray(this.pendingVarTypeDict[variableType[1]])) {
+          if (!Array.isArray(this.pendingVarTypeDict[variableType[1]])) {
             this.pendingVarTypeDict[variableType[1]] = [variableName];
           } else {
             this.pendingVarTypeDict[variableType[1]].push(variableName);
@@ -96,7 +95,7 @@ Blockly.StaticTyping.getAllStatementsOrdered = function(workspace) {
       //block.select();    // for step debugging, highlights block in workspace
       blocks.push(block);
       blockNextConnection = block.nextConnection;
-      connections = block.getConnections_();
+      connections = block.getConnections_(true);
       block = null;
       for (var j = 0; j < connections.length; j++) {
         if (connections[j].type == Blockly.NEXT_STATEMENT) {
@@ -130,7 +129,7 @@ Blockly.StaticTyping.getAllStatementsOrdered = function(workspace) {
 /**
   * Retrieves the input argument block variables with their set type.
   * @param {Blockly.Block} block Block to retrieve variables from.
-  * @return {Array<Array<String, Blockly.Type>>} Two dimensional array with the
+  * @return {Array<Array<string, Blockly.Type>>} Two dimensional array with the
   *     block variable as the first item pair and variable type as the second.
   */
 Blockly.StaticTyping.getBlockVars = function(block) {
@@ -177,7 +176,7 @@ Blockly.StaticTyping.prototype.assignTypeToVars =
     // Variable with valid type already registered
     default:
       this.setBlockTypeWarning(
-          block, varType, varName, this.varTypeDict[varName]);
+          block, varType, varName);
       break;
   }
 };
@@ -185,9 +184,9 @@ Blockly.StaticTyping.prototype.assignTypeToVars =
 /**
  * When a block uses a variable this function can compare its type with the
  * variable type and set a warning if they are not the same or compatible.
- * @param {!Blockly.Block} block The block to manage its warning.
- * @param {!Blockly.Type} blockType The type of this block.
- * @param {!string} varName The variable name.
+ * @param {Blockly.Block} block The block to manage its warning.
+ * @param {Blockly.Type} blockType The type of this block.
+ * @param {string} varName The variable name.
  */
 Blockly.StaticTyping.prototype.setBlockTypeWarning =
     function(block, blockType, varName) {
@@ -199,10 +198,10 @@ Blockly.StaticTyping.prototype.setBlockTypeWarning =
     block.setWarningText(null, warningLabel);
   } else if ((this.varTypeDict[varName] !== blockType) &&
              (blockType !== Blockly.Types.UNDEF)) {
-    block.setWarningText(Blockly.Msg.TYPE_WARN01 + varName + 
-                         Blockly.Msg.TYPE_WARN02 + this.varTypeDict[varName].typeName + 
-                         Blockly.Msg.TYPE_WARN03 + blockType.typeName +
-                         Blockly.Msg.TYPE_WARN04,
+    block.setWarningText(Blockly.Msg['TYPE_WARN01'] + varName + 
+                         Blockly.Msg['TYPE_WARN02'] + this.varTypeDict[varName].gettypeName() + 
+                         Blockly.Msg['TYPE_WARN03'] + blockType.gettypeName() +
+                         Blockly.Msg['TYPE_WARN04'],
         warningLabel);
   } else {
     block.setWarningText(null, warningLabel);
@@ -215,11 +214,11 @@ Blockly.StaticTyping.prototype.setBlockTypeWarning =
  * @param {Blockly.Workspace} workspace Blockly Workspace to collect variables.
  */
 Blockly.StaticTyping.prototype.setProcedureArgs = function(workspace) {
-  var blocks = workspace.getTopBlocks();
+  var blocks = workspace.getTopBlocks(false);
   for (var i = 0, length_ = blocks.length; i < length_; i++) {
     var setArgsType = blocks[i].setArgsType;
     if (setArgsType) {
-      setArgsType.call(blocks[i], this.varTypeDict);
+      blocks[i].setArgsType(this.varTypeDict);
     }
   }
 };

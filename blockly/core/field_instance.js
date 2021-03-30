@@ -14,6 +14,7 @@ goog.require('Blockly.FieldDropdown');
 goog.require('Blockly.Instances');
 goog.require('Blockly.Msg');
 goog.require('Blockly.utils');
+goog.require('Blockly.utils.object');
 goog.require('goog.string');
 
 
@@ -35,18 +36,26 @@ goog.require('goog.string');
 Blockly.FieldInstance = function(
     instanceType, instanceName, uniqueName, opt_lockNew, opt_lockRename,
     opt_editDropdownData, opt_validator) {
+  
+  // Call parent's constructor.
   Blockly.FieldInstance.superClass_.constructor.call(this,
       this.dropdownCreate, opt_validator);
 
   this.instanceType_ = instanceType;
-  this.setValue(instanceName);
+  
+  //this.setValue(instanceName);
+  Blockly.FieldInstance.superClass_.setValue.call(this, instanceName);
+  
   this.uniqueName_ = (uniqueName === true);
+  
   this.lockNew_ = (opt_lockNew === true);
+  
   this.lockRename_ = (opt_lockRename === true);
+  
   this.editDropdownData = (opt_editDropdownData instanceof Function) ?
       opt_editDropdownData : null;
 };
-goog.inherits(Blockly.FieldInstance, Blockly.FieldDropdown);
+Blockly.utils.object.inherits(Blockly.FieldInstance, Blockly.FieldDropdown);
 
 /**
  * Sets a new change handler for instance field.
@@ -91,14 +100,13 @@ Blockly.FieldInstance.prototype.init = function() {
 
   if (!this.getValue()) {
     // Instances without names get uniquely named for this workspace.
-    this.setValue(Blockly.Instances.generateUniqueName(workspace));
+    Blockly.FieldInstance.superClass_.setValue.call(this, Blockly.Instances.generateUniqueName(workspace));
   } else {
       if (this.uniqueName_) {
         // Ensure the given name is unique in the workspace, but not in flyout
         if (!this.sourceBlock_.isInFlyout && !document.getElementById('load').value) {
-          this.setValue(
-              Blockly.Instances.convertToUniqueNameBlock(
-                  this.getValue(), this.sourceBlock_));
+          Blockly.FieldInstance.superClass_.setValue.call(this, 
+               Blockly.Instances.convertToUniqueNameBlock(this.getValue(), this.sourceBlock_));
         }
       } else {
         // Pick an existing name from the workspace if needed and any exists
@@ -119,26 +127,13 @@ Blockly.FieldInstance.prototype.init = function() {
  * Unlike a regular dropdown, instances are literal and have no neutral value.
  * @return {string} Current text.
  */
-Blockly.FieldInstance.prototype.getValue = function() {
-  return this.getText();
-};
+//Blockly.FieldInstance.prototype.getValue = function() {
+//  return this.getText();
+//};
 
-Blockly.FieldInstance.prototype.getInstanceTypeValue = function(instanceType) {
-  return (instanceType === this.instanceType_) ? this.getText() : undefined;
-};
-
-/**
- * Set the instance name.
- * @param {string} newValue New text.
- */
-Blockly.FieldInstance.prototype.setValue = function(newValue) {
-  if (this.sourceBlock_ && Blockly.Events.isEnabled()) {
-    Blockly.Events.fire(new Blockly.Events.Change(
-        this.sourceBlock_, 'field', this.name, this.value_, newValue));
-  }
-  this.value_ = newValue;
-  this.setText(newValue);
-};
+//Blockly.FieldInstance.prototype.getInstanceTypeValue = function(instanceType) {
+//  return (instanceType === this.instanceType_) ? this.getText() : undefined;
+//};
 
 /**
  * Return a sorted list of instance names for instance dropdown menus.
@@ -187,7 +182,7 @@ Blockly.FieldInstance.prototype.dropdownCreate = function() {
  *     handled (rename), or undefined if an existing instance was chosen.
  * @this {!Blockly.FieldInstance}
  */
-Blockly.FieldInstance.dropdownChange = function(text) {
+Blockly.FieldInstance.prototype.dropdownChange = function(text) {
   function promptName(promptText, defaultText, callback) {
     Blockly.hideChaff();
     var newVar = Blockly.prompt(promptText, defaultText, function(newVar) {
@@ -222,3 +217,12 @@ Blockly.FieldInstance.dropdownChange = function(text) {
   }
   return undefined;
 };
+
+/**
+ * Subclasses should override doClassValidation_ and doValueUpdate_ rather
+ * than setValue
+ */
+
+// Blockly needs to know the JSON name of this field. Usually this is
+// registered at the bottom of the field class.
+Blockly.fieldRegistry.register('field_instance', Blockly.FieldInstance);

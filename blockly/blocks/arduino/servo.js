@@ -66,7 +66,7 @@ Blockly.Blocks['servo_read'] = {
         .appendField(Blockly.Msg.ARD_SERVO_READ)
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_SERVO_READ_TIP);
   },
   /** @return {string} The type of return value for the block, an integer. */
@@ -199,7 +199,7 @@ Blockly.Blocks['servohub_read'] = {
                                       Blockly.Msg.ARD_SERVO_DEFAULT_NAME,
                                       false, true, false),
             'SERVO_NAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_SERVO_READ_TIP);
   },
   /** @return {string} The type of return value for the block, an integer. */

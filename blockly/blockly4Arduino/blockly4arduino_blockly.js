@@ -24,12 +24,6 @@ var TABS_ = ['blocks', 'codebender', 'xml'];
 
 var selected = 'blocks';
 
-
-/** @return {!boolean} Indicates if a block is currently being dragged. */
-Blockly4Arduino.blocklyIsDragging = function() {
-  return (Blockly.dragMode_ != 0) ? true : false;
-};
-
 /** Closes the toolbox block container sub-menu. */
 Blockly4Arduino.blocklyCloseToolbox = function() {
   Blockly4Arduino.workspace.toolbox_.flyout_.hide();
@@ -69,9 +63,6 @@ Blockly4Arduino.bindBlocklyEventListeners = function() {
       Blockly4Arduino.renderContent();
     }
   });
-  // Ensure the Blockly workspace resizes accordingly
-  window.addEventListener('resize',
-      function() { Blockly.asyncSvgResize(Blockly4Arduino.workspace); }, false);
 };
 
 
@@ -673,7 +664,7 @@ Blockly4Arduino.shortMessage = function(message) {
 
 /** @return {!boolean} Indicates if a block is currently being dragged. */
 Blockly4Arduino.blocklyIsDragging = function() {
-  return (Blockly.dragMode_ != 0) ? true : false;
+  return Blockly4Arduino.workspace.isDragging();
 };
 
 /** Wraps the blockly 'cut' functionality. */

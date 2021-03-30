@@ -239,7 +239,7 @@ Blockly.Blocks['mcookie_audio_setup'] = {
 	    [Blockly.Msg.ARD_MD_AUDIO_REP4, "MODE_ONE_STOP"]]), "MODE")
         .appendField("Volume:");
     this.appendValueInput('VOLUME')
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(true);
     this.setPreviousStatement(true, "MD_BLOCK");
     this.setNextStatement(true, "MD_BLOCK");

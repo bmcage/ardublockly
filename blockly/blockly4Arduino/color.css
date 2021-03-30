@@ -43,109 +43,135 @@ div>span.blocklyTreeIcon.blocklyTreeIconNone{
 	background-size: 100% auto; 
 }
 
-#\:1>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-0>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/inout.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:1>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-0.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/inout2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:2>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-1>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/func.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:2>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-1.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/func2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:3>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-2>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/repeat.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:3>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-2.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/repeat2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:4>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-3>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/logic.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:4>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-3.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/logic2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:5>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-4>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/math.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:5>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-4.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/math2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:6>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-5>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/text.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:6>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-5.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/text2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:7>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-6>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/var.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:7>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-6.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/var2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:8>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-7>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/time.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:8>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-7.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/time2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:a>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-9>div>span.blocklyTreeIcon{ 
         background:url('../media/mark/component.png') no-repeat;
         background-size: 100% auto; 
+    visibility: visible;
 }
-#\:a>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-9.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
         background:url('../media/mark/component2.png') no-repeat;
         background-size: 100% auto; 
+    visibility: visible;
 }
-#\:b>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-a>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/music.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:b>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-a.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/music2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:c>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-b>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/act.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:c>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-b.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/act2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:d>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-c>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/comuni.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:d>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-c.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/comuni2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:e>div>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-d>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/display.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
-#\:e>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone{ 
+#blockly-d.blocklyTreeSelected>div>span.blocklyTreeIcon{ 
 	background:url('../media/mark/display2.png') no-repeat;
 	background-size: 100% auto; 
+    visibility: visible;
 }
 
 

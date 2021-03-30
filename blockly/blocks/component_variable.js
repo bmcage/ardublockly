@@ -27,6 +27,8 @@
 goog.provide('Blockly.Blocks.ComponentFieldVariable');
 
 goog.require('Blockly.Blocks');
+goog.require('Blockly.FieldVariable');
+goog.require('Blockly.utils.object');
 
 
 /**
@@ -46,7 +48,7 @@ Blockly.Blocks.ComponentFieldVariable = function(varname, component_type, opt_va
       varname, opt_validator);
   this.setValue(varname || '');
 };
-goog.inherits(Blockly.Blocks.ComponentFieldVariable, Blockly.FieldVariable);
+Blockly.utils.object.inherits(Blockly.Blocks.ComponentFieldVariable , Blockly.FieldVariable);
 
 Blockly.Blocks.ComponentFieldVariable.ComponentVariables = function(root, component_type) {
   var blocks;
@@ -145,7 +147,7 @@ Blockly.Blocks.ComponentFieldVariable.Instances = function(workspace, component_
  * @param {?string} currentDropdown The selected name in the dropdown for which to check
  *              if setup block present
  * @param {?string} component_type The type of component setup block must be checked
- * @return {<boolean>} Wether setup block is present or not
+ * @return {boolean} Wether setup block is present or not
  */
 Blockly.Blocks.ComponentFieldVariable.CheckSetupPresent = function(workspace, currentDropdown, component_type) {
   var instances = Blockly.Blocks.ComponentFieldVariable.Instances(workspace, component_type);

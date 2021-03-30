@@ -54,7 +54,7 @@ Blockly.Arduino['mcookie_hub'] = function(block) {
       targetBlock.setHubConnector(connectors);
     }
     var code = Blockly.Arduino.blockToCode(targetBlock);
-    if (!goog.isString(code)) {
+    if (!(typeof code == 'string')) {
       throw 'Expecting code from statement block "' + targetBlock.type + '".';
     }
     if (code) {

@@ -163,7 +163,7 @@ Blockly.Blocks['segment_write_number'] = {
                 new Blockly.FieldInstance('Segment', 'Segment1', false, true, false), 'SEG_NAME');
         this.appendValueInput('SEG_VAL')
             .appendField(Blockly.Msg.ARD_7SEGMENT_WRITE)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.setInputsInline(true);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');

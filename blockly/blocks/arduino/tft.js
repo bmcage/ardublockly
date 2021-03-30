@@ -111,7 +111,7 @@ Blockly.Blocks['tft_text'] = {
             new Blockly.FieldInstance('tft', 'TFT1', false, true, false), 'TFTNAME') ;
     this.appendValueInput("TFT_TEXT")
         .appendField(Blockly.Msg.ARD_TFT_TEXT_WRITE)
-        .setCheck(Blockly.Types.TEXT.output)
+        .setCheck(Blockly.Types.TEXT.getoutput())
         .setAlign(Blockly.ALIGN_RIGHT);
     //var colour = new Blockly.FieldColour('#666666');
     //colour.setColours(['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,0)', 'rgb(255,0,179)', 'rgb(255,102,0)', 'rgb(210,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)']).setColumns(3);
@@ -127,11 +127,11 @@ Blockly.Blocks['tft_text'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_XPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_YPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -177,7 +177,7 @@ Blockly.Blocks['tft_text'] = {
 Blockly.Blocks['tft_sprite8x8'] = {
   init: function() {
     this.appendValueInput('SPRITENAME')
-        .setCheck(Blockly.Types.TEXT.output)
+        .setCheck(Blockly.Types.TEXT.getoutput())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
@@ -263,11 +263,11 @@ Blockly.Blocks['tft_sprite8x8'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_XPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_YPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -312,7 +312,7 @@ Blockly.Blocks['tft_sprite8x8'] = {
 Blockly.Blocks['tft_sprite16x16'] = {
   init: function() {
     this.appendValueInput('SPRITENAME')
-        .setCheck(Blockly.Types.TEXT.output)
+        .setCheck(Blockly.Types.TEXT.getoutput())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_TFT_COMPONENT)
         .appendField(
@@ -598,11 +598,11 @@ Blockly.Blocks['tft_sprite16x16'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_XPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y')
         .appendField(Blockly.Msg.ARD_TFT_TEXT_YPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -658,19 +658,19 @@ Blockly.Blocks['tft_line'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X1')
         .appendField(Blockly.Msg.ARD_TFT_LINE_XPOSBEGIN)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y1')
         .appendField(Blockly.Msg.ARD_TFT_LINE_YPOSBEGIN)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList().getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X2')
         .appendField(Blockly.Msg.ARD_TFT_LINE_XPOSEND)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y2')
         .appendField(Blockly.Msg.ARD_TFT_LINE_YPOSEND)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -726,19 +726,19 @@ Blockly.Blocks['tft_rect'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X1')
         .appendField(Blockly.Msg.ARD_TFT_RECT_XPOSBEGIN)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y1')
         .appendField(Blockly.Msg.ARD_TFT_RECT_YPOSBEGIN)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_WIDTH')
         .appendField(Blockly.Msg.ARD_TFT_RECT_WIDTH)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_HEIGHT')
         .appendField(Blockly.Msg.ARD_TFT_RECT_HEIGHT)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -799,15 +799,15 @@ Blockly.Blocks['tft_circ'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_X1')
         .appendField(Blockly.Msg.ARD_TFT_CIRC_XPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_Y1')
         .appendField(Blockly.Msg.ARD_TFT_CIRC_YPOS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput('TFT_RADIUS')
         .appendField(Blockly.Msg.ARD_TFT_CIRC_RADIUS)
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)

@@ -11,11 +11,10 @@
 
 goog.provide('Blockly.Type');
 
-goog.require('goog.asserts');
-
 
 /**
  * Blockly Type class constructor.
+ * @this Blockly.Block
  * @param {Object} args Object/dictionary with typeId, typeMsgName, and
  *     compatibleTypes.
  * @constructor
@@ -29,7 +28,7 @@ Blockly.Type = function(args) {
                     '               identify the translatable Type name.\n' +
                     '  compatibleTypes: [Blockly.Type,]\n}');
   }
-  if (!goog.isArray(args.compatibleTypes)) {
+  if (!Array.isArray(args.compatibleTypes)) {
     throw new Error('The compatible types for a Blockly Types needs to be an ' +
                     'array of Blockly.Type items.');
   }
@@ -54,42 +53,32 @@ Blockly.Type = function(args) {
   this.generateCheckList_();
 };
 
-/** Getter for the typeName property, used for translatable Type naming. */
-Object.defineProperty(Blockly.Type.prototype, 'typeName', {
-  get: function() {
+/** Getter for the typeName property, used for translatable Type naming.
+ * @this Blockly.Type
+ */
+Blockly.Type.prototype.gettypeName = function() {
     return Blockly.Msg[this.typeMsgName_] || this.typeId;
-  },
-  set: function(value) {
-    console.warn('"Blockly.Type" property "typeName" is not allowed to be set.');
-  }
-});
+};
 
-/** Getter for the output property, used for block output types. */
-Object.defineProperty(Blockly.Type.prototype, 'output', {
-  get: function() {
+/** Getter for the output property, used for block output types.
+ * @this Blockly.Type
+ */
+Blockly.Type.prototype.getoutput = function() {
     return this.typeId;
-  },
-  set: function(value) {
-    console.warn('"Blockly.Type" property "output" is not allowed to be set.');
-  }
-});
+};
 
-/** Getter for the check property, use for block input checks. */
-Object.defineProperty(Blockly.Type.prototype, 'checkList', {
-  get : function() {
+/** Getter for the check property, use for block input checks. 
+ * @this Blockly.Type
+ */
+Blockly.Type.prototype.getcheckList = function() {
     return this.generatedCheckList_;
-  },
-  set: function(value) {
-    console.warn('"Blockly.Type" property "check" is not allowed to be set.');
-  }
-});
+};
 
 /**
  * Generates the Type check list for the blocks input.
- * @param {!Blockly.Type} compatibleType New type to add to compatibility list.
  * @private
  */
-Blockly.Type.prototype.generateCheckList_ = function(compatibleType) {
+Blockly.Type.prototype.generateCheckList_ = function() {
   this.generatedCheckList_ = [];
   for (var i = 0; i < this.compatibleTypes_.length; i++) {
     var unique = true;
@@ -124,7 +113,7 @@ Blockly.Type.prototype.addCompatibleType = function(compatibleType) {
  *     compatibility list.
  */
 Blockly.Type.prototype.addCompatibleTypes = function(compatibleTypeArray) {
-  if (!goog.isArray(compatibleTypeArray)) {
+  if (!Array.isArray(compatibleTypeArray)) {
     throw new Error('To add compatible types to the Blockly Type ' +
                     this.typeId +' provide an array of Blockly.Type items.');
   }

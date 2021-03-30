@@ -34,7 +34,7 @@ goog.require('Blockly.Blocks');
 Blockly.Blocks['declare_var_bool'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/Boolean',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
@@ -79,12 +79,12 @@ Blockly.Blocks['declare_var_bool'] = {
 Blockly.Blocks['declare_var_int'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/Int',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
         .appendField(Blockly.Msg.ARD_AS_INTEGER_NUMBER)
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -124,12 +124,12 @@ Blockly.Blocks['declare_var_int'] = {
 Blockly.Blocks['declare_var_float'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/Float',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
         .appendField(Blockly.Msg.ARD_AS_FLOAT_NUMBER)
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -169,12 +169,12 @@ Blockly.Blocks['declare_var_float'] = {
 Blockly.Blocks['declare_var_long'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/Long',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
         .appendField(Blockly.Msg.ARD_AS_LONG_NUMBER)
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -214,12 +214,12 @@ Blockly.Blocks['declare_var_long'] = {
 Blockly.Blocks['declare_var_uint'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/UnsignedInt',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
         .appendField(Blockly.Msg.ARD_AS_UINT_NUMBER)
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -259,12 +259,12 @@ Blockly.Blocks['declare_var_uint'] = {
 Blockly.Blocks['declare_var_ulong'] = {
   helpUrl: 'https://www.arduino.cc/en/Reference/UnsignedLong',
   init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setColour(Blockly.Msg["VARIABLES_HUE"]);
     this.appendValueInput("NUM")
         .appendField(Blockly.Msg.ARD_DEFINE)
         .appendField(new Blockly.FieldVariable("item"), "NAME")
         .appendField(Blockly.Msg.ARD_AS_ULONG_NUMBER)
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');

@@ -31,7 +31,7 @@ Blockly.Blocks['arduino_functions'] = {
     this.appendStatementInput('LOOP_FUNC')
         .setCheck('ARD_BLOCK');
     this.setInputsInline(false);
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.setTooltip(Blockly.Msg.ARD_FUN_RUN_TIP);
     this.setHelpUrl('https://arduino.cc/en/Reference/Loop');
     this.contextMenu = false;
@@ -44,7 +44,7 @@ Blockly.Blocks['arduino_functions'] = {
 
 Blockly.Blocks['arduino_declareupfront'] = {
   init: function() {
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.appendDummyInput()
 	    .appendField(Blockly.Msg.ARD_FUN_RUN_DECL);
 	this.appendStatementInput('DECLARE_FUNC')
@@ -70,14 +70,14 @@ Blockly.Blocks['controls_effect'] = {
     nameField.setSpellcheck(false);
     this.arguments_ = [];
     this.setHelpUrl(''); //Blockly.Msg.ARD_CONTROLS_EFFECT_HELPURL);
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.appendValueInput('EFFECTDURATION')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST1)
         .appendField(nameField, 'NAME')
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_FIRST2);
     //this.appendStatementInput('IF0')
-    //    .setCheck(Blockly.Types.NUMBER.checkList)
+    //    .setCheck(Blockly.Types.NUMBER.getcheckList())
     //    .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF);
     this.appendStatementInput('DO0')
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_IF); //Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_THEN);
@@ -143,7 +143,7 @@ Blockly.Blocks['controls_effect'] = {
     this.elseCount_ = parseInt(xmlElement.getAttribute('else'), 10) || 0;
     for (var i = 1; i <= this.elseifCount_; i++) {
       this.appendValueInput('IF' + i)
-          .setCheck(Blockly.Types.NUMBER.checkList)
+          .setCheck(Blockly.Types.NUMBER.getcheckList())
           .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF);
       this.appendStatementInput('DO' + i)
           .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_THEN);
@@ -200,7 +200,7 @@ Blockly.Blocks['controls_effect'] = {
         case 'controls_effect_elseif':
           this.elseifCount_++;
           var ifInput = this.appendValueInput('IF' + this.elseifCount_)
-              .setCheck(Blockly.Types.NUMBER.checkList)
+              .setCheck(Blockly.Types.NUMBER.getcheckList())
               .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_ELSEIF);
           var doInput = this.appendStatementInput('DO' + this.elseifCount_);
           doInput.appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_MSG_THEN);
@@ -265,7 +265,6 @@ Blockly.Blocks['controls_effect'] = {
    */
   dispose: function() {
     var name = this.getFieldValue('NAME');
-    Blockly.Procedures.disposeCallers(name, this.workspace);
     // Call parent's destructor.
     this.constructor.prototype.dispose.apply(this, arguments);
   },
@@ -315,7 +314,7 @@ Blockly.Blocks['controls_effect_if'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_IF_TITLE_IF);
     this.setNextStatement(true);
@@ -330,7 +329,7 @@ Blockly.Blocks['controls_effect_elseif'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_ELSEIF_TITLE_ELSEIF);
     this.setPreviousStatement(true);
@@ -346,7 +345,7 @@ Blockly.Blocks['controls_effect_else'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_CONTROLS_EFFECT_ELSE_TITLE_ELSE);
     this.setPreviousStatement(true);
@@ -363,7 +362,7 @@ Blockly.Blocks['ard_comment'] = {
    */
   init: function() {
     this.setHelpUrl("https://www.arduino.cc/reference/en/language/structure/further-syntax/blockcomment/");
-    this.setColour(Blockly.Blocks.texts.HUE);
+    this.setColour(Blockly.Msg["TEXTS_HUE"]);
     this.appendValueInput('TEXT')
         .appendField(Blockly.Msg.ARD_COMMENT);
     this.setPreviousStatement(true, 'ARD_BLOCK');

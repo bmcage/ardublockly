@@ -59,11 +59,11 @@ Blockly.Blocks['stepper_config'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.digitalPins), 'STEPPER_PIN2');
     this.appendValueInput('STEPPER_STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_REVOLVS);
     this.appendValueInput('STEPPER_SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
     this.setTooltip(Blockly.Msg.ARD_STEPPER_SETUP_TIP);
@@ -151,11 +151,11 @@ Blockly.Blocks['stepper_config_hub'] = {
             'STEPPER_NAME')
         .appendField(Blockly.Msg.ARD_STEPPER_MOTOR);
     this.appendValueInput('STEPPER_STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_REVOLVS);
     this.appendValueInput('STEPPER_SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
     this.setTooltip(Blockly.Msg.ARD_STEPPER_SETUP_TIP);
@@ -196,7 +196,7 @@ Blockly.Blocks['stepper_step'] = {
                                       false, true, false),
             'STEPPER_NAME');
     this.appendValueInput('STEPPER_STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_STEPPER_STEPS);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -252,7 +252,7 @@ Blockly.Blocks['stepper_speed'] = {
             'STEPPER_NAME')
         .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
     this.appendValueInput('STEPPER_SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -372,7 +372,7 @@ Blockly.Blocks['stepper_rotate_number'] = {
                  ['-', '-1'],
                 ]), 'DIRECTION');
     this.appendValueInput('ANGLE')
-        .setCheck(Blockly.Types.NUMBER.checkList);
+        .setCheck(Blockly.Types.NUMBER.getcheckList());
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_STEPPER_DEGREES)
     this.setInputsInline(true);
@@ -481,7 +481,7 @@ Blockly.Blocks['stepper_isrotating'] = {
                                       false, true, false),
             'STEPPER_NAME')
         .appendField(Blockly.Msg.ARD_STEPPER_ISROTATING);
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setTooltip(Blockly.Msg.ARD_STEPPER_ISROTATING_TIP);
   },
   /** @return {string} The type of return value for the block, a bool. */

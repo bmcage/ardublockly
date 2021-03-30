@@ -15,7 +15,7 @@ Blockly.Blocks['controls_switch'] = {
    */
   init: function() {
     this.setHelpUrl(Blockly.Msg.CONTROLS_SWITCH_HELPURL);
-    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setColour(Blockly.Constants.Logic.HUE);
 	this.appendDummyInput()
         .appendField(Blockly.Msg.CONTROLS_SWITCH_VAR_TITLE)
         .appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_GET_ITEM), 'SWVAR')
@@ -215,7 +215,7 @@ Blockly.Blocks['controls_switch_var'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setColour(Blockly.Constants.Logic.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_SWITCHVAR);
     this.appendStatementInput('STACK');
@@ -230,7 +230,7 @@ Blockly.Blocks['controls_case_break'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setColour(Blockly.Constants.Logic.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK )
         .setAlign(Blockly.ALIGN_RIGHT);
@@ -247,7 +247,7 @@ Blockly.Blocks['controls_case_default'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setColour(Blockly.Constants.Logic.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT);
     this.setPreviousStatement(true);

@@ -128,7 +128,7 @@ Blockly.Blocks['led_digitalwrite'] = {
                                       Blockly.Msg.ARD_LEDLEG_DEFAULT_NAME,
                                       false, true, false),
             'LEDNAME')
-        .setCheck(Blockly.Types.BOOLEAN.checkList);
+        .setCheck(Blockly.Types.BOOLEAN.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -245,7 +245,7 @@ Blockly.Blocks['neopixel_HSVcolourpick_write'] = {
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
     
     var colour = new Blockly.FieldHSVColour('#ff0000');
@@ -311,7 +311,7 @@ Blockly.Blocks['neopixel_colourpick_write'] = {
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
     
     var colour = new Blockly.FieldColour('#ff0000');
@@ -380,7 +380,7 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     
     this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
     
     var colour = new Blockly.FieldColour('#ff0000');
@@ -390,7 +390,7 @@ Blockly.Blocks['neopixel_colourpick_dim_write'] = {
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOUR)
         .appendField(colour, 'COLOUR');
     this.appendValueInput("BRIGHTNESS")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS)
 
     this.setInputsInline(true);
@@ -450,18 +450,18 @@ Blockly.Blocks['neopixel_write'] = {
             'NEONAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
     this.appendValueInput("RED")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
     this.appendValueInput("GREEN")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
     this.appendValueInput("BLUE")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 
@@ -520,7 +520,7 @@ Blockly.Blocks['neopixel_dim_write'] = {
                                       false, true, false),
             'NEONAME')
     this.appendValueInput("BRIGHTNESS")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS)
 
     this.setInputsInline(true);
@@ -580,21 +580,21 @@ Blockly.Blocks['neopixel_hue_write'] = {
 		            'NEONAME')
 				.appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
 		    this.appendValueInput("LEDPIXEL")
-		        .setCheck(Blockly.Types.NUMBER.checkList)
+		        .setCheck(Blockly.Types.NUMBER.getcheckList())
 		        .setAlign(Blockly.ALIGN_RIGHT)
 		    this.appendValueInput("HUE")
-		        .setCheck(Blockly.Types.UNSIGNED_NUMBER.checkList)
+		        .setCheck(Blockly.Types.UNSIGNED_NUMBER.getcheckList())
 				.setAlign(Blockly.ALIGN_RIGHT)							  
 		        //.appendField("met tint (-32767 --> +32767)");
 	        	//.appendField("met tint (0 --> 65535)");
 				.appendField(Blockly.Msg.ARD_NEOPIXEL_HUE_RANGE);
 		    this.appendValueInput("SATURATION")
-	        	.setCheck(Blockly.Types.NUMBER.checkList)
+	        	.setCheck(Blockly.Types.NUMBER.getcheckList())
 	        	.setAlign(Blockly.ALIGN_RIGHT)							  
 	        	//.appendField("verzadiging (0 --> 255)");
 				.appendField(Blockly.Msg.ARD_NEOPIXEL_SAT_RANGE);
 		    this.appendValueInput("VALUE")
-		    	.setCheck(Blockly.Types.NUMBER.checkList)
+		    	.setCheck(Blockly.Types.NUMBER.getcheckList())
 		    	.setAlign(Blockly.ALIGN_RIGHT)							  
 		    	//.appendField("waarde(helderheid) (0 --> 255)");
 				.appendField(Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS_RANGE);
@@ -654,15 +654,15 @@ Blockly.Blocks['neopixel_fill'] = {
                                       false, true, false),
             'NEONAME')
     this.appendValueInput("RED")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
     this.appendValueInput("GREEN")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
     this.appendValueInput("BLUE")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 
@@ -775,7 +775,7 @@ Blockly.Blocks['neopixel_rainbow'] = {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ARD_NEOPIXEL_EFF_RAINBOW)
 	    this.appendValueInput("delay")
-	        .setCheck(Blockly.Types.NUMBER.checkList)
+	        .setCheck(Blockly.Types.NUMBER.getcheckList())
 	        .appendField(Blockly.Msg.ARD_TIME_DELAY);
 	    this.setPreviousStatement(true, null);
 	    this.setNextStatement(true, null);
@@ -799,7 +799,7 @@ Blockly.Blocks['neopixel_theaterchaserainbow'] = {
 		    this.appendDummyInput()
 		 		.appendField(Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASERAINBOW)
 		    this.appendValueInput('delay')
-		        .setCheck(Blockly.Types.NUMBER.checkList)
+		        .setCheck(Blockly.Types.NUMBER.getcheckList())
 		        .appendField(Blockly.Msg.ARD_TIME_DELAY);
 		    this.setPreviousStatement(true, null);
 		    this.setNextStatement(true, null);
@@ -824,19 +824,19 @@ Blockly.Blocks['neopixel_colorwipe'] = {
 		this.appendDummyInput()
 		 	.appendField(Blockly.Msg.ARD_NEOPIXEL_EFF_COLORWIPE)
 	    this.appendValueInput("RED")
-	        .setCheck(Blockly.Types.NUMBER.checkList)
+	        .setCheck(Blockly.Types.NUMBER.getcheckList())
 	        .setAlign(Blockly.ALIGN_RIGHT)
 	        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
 	    this.appendValueInput("GREEN")
-	        .setCheck(Blockly.Types.NUMBER.checkList)
+	        .setCheck(Blockly.Types.NUMBER.getcheckList())
 	        .setAlign(Blockly.ALIGN_RIGHT)
 	        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
 	    this.appendValueInput("BLUE")
-	        .setCheck(Blockly.Types.NUMBER.checkList)
+	        .setCheck(Blockly.Types.NUMBER.getcheckList())
 	        .setAlign(Blockly.ALIGN_RIGHT)
 	        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 	    this.appendValueInput("delay")
-	        .setCheck(Blockly.Types.NUMBER.checkList)
+	        .setCheck(Blockly.Types.NUMBER.getcheckList())
 	        .appendField(Blockly.Msg.ARD_TIME_DELAY);
 	    this.setInputsInline(true);
 	    this.setPreviousStatement(true, null);
@@ -859,15 +859,15 @@ Blockly.Blocks['neopixel_theaterchase'] = {
 	this.appendDummyInput()
 		 .appendField(Blockly.Msg.ARD_NEOPIXEL_EFF_THEATERCHASE)
     this.appendValueInput("RED")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
     this.appendValueInput("GREEN")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
     this.appendValueInput("BLUE")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 	    this.setInputsInline(true);
@@ -895,22 +895,22 @@ Blockly.Blocks['neopixel_write_dimmed'] = {
             'NEONAME')
         .appendField(Blockly.Msg.ARD_NEOPIXEL_PIXEL)
     this.appendValueInput("LEDPIXEL")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
     this.appendValueInput("RED")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
     this.appendValueInput("GREEN")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
     this.appendValueInput("BLUE")
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
     this.appendValueInput("BRIGHTNESS")
-    	.setCheck(Blockly.Types.NUMBER.checkList)
+    	.setCheck(Blockly.Types.NUMBER.getcheckList())
     	.appendField(Blockly.Msg.ARD_NEOPIXEL_BRIGHTNESS)
 
     this.setInputsInline(true);
@@ -967,7 +967,7 @@ Blockly.Blocks['neopixel_get_numpixels'] = {
                                       Blockly.Msg.ARD_NEOPIXEL_DEFAULT_NAME,
                                       false, true, false),
             'NEONAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
 //    this.setPreviousStatement(true, 'ARD_BLOCK');
 //    this.setNextStatement(true, 'ARD_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_NEOPIXEL_COUNT_PIXELS_TIP);
@@ -1050,7 +1050,7 @@ Blockly.Blocks['neopixel_effects'] = {
             .appendField(new Blockly.FieldDropdown(PROPERTIES, this.handleTypeSelection.bind(this)), 'PROPERTY');
 	        this.effectType = this.getFieldValue('PROPERTY');
 		    this.appendValueInput('delay')
-		        .setCheck(Blockly.Types.NUMBER.checkList)
+		        .setCheck(Blockly.Types.NUMBER.getcheckList())
 		        .appendField(Blockly.Msg.ARD_TIME_DELAY);
 		    this.setInputsInline(true);
 		    this.setPreviousStatement(true, null);
@@ -1129,15 +1129,15 @@ Blockly.Blocks['neopixel_effects'] = {
 			if (effectprops["colours"])  { // show the colour fields if not already present
 			    if (!colourExists) {
 			  	    this.appendValueInput('RED')
-			        .setCheck(Blockly.Types.NUMBER.checkList)
+			        .setCheck(Blockly.Types.NUMBER.getcheckList())
 			        .setAlign(Blockly.ALIGN_RIGHT)
 			        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALRED);
 			  	    this.appendValueInput('GREEN')
-			        .setCheck(Blockly.Types.NUMBER.checkList)
+			        .setCheck(Blockly.Types.NUMBER.getcheckList())
 			        .setAlign(Blockly.ALIGN_RIGHT)
 			        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALGREEN);
 			  	    this.appendValueInput('BLUE')
-			        .setCheck(Blockly.Types.NUMBER.checkList)
+			        .setCheck(Blockly.Types.NUMBER.getcheckList())
 			        .setAlign(Blockly.ALIGN_RIGHT)
 			        .appendField(Blockly.Msg.ARD_NEOPIXEL_ONCOLOURVALBLUE);
 			    }
@@ -1149,7 +1149,7 @@ Blockly.Blocks['neopixel_effects'] = {
 			if (effectprops["count"])  { // show the count field if not already present
 			    if (!countExists) {
 			  	    this.appendValueInput('COUNT')
-			        .setCheck(Blockly.Types.NUMBER.checkList)
+			        .setCheck(Blockly.Types.NUMBER.getcheckList())
 			        .setAlign(Blockly.ALIGN_RIGHT)
 			        .appendField(Blockly.Msg.ARD_NEOPIXEL_NUMBER);
 			    }
@@ -1159,7 +1159,7 @@ Blockly.Blocks['neopixel_effects'] = {
 			if (effectprops["enddelay"])  { // show the enddelay field if not already present
 			    if (!enddelayExists) {
 			  	    this.appendValueInput('ENDDELAY')
-			        .setCheck(Blockly.Types.NUMBER.checkList)
+			        .setCheck(Blockly.Types.NUMBER.getcheckList())
 			        .setAlign(Blockly.ALIGN_RIGHT)
 			        .appendField(Blockly.Msg.ARD_NEOPIXEL_PAUSE);
 			    }

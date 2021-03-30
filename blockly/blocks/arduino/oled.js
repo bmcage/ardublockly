@@ -69,13 +69,13 @@ Blockly.Blocks['oled_print'] = {
                 new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME, false, true, false), 'OLED_NAME');
         this.appendValueInput('OLED_X')
             .appendField(Blockly.Msg.ARD_OLED_CURSORX)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.appendValueInput('OLED_Y')
             .appendField(Blockly.Msg.ARD_OLED_CURSORY)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.appendValueInput('OLED_PRINT')
             .appendField(Blockly.Msg.ARD_OLED_PRINT)
-            .setCheck(Blockly.Types.TEXT.checkList);
+            .setCheck(Blockly.Types.TEXT.getcheckList());
         this.setInputsInline(true);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');
@@ -94,16 +94,16 @@ Blockly.Blocks['oled_print_number'] = {
                 new Blockly.FieldInstance('OLED', Blockly.Msg.ARD_OLED_DEFAULT_NAME, false, true, false), 'OLED_NAME');
         this.appendValueInput('OLED_X')
             .appendField(Blockly.Msg.ARD_OLED_CURSORX)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.appendValueInput('OLED_Y')
             .appendField(Blockly.Msg.ARD_OLED_CURSORY)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.appendValueInput('OLED_PRINT')
             .appendField(Blockly.Msg.ARD_OLED_PRINT_NUMBER)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.appendValueInput('OLED_DIGITS')
             .appendField(Blockly.Msg.ARD_OLED_PRINT_NUMBER_DIGITS)
-            .setCheck(Blockly.Types.NUMBER.checkList);
+            .setCheck(Blockly.Types.NUMBER.getcheckList());
         this.setInputsInline(true);
         this.setPreviousStatement(true, 'ARD_BLOCK');
         this.setNextStatement(true, 'ARD_BLOCK');

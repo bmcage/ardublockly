@@ -20,6 +20,8 @@ goog.require('Blockly.browserEvents');
 /** @suppress {extraRequire} */
 goog.require('Blockly.constants');
 goog.require('Blockly.connectionTypes');
+/** @suppress {extraRequire} */
+goog.require('Blockly.StaticTyping');
 goog.require('Blockly.Events');
 /** @suppress {extraRequire} */
 goog.require('Blockly.Events.BlockCreate');

@@ -105,7 +105,7 @@ Blockly.Blocks['button_read'] = {
                                       Blockly.Msg.ARD_BUTTON_DEFAULT_NAME,
                                       false, true, false),
             'BUTTONNAME');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setColour(Blockly.Blocks.button.HUE);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     this.setHelpUrl('');

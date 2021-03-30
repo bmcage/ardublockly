@@ -162,10 +162,10 @@ Blockly.Blocks['allbotservo_config_hub'] = {
 Blockly.Blocks['allbot_walkforward'] = {
   init: function() {
     this.appendValueInput('STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_FORWARD);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -179,10 +179,10 @@ Blockly.Blocks['allbot_walkforward'] = {
 Blockly.Blocks['allbot_walkbackward'] = {
   init: function() {
     this.appendValueInput('STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_BACKWARD);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -196,10 +196,10 @@ Blockly.Blocks['allbot_walkbackward'] = {
 Blockly.Blocks['allbot_walkleft'] = {
   init: function() {
     this.appendValueInput('STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_LEFT);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -213,10 +213,10 @@ Blockly.Blocks['allbot_walkleft'] = {
 Blockly.Blocks['allbot_walkright'] = {
   init: function() {
     this.appendValueInput('STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_RIGHT);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_STEPS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -230,7 +230,7 @@ Blockly.Blocks['allbot_walkright'] = {
 Blockly.Blocks['allbot_lookleft'] = {
   init: function() {
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_LOOKLEFT);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -244,7 +244,7 @@ Blockly.Blocks['allbot_lookleft'] = {
 Blockly.Blocks['allbot_lookright'] = {
   init: function() {
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_LOOKRIGHT);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -258,10 +258,10 @@ Blockly.Blocks['allbot_lookright'] = {
 Blockly.Blocks['allbot_chirp'] = {
   init: function() {
     this.appendValueInput('BEEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_CHIRP);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_CHIRPSPEED);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -275,10 +275,10 @@ Blockly.Blocks['allbot_chirp'] = {
 Blockly.Blocks['allbot_scared'] = {
   init: function() {
     this.appendValueInput('SHAKES')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList().getcheckList().getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_SCARED);
     this.appendValueInput('BEEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_SCAREDBEEPS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -303,7 +303,7 @@ Blockly.Blocks['servoallbot_write'] = {
         .appendField(new Blockly.FieldDropdown(names), 'SERVO_NAME');
     this.setInputsInline(false);
     this.appendValueInput('SERVO_ANGLE')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_SERVO_WRITE_TO);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVO_WRITE_DEG_180);
@@ -348,7 +348,7 @@ Blockly.Blocks['allbot_animate'] = {
         .setCheck('ALLBOT_SERVOMOVE')
         .appendField(Blockly.Msg.ARD_ALLBOT_ANIMATESERVOS);
     this.appendValueInput('SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_ALLBOT_ANIMATESPEED);
     this.setInputsInline(true);
     this.setPreviousStatement(true, 'ARD_BLOCK');
@@ -374,7 +374,7 @@ Blockly.Blocks['servoallbot_animate'] = {
         .appendField(new Blockly.FieldDropdown(names), 'SERVO_NAME');
     this.setInputsInline(false);
     this.appendValueInput('SERVO_ANGLE')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .appendField(Blockly.Msg.ARD_SERVO_WRITE_TO);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERVO_WRITE_DEG_180);
@@ -455,7 +455,7 @@ Blockly.Blocks['allbot_remotecontroldo'] = {
       ['SC', 'SC'],
       ['CH', 'CH'],
     ];
-    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setColour(Blockly.Constants.Logic.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_ALLBOT_RCCOMMAND)
         .appendField(new Blockly.FieldDropdown(commands), 'RC_COMMAND');
@@ -489,7 +489,7 @@ Blockly.Blocks['allbot_remotecontrol_speed'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_ALLBOT_RC_SPEED)
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setColour(Blockly.Blocks.math.HUE);
     this.setTooltip(Blockly.Msg.ARD_ALLBOT_RC_SPEED_TIP);
     this.setHelpUrl('https://www.allbot.eu');
@@ -500,7 +500,7 @@ Blockly.Blocks['allbot_remotecontrol_times'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_ALLBOT_RC_TIMES)
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setColour(Blockly.Blocks.math.HUE);
     this.setTooltip(Blockly.Msg.ARD_ALLBOT_RC_TIMES_TIP);
     this.setHelpUrl('https://www.allbot.eu');

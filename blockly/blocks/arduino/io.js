@@ -16,6 +16,8 @@ goog.provide('Blockly.Blocks.io');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
+goog.require('Blockly.FieldImage');
+goog.require('Blockly.FieldInstance');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.io.HUE = 250;
@@ -33,7 +35,7 @@ Blockly.Blocks['io_digitalwrite'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.digitalPins), 'PIN')
         .appendField(Blockly.Msg.ARD_WRITE_TO)
-        .setCheck(Blockly.Types.BOOLEAN.checkList);
+        .setCheck(Blockly.Types.BOOLEAN.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -61,7 +63,7 @@ Blockly.Blocks['io_digitalread'] = {
         .appendField(Blockly.Msg.ARD_DIGITALREAD)
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.digitalPins), 'PIN');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -91,7 +93,7 @@ Blockly.Blocks['io_builtin_led'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.builtinLed), 'BUILT_IN_LED')
         .appendField('to')
-        .setCheck(Blockly.Types.BOOLEAN.checkList);
+        .setCheck(Blockly.Types.BOOLEAN.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -124,7 +126,7 @@ Blockly.Blocks['io_analogwrite'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.pwmPins), 'PIN')
         .appendField(Blockly.Msg.ARD_WRITE_TO)
-        .setCheck(Blockly.Types.NUMBER.output);
+        .setCheck(Blockly.Types.NUMBER.getoutput());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -155,7 +157,7 @@ Blockly.Blocks['io_analogread'] = {
         .appendField(Blockly.Msg.ARD_ANALOGREAD)
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.analogPins), 'PIN');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_ANALOGREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -181,9 +183,9 @@ Blockly.Blocks['io_highlow'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
         .appendField(
-            new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
+            new Blockly.FieldDropdown([[Blockly.Msg['ARD_HIGH'], 'HIGH'], [Blockly.Msg['ARD_LOW'], 'LOW']]),
            'STATE');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setTooltip(Blockly.Msg.ARD_HIGHLOW_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -211,7 +213,7 @@ Blockly.Blocks['io_pulsein'] = {
           "options": Blockly.Arduino.Boards.selected.digitalPins
         }
       ],
-      "output": Blockly.Types.NUMBER.output,
+      "output": Blockly.Types.NUMBER.getoutput(),
       "inputsInline": true,
       "colour": Blockly.Blocks.io.HUE,
       "tooltip": Blockly.Msg.ARD_PULSE_TIP,
@@ -248,7 +250,7 @@ Blockly.Blocks['io_pulsetimeout'] = {
           "check": Blockly.Types.NUMBER.check
         }
       ],
-      "output": Blockly.Types.NUMBER.output,
+      "output": Blockly.Types.NUMBER.getoutput(),
       "inputsInline": true,
       "colour": Blockly.Blocks.io.HUE,
       "tooltip": Blockly.Msg.ARD_PULSETIMEOUT_TIP,
@@ -261,16 +263,21 @@ Blockly.Blocks['io_pulsetimeout'] = {
   }
 };
 
-
+    
 /** Attach a generic analog sensor to the hub*/
 Blockly.Blocks['analogsensor_config_hub'] = {
   init: function() {
+    console.log('test0', Blockly.FieldInstance);
+    var digoutInstance = new Blockly.FieldInstance('AnalogSensor',
+                                      Blockly.Msg['ARD_ANASENSOR_DEFAULT_NAME'],
+                                      true, true, false);
+    console.log('test1', digoutInstance);
     this.appendDummyInput()
         //.appendField(new Blockly.FieldImage("../media/arduino/Led.png", 19, 19, "*"))
         .appendField(Blockly.Msg.ARD_ANASENSOR)
         .appendField(
             new Blockly.FieldInstance('AnalogSensor',
-                                      Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME,
+                                      Blockly.Msg['ARD_ANASENSOR_DEFAULT_NAME'],
                                       true, true, false),
             'SENSORNAME');
     this.setOutput(true, 'HUB_ANA');
@@ -312,7 +319,7 @@ Blockly.Blocks['analogsensor_read'] = {
                                       Blockly.Msg.ARD_ANASENSOR_DEFAULT_NAME,
                                       false, true, false),
             'SENSORNAME');
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_ANALOGREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -404,7 +411,7 @@ Blockly.Blocks['digitalinput_read'] = {
                                       Blockly.Msg.ARD_DIGINPUT_DEFAULT_NAME,
                                       false, true, false),
             'SENSORNAME');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.BOOLEAN.getoutput());
     this.setTooltip(Blockly.Msg.ARD_DIGINPUT_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -496,7 +503,7 @@ Blockly.Blocks['digitaloutput_write'] = {
                                       false, true, false),
             'OUTPUTNAME')
         .appendField(Blockly.Msg.ARD_OUTPUT_WRITE_TO)
-        .setCheck(Blockly.Types.BOOLEAN.checkList);
+        .setCheck(Blockly.Types.BOOLEAN.getcheckList());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');
@@ -586,7 +593,7 @@ Blockly.Blocks['pwmoutput_write'] = {
                                       false, true, false),
             'OUTPUTNAME')
         .appendField(Blockly.Msg.ARD_OUTPUT_WRITE_TO)
-        .setCheck(Blockly.Types.NUMBER.output);
+        .setCheck(Blockly.Types.NUMBER.getoutput());
     this.setInputsInline(false);
     this.setPreviousStatement(true, 'ARD_BLOCK');
     this.setNextStatement(true, 'ARD_BLOCK');

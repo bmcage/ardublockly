@@ -705,15 +705,6 @@ Blockly.FieldDropdown.prototype.getText_ = function() {
   return option;
 };
 
-
-/**
- * Get the text in this field.  
- * @return {string} the visible text
- */
-Blockly.FieldDropdown.prototype.getText = function() {
-  return this.text_;
-}
-
 /**
  * Validates the data structure to be processed as an options list.
  * @param {?} options The proposed dropdown options.

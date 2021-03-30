@@ -27,6 +27,8 @@
 goog.provide('Blockly.FieldHSVColour');
 
 goog.require('Blockly.Field');
+goog.require('Blockly.utils');
+goog.require('Blockly.utils.object');
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.style');
@@ -48,7 +50,7 @@ Blockly.FieldHSVColour = function(colour, opt_validator) {
   Blockly.FieldHSVColour.superClass_.constructor.call(this, colour, opt_validator);
   this.setText(Blockly.Field.NBSP + Blockly.Field.NBSP + Blockly.Field.NBSP);
 };
-goog.inherits(Blockly.FieldHSVColour, Blockly.Field);
+Blockly.utils.object.inherits(Blockly.FieldHSVColour, Blockly.Field);
 
 /**
  * By default use the global constants for colours.

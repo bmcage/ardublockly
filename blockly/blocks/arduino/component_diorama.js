@@ -15,7 +15,6 @@
 goog.provide('Blockly.Blocks.components.diorama');
 
 goog.require('Blockly.Blocks');
-goog.require('Blockly.Blocks.components');
 
 
 /** Common HSV hue for all blocks in this category. */
@@ -30,7 +29,7 @@ Blockly.Blocks['diorama_hub_component'] = {
   init: function() {
     this.arguments_ = [];
     this.setHelpUrl(''); 
-    this.setColour(Blockly.Blocks.components.HUE);
+    this.setColour(Blockly.Blocks.components.diorama.HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_BOARD)
         .appendField('Diorama');
@@ -45,11 +44,11 @@ Blockly.Blocks['diorama_hub_component'] = {
             'STEPPER_NAME')
         .appendField(Blockly.Msg.ARD_STEPPER_MOTOR);
     this.appendValueInput('STEPPER_STEPS')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_REVOLVS);
     this.appendValueInput('STEPPER_SPEED')
-        .setCheck(Blockly.Types.NUMBER.checkList)
+        .setCheck(Blockly.Types.NUMBER.getcheckList())
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARD_STEPPER_SPEED);
     this.setMutator(new Blockly.Mutator(['core_hub_digpin',
@@ -378,7 +377,7 @@ Blockly.Blocks['diorama_hub_component'] = {
 
 Blockly.Blocks['diorama_button_declaration'] = {
   init: function() {
-    this.setColour(Blockly.Blocks.components.HUE);
+    this.setColour(Blockly.Blocks.components.diorama.HUE);
     this.appendDummyInput()
 	    .appendField('Diorama ' + Blockly.Msg.ARD_BUTTON_COMPONENT)
         .appendField(

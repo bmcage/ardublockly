@@ -146,7 +146,7 @@ Blockly.Blocks['array_create_with_length'] = {
             'ARRAYNAME')
         .appendField(Blockly.Msg.ARD_ARRAY_CREATE_LENGTH);
     this.appendValueInput('LENGTH')
-        .setCheck(Blockly.Types.NUMBER.output);
+        .setCheck(Blockly.Types.NUMBER.getoutput());
     this.setInputsInline(true);
     this.setHelpUrl( 'https://www.arduino.cc/reference/en/language/variables/data-types/array/');
     this.setColour(Blockly.Blocks.array.HUE);
@@ -194,10 +194,10 @@ Blockly.Blocks['array_getIndex'] = {
                                       false, true, false),
             'ARRAYNAME');
     this.appendValueInput("AT")
-        .setCheck(Blockly.Types.NUMBER.output)
+        .setCheck(Blockly.Types.NUMBER.getoutput())
         .appendField(Blockly.Msg.ARD_ARRAY_GETINDEX_AT);
     this.setInputsInline(true);
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_ARRAY_GETINDEX_TOOLTIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -277,15 +277,15 @@ Blockly.Blocks['array_setIndex'] = {
                                       false, true, false),
             'ARRAYNAME');
     this.appendValueInput("AT")
-        .setCheck(Blockly.Types.NUMBER.output)
+        .setCheck(Blockly.Types.NUMBER.getoutput())
         .appendField(Blockly.Msg.ARD_ARRAY_SETINDEX_AT);
     this.appendValueInput("VALUE")
-        .setCheck(Blockly.Types.NUMBER.output)
+        .setCheck(Blockly.Types.NUMBER.getoutput())
         .appendField(Blockly.Msg.ARD_ARRAY_SETINDEX_VALUE);
     this.setPreviousStatement(true, "ARD_BLOCK");
     this.setNextStatement(true, 'ARD_BLOCK');
     this.setInputsInline(true);
-    //this.setOutput(true, Blockly.Types.NUMBER.output);
+    //this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_ARRAY_SETINDEX_TOOLTIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
@@ -339,7 +339,7 @@ Blockly.Blocks['array_getLength'] = {
                                       false, true, false),
             'ARRAYNAME');
     this.setInputsInline(true);
-    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setOutput(true, Blockly.Types.NUMBER.getoutput());
     this.setTooltip(Blockly.Msg.ARD_ARRAY_GETLENGTH_TOOLTIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
