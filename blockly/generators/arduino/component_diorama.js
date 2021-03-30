@@ -28,7 +28,7 @@ Blockly.Arduino['diorama_hub_component'] = function(block) {
       targetBlock.setHubConnector(connectors);
     }
     var code = Blockly.Arduino.blockToCode(targetBlock);
-    if (!goog.isString(code)) {
+    if (!(typeof code == 'string')) {
       throw 'Expecting code from statement block "' + targetBlock.type + '".';
     }
     if (code) {
@@ -58,18 +58,18 @@ Blockly.Arduino['diorama_hub_component'] = function(block) {
   }
   
   
-  var code = `
-void DOIvolLouder() {
-  if (DIOvolume >= 10)
-  {
-    DIOvolume = DIOvolume - 10;
-  } else { 
-    DIOvolume = 0;
-  }
-  DIOMP3player.setVolume(DIOvolume, DIOvolume);
-}
-`
-  //generate missing functions
+  var code = '// void\n';
+  code += ' DOIvolLouder() {\n';
+  code += '  if (DIOvolume >= 10)\n';
+  code += '  {\n';
+  code += '    DIOvolume = DIOvolume - 10;  } else { \n';
+  code += '\n';
+  code += '    DIOvolume = 0;\n';
+  code += '  }\n';
+  code += '  DIOMP3player.setVolume(DIOvolume, DIOvolume);\n';
+  code += '}\n';
+  
+  //generate missing functions\n';
   Blockly.Arduino.addFunction('DIObtn_S1_fun', "void DIObtn_S1_fun() {}");
   Blockly.Arduino.addFunction('DIObtn_S2_fun', "void DIObtn_S2_fun() {}");
   Blockly.Arduino.addFunction('DIObtn_S3_fun', "void DIObtn_S3_fun() {}");
@@ -77,50 +77,48 @@ void DOIvolLouder() {
   Blockly.Arduino.addFunction('DIObtn_S5_fun', "void DIObtn_S5_fun() {}");
   Blockly.Arduino.addFunction('DIObtn_S6_fun', "void DIObtn_S6_fun() {}");
   Blockly.Arduino.addFunction('DIObtn_S7_fun', "void DIObtn_S7_fun() {}");
-  var code8 = `void DIObtn_S8_fun() {
-  DIOLastBtnPushed = 0;
-  DIOBtn1Running = false;
-  DIOBtn2Running = false;
-  DIOBtn3Running = false;
-  DIOBtn4Running = false;
-  DIOBtn5Running = false;
-  DIOBtn6Running = false;
-  DIOBtn7Running = false;
-  DIOBtn8Running = false;
-  if (DIOMP3player.isPlaying()) {DIOMP3player.stopTrack();}
-  DIOmodule.setDisplayToString("stop    ");
-  //also the stepper is reset 
-  STEPPERNAME_finished = false; 
-  STEPPERNAME_rotating = false;
-  STEPPERNAME_stepsdone = 0;
-}
-`
+  var code8 = 'void DIObtn_S8_fun() {\n';
+  code8 += '  DIOLastBtnPushed = 0;\n';
+  code8 += '  DIOBtn1Running = false;\n';
+  code8 += '  DIOBtn2Running = false;\n';
+  code8 += '  DIOBtn3Running = false;\n';
+  code8 += '  DIOBtn4Running = false;\n';
+  code8 += '  DIOBtn5Running = false;\n';
+  code8 += '  DIOBtn6Running = false;\n';
+  code8 += '  DIOBtn7Running = false;\n';
+  code8 += '  DIOBtn8Running = false;\n';
+  code8 += '  if (DIOMP3player.isPlaying()) {DIOMP3player.stopTrack();}\n';
+  code8 += '  DIOmodule.setDisplayToString("stop    ");\n';
+  code8 += '  //also the stepper is reset \n';
+  code8 += '  STEPPERNAME_finished = false; \n';
+  code8 += '  STEPPERNAME_rotating = false;\n';
+  code8 += '  STEPPERNAME_stepsdone = 0;\n';
+  code8 += '}\n';
   Blockly.Arduino.addFunction('DIObtn_S8_fun', code8.replace(new RegExp('STEPPERNAME', 'g'), 'stepper_' + stepperName));
-  var coderunning = `void DIObtn_stoprunning(bool stopall) {
+  var coderunning = 'void DIObtn_stoprunning(bool stopall) {\n';
+  coderunning += '  if (stopall) {\n';
+  coderunning += '    DIOBtn1Running = false;\n';
+  coderunning += '    DIOBtn2Running = false;\n';
+  coderunning += '    DIOBtn3Running = false;\n';
+  coderunning += '    DIOBtn4Running = false;\n';
+  coderunning += '    DIOBtn5Running = false;\n';
+  coderunning += '    DIOBtn6Running = false;\n';
+  coderunning += '    DIOBtn7Running = false;\n';
+  coderunning += '    DIOBtn8Running = false;\n';
+  coderunning += '  } else {\n';
+  coderunning += '    if (DIOLastBtnPushed == 1) {DIOBtn1Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 2) {DIOBtn2Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 3) {DIOBtn3Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 4) {DIOBtn4Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 5) {DIOBtn5Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 6) {DIOBtn6Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 7) {DIOBtn7Running = false;}\n';
+  coderunning += '    else if (DIOLastBtnPushed == 8) {DIOBtn8Running = false;}\n';
+  coderunning += '  }\n';
+  coderunning += '\n';
+  coderunning += '  DIOLastBtnPushed = 0;\n';
+  coderunning += '}\n';
 
-  if (stopall) {
-    DIOBtn1Running = false;
-    DIOBtn2Running = false;
-    DIOBtn3Running = false;
-    DIOBtn4Running = false;
-    DIOBtn5Running = false;
-    DIOBtn6Running = false;
-    DIOBtn7Running = false;
-    DIOBtn8Running = false;
-  } else {
-    if (DIOLastBtnPushed == 1) {DIOBtn1Running = false;}
-    else if (DIOLastBtnPushed == 2) {DIOBtn2Running = false;}
-    else if (DIOLastBtnPushed == 3) {DIOBtn3Running = false;}
-    else if (DIOLastBtnPushed == 4) {DIOBtn4Running = false;}
-    else if (DIOLastBtnPushed == 5) {DIOBtn5Running = false;}
-    else if (DIOLastBtnPushed == 6) {DIOBtn6Running = false;}
-    else if (DIOLastBtnPushed == 7) {DIOBtn7Running = false;}
-    else if (DIOLastBtnPushed == 8) {DIOBtn8Running = false;}
-  }
-
-  DIOLastBtnPushed = 0;
-}
-`
   Blockly.Arduino.addFunction('DIObtn_stoprunning', coderunning);
   
   // the allbot board is present! We need servo library, and allbot library 
@@ -132,71 +130,70 @@ void DOIvolLouder() {
   var DIO_IN2 = 33;
   var DIO_IN3 = 35;
   var DIO_IN4 = 37;
-  var dioramainclude = `
-TM1638 DIOmodule(45, 43, 41);   // Sets up TM1638 Diorama module, verbonden met pinnen D2 (DIO), D5 (CLK), en D1 (STB)
-uint8_t DIOLastBtnPushed = 0; // 8 buttons, from 1 to 8
-bool DIOBtn1Running = false;
-bool DIOBtn2Running = false;
-bool DIOBtn3Running = false;
-bool DIOBtn4Running = false;
-bool DIOBtn5Running = false;
-bool DIOBtn6Running = false;
-bool DIOBtn7Running = false;
-bool DIOBtn8Running = false;
+  var dioramainclude = 'TM1638 DIOmodule(45, 43, 41);   // Sets up TM1638 Diorama module, verbonden met pinnen D2 (DIO), D5 (CLK), en D1 (STB)\n';
+  dioramainclude += 'uint8_t DIOLastBtnPushed = 0; // 8 buttons, from 1 to 8\n';
+  dioramainclude += 'bool DIOBtn1Running = false;\n';
+  dioramainclude += 'bool DIOBtn2Running = false;\n';
+  dioramainclude += 'bool DIOBtn3Running = false;\n';
+  dioramainclude += 'bool DIOBtn4Running = false;\n';
+  dioramainclude += 'bool DIOBtn5Running = false;\n';
+  dioramainclude += 'bool DIOBtn6Running = false;\n';
+  dioramainclude += 'bool DIOBtn7Running = false;\n';
+  dioramainclude += 'bool DIOBtn8Running = false;\n';
+  dioramainclude += '\n';
+  dioramainclude += '// Variables used in base code for the diorama\n';
+  dioramainclude += 'SdFat sd; // Create object to handle SD functions\n';
+  dioramainclude += '\n';
+  dioramainclude += 'SFEMP3Shield DIOMP3player; // Create Mp3 library object\n';
+  dioramainclude += '// These variables are used in the MP3 initialization to set up\n';
+  dioramainclude += '// some stereo options:\n';
+  dioramainclude += 'uint8_t DIOvolume = 40; // MP3 Player volume 0=max, 255=lowest (off)\n';
+  dioramainclude += 'const uint16_t DIOmonoMode = 1;  // Mono setting 0=off, 3=max\n';
+  dioramainclude += 'int DIOtracknrplaying = 0;\n';
+  dioramainclude += '\n';
+  dioramainclude += '// initSD() initializes the SD card and checks for an error.\n';
+  dioramainclude += 'void DIOinitSD()\n';
+  dioramainclude += '{\n';
+  dioramainclude += '  //Initialize the SdCard.\n';
+  dioramainclude += '  if (!sd.begin(SD_SEL, SPI_HALF_SPEED))\n';
+  dioramainclude += '    sd.initErrorHalt();\n';
+  dioramainclude += '  if (!sd.chdir("/"))\n';
+  dioramainclude += '    sd.errorHalt("sd.chdir");\n';
+  dioramainclude += '}\n';
+  dioramainclude += '\n';
+  dioramainclude += '// DIOinitMP3Player() sets up all of the initialization for the\n';
+  dioramainclude += '// MP3 Player Shield. It runs the begin() function, checks\n';
+  dioramainclude += '// for errors, applies a patch if found, and sets the volume/\n';
+  dioramainclude += '// stereo mode.\n';
+  dioramainclude += 'void DIOinitMP3Player()\n';
+  dioramainclude += '{\n';
+  dioramainclude += '  uint8_t result = DIOMP3player.begin(); // init the mp3 player shield\n';
+  dioramainclude += '  if (result != 0) // check result, see readme for error codes.\n';
+  dioramainclude += '  {\n';
+  dioramainclude += '    // Error checking can go here!\n';
+  dioramainclude += '  }\n';
+  dioramainclude += '  DIOMP3player.setVolume(DIOvolume, DIOvolume);\n';
+  dioramainclude += '  DIOMP3player.setMonoMode(DIOmonoMode);\n';
+  dioramainclude += '}\n';
+  dioramainclude += '\n';
 
-// Variables used in base code for the diorama
-SdFat sd; // Create object to handle SD functions
-
-SFEMP3Shield DIOMP3player; // Create Mp3 library object
-// These variables are used in the MP3 initialization to set up
-// some stereo options:
-uint8_t DIOvolume = 40; // MP3 Player volume 0=max, 255=lowest (off)
-const uint16_t DIOmonoMode = 1;  // Mono setting 0=off, 3=max
-int DIOtracknrplaying = 0;
-
-// initSD() initializes the SD card and checks for an error.
-void DIOinitSD()
-{
-  //Initialize the SdCard.
-  if (!sd.begin(SD_SEL, SPI_HALF_SPEED))
-    sd.initErrorHalt();
-  if (!sd.chdir("/"))
-    sd.errorHalt("sd.chdir");
-}
-
-// DIOinitMP3Player() sets up all of the initialization for the
-// MP3 Player Shield. It runs the begin() function, checks
-// for errors, applies a patch if found, and sets the volume/
-// stereo mode.
-void DIOinitMP3Player()
-{
-  uint8_t result = DIOMP3player.begin(); // init the mp3 player shield
-  if (result != 0) // check result, see readme for error codes.
-  {
-    // Error checking can go here!
-  }
-  DIOMP3player.setVolume(DIOvolume, DIOvolume);
-  DIOMP3player.setMonoMode(DIOmonoMode);
-}
-
-`
   Blockly.Arduino.addInclude('diorama0', dioramainclude);
   
-  var dioramaSetupCode = `
+  var dioramaSetupCode = '\n';
 
-  DIOinitSD();  // Initialize the SD card
-  DIOinitMP3Player(); // Initialize the MP3 Shield
+  dioramaSetupCode += '  DIOinitSD();  // Initialize the SD card\n';
+  dioramaSetupCode += '  DIOinitMP3Player(); // Initialize the MP3 Shield\n';
+  dioramaSetupCode += '\n';
+  dioramaSetupCode += '  for (int x = 0; x < 5; x++)\n';
+  dioramaSetupCode += '  {\n';
+  dioramaSetupCode += '    DIOmodule.setDisplayToString("diorama");  // toon tekst\n';
+  dioramaSetupCode += '    delay(600);\n';
+  dioramaSetupCode += '    DIOmodule.setDisplayToString("ingegno ");  // toon tekst\n';
+  dioramaSetupCode += '    delay(600);\n';
+  dioramaSetupCode += '  }\n';
+  dioramaSetupCode += '\n';
+  dioramaSetupCode += '  DIOmodule.setDisplayToString("start   ");  // toon tekst\n';
 
-  for (int x = 0; x < 5; x++)
-  {
-    DIOmodule.setDisplayToString("diorama");  // toon tekst
-    delay(600);
-    DIOmodule.setDisplayToString("ingegno ");  // toon tekst
-    delay(600);
-  }
-
-  DIOmodule.setDisplayToString("start   ");  // toon tekst
-`
   Blockly.Arduino.addSetup('diorama', dioramaSetupCode, true);
   
   var pinType = Blockly.Arduino.PinTypes.STEPPER;
@@ -216,14 +213,14 @@ void DIOinitMP3Player()
 
   Blockly.Arduino.addInclude('stepper', '#include <Stepper.h>\n#define DIO_IN1  31\n#define DIO_IN2  33\n#define DIO_IN3  35\n#define DIO_IN4  37');
   
-  var a2scode = `unsigned long STEPPERNAME_Angle2Steps(int angle) {
-  if (angle < 0) {
-    // convert negative angle to a positive one
-    angle = -angle;
-  }
-  return (angle * STEPPERNAME_steps) / 360;
-}
-`
+  var a2scode = 'unsigned long STEPPERNAME_Angle2Steps(int angle) {\n';
+  a2scode += '  if (angle < 0) {\n';
+  a2scode += '    // convert negative angle to a positive one\n';
+  a2scode += '    angle = -angle;\n';
+  a2scode += '  }\n';
+  a2scode += '  return (angle * STEPPERNAME_steps) / 360;\n';
+  a2scode += '}\n';
+
   Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
   
   var globalCode = 'const unsigned long ' + stepperName + '_steps = ' + stepperSteps
@@ -239,50 +236,49 @@ void DIOinitMP3Player()
       + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
 
-  var dioramacode = `
-// DIOmodule.getButtons() geeft het nummer van de ingedrukte drukknoppen.
-// S1 = 1, S2 = 2, S3 = 4 .... S8 = 128
-// worden drukknoppen S1 en S3 ingedrukt dan is het resultaat = 5
-byte DIOdrukknoppen = DIOmodule.getButtons();  // bewaar het nummer van de ingedrukte knoppen in DIOdruknoppen
+  var dioramacode = '// DIOmodule.getButtons() geeft het nummer van de ingedrukte drukknoppen.\n';
+  dioramacode += '// S1 = 1, S2 = 2, S3 = 4 .... S8 = 128\n';
+  dioramacode += '// worden drukknoppen S1 en S3 ingedrukt dan is het resultaat = 5\n';
+  dioramacode += 'byte DIOdrukknoppen = DIOmodule.getButtons();  // bewaar het nummer van de ingedrukte knoppen in DIOdruknoppen\n';
+  dioramacode += '\n';
+  dioramacode += 'if (bitRead(DIOdrukknoppen, 0)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 1; DIOBtn1Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 1)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 2; DIOBtn2Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 2)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 3; DIOBtn3Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 3)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 4; DIOBtn4Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 4)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 5; DIOBtn5Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 5)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 6; DIOBtn6Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 6)){\n';
+  dioramacode += '  DIOLastBtnPushed = 7; DIOBtn7Running = true;\n';
+  dioramacode += '} else if (bitRead(DIOdrukknoppen, 7)) {\n';
+  dioramacode += '  DIOLastBtnPushed = 8; DIOBtn8Running = true;\n';
+  dioramacode += '}\n';
+  dioramacode += '\n';
+  dioramacode += 'DIOmodule.setLEDs(DIOdrukknoppen);  // doe led branden boven de drukknop\n';
+  dioramacode += '\n';
+  dioramacode += '// we execute the commands as desired by the last button press\n';
+  dioramacode += 'if (DIOLastBtnPushed == 1) {  DIObtn_S1_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 2) {  DIObtn_S2_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 3) {  DIObtn_S3_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 4) {  DIObtn_S4_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 5) {  DIObtn_S5_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 6) {  DIObtn_S6_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 7) {  DIObtn_S7_fun();}\n';
+  dioramacode += 'if (DIOLastBtnPushed == 8) {  DIObtn_S8_fun();}\n';
+  dioramacode += 'if (DIOBtn1Running && DIOLastBtnPushed != 1) {  DIObtn_S1_fun();}\n';
+  dioramacode += 'if (DIOBtn2Running && DIOLastBtnPushed != 2) {  DIObtn_S2_fun();}\n';
+  dioramacode += 'if (DIOBtn3Running && DIOLastBtnPushed != 3) {  DIObtn_S3_fun();}\n';
+  dioramacode += 'if (DIOBtn4Running && DIOLastBtnPushed != 4) {  DIObtn_S4_fun();}\n';
+  dioramacode += 'if (DIOBtn5Running && DIOLastBtnPushed != 5) {  DIObtn_S5_fun();}\n';
+  dioramacode += 'if (DIOBtn6Running && DIOLastBtnPushed != 6) {  DIObtn_S6_fun();}\n';
+  dioramacode += 'if (DIOBtn7Running && DIOLastBtnPushed != 7) {  DIObtn_S7_fun();}\n';
+  dioramacode += 'if (DIOBtn8Running && DIOLastBtnPushed != 8) {  DIObtn_S8_fun();}\n';
 
-if (bitRead(DIOdrukknoppen, 0)) {
-  DIOLastBtnPushed = 1; DIOBtn1Running = true;
-} else if (bitRead(DIOdrukknoppen, 1)) {
-  DIOLastBtnPushed = 2; DIOBtn2Running = true;
-} else if (bitRead(DIOdrukknoppen, 2)) {
-  DIOLastBtnPushed = 3; DIOBtn3Running = true;
-} else if (bitRead(DIOdrukknoppen, 3)) {
-  DIOLastBtnPushed = 4; DIOBtn4Running = true;
-} else if (bitRead(DIOdrukknoppen, 4)) {
-  DIOLastBtnPushed = 5; DIOBtn5Running = true;
-} else if (bitRead(DIOdrukknoppen, 5)) {
-  DIOLastBtnPushed = 6; DIOBtn6Running = true;
-} else if (bitRead(DIOdrukknoppen, 6)){
-  DIOLastBtnPushed = 7; DIOBtn7Running = true;
-} else if (bitRead(DIOdrukknoppen, 7)) {
-  DIOLastBtnPushed = 8; DIOBtn8Running = true;
-}
-
-DIOmodule.setLEDs(DIOdrukknoppen);  // doe led branden boven de drukknop
-
-// we execute the commands as desired by the last button press
-if (DIOLastBtnPushed == 1) {  DIObtn_S1_fun();}
-if (DIOLastBtnPushed == 2) {  DIObtn_S2_fun();}
-if (DIOLastBtnPushed == 3) {  DIObtn_S3_fun();}
-if (DIOLastBtnPushed == 4) {  DIObtn_S4_fun();}
-if (DIOLastBtnPushed == 5) {  DIObtn_S5_fun();}
-if (DIOLastBtnPushed == 6) {  DIObtn_S6_fun();}
-if (DIOLastBtnPushed == 7) {  DIObtn_S7_fun();}
-if (DIOLastBtnPushed == 8) {  DIObtn_S8_fun();}
-if (DIOBtn1Running && DIOLastBtnPushed != 1) {  DIObtn_S1_fun();}
-if (DIOBtn2Running && DIOLastBtnPushed != 2) {  DIObtn_S2_fun();}
-if (DIOBtn3Running && DIOLastBtnPushed != 3) {  DIObtn_S3_fun();}
-if (DIOBtn4Running && DIOLastBtnPushed != 4) {  DIObtn_S4_fun();}
-if (DIOBtn5Running && DIOLastBtnPushed != 5) {  DIObtn_S5_fun();}
-if (DIOBtn6Running && DIOLastBtnPushed != 6) {  DIObtn_S6_fun();}
-if (DIOBtn7Running && DIOLastBtnPushed != 7) {  DIObtn_S7_fun();}
-if (DIOBtn8Running && DIOLastBtnPushed != 8) {  DIObtn_S8_fun();}
-`
   
   return dioramacode;
 };

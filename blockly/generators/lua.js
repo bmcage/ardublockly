@@ -1,21 +1,7 @@
 /**
  * @license
- * Visual Blocks Language
- *
- * Copyright 2016 Google Inc.
- * https://developers.google.com/blockly/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2016 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
@@ -28,6 +14,8 @@
 goog.provide('Blockly.Lua');
 
 goog.require('Blockly.Generator');
+goog.require('Blockly.inputTypes');
+goog.require('Blockly.utils.string');
 
 
 /**
@@ -77,7 +65,7 @@ Blockly.Lua.ORDER_ATOMIC = 0;          // literals
 // The next level was not explicit in documentation and inferred by Ellen.
 Blockly.Lua.ORDER_HIGH = 1;            // Function calls, tables[]
 Blockly.Lua.ORDER_EXPONENTIATION = 2;  // ^
-Blockly.Lua.ORDER_UNARY = 3;           // not # - ()
+Blockly.Lua.ORDER_UNARY = 3;           // not # - ~
 Blockly.Lua.ORDER_MULTIPLICATIVE = 4;  // * / %
 Blockly.Lua.ORDER_ADDITIVE = 5;        // + -
 Blockly.Lua.ORDER_CONCATENATION = 6;   // ..
@@ -85,6 +73,18 @@ Blockly.Lua.ORDER_RELATIONAL = 7;      // < > <=  >= ~= ==
 Blockly.Lua.ORDER_AND = 8;             // and
 Blockly.Lua.ORDER_OR = 9;              // or
 Blockly.Lua.ORDER_NONE = 99;
+
+/**
+ * Note: Lua is not supporting zero-indexing since the language itself is
+ * one-indexed, so the generator does not repoct the oneBasedIndex configuration
+ * option used for lists and text.
+ */
+
+/**
+ * Whether the init method has been called.
+ * @type {?boolean}
+ */
+Blockly.Lua.isInitialized = false;
 
 /**
  * Initialise the database of variable names.
@@ -103,6 +103,8 @@ Blockly.Lua.init = function(workspace) {
   } else {
     Blockly.Lua.variableDB_.reset();
   }
+  Blockly.Lua.variableDB_.setVariableMap(workspace.getVariableMap());
+  this.isInitialized = true;
 };
 
 /**
@@ -140,14 +142,27 @@ Blockly.Lua.scrubNakedValue = function(line) {
  * quotes.
  * @param {string} string Text to encode.
  * @return {string} Lua string.
- * @private
+ * @protected
  */
 Blockly.Lua.quote_ = function(string) {
-  // TODO: This is a quick hack.  Replace with goog.string.quote
   string = string.replace(/\\/g, '\\\\')
                  .replace(/\n/g, '\\\n')
                  .replace(/'/g, '\\\'');
   return '\'' + string + '\'';
+};
+
+/**
+ * Encode a string as a properly escaped multiline Lua string, complete with
+ * quotes.
+ * @param {string} string Text to encode.
+ * @return {string} Lua string.
+ * @protected
+ */
+Blockly.Lua.multiline_quote_ = function(string) {
+  var lines = string.split(/\n/g).map(Blockly.Lua.quote_);
+  // Join with the following, plus a newline:
+  // .. '\n' ..
+  return lines.join(' .. \'\\n\' ..\n');
 };
 
 /**
@@ -156,23 +171,26 @@ Blockly.Lua.quote_ = function(string) {
  * Calls any statements following this block.
  * @param {!Blockly.Block} block The current block.
  * @param {string} code The Lua code created for this block.
+ * @param {boolean=} opt_thisOnly True to generate code for only this statement.
  * @return {string} Lua code with comments and subsequent blocks added.
- * @private
+ * @protected
  */
-Blockly.Lua.scrub_ = function(block, code) {
+Blockly.Lua.scrub_ = function(block, code, opt_thisOnly) {
   var commentCode = '';
   // Only collect comments for blocks that aren't inline.
   if (!block.outputConnection || !block.outputConnection.targetConnection) {
     // Collect comment for this block.
     var comment = block.getCommentText();
     if (comment) {
+      comment = Blockly.utils.string.wrap(comment,
+          Blockly.Lua.COMMENT_WRAP - 3);
       commentCode += Blockly.Lua.prefixLines(comment, '-- ') + '\n';
     }
     // Collect comments for all value arguments.
     // Don't collect comments for nested statements.
-    for (var x = 0; x < block.inputList.length; x++) {
-      if (block.inputList[x].type == Blockly.INPUT_VALUE) {
-        var childBlock = block.inputList[x].connection.targetBlock();
+    for (var i = 0; i < block.inputList.length; i++) {
+      if (block.inputList[i].type == Blockly.inputTypes.VALUE) {
+        var childBlock = block.inputList[i].connection.targetBlock();
         if (childBlock) {
           comment = Blockly.Lua.allNestedComments(childBlock);
           if (comment) {
@@ -183,6 +201,6 @@ Blockly.Lua.scrub_ = function(block, code) {
     }
   }
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-  var nextCode = Blockly.Lua.blockToCode(nextBlock);
+  var nextCode = opt_thisOnly ? '' : Blockly.Lua.blockToCode(nextBlock);
   return commentCode + code + nextCode;
 };

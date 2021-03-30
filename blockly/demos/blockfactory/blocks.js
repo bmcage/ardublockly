@@ -1,20 +1,7 @@
 /**
- * Blockly Demos: Block Factory Blocks
- *
- * Copyright 2012 Google Inc.
- * https://developers.google.com/blockly/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * @license
+ * Copyright 2012 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
@@ -29,7 +16,7 @@ Blockly.Blocks['factory_base'] = {
     this.setColour(120);
     this.appendDummyInput()
         .appendField('name')
-        .appendField(new Blockly.FieldTextInput('math_foo'), 'NAME');
+        .appendField(new Blockly.FieldTextInput('block_type'), 'NAME');
     this.appendStatementInput('INPUTS')
         .setCheck('Input')
         .appendField('inputs');
@@ -46,26 +33,63 @@ Blockly.Blocks['factory_base'] = {
         ['↑ top connection', 'TOP'],
         ['↓ bottom connection', 'BOTTOM']],
         function(option) {
-          this.sourceBlock_.updateShape_(option);
+          this.getSourceBlock().updateShape_(option);
+          // Connect a shadow block to this new input.
+          this.getSourceBlock().spawnOutputShadow_(option);
         });
     this.appendDummyInput()
         .appendField(dropdown, 'CONNECTIONS');
+    this.appendValueInput('TOOLTIP')
+        .setCheck('String')
+        .appendField('tooltip');
+    this.appendValueInput('HELPURL')
+        .setCheck('String')
+        .appendField('help url');
     this.appendValueInput('COLOUR')
         .setCheck('Colour')
         .appendField('colour');
     this.setTooltip('Build a custom block by plugging\n' +
         'fields, inputs and other blocks here.');
     this.setHelpUrl(
-        'https://developers.google.com/blockly/custom-blocks/block-factory');
+        'https://developers.google.com/blockly/guides/create-custom-blocks/block-factory');
   },
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('connections', this.getFieldValue('CONNECTIONS'));
     return container;
   },
   domToMutation: function(xmlElement) {
     var connections = xmlElement.getAttribute('connections');
     this.updateShape_(connections);
+  },
+  spawnOutputShadow_: function(option) {
+    // Helper method for deciding which type of outputs this block needs
+    // to attach shadow blocks to.
+    switch (option) {
+      case 'LEFT':
+        this.connectOutputShadow_('OUTPUTTYPE');
+        break;
+      case 'TOP':
+        this.connectOutputShadow_('TOPTYPE');
+        break;
+      case 'BOTTOM':
+        this.connectOutputShadow_('BOTTOMTYPE');
+        break;
+      case 'BOTH':
+        this.connectOutputShadow_('TOPTYPE');
+        this.connectOutputShadow_('BOTTOMTYPE');
+        break;
+    }
+  },
+  connectOutputShadow_: function(outputType) {
+    // Helper method to create & connect shadow block.
+    var type = this.workspace.newBlock('type_null');
+    type.setShadow(true);
+    type.outputConnection.connect(this.getInput(outputType).connection);
+    type.initSvg();
+    if (this.rendered) {
+      type.render();
+    }
   },
   updateShape_: function(option) {
     var outputExists = this.getInput('OUTPUTTYPE');
@@ -98,11 +122,6 @@ Blockly.Blocks['factory_base'] = {
         .setCheck('Type')
         .appendField(label);
     this.moveInputBefore(name, 'COLOUR');
-    var type = this.workspace.newBlock('type_null');
-    type.setShadow(true);
-    type.outputConnection.connect(this.getInput(name).connection);
-    type.initSvg();
-    type.render();
   }
 };
 
@@ -214,13 +233,33 @@ Blockly.Blocks['field_static'] = {
   // Text value.
   init: function() {
     this.setColour(160);
-    this.appendDummyInput()
+    this.appendDummyInput('FIRST')
         .appendField('text')
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
     this.setTooltip('Static text that serves as a label.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=88');
+  },
+};
+
+Blockly.Blocks['field_label_serializable'] = {
+  // Text value that is saved to XML.
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput('FIRST')
+        .appendField('text')
+        .appendField(new Blockly.FieldTextInput(''), 'TEXT')
+        .appendField(',')
+        .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
+    this.setPreviousStatement(true, 'Field');
+    this.setNextStatement(true, 'Field');
+    this.setTooltip('Static text that serves as a label, and is saved to' +
+      ' XML. Use only if you want to modify this label at runtime.');
+    this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=88');
+  },
+  onchange: function() {
+    fieldNameCheck(this);
   }
 };
 
@@ -236,6 +275,32 @@ Blockly.Blocks['field_input'] = {
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
     this.setTooltip('An input field for the user to enter text.');
+    this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=319');
+  },
+  onchange: function() {
+    fieldNameCheck(this);
+  }
+};
+
+Blockly.Blocks['field_number'] = {
+  // Numeric input.
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('numeric input')
+        .appendField(new Blockly.FieldNumber(0), 'VALUE')
+        .appendField(',')
+        .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
+    this.appendDummyInput()
+        .appendField('min')
+        .appendField(new Blockly.FieldNumber(-Infinity), 'MIN')
+        .appendField('max')
+        .appendField(new Blockly.FieldNumber(Infinity), 'MAX')
+        .appendField('precision')
+        .appendField(new Blockly.FieldNumber(0, 0), 'PRECISION');
+    this.setPreviousStatement(true, 'Field');
+    this.setNextStatement(true, 'Field');
+    this.setTooltip('An input field for the user to enter a number.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=319');
   },
   onchange: function() {
@@ -268,24 +333,34 @@ Blockly.Blocks['field_dropdown'] = {
     this.appendDummyInput()
         .appendField('dropdown')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
-    this.optionCount_ = 3;
+    this.optionList_ = ['text', 'text', 'text'];
     this.updateShape_();
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
-    this.setMutator(new Blockly.Mutator(['field_dropdown_option']));
+    this.setMutator(new Blockly.Mutator(['field_dropdown_option_text',
+                                         'field_dropdown_option_image']));
     this.setColour(160);
     this.setTooltip('Dropdown menu with a list of options.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=386');
   },
   mutationToDom: function(workspace) {
     // Create XML to represent menu options.
-    var container = document.createElement('mutation');
-    container.setAttribute('options', this.optionCount_);
+    var container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('options', JSON.stringify(this.optionList_));
     return container;
   },
   domToMutation: function(container) {
     // Parse XML to restore the menu options.
-    this.optionCount_ = parseInt(container.getAttribute('options'), 10);
+    var value = JSON.parse(container.getAttribute('options'));
+    if (typeof value == 'number') {
+      // Old format from before images were added.  November 2016.
+      this.optionList_ = [];
+      for (var i = 0; i < value; i++) {
+        this.optionList_.push('text');
+      }
+    } else {
+      this.optionList_ = value;
+    }
     this.updateShape_();
   },
   decompose: function(workspace) {
@@ -293,8 +368,9 @@ Blockly.Blocks['field_dropdown'] = {
     var containerBlock = workspace.newBlock('field_dropdown_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
-    for (var i = 0; i < this.optionCount_; i++) {
-      var optionBlock = workspace.newBlock('field_dropdown_option');
+    for (var i = 0; i < this.optionList_.length; i++) {
+      var optionBlock = workspace.newBlock(
+          'field_dropdown_option_' + this.optionList_[i]);
       optionBlock.initSvg();
       connection.connect(optionBlock.previousConnection);
       connection = optionBlock.nextConnection;
@@ -305,26 +381,41 @@ Blockly.Blocks['field_dropdown'] = {
     // Reconfigure this block based on the mutator dialog's components.
     var optionBlock = containerBlock.getInputTargetBlock('STACK');
     // Count number of inputs.
+    this.optionList_.length = 0;
     var data = [];
     while (optionBlock) {
+      if (optionBlock.type == 'field_dropdown_option_text') {
+        this.optionList_.push('text');
+      } else if (optionBlock.type == 'field_dropdown_option_image') {
+        this.optionList_.push('image');
+      }
       data.push([optionBlock.userData_, optionBlock.cpuData_]);
       optionBlock = optionBlock.nextConnection &&
           optionBlock.nextConnection.targetBlock();
     }
-    this.optionCount_ = data.length;
     this.updateShape_();
     // Restore any data.
-    for (var i = 0; i < this.optionCount_; i++) {
-      this.setFieldValue(data[i][0] || 'option', 'USER' + i);
-      this.setFieldValue(data[i][1] || 'OPTIONNAME', 'CPU' + i);
+    for (var i = 0; i < this.optionList_.length; i++) {
+      var userData = data[i][0];
+      if (userData !== undefined) {
+        if (typeof userData == 'string') {
+          this.setFieldValue(userData || 'option', 'USER' + i);
+        } else {
+          this.setFieldValue(userData.src, 'SRC' + i);
+          this.setFieldValue(userData.width, 'WIDTH' + i);
+          this.setFieldValue(userData.height, 'HEIGHT' + i);
+          this.setFieldValue(userData.alt, 'ALT' + i);
+        }
+        this.setFieldValue(data[i][1] || 'OPTIONNAME', 'CPU' + i);
+      }
     }
   },
   saveConnections: function(containerBlock) {
-    // Store names and values for each option.
+    // Store all data for each option.
     var optionBlock = containerBlock.getInputTargetBlock('STACK');
     var i = 0;
     while (optionBlock) {
-      optionBlock.userData_ = this.getFieldValue('USER' + i);
+      optionBlock.userData_ = this.getUserData(i);
       optionBlock.cpuData_ = this.getFieldValue('CPU' + i);
       i++;
       optionBlock = optionBlock.nextConnection &&
@@ -332,28 +423,61 @@ Blockly.Blocks['field_dropdown'] = {
     }
   },
   updateShape_: function() {
-    // Modify this block to have the correct number of options.
-    // Add new options.
-    for (var i = 0; i < this.optionCount_; i++) {
-      if (!this.getInput('OPTION' + i)) {
+    // Delete everything.
+    var i = 0;
+    while (this.getInput('OPTION' + i)) {
+      this.removeInput('OPTION' + i);
+      this.removeInput('OPTION_IMAGE' + i, true);
+      i++;
+    }
+    // Rebuild block.
+    var src = 'https://www.gstatic.com/codesite/ph/images/star_on.gif';
+    for (var i = 0; i <= this.optionList_.length; i++) {
+      var type = this.optionList_[i];
+      if (type == 'text') {
         this.appendDummyInput('OPTION' + i)
+            .appendField('•')
             .appendField(new Blockly.FieldTextInput('option'), 'USER' + i)
+            .appendField(',')
+            .appendField(new Blockly.FieldTextInput('OPTIONNAME'), 'CPU' + i);
+      } else if (type == 'image') {
+        this.appendDummyInput('OPTION' + i)
+            .appendField('•')
+            .appendField('image')
+            .appendField(new Blockly.FieldTextInput(src), 'SRC' + i);
+        this.appendDummyInput('OPTION_IMAGE' + i)
+            .appendField(' ')
+            .appendField('width')
+            .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH' + i)
+            .appendField('height')
+            .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT' + i)
+            .appendField('alt text')
+            .appendField(new Blockly.FieldTextInput('*'), 'ALT' + i)
             .appendField(',')
             .appendField(new Blockly.FieldTextInput('OPTIONNAME'), 'CPU' + i);
       }
     }
-    // Remove deleted options.
-    while (this.getInput('OPTION' + i)) {
-      this.removeInput('OPTION' + i);
-      i++;
-    }
   },
   onchange: function() {
-    if (this.workspace && this.optionCount_ < 1) {
+    if (this.workspace && this.optionList_.length < 1) {
       this.setWarningText('Drop down menu must\nhave at least one option.');
     } else {
       fieldNameCheck(this);
     }
+  },
+  getUserData: function(n) {
+    if (this.optionList_[n] == 'text') {
+      return this.getFieldValue('USER' + n);
+    }
+    if (this.optionList_[n] == 'image') {
+      return {
+        src: this.getFieldValue('SRC' + n),
+        width: Number(this.getFieldValue('WIDTH' + n)),
+        height: Number(this.getFieldValue('HEIGHT' + n)),
+        alt: this.getFieldValue('ALT' + n)
+      };
+    }
+    throw 'Unknown dropdown type';
   }
 };
 
@@ -371,15 +495,29 @@ Blockly.Blocks['field_dropdown_container'] = {
   }
 };
 
-Blockly.Blocks['field_dropdown_option'] = {
-  // Add option.
+Blockly.Blocks['field_dropdown_option_text'] = {
+  // Add text option.
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('option');
+        .appendField('text option');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip('Add a new option to the dropdown menu.');
+    this.setTooltip('Add a new text option to the dropdown menu.');
+    this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=386');
+    this.contextMenu = false;
+  }
+};
+
+Blockly.Blocks['field_dropdown_option_image'] = {
+  // Add image option.
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('image option');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Add a new image option to the dropdown menu.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=386');
     this.contextMenu = false;
   }
@@ -423,24 +561,6 @@ Blockly.Blocks['field_colour'] = {
   }
 };
 
-Blockly.Blocks['field_date'] = {
-  // Date input.
-  init: function() {
-    this.setColour(160);
-    this.appendDummyInput()
-        .appendField('date')
-        .appendField(new Blockly.FieldDate(), 'DATE')
-        .appendField(',')
-        .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
-    this.setTooltip('Date input field.');
-  },
-  onchange: function() {
-    fieldNameCheck(this);
-  }
-};
-
 Blockly.Blocks['field_variable'] = {
   // Dropdown for variables.
   init: function() {
@@ -470,13 +590,13 @@ Blockly.Blocks['field_image'] = {
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('width')
-        .appendField(new Blockly.FieldTextInput('15',
-            Blockly.FieldTextInput.numberValidator), 'WIDTH')
+        .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
         .appendField('height')
-        .appendField(new Blockly.FieldTextInput('15',
-            Blockly.FieldTextInput.numberValidator), 'HEIGHT')
+        .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
         .appendField('alt text')
-        .appendField(new Blockly.FieldTextInput('*'), 'ALT');
+        .appendField(new Blockly.FieldTextInput('*'), 'ALT')
+        .appendField('flip RTL')
+        .appendField(new Blockly.FieldCheckbox('false'), 'FLIP_RTL');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
     this.setTooltip('Static image (JPEG, PNG, GIF, SVG, BMP).\n' +
@@ -499,7 +619,7 @@ Blockly.Blocks['type_group'] = {
   },
   mutationToDom: function(workspace) {
     // Create XML to represent a group of types.
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('types', this.typeCount_);
     return container;
   },
@@ -507,13 +627,13 @@ Blockly.Blocks['type_group'] = {
     // Parse XML to restore the group of types.
     this.typeCount_ = parseInt(container.getAttribute('types'), 10);
     this.updateShape_();
-    for (var x = 0; x < this.typeCount_; x++) {
-      this.removeInput('TYPE' + x);
+    for (var i = 0; i < this.typeCount_; i++) {
+      this.removeInput('TYPE' + i);
     }
-    for (var x = 0; x < this.typeCount_; x++) {
-      var input = this.appendValueInput('TYPE' + x)
+    for (var i = 0; i < this.typeCount_; i++) {
+      var input = this.appendValueInput('TYPE' + i)
                       .setCheck('Type');
-      if (x == 0) {
+      if (i == 0) {
         input.appendField('any of');
       }
     }
@@ -714,11 +834,11 @@ Blockly.Blocks['colour_hue'] = {
     // Update the current block's colour to match.
     var hue = parseInt(text, 10);
     if (!isNaN(hue)) {
-      this.sourceBlock_.setColour(hue);
+      this.getSourceBlock().setColour(hue);
     }
   },
   mutationToDom: function(workspace) {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('colour', this.getColour());
     return container;
   },
@@ -739,7 +859,7 @@ function fieldNameCheck(referenceBlock) {
   }
   var name = referenceBlock.getFieldValue('FIELDNAME').toLowerCase();
   var count = 0;
-  var blocks = referenceBlock.workspace.getAllBlocks();
+  var blocks = referenceBlock.workspace.getAllBlocks(false);
   for (var i = 0, block; block = blocks[i]; i++) {
     var otherName = block.getFieldValue('FIELDNAME');
     if (!block.disabled && !block.getInheritedDisabled() &&
@@ -764,7 +884,7 @@ function inputNameCheck(referenceBlock) {
   }
   var name = referenceBlock.getFieldValue('INPUTNAME').toLowerCase();
   var count = 0;
-  var blocks = referenceBlock.workspace.getAllBlocks();
+  var blocks = referenceBlock.workspace.getAllBlocks(false);
   for (var i = 0, block; block = blocks[i]; i++) {
     var otherName = block.getFieldValue('INPUTNAME');
     if (!block.disabled && !block.getInheritedDisabled() &&

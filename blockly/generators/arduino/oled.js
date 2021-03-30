@@ -32,13 +32,13 @@ Blockly.Arduino['oled_config'] = function(block) {
     }
   }
     
-  var includeCode = `#include <U8g2lib.h> //version 2.24.3
-#ifdef U8X8_HAVE_HW_SPI
-#include <SPI.h>
-#endif
-#ifdef U8X8_HAVE_HW_I2C
-#include <Wire.h>
-#endif`
+  var includeCode = '#include <U8g2lib.h> //version 2.24.3\n';
+  includeCode += '#ifdef U8X8_HAVE_HW_SPI\n';
+  includeCode += '#include <SPI.h>\n';
+  includeCode += '#endif\n';
+  includeCode += '#ifdef U8X8_HAVE_HW_I2C\n';
+  includeCode += '#include <Wire.h>\n';
+  includeCode += '#endif\n';
 
   Blockly.Arduino.addInclude('oled', includeCode);
     

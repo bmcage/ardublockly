@@ -50,26 +50,25 @@ Blockly.Arduino['BT_readCodeFromApp'] = function(block) {
   var btName = 'myBT' + btInstanceName;
   var btNameCode = btName + 'Code';
 
-  var readBTcode = `
-  String BTNAME_readCodeFromApp() {
-	    //Serial.println("myBTBT_Sensor_readT()");
-	    if (BTNAME.available() >0) {
-	        String BT_receive_data = BTNAME.readStringUntil('|');
-	        BTNAME.flush();
-	        //Serial.print(" --> ");
-	        //Serial.println(BT_receive_data);
-	        if(BT_receive_data.length()<13) {
-	          return BT_receive_data;
-	        } else {
-	          //Serial.println("te lang");
-	          return "";
-	        }
-	   } else {
-	      //Serial.println("not available");
-	      return "";
-	   }
-	}`
-	  
+  var readBTcode = 'String BTNAME_readCodeFromApp() {\n';
+  readBTcode += '  //Serial.println("myBTBT_Sensor_readT()");\n';
+  readBTcode += '  if (BTNAME.available() >0) {\n';
+  readBTcode += '    String BT_receive_data = BTNAME.readStringUntil('|');\n';
+  readBTcode += '    BTNAME.flush();\n';
+  readBTcode += '    //Serial.print(" --> ");\n';
+  readBTcode += '    //Serial.println(BT_receive_data);\n';
+  readBTcode += '    if(BT_receive_data.length()<13) {\n';
+  readBTcode += '      return BT_receive_data;\n';
+  readBTcode += '    } else {\n';
+  readBTcode += '      //Serial.println("te lang");\n';
+  readBTcode += '      return "";\n';
+  readBTcode += '    }\n';
+  readBTcode += '  } else {\n';
+  readBTcode += '    //Serial.println("not available");\n';
+  readBTcode += '    return "";\n';
+  readBTcode += '  }\n';
+  readBTcode += '}\n';
+  
   Blockly.Arduino.addFunction(btNameCode, readBTcode
 //        .replace(new RegExp('IRNAMECODE', 'g'), irNameCode)
         .replace(new RegExp('BTNAME', 'g'), btName)

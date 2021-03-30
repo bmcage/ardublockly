@@ -547,23 +547,20 @@ Blockly.Arduino['neopixel_theaterchase'] = function(block) {
 			  var value_g = Blockly.Arduino.valueToCode(block, 'GREEN', Blockly.Arduino.ORDER_ATOMIC);
 			  var value_b = Blockly.Arduino.valueToCode(block, 'BLUE', Blockly.Arduino.ORDER_ATOMIC);			  
 			  var value_fade = (block.getFieldValue('FADE') == 'TRUE');
-			  var readRed = `
-uint8_t getRed(uint32_t color)
-{
-    return (color >> 16) & 0xFF;
-}`
-		  Blockly.Arduino.addFunction("getRed", readRed);		  
-		  var readGreen = `
-uint8_t getGreen(uint32_t color)
-{
-    return (color >> 8) & 0xFF;
-}`
-		  Blockly.Arduino.addFunction("getGreen", readGreen);		  
-		  var readBlue = `
-uint8_t getBlue(uint32_t color)
-{
-    return color & 0xFF;
-}`
+			  var readRed = 'uint8_t getRed(uint32_t color)\n';
+			  readRed += '{\n';
+			  readRed += '    return (color >> 16) & 0xFF;\n';
+			  readRed += '}\n';
+			  Blockly.Arduino.addFunction("getRed", readRed);		  
+			  var readGreen = 'uint8_t getGreen(uint32_t color)\n';
+			  readGreen += '{\n';
+			  readGreen += '    return (color >> 8) & 0xFF;\n';
+			  readGreen += '}\n';
+			  Blockly.Arduino.addFunction("getGreen", readGreen);		  
+			  var readBlue = 'uint8_t getBlue(uint32_t color)\n';
+			  readBlue += '{\n';
+			  readBlue += '    return color & 0xFF;\n';
+			  readBlue += '}\n';
 			  Blockly.Arduino.addFunction("getBlue", readBlue);
 				var code = '// scanner effect\n';	
 				code += 'uint32_t dimColor;\n';
@@ -601,16 +598,15 @@ uint8_t getBlue(uint32_t color)
 			  var value_b = Blockly.Arduino.valueToCode(block, 'BLUE', Blockly.Arduino.ORDER_ATOMIC);			  
 //			  var value_fade = (block.getFieldValue('FADE') == 'TRUE');
 			  var value_count = Blockly.Arduino.valueToCode(block, 'COUNT', Blockly.Arduino.ORDER_ATOMIC);
-			  var mathRandomInt= `
-int mathRandomInt(int min, int max) {
-   if (min > max) {
-      // Swap min and max to ensure min is smaller.
-      int temp = min;
-      min = max;
-      max = temp;
-   }
-   return min + (rand() % (max - min + 1));
-}`
+			  var mathRandomInt = 'int mathRandomInt(int min, int max) {\n';
+			  mathRandomInt += '   if (min > max) {\n';
+			  mathRandomInt += '      // Swap min and max to ensure min is smaller.\n';
+			  mathRandomInt += '      int temp = min;\n';
+			  mathRandomInt += '      min = max;\n';
+			  mathRandomInt += '      max = temp;\n';
+			  mathRandomInt += '   }\n';
+			  mathRandomInt += '   return min + (rand() % (max - min + 1));\n';
+			  mathRandomInt += '}\n';
 			  Blockly.Arduino.addFunction("mathRandomInt", mathRandomInt);	  
 			  var code = '// snow effect\n';
 			  code += NeoName+'.fill('+NeoName+'.Color(int('+value_r+'/10),int('+value_g+'/10),int('+value_r+'/10)));\n';

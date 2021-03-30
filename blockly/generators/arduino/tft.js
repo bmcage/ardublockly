@@ -55,17 +55,16 @@ Blockly.Arduino['tft_config'] = function(block) {
   Blockly.Arduino.addInclude('Adafruit_ST7735', '#include <Adafruit_ST7735.h> // version 1.2.7');
   Blockly.Arduino.addInclude('SPI', '#include <SPI.h>');
 
-  var code = `
-// Connect TFT to Arduino Nano - Vcc & GND, LED to 3.3V,
-// SDA pin to NANO pin 11 (MOSI)
-// SDO pin to NANO pin 12 (MISO)
-// SCK pin to NANO pin 13 (SCK)
-#define TFT_CS     10 // CS pin to NANO pin 10
-#define TFT_RST    8  // RST (RESET) pin to NANO pin 8
-#define TFT_DC     9  // AO or D/C pin to NANO pin 9
+  var code = '// Connect TFT to Arduino Nano - Vcc & GND, LED to 3.3V,\n';
+  code += '// SDA pin to NANO pin 11 (MOSI)\n';
+  code += '// SDO pin to NANO pin 12 (MISO)\n';
+  code += '// SCK pin to NANO pin 13 (SCK)\n';
+  code += '#define TFT_CS     10 // CS pin to NANO pin 10\n';
+  code += '#define TFT_RST    8  // RST (RESET) pin to NANO pin 8\n';
+  code += '#define TFT_DC     9  // AO or D/C pin to NANO pin 9\n';
+  code += '\n';
+  code += 'Adafruit_ST7735 TFT = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);\n';
 
-Adafruit_ST7735 TFT = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);
-`
   Blockly.Arduino.addDeclaration(tftName, code.replace(new RegExp('TFT', 'g'), tftName));
 
   Blockly.Arduino.addSetup(tftName, tftName + '.initR(INITR_BLACKTAB);', false);
@@ -85,15 +84,14 @@ Blockly.Arduino['tft_text'] = function(block) {
   var xpos = Blockly.Arduino.valueToCode(block, 'TFT_X', Blockly.Arduino.ORDER_ATOMIC) || '0';
   var ypos = Blockly.Arduino.valueToCode(block, 'TFT_Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
     
-  var code = `
-void MYTFTdrawtext(String text, uint16_t color, int size, int x, int y) {
-  MYTFT.setCursor(x, y);
-  MYTFT.setTextColor(color);
-  MYTFT.setTextSize(size);
-  MYTFT.setTextWrap(true);
-  MYTFT.println(text);
-}
-`
+  var code = 'void MYTFTdrawtext(String text, uint16_t color, int size, int x, int y) {\n';
+  code += '  MYTFT.setCursor(x, y);\n';
+  code += '  MYTFT.setTextColor(color);\n';
+  code += '  MYTFT.setTextSize(size);\n';
+  code += '  MYTFT.setTextWrap(true);\n';
+  code += '  MYTFT.println(text);\n';
+  code += '}\n';
+
   Blockly.Arduino.addDeclaration(tftName + '_text', code.replace(new RegExp('MYTFT', 'g'), tftName));
   return tftName + 'drawtext(' + text + ', ' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), ' + size + ', ' + xpos + ', ' + ypos + ');\n';
 };
@@ -138,38 +136,35 @@ Blockly.Arduino['tft_sprite8x8'] = function(block) {
     '#define ' + spriteName + 'W2           4     // half width\n' +
     '#define ' + spriteName + 'H2           4     // half height\n' +
     'unsigned char ' + spriteName + 'px, ' + spriteName + 'py;\n';
-  var codedrawpixel = `
-// ----------------------
-// draw Sprites variables
-// ----------------------
-// temporary x and y var
-static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;
+  var codedrawpixel = '// ----------------------\n';
+  codedrawpixel += '// draw Sprites variables\n';
+  codedrawpixel += '// ----------------------\n';
+  codedrawpixel += '// temporary x and y var\n';
+  codedrawpixel += 'static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;\n';
 
-`
+
   Blockly.Arduino.addDeclaration(spriteName, codesprite);
   Blockly.Arduino.addDeclaration(tftName + 'drawpixel', codedrawpixel.replace(new RegExp('MYTFT', 'g'), tftName));
   
-  var codedraw = `
-// draw sprite
-// ---------------
-MYTFTtmpx = SPRITEW - 1; //width sprite
-do {
-  SPRITEpx = XPOS + SIZE * MYTFTtmpx;
-  // draw SPRITE at new position
-  MYTFTtmpy = SPRITEH - 1;
-  do {
-    SPRITEpy = YPOS + SIZE * MYTFTtmpy ;
-    MYTFTtmps1 = SIZE - 1; //scale
-    do {
-      MYTFTtmps2 = SIZE - 1; //scale
-      do {
-        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
-        } while (MYTFTtmps2--);
-    } while (MYTFTtmps1--);
-  } while (MYTFTtmpy--);
-} while (MYTFTtmpx--);
-
-`
+  var codedraw = '// draw sprite\n';
+  codedraw += '// ---------------\n';
+  codedraw += 'MYTFTtmpx = SPRITEW - 1; //width sprite\n';
+  codedraw += 'do {\n';
+  codedraw += ' SPRITEpx = XPOS + SIZE * MYTFTtmpx;\n';
+  codedraw += ' // draw SPRITE at new position\n';
+  codedraw += ' MYTFTtmpy = SPRITEH - 1;\n';
+  codedraw += ' do {\n';
+  codedraw += '    SPRITEpy = YPOS + SIZE * MYTFTtmpy ;\n';
+  codedraw += '    MYTFTtmps1 = SIZE - 1; //scale\n';
+  codedraw += '    do {\n';
+  codedraw += '      MYTFTtmps2 = SIZE - 1; //scale\n';
+  codedraw += '      do {\n';
+  codedraw += '        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE8x8[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);\n';
+  codedraw += '        } while (MYTFTtmps2--);\n';
+  codedraw += '    } while (MYTFTtmps1--);\n';
+  codedraw += '  } while (MYTFTtmpy--);\n';
+  codedraw += '} while (MYTFTtmpx--);\n';
+  
   return codedraw.replace(new RegExp('MYTFT', 'g'), tftName).replace(new RegExp('SPRITE', 'g'), spriteName).replace(new RegExp('XPOS', 'g'), xpos).replace(new RegExp('YPOS', 'g'), ypos).replace(new RegExp('SIZE', 'g'), size);
 };
 
@@ -202,39 +197,36 @@ Blockly.Arduino['tft_sprite16x16'] = function(block) {
     '#define ' + spriteName + 'W2           8     // half width\n' +
     '#define ' + spriteName + 'H2           8     // half height\n' +
     'unsigned char ' + spriteName + 'px, ' + spriteName + 'py;\n';
-  var codedrawpixel = `
-// ----------------------
-// draw Sprites variables
-// ----------------------
+  var codedrawpixel = '// ----------------------\n';
+  codedrawpixel += '// draw Sprites variables\n';
+  codedrawpixel += '// ----------------------\n';
+  codedrawpixel += '\n';
+  codedrawpixel += '// temporary x and y var\n';
+  codedrawpixel += 'static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;\n';
 
-// temporary x and y var
-static short MYTFTtmpx, MYTFTtmpy, MYTFTtmps1, MYTFTtmps2;
 
-`
   Blockly.Arduino.addDeclaration(spriteName, codesprite);
   Blockly.Arduino.addDeclaration(tftName + 'drawpixel', codedrawpixel.replace(new RegExp('MYTFT', 'g'), tftName));
   
-  var codedraw = `
-// draw sprite
-// ---------------
-MYTFTtmpx = SPRITEW - 1; //width sprite
-do {
-  SPRITEpx = XPOS + SIZE * MYTFTtmpx;
-  // draw SPRITE at new position
-  MYTFTtmpy = SPRITEH - 1;
-  do {
-    SPRITEpy = YPOS + SIZE * MYTFTtmpy ;
-    MYTFTtmps1 = SIZE - 1; //scale
-    do {
-      MYTFTtmps2 = SIZE - 1; //scale
-      do {
-        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE16x16[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);
-        } while (MYTFTtmps2--);
-    } while (MYTFTtmps1--);
-  } while (MYTFTtmpy--);
-} while (MYTFTtmpx--);
-
-`
+  var codedraw = '// draw sprite\n';
+  codedraw += '// ---------------\n';
+  codedraw += 'MYTFTtmpx = SPRITEW - 1; //width sprite\n';
+  codedraw += 'do {\n';
+  codedraw += '  SPRITEpx = XPOS + SIZE * MYTFTtmpx;\n';
+  codedraw += '  // draw SPRITE at new position\n';
+  codedraw += '  MYTFTtmpy = SPRITEH - 1;\n';
+  codedraw += '  do {\n';
+  codedraw += '    SPRITEpy = YPOS + SIZE * MYTFTtmpy ;\n';
+  codedraw += '    MYTFTtmps1 = SIZE - 1; //scale\n';
+  codedraw += '    do {\n';
+  codedraw += '      MYTFTtmps2 = SIZE - 1; //scale\n';
+  codedraw += '      do {\n';
+  codedraw += '        MYTFT.drawPixel(SPRITEpx + MYTFTtmps1, SPRITEpy + MYTFTtmps2, SPRITE16x16[MYTFTtmpx + (MYTFTtmpy * SPRITEW)]);\n';
+  codedraw += '        } while (MYTFTtmps2--);\n';
+  codedraw += '    } while (MYTFTtmps1--);\n';
+  codedraw += '  } while (MYTFTtmpy--);\n';
+  codedraw += '} while (MYTFTtmpx--);\n';
+  
   return codedraw.replace(new RegExp('MYTFT', 'g'), tftName).replace(new RegExp('SPRITE', 'g'), spriteName).replace(new RegExp('XPOS', 'g'), xpos).replace(new RegExp('YPOS', 'g'), ypos).replace(new RegExp('SIZE', 'g'), size);
 };
 
@@ -251,19 +243,20 @@ Blockly.Arduino['tft_line'] = function(block) {
   var xpos2 = Blockly.Arduino.valueToCode(block, 'TFT_X2', Blockly.Arduino.ORDER_ATOMIC) || '0';
   var ypos2 = Blockly.Arduino.valueToCode(block, 'TFT_Y2', Blockly.Arduino.ORDER_ATOMIC) || '0';
     
-  var code = `
-void MYTFTdrawline(uint16_t color, int x1, int y1, int x2, int y2) {
-  if (x1 == x2) {
-    //horizontal line 
-    MYTFT.drawFastVLine(x1, y1, y2-y1, color);
-  } else if (y1 == y2) {
-    //vertical line 
-    MYTFT.drawFastHLine(x1, y1, x2-x1, color);
-  } else {
-    MYTFT.drawLine(x1, y1, x2, y2, color);
-  }
-}
-`
+  
+  var code = '// TFT draw line \n';
+  code += 'void MYTFTdrawline(uint16_t color, int x1, int y1, int x2, int y2) {\n';
+  code += '  if (x1 == x2) {\n';
+  code += '    //horizontal line \n';
+  code += '    MYTFT.drawFastVLine(x1, y1, y2-y1, color);\n';
+  code += '  } else if (y1 == y2) {\n';
+  code += '    //vertical line \n';
+  code += '    MYTFT.drawFastHLine(x1, y1, x2-x1, color);\n';
+  code += '  } else {\n';
+  code += '    MYTFT.drawLine(x1, y1, x2, y2, color);\n';
+  code += '  }\n';
+  code += '}\n';
+
   Blockly.Arduino.addDeclaration(tftName + '_line', code.replace(new RegExp('MYTFT', 'g'), tftName));
   return tftName + 'drawline(' + tftName + '.color565(' + colR + ', ' + colG + ', ' + colB + '), ' + xpos1 + ', ' + ypos1 + ', ' + xpos2 + ', ' + ypos2 + ');\n';
 };

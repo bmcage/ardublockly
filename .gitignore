@@ -114,3 +114,5 @@ package/ardublocklydocs/site
 /.project
 /.pydevproject
 /closure-library/
+node_modules
+

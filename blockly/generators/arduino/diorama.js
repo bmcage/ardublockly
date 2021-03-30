@@ -19,17 +19,16 @@ goog.require('Blockly.Arduino');
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_louder'] = function(block) {
-  var code = `
-void DOIvolLouder() {
-  if (DIOvolume >= 10)
-  {
-    DIOvolume = DIOvolume - 10;
-  } else { 
-    DIOvolume = 0;
-  }
-  DIOMP3player.setVolume(DIOvolume, DIOvolume);
-}
-`
+  var code = 'void DOIvolLouder() {\n';
+  code += '  if (DIOvolume >= 10)\n';
+  code += '  {\n';
+  code += '    DIOvolume = DIOvolume - 10;\n';
+  code += '  } else { \n';
+  code += '    DIOvolume = 0;\n';
+  code += '  }\n';
+  code += '  DIOMP3player.setVolume(DIOvolume, DIOvolume);\n';
+  code += '}\n';
+
   Blockly.Arduino.addFunction('DIOvolLouder', code);
   return 'DOIvolLouder();\nDIObtn_stoprunning(false);\n';
 };
@@ -40,17 +39,16 @@ void DOIvolLouder() {
  * @return {array} Completed code with order of operation.
  */
 Blockly.Arduino['dio_quieter'] = function(block) {
-  var code = `
-void DOIvolQuieter() {
-  if (DIOvolume < 245)
-  {
-    DIOvolume = DIOvolume + 10;
-  } else { 
-    DIOvolume = 255;
-  }
-  DIOMP3player.setVolume(DIOvolume, DIOvolume);
-}
-`
+  var code = 'void DOIvolQuieter() {\n';
+  code += '  if (DIOvolume < 245)\n';
+  code += '  {\n';
+  code += '    DIOvolume = DIOvolume + 10;\n';
+  code += '  } else { \n';
+  code += '    DIOvolume = 255;\n';
+  code += '  }\n';
+  code += '  DIOMP3player.setVolume(DIOvolume, DIOvolume);\n';
+  code += '}\n';
+
   Blockly.Arduino.addFunction('DOIvolQuieter', code);
   return 'DOIvolQuieter();\nDIObtn_stoprunning(false);\n';
 };
@@ -75,12 +73,12 @@ Blockly.Arduino['dio_setvolume'] = function(block) {
 Blockly.Arduino['dio_playtrack'] = function(block) {
   var track = Blockly.Arduino.valueToCode(
       block, 'TRACK', Blockly.Arduino.ORDER_ATOMIC) || '1';
-  var code = `if (DIOtracknrplaying != %1)  { //!DIOMP3player.isPlaying() ||
-  DIOMP3player.stopTrack();
-  uint8_t result = DIOMP3player.playTrack(%1);
-}
-DIOtracknrplaying = %1;
-`
+  var code = 'if (DIOtracknrplaying != %1)  { //!DIOMP3player.isPlaying() ||\n';
+  code += '  DIOMP3player.stopTrack();\n';
+  code += '  uint8_t result = DIOMP3player.playTrack(%1);\n';
+  code += '}\n';
+  code += 'DIOtracknrplaying = %1;\n\n';
+
   return code.replace('%1', track).replace('%1', track).replace('%1', track);
 };
 
@@ -118,9 +116,9 @@ Blockly.Arduino['dio_resetbtnpress'] = function(block) {
  */
 Blockly.Arduino['dio_resetbtnnrpress'] = function(block) {
   var nr = block.getFieldValue('BUTTON');
-  var code = `if (DIOLastBtnPushed == %1) {DIOLastBtnPushed = 0;}
-DIOBtn%1Running = false;
-`
+  var code = 'if (DIOLastBtnPushed == %1) {DIOLastBtnPushed = 0;}\n';
+  code += 'DIOBtn%1Running = false;\n\n';
+
   return code.replace('%1', nr).replace('%1', nr);
 };
 /**

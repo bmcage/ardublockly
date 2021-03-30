@@ -106,6 +106,7 @@
 	"ARD_STEPPER_COMPONENT": "stappenmotor",
 	"ARD_COMPONENT_WARN1": "Een %1 Definieer blok met dezelfde %2 naam moet toegevoegd worden om dit blok te gebruiken!",
 	"ARD_TIME_DELAY": "wacht",
+	"ARD_TIME_S": "seconden",
 	"ARD_TIME_MS": "milliseconden",
 	"ARD_TIME_DELAY_TIP": "Wacht de opgegeven tijd in milliseconden (duizendsten van een seconde)",
 	"ARD_TIME_DELAY_MICROS": "microseconden",
@@ -594,6 +595,5 @@
 	"CONTROLS_SWITCH_CASEBREAK_TOOLTIP" : "Voeg een \"case\"-blok toe om niewe voorwaarde te maken.",
 	"CONTROLS_SWITCH_DEFAULT_TOOLTIP" : "Voeg een optionele standaard actie toe die wordt uitgevoerd als geen enkele van de bovenstaande voorwaarden vervult is",
 	"SAVE_FILE_AS": "Bestand opslaan als",
-	"ARD_TIME_UNITS": [["seconden", "s"], ["milliseconden", "m"], ["microseconden", "u"]],
 	"ARD_TIME_EVERY": "iedere"	
 }

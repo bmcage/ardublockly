@@ -68,14 +68,14 @@ Blockly.Arduino['stepper_config'] = function(block) {
       + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
 
-  var a2scode = `unsigned long STEPPERNAME_Angle2Steps(int angle) {
-  if (angle < 0) {
-    // convert negative angle to a positive one
-    angle = -angle;
-  }
-  return (angle * STEPPERNAME_steps) / 360;
-}
-`
+  var a2scode = 'unsigned long STEPPERNAME_Angle2Steps(int angle) {\n';
+  a2scode += '  if (angle < 0) {\n';
+  a2scode += '    // convert negative angle to a positive one\n';
+  a2scode += '    angle = -angle;\n';
+  a2scode += '  }\n';
+  a2scode += '  return (angle * STEPPERNAME_steps) / 360;\n';
+  a2scode += '}\n';
+
   Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
   
   return '';
@@ -128,14 +128,14 @@ Blockly.Arduino['stepper_config_hub'] = function(block) {
       + stepperName + '.setSpeed(' + stepperName + '_rpm);';
   Blockly.Arduino.addSetup(stepperName, setupCode, true);
 
-  var a2scode = `unsigned long STEPPERNAME_Angle2Steps(int angle) {
-  if (angle < 0) {
-    // convert negative angle to a positive one
-    angle = -angle;
-  }
-  return (angle * STEPPERNAME_steps) / 360;
-}
-`
+  var a2scode = 'unsigned long STEPPERNAME_Angle2Steps(int angle) {\n';
+  a2scode += '  if (angle < 0) {\n';
+  a2scode += '    // convert negative angle to a positive one\n';
+  a2scode += '    angle = -angle;\n';
+  a2scode += '  }\n';
+  a2scode += '  return (angle * STEPPERNAME_steps) / 360;\n';
+  a2scode += '}\n';
+
   Blockly.Arduino.addFunction(stepperName+'Angle2Steps', a2scode.replace(new RegExp('STEPPERNAME', 'g'), stepperName));
   
   return '';
@@ -185,21 +185,21 @@ Blockly.Arduino['stepper_rotate'] = function(block) {
   var stepperInstanceName = 'stepper_' + block.getFieldValue('STEPPER_NAME');
   var stepperAngle = block.getFieldValue('ANGLE');
   var stepperDirection = block.getFieldValue('DIRECTION')
-  var code = `
-if (!STEPPERNAME_finished) {
-  // stepper should still rotate further
-  STEPPERNAME_rotating = true;
-  int steps2take = STEPPERNAME_Angle2Steps(%1);
-  if (STEPPERNAME_stepsdone < steps2take) {
-    //take an extra step
-    STEPPERNAME.step(%2);
-    STEPPERNAME_stepsdone += 1;
-  } else {
-    STEPPERNAME_finished = true;
-    STEPPERNAME_rotating = false;
-  }
-}
-`
+  var code = '\n';
+  code += 'if (!STEPPERNAME_finished) {\n';
+  code += '  // stepper should still rotate further\n';
+  code += '  STEPPERNAME_rotating = true;\n';
+  code += '  int steps2take = STEPPERNAME_Angle2Steps(%1);\n';
+  code += '  if (STEPPERNAME_stepsdone < steps2take) {\n';
+  code += '    //take an extra step\n';
+  code += '    STEPPERNAME.step(%2);\n';
+  code += '    STEPPERNAME_stepsdone += 1;\n';
+  code += '  } else {\n';
+  code += '    STEPPERNAME_finished = true;\n';
+  code += '    STEPPERNAME_rotating = false;\n';
+  code += '  }\n';
+  code += '}\n';
+
   return code.replace(new RegExp('STEPPERNAME', 'g'), stepperInstanceName)
              .replace('%1', stepperAngle)
              .replace('%2', stepperDirection);
@@ -218,26 +218,25 @@ Blockly.Arduino['stepper_rotate_number'] = function(block) {
   var stepperAngle = Blockly.Arduino.valueToCode(block, 'ANGLE',
       Blockly.Arduino.ORDER_ATOMIC) || '0';
   var stepperDirection = block.getFieldValue('DIRECTION')
-  var code = `
-if (!STEPPERNAME_finished) {
-  // stepper should still rotate further
-  STEPPERNAME_rotating = true;
-  int steps2take = STEPPERNAME_Angle2Steps(%1);
-  if (STEPPERNAME_stepsdone < steps2take) {
-    //take an extra step
-    if ( %1 < 0) {
-      //negative angle given, change direction 
-      STEPPERNAME.step(%2 * -1); 
-    } else {
-      STEPPERNAME.step(%2); 
-    }
-    STEPPERNAME_stepsdone += 1;
-  } else {
-    STEPPERNAME_finished = true;
-    STEPPERNAME_rotating = false;
-  }
-}
-`
+  var code = 'if (!STEPPERNAME_finished) {\n';
+  code += '  // stepper should still rotate further\n';
+  code += '  STEPPERNAME_rotating = true;\n';
+  code += '  int steps2take = STEPPERNAME_Angle2Steps(%1);\n';
+  code += '  if (STEPPERNAME_stepsdone < steps2take) {\n';
+  code += '    //take an extra step\n';
+  code += '    if ( %1 < 0) {\n';
+  code += '      //negative angle given, change direction \n';
+  code += '      STEPPERNAME.step(%2 * -1); \n';
+  code += '    } else {\n';
+  code += '      STEPPERNAME.step(%2); \n';
+  code += '    }\n';
+  code += '    STEPPERNAME_stepsdone += 1;\n';
+  code += '  } else {\n';
+  code += '    STEPPERNAME_finished = true;\n';
+  code += '    STEPPERNAME_rotating = false;\n';
+  code += '  }\n';
+  code += '}\n';
+
   return code.replace(new RegExp('STEPPERNAME', 'g'), stepperInstanceName)
              .replace('%1', stepperAngle)
              .replace('%1', stepperAngle)

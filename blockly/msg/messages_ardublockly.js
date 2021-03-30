@@ -164,6 +164,7 @@ Blockly.Msg.ARD_STEPPER_STEP_TIP = 'Turns the stepper motor a specific number of
 Blockly.Msg.ARD_STEPPER_COMPONENT = 'stepper';
 Blockly.Msg.ARD_COMPONENT_WARN1 = 'A %1 configuration block with the same %2 name must be added to use this block!';
 Blockly.Msg.ARD_TIME_DELAY = 'wait';
+Blockly.Msg.ARD_TIME_S = 'seconds';
 Blockly.Msg.ARD_TIME_MS = 'milliseconds';
 Blockly.Msg.ARD_TIME_DELAY_TIP = 'Wait specific time in milliseconds';
 Blockly.Msg.ARD_TIME_DELAY_MICROS = 'microseconds';

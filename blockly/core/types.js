@@ -9,6 +9,10 @@
  */
 'use strict';
 
+/**
+ * @name Blockly.Types
+ * @namespace
+ */
 goog.provide('Blockly.Types');
 
 goog.require('Blockly.Type');
@@ -167,7 +171,7 @@ Blockly.Types.getValidTypeArray = function() {
         (typeKey !== 'NULL') && (typeKey !== 'ARRAY') &&
         (typeof Blockly.Types[typeKey] !== 'function') &&
         !(Blockly.Types[typeKey] instanceof RegExp)) {
-      typesArray.push([Blockly.Types[typeKey].typeName, typeKey]);
+      typesArray.push([Blockly.Types[typeKey].gettypeName(), typeKey]);
     }
   }
   return typesArray;
@@ -226,7 +230,7 @@ Blockly.Types.regExpFloat_ = new RegExp(/^-?[0-9]*[.][0-9]+$/);
  */
 Blockly.Types.identifyNumber = function(numberString) {
     if (Blockly.Types.regExpInt_.test(numberString)) {
-      var intValue = parseInt(numberString);
+      var intValue = parseInt(numberString, 10);
       if (isNaN(intValue)) {
         return Blockly.Types.NULL;
       }

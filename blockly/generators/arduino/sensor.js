@@ -58,15 +58,16 @@ Blockly.Arduino['DHT_readTemp'] = function(block) {
   Blockly.Arduino.addDeclaration(dhtNameTemptmp, 'float ' + dhtNameTemptmp + ' = 200;');
   Blockly.Arduino.addDeclaration(dhtNameTemp, 'float ' + dhtNameTemp + ' = 200;');
   
-  var readTcode = `float DHTNAME_readT() {
-  DHTNAMETEMPTMP = DHTNAME.readTemperature(false); //read Celsius
-  if (! isnan(DHTNAMETEMPTMP) ) {
-    //override stored temperature only on good reading
-    DHTNAMETEMP = DHTNAMETEMPTMP;
-  }
-  return DHTNAMETEMP;
-}
-`
+  var readTcode = '// read Temperature\n';
+  readTcode += 'float DHTNAME_readT() {\n';
+  readTcode += '  DHTNAMETEMPTMP = DHTNAME.readTemperature(false); //read Celsius\n';
+  readTcode += '  if (! isnan(DHTNAMETEMPTMP) ) {\n';
+  readTcode += '    //override stored temperature only on good reading\n';
+  readTcode += '    DHTNAMETEMP = DHTNAMETEMPTMP;\n';
+  readTcode += '  }\n';
+  readTcode += '  return DHTNAMETEMP;\n';
+  readTcode += '}\n';
+
   Blockly.Arduino.addFunction(dhtNameTemp, readTcode
         .replace(new RegExp('DHTNAMETEMPTMP', 'g'), dhtNameTemptmp)
         .replace(new RegExp('DHTNAMETEMP', 'g'), dhtNameTemp)
@@ -93,15 +94,16 @@ Blockly.Arduino['DHT_readRH'] = function(block) {
   Blockly.Arduino.addDeclaration(dhtNameRHtmp, 'float ' + dhtNameRHtmp + ' = 0.;');
   Blockly.Arduino.addDeclaration(dhtNameRH, 'float ' + dhtNameRH + ' = 0.;');
   
-  var readTcode = `float DHTNAME_readRH() {
-  DHTNAMERHTMP = DHTNAME.readHumidity();
-  if (! isnan(DHTNAMERHTMP) ) {
-    //override stored RH only on good reading
-    DHTNAMERH = DHTNAMERHTMP;
-  }
-  return DHTNAMERH;
-}
-`
+  var readTcode = '// read Relative Humidity\n';
+  readTcode += 'float DHTNAME_readRH() {\n';
+  readTcode += '  DHTNAMERHTMP = DHTNAME.readHumidity();\n';
+  readTcode += '  if (! isnan(DHTNAMERHTMP) ) {\n';
+  readTcode += '    //override stored RH only on good reading\n';
+  readTcode += '    DHTNAMERH = DHTNAMERHTMP;\n';
+  readTcode += '  }\n';
+  readTcode += '  return DHTNAMERH;\n';
+  readTcode += '}\n';
+
   Blockly.Arduino.addFunction(dhtNameRH, readTcode
         .replace(new RegExp('DHTNAMERHTMP', 'g'), dhtNameRHtmp)
         .replace(new RegExp('DHTNAMERH', 'g'), dhtNameRH)
@@ -127,15 +129,16 @@ Blockly.Arduino['DHT_readHeatIndex'] = function(block) {
   Blockly.Arduino.addDeclaration(dhtNameHItmp, 'float ' + dhtNameHItmp + ' = 200;');
   Blockly.Arduino.addDeclaration(dhtNameHI, 'float ' + dhtNameHI + ' = 200;');
   
-  var readTcode = `float DHTNAME_readHI() {
-  DHTNAMEHITMP = DHTNAME.computeHeatIndex(DHTNAME.readTemperature(false), DHTNAME.readHumidity(), false);
-  if (! isnan(DHTNAMEHITMP) ) {
-    //override stored temperature only on good reading
-    DHTNAMEHI = DHTNAMEHITMP;
-  }
-  return DHTNAMEHI;
-}
-`
+  var readTcode = '// read heat index\n';
+  readTcode += 'float DHTNAME_readHI() {\n';
+  readTcode += '  DHTNAMEHITMP = DHTNAME.computeHeatIndex(DHTNAME.readTemperature(false), DHTNAME.readHumidity(), false);\n';
+  readTcode += '  if (! isnan(DHTNAMEHITMP) ) {\n';
+  readTcode += '    //override stored temperature only on good reading\n';
+  readTcode += '    DHTNAMEHI = DHTNAMEHITMP;\n';
+  readTcode += '  }\n';
+  readTcode += '  return DHTNAMEHI;\n';
+  readTcode += '}\n';
+
   Blockly.Arduino.addFunction(dhtNameHI, readTcode
         .replace(new RegExp('DHTNAMEHITMP', 'g'), dhtNameHItmp)
         .replace(new RegExp('DHTNAMEHI', 'g'), dhtNameHI)
@@ -188,15 +191,15 @@ Blockly.Arduino['IR_readCode'] = function(block) {
   //Blockly.Arduino.addDeclaration(irNameCode, 'unsigned long ' + irNameCode + ' = 200;');
   Blockly.Arduino.addDeclaration('result', 'decode_results ' + 'result;');
   
-  var readTcode = `unsigned long IRNAME_readT() {
-  while(!IRNAME.decode(&result)) {
-	  delay(500);
-  }
-  unsigned long retCode = result.value;
-  IRNAME.resume();
-  return retCode;
-}
-`
+  var readTcode = 'unsigned long IRNAME_readT() {\n';
+  readTcode += '  while(!IRNAME.decode(&result)) {\n';
+  readTcode += '	  delay(500);\n';
+  readTcode += '  }\n';
+  readTcode += '  unsigned long retCode = result.value;\n';
+  readTcode += '  IRNAME.resume();\n';
+  readTcode += '  return retCode;\n';
+  readTcode += '}\n';
+
   Blockly.Arduino.addFunction(irNameCode, readTcode
 //        .replace(new RegExp('IRNAMECODE', 'g'), irNameCode)
         .replace(new RegExp('IRNAME', 'g'), irName)

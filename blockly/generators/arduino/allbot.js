@@ -71,1957 +71,1898 @@ Blockly.Arduino['allbotservo_config_hub'] = function(block) {
 /** Object to contain all AllBot predefined functions. */
 var allbotfunctions = new Object();
 allbotfunctions.VR204 = {
-  chirp: `
-void chirp(int beeps, int speedms){
-
-  for (int i = 0; i < beeps; i++){
-    for (int i = 0; i < 255; i++){
-      digitalWrite(sounderPin, HIGH);
-      delayMicroseconds((355-i)+ (speedms*2));
-      digitalWrite(sounderPin, LOW);
-      delayMicroseconds((355-i)+ (speedms*2));
-    }
-     delay(30);
-  }
-}`,
-  walkbackward: `
-void walkbackward(int steps, int speedms){
-    BOT.move(hipLeft, 130);
-    BOT.move(hipRight, 40); 
-    BOT.animate(speedms);
-
-    for (int i = 0; i < steps; i++){
-      BOT.move(ankleLeft, 135);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleRight, 45);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleLeft, 90);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleRight, 90);
-      BOT.animate(speedms*2);
-    }
-
-    BOT.move(hipLeft, 90);
-    BOT.move(hipRight, 90); 
-    BOT.animate(speedms);
-}`,
-  walkforward: `
-void walkforward(int steps, int speedms){
-    BOT.move(hipLeft, 130);
-    BOT.move(hipRight, 40); 
-    BOT.animate(speedms);
-
-    for (int i = 0; i < steps; i++){
-      BOT.move(ankleLeft, 45);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleRight, 135);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleLeft, 90);
-      BOT.animate(speedms*2);
-  
-      BOT.move(ankleRight, 90);
-      BOT.animate(speedms*2);
-    }
-
-    BOT.move(hipLeft, 90);
-    BOT.move(hipRight, 90); 
-    BOT.animate(speedms);
-}`,
-  lookright: `
-void lookright(int speedms){
-    BOT.move(hipLeft, 45);
-    BOT.move(hipRight, 135);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipLeft, 90);
-    BOT.move(hipRight, 90);
-    BOT.animate(speedms);
-}`,
-  lookleft: `
-void lookleft(int speedms){
-    BOT.move(hipLeft, 135);
-    BOT.move(hipRight, 45);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipLeft, 90);
-    BOT.move(hipRight, 90);
-    BOT.animate(speedms);
-}`,
-  walkright: `
-void walkright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(ankleRight, 45);
-    BOT.animate(speedms);
-
-    BOT.move(ankleLeft, 135);
-    BOT.animate(speedms);
-
-    BOT.move(ankleRight, 90);
-    BOT.animate(speedms);
-
-    BOT.move(ankleLeft, 90);
-    BOT.animate(speedms);
-  }
-}`,
-  walkleft: `
-void walkleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(ankleLeft, 45);
-    BOT.animate(speedms);
-
-    BOT.move(ankleRight, 135);
-    BOT.animate(speedms);
-
-    BOT.move(ankleLeft, 90);
-    BOT.animate(speedms);
-
-    BOT.move(ankleRight, 90);
-    BOT.animate(speedms);
-  }
-}`,
-  scared: `
-void scared(int shakes, int beeps){
-    
-    for (int i = 0; i < shakes; i++){
-
-      BOT.move(ankleLeft, 45);
-      BOT.move(ankleRight, 45);
-      BOT.animate(100);
-      
-      BOT.move(ankleLeft, 135);
-      BOT.move(ankleRight, 135);
-      BOT.animate(100);
-    }    
-    BOT.move(ankleLeft, 90);
-    BOT.move(ankleRight, 90);
-    BOT.animate(100);
-    
-    chirp(beeps, 0);
-}`
+  chirp: '\n'+
+'void chirp(int beeps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < beeps; i++){\n'+
+'    for (int i = 0; i < 255; i++){\n'+
+'      digitalWrite(sounderPin, HIGH);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'      digitalWrite(sounderPin, LOW);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'    }\n'+
+'     delay(30);\n'+
+'  }\n'+
+'}',
+  walkbackward: '\n'+
+'void walkbackward(int steps, int speedms){\n'+
+'    BOT.move(hipLeft, 130);\n'+
+'    BOT.move(hipRight, 40); \n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    for (int i = 0; i < steps; i++){\n'+
+'      BOT.move(ankleLeft, 135);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleRight, 45);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleLeft, 90);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleRight, 90);\n'+
+'      BOT.animate(speedms*2);\n'+
+'    }\n'+
+'\n'+
+'    BOT.move(hipLeft, 90);\n'+
+'    BOT.move(hipRight, 90); \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  walkforward: '\n'+
+'void walkforward(int steps, int speedms){\n'+
+'    BOT.move(hipLeft, 130);\n'+
+'    BOT.move(hipRight, 40); \n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    for (int i = 0; i < steps; i++){\n'+
+'      BOT.move(ankleLeft, 45);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleRight, 135);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleLeft, 90);\n'+
+'      BOT.animate(speedms*2);\n'+
+'  \n'+
+'      BOT.move(ankleRight, 90);\n'+
+'      BOT.animate(speedms*2);\n'+
+'    }\n'+
+'\n'+
+'    BOT.move(hipLeft, 90);\n'+
+'    BOT.move(hipRight, 90); \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  lookright: '\n'+
+'void lookright(int speedms){\n'+
+'    BOT.move(hipLeft, 45);\n'+
+'    BOT.move(hipRight, 135);\n'+
+'    BOT.animate(speedms);\n'+
+'  \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipLeft, 90);\n'+
+'    BOT.move(hipRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  lookleft: '\n'+
+'void lookleft(int speedms){\n'+
+'    BOT.move(hipLeft, 135);\n'+
+'    BOT.move(hipRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipLeft, 90);\n'+
+'    BOT.move(hipRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  walkright: 'void walkright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(ankleRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleLeft, 135);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkleft: 'void walkleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(ankleLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleRight, 135);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(ankleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  scared: 'void scared(int shakes, int beeps){\n'+
+'    \n'+
+'    for (int i = 0; i < shakes; i++){\n'+
+'\n'+
+'      BOT.move(ankleLeft, 45);\n'+
+'      BOT.move(ankleRight, 45);\n'+
+'      BOT.animate(100);\n'+
+'      \n'+
+'      BOT.move(ankleLeft, 135);\n'+
+'      BOT.move(ankleRight, 135);\n'+
+'      BOT.animate(100);\n'+
+'    }    \n'+
+'    BOT.move(ankleLeft, 90);\n'+
+'    BOT.move(ankleRight, 90);\n'+
+'    BOT.animate(100);\n'+
+'\n'+
+'    chirp(beeps, 0);\n'+
+'}'
 }
 
 //  VR408    *******************************************************
 allbotfunctions.VR408 = {
-  chirp: `
-void chirp(int beeps, int speedms){
-
-  for (int i = 0; i < beeps; i++){
-    for (int i = 0; i < 255; i++){
-      digitalWrite(sounderPin, HIGH);
-      delayMicroseconds((355-i)+ (speedms*2));
-      digitalWrite(sounderPin, LOW);
-      delayMicroseconds((355-i)+ (speedms*2));
-    }
-     delay(30);
-  }
-}`,
-  walkbackward: `
-void walkbackward(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 20);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 20);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkforward: `
-void walkforward(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipFrontLeft, 20);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipFrontRight, 20);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkleft: `
-void walkleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 0);
-    BOT.move(hipFrontLeft, 90);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-     
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 90);
-    BOT.move(hipFrontRight, 0);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkright: `
-void walkright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 0);
-    BOT.move(hipFrontRight, 90);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-     
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 90);
-    BOT.move(hipFrontLeft, 0);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  lookright: `
-void lookright(int speedms){
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.move(hipFrontRight, 10);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-}`,
-  lookleft: `
-void lookleft(int speedms){
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.move(hipFrontLeft, 10);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-}`,
-  leanright: `
-void leanright(int speedms){
-    BOT.move(kneeFrontRight, 90);
-    BOT.move(kneeRearRight, 90);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeFrontRight, 45);
-    BOT.move(kneeRearRight, 45);
-    BOT.animate(speedms);
-}`,
-  leanleft: `
-void leanleft(int speedms){
-    BOT.move(kneeFrontLeft, 90);
-    BOT.move(kneeRearLeft, 90);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeFrontLeft, 45);
-    BOT.move(kneeRearLeft, 45);
-    BOT.animate(speedms);
-}`,
-  leanforward: `
-void leanforward(int speedms){
-    BOT.move(kneeFrontLeft, 90);
-    BOT.move(kneeFrontRight, 90);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeFrontLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-}`,
-  leanbackward: `
-void leanbackward(int speedms){
-    BOT.move(kneeRearLeft, 90);
-    BOT.move(kneeRearRight, 90);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeRearRight, 45);
-    BOT.animate(speedms);
-}`,
-  turnleft: `
-void turnleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 90);
-    BOT.move(hipFrontLeft, 90);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 0);
-    BOT.move(hipFrontRight, 0);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  turnright: `
-void turnright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(kneeFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 0);
-    BOT.move(hipFrontLeft, 0);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 30);
-    BOT.move(kneeFrontLeft, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 90);
-    BOT.move(hipFrontRight, 90);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 30);
-    BOT.move(kneeFrontRight, 30);
-    BOT.animate(speedms);
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 45);
-    BOT.move(kneeFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  scared: `
-void scared(int shakes, int beeps){
-    BOT.move(kneeFrontRight, 0);
-    BOT.move(kneeRearRight, 0);
-    BOT.move(kneeFrontLeft, 0);
-    BOT.move(kneeRearLeft, 0);
-    BOT.animate(50);
-    
-    for (int i = 0; i < shakes; i++){
- 
-      BOT.move(hipRearRight, 80);
-      BOT.move(hipRearLeft, 10);
-      BOT.move(hipFrontRight, 10);
-      BOT.move(hipFrontLeft, 80);
-      BOT.animate(100);
-      
-      BOT.move(hipRearLeft, 80);
-      BOT.move(hipRearRight, 10);
-      BOT.move(hipFrontLeft, 10);
-      BOT.move(hipFrontRight, 80);
-      BOT.animate(50);
-    }
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(200);
-    
-    chirp(beeps, 0);
-    
-    BOT.move(kneeFrontRight, 45);
-    BOT.move(kneeRearRight, 45);
-    BOT.move(kneeFrontLeft, 45);
-    BOT.move(kneeRearLeft, 45);
-    BOT.animate(75);
-}`
+  chirp: '\n'+
+'void chirp(int beeps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < beeps; i++){\n'+
+'    for (int i = 0; i < 255; i++){\n'+
+'      digitalWrite(sounderPin, HIGH);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'      digitalWrite(sounderPin, LOW);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'    }\n'+
+'     delay(30);\n'+
+'  }\n'+
+'}',
+  walkbackward: 'void walkbackward(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 20);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 20);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkforward: 'void walkforward(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipFrontLeft, 20);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipFrontRight, 20);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkleft: 'void walkleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 0);\n'+
+'    BOT.move(hipFrontLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'\n'+
+'    BOT.animate(speedms);\n'+
+'     \n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 90);\n'+
+'    BOT.move(hipFrontRight, 0);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkright: 'void walkright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+    
+'    BOT.move(hipRearLeft, 0);\n'+
+'    BOT.move(hipFrontRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'     \n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 90);\n'+
+'    BOT.move(hipFrontLeft, 0);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+    
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  lookright: 'void lookright(int speedms){\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  lookleft: 'void lookleft(int speedms){\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanright: 'void leanright(int speedms){\n'+
+'    BOT.move(kneeFrontRight, 90);\n'+
+'    BOT.move(kneeRearRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanleft: 'void leanleft(int speedms){\n'+
+'    BOT.move(kneeFrontLeft, 90);\n'+
+'    BOT.move(kneeRearLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanforward: 'void leanforward(int speedms){\n'+
+'    BOT.move(kneeFrontLeft, 90);\n'+
+'    BOT.move(kneeFrontRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanbackward: 'void leanbackward(int speedms){\n'+
+'    BOT.move(kneeRearLeft, 90);\n'+
+'    BOT.move(kneeRearRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  turnleft: 'void turnleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 90);\n'+
+'    BOT.move(hipFrontLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 0);\n'+
+'    BOT.move(hipFrontRight, 0);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  turnright: 'void turnright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 0);\n'+
+'    BOT.move(hipFrontLeft, 0);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 30);\n'+
+'    BOT.move(kneeFrontLeft, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 90);\n'+
+'    BOT.move(hipFrontRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 30);\n'+
+'    BOT.move(kneeFrontRight, 30);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  scared: 'void scared(int shakes, int beeps){\n'+
+'    BOT.move(kneeFrontRight, 0);\n'+
+'    BOT.move(kneeRearRight, 0);\n'+
+'    BOT.move(kneeFrontLeft, 0);\n'+
+'    BOT.move(kneeRearLeft, 0);\n'+
+'    BOT.animate(50);\n'+
+'    \n'+
+'    for (int i = 0; i < shakes; i++){\n'+
+' \n'+
+'      BOT.move(hipRearRight, 80);\n'+
+'      BOT.move(hipRearLeft, 10);\n'+
+'      BOT.move(hipFrontRight, 10);\n'+
+'      BOT.move(hipFrontLeft, 80);\n'+
+'      BOT.animate(100);\n'+
+'      \n'+
+'      BOT.move(hipRearLeft, 80);\n'+
+'      BOT.move(hipRearRight, 10);\n'+
+'      BOT.move(hipFrontLeft, 10);\n'+
+'      BOT.move(hipFrontRight, 80);\n'+
+'      BOT.animate(50);\n'+
+'    }\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(200);\n'+
+'    \n'+
+'    chirp(beeps, 0);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 45);\n'+
+'    BOT.move(kneeRearRight, 45);\n'+
+'    BOT.move(kneeFrontLeft, 45);\n'+
+'    BOT.move(kneeRearLeft, 45);\n'+
+'    BOT.animate(75);\n'+
+'}'
 }
 //  VR412    *******************************************************
 allbotfunctions.VR412 = {
-  standup: `
-void standup(){
-
-  BOT.move(kneeFrontLeft, 110);
-  BOT.move(kneeFrontRight, 110);
-  BOT.animate(500);
-
-  BOT.move(kneeRearLeft, 110);
-  BOT.move(kneeRearRight, 110);
-  BOT.animate(500);
-
-  BOT.move(kneeFrontLeft, 90);
-  BOT.animate(100);
-  BOT.move(ankleFrontLeft, 20);
-  BOT.animate(100);
-  BOT.move(kneeFrontLeft, 110);
-  BOT.animate(100);
-
-  BOT.move(kneeFrontRight, 90);
-  BOT.animate(100);
-  BOT.move(ankleFrontRight, 20);
-  BOT.animate(100);
-  BOT.move(kneeFrontRight, 110);
-  BOT.animate(100);
-
-  BOT.move(kneeRearLeft, 90);
-  BOT.animate(100);
-  BOT.move(ankleRearLeft, 20);
-  BOT.animate(100);
-  BOT.move(kneeRearLeft, 110);
-  BOT.animate(100);
-
-  BOT.move(kneeRearRight, 90);
-  BOT.animate(100);
-  BOT.move(ankleRearRight, 20);
-  BOT.animate(100);
-  BOT.move(kneeRearRight, 110);
-  BOT.animate(100);
-}`,
-  chirp: `
-void chirp(int beeps, int speedms){
-
-  for (int i = 0; i < beeps; i++){
-    for (int i = 0; i < 255; i++){
-      digitalWrite(sounderPin, HIGH);
-      delayMicroseconds((355-i)+ (speedms*2));
-      digitalWrite(sounderPin, LOW);
-      delayMicroseconds((355-i)+ (speedms*2));
-    }
-     delay(30);
-  }
-}`,
-  walkbackward: `
-void walkbackward(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkforward: `
-void walkforward(int steps, int speedms){
-  for (int i = 0; i < steps; i++){ 
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkleft: `
-void walkleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  walkright: `
-void walkright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  lookright: `
-void lookright(int speedms){
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.move(hipFrontRight, 10);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-}`,
-  lookleft: `
-void lookleft(int speedms){
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.move(hipFrontLeft, 10);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(speedms);
-}`,
-  leanright: `
-void leanright(int speedms){
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(kneeRearRight, 80);
-    BOT.move(ankleFrontRight, 0);
-    BOT.move(ankleRearRight, 0);
-    BOT.animate(speedms*2);
-    
-    delay(speedms*3);
-
-    BOT.move(kneeFrontRight, 110);  
-    BOT.move(kneeRearRight, 110);
-    BOT.move(ankleFrontRight, 20);
-    BOT.move(ankleRearRight, 20);
-    BOT.animate(speedms*2);
-}`,
-  leanleft: `
-void leanleft(int speedms){
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(ankleFrontLeft, 0);
-    BOT.move(ankleRearLeft, 0);
-    BOT.animate(speedms*2);
-    
-    delay(speedms*3);
-
-    BOT.move(kneeFrontLeft, 110);  
-    BOT.move(kneeRearLeft, 110);
-    BOT.move(ankleFrontLeft, 20);
-    BOT.move(ankleRearLeft, 20);
-    BOT.animate(speedms*2);
-}`,
-  leanforward: `
-void leanforward(int speedms){
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(ankleFrontLeft, 0);
-    BOT.move(ankleFrontRight, 0);
-    BOT.animate(speedms*2);
-    
-    delay(speedms*3);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.move(kneeFrontRight, 110);
-    BOT.move(ankleFrontLeft, 20);
-    BOT.move(ankleFrontRight, 20);
-    BOT.animate(speedms*2);
-}`,
-  leanbackward: `
-void leanbackward(int speedms){
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(kneeRearRight, 80);
-    BOT.move(ankleRearLeft, 0);
-    BOT.move(ankleRearRight, 0);
-    BOT.animate(speedms*2);
-    
-    delay(speedms*3);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.move(kneeRearRight, 110);
-    BOT.move(ankleRearLeft, 20);
-    BOT.move(ankleRearRight, 20);
-    BOT.animate(speedms*2);
-
-}`,
-  turnleft: `
-void turnleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  turnright: `
-void turnright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeRearRight, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 80);
-    BOT.move(hipRearLeft, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeRearLeft, 110);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 80);
-    BOT.move(hipFrontLeft, 10);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 110);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 80);
-    BOT.move(hipFrontRight, 80);
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 110);
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-  }
-}`,
-  scared: `
-void scared(int shakes, int beeps){
-    for (int i = 0; i < shakes; i++){
-      BOT.move(kneeFrontLeft, 80);
-      BOT.move(kneeFrontRight, 80);
-      BOT.move(kneeRearLeft, 80);
-      BOT.move(kneeRearRight, 80);
-      BOT.move(ankleFrontLeft, 0);
-      BOT.move(ankleFrontRight, 0);
-      BOT.move(ankleRearLeft, 0);
-      BOT.move(ankleRearRight, 0);
-      BOT.animate(30);
-  
-      BOT.move(kneeFrontLeft, 110);  
-      BOT.move(kneeFrontRight, 110); 
-      BOT.move(kneeRearLeft, 110);
-      BOT.move(kneeRearRight, 110);
-      BOT.move(ankleFrontLeft, 20);
-      BOT.move(ankleFrontRight, 20);
-      BOT.move(ankleRearLeft, 20);
-      BOT.move(ankleRearRight, 20);
-      BOT.animate(30);
-    }
-    chirp(beeps, 0);
-}`
+  standup: 'void standup(){\n'+
+'\n'+
+'  BOT.move(kneeFrontLeft, 110);\n'+
+'  BOT.move(kneeFrontRight, 110);\n'+
+'  BOT.animate(500);\n'+
+'\n'+
+'  BOT.move(kneeRearLeft, 110);\n'+
+'  BOT.move(kneeRearRight, 110);\n'+
+'  BOT.animate(500);\n'+
+'\n'+
+'  BOT.move(kneeFrontLeft, 90);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(ankleFrontLeft, 20);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(kneeFrontLeft, 110);\n'+
+'  BOT.animate(100);\n'+
+'\n'+
+'  BOT.move(kneeFrontRight, 90);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(ankleFrontRight, 20);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(kneeFrontRight, 110);\n'+
+'  BOT.animate(100);\n'+
+'\n'+
+'  BOT.move(kneeRearLeft, 90);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(ankleRearLeft, 20);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(kneeRearLeft, 110);\n'+
+'  BOT.animate(100);\n'+
+'\n'+
+'  BOT.move(kneeRearRight, 90);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(ankleRearRight, 20);\n'+
+'  BOT.animate(100);\n'+
+'  BOT.move(kneeRearRight, 110);\n'+
+'  BOT.animate(100);\n'+
+'}',
+  chirp: 'void chirp(int beeps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < beeps; i++){\n'+
+'    for (int i = 0; i < 255; i++){\n'+
+'      digitalWrite(sounderPin, HIGH);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'      digitalWrite(sounderPin, LOW);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'    }\n'+
+'     delay(30);\n'+
+'  }\n'+
+'}',
+  walkbackward: 'void walkbackward(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkforward: 'void walkforward(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){ \n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkleft: 'void walkleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  walkright: 'void walkright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  lookright: 'void lookright(int speedms){\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  lookleft: 'void lookleft(int speedms){\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanright: 'void leanright(int speedms){\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(ankleFrontRight, 0);\n'+
+'    BOT.move(ankleRearRight, 0);\n'+
+'    BOT.animate(speedms*2);\n'+
+'    \n'+
+'    delay(speedms*3);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);  \n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.move(ankleFrontRight, 20);\n'+
+'    BOT.move(ankleRearRight, 20);\n'+
+'    BOT.animate(speedms*2);\n'+
+'}',
+  leanleft: 'void leanleft(int speedms){\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(ankleFrontLeft, 0);\n'+
+'    BOT.move(ankleRearLeft, 0);\n'+
+'    BOT.animate(speedms*2);\n'+
+'    \n'+
+'    delay(speedms*3);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);  \n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.move(ankleFrontLeft, 20);\n'+
+'    BOT.move(ankleRearLeft, 20);\n'+
+'    BOT.animate(speedms*2);\n'+
+'}',
+  leanforward: 'void leanforward(int speedms){\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(ankleFrontLeft, 0);\n'+
+'    BOT.move(ankleFrontRight, 0);\n'+
+'    BOT.animate(speedms*2);\n'+
+'    \n'+
+'    delay(speedms*3);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.move(ankleFrontLeft, 20);\n'+
+'    BOT.move(ankleFrontRight, 20);\n'+
+'    BOT.animate(speedms*2);\n'+
+'}',
+  leanbackward: 'void leanbackward(int speedms){\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(ankleRearLeft, 0);\n'+
+'    BOT.move(ankleRearRight, 0);\n'+
+'    BOT.animate(speedms*2);\n'+
+'    \n'+
+'    delay(speedms*3);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.move(ankleRearLeft, 20);\n'+
+'    BOT.move(ankleRearRight, 20);\n'+
+'    BOT.animate(speedms*2);\n'+
+'}',
+  turnleft: 'void turnleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  turnright: 'void turnright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeRearRight, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeRearLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 80);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 110);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  scared: 'void scared(int shakes, int beeps){\n'+
+'    for (int i = 0; i < shakes; i++){\n'+
+'      BOT.move(kneeFrontLeft, 80);\n'+
+'      BOT.move(kneeFrontRight, 80);\n'+
+'      BOT.move(kneeRearLeft, 80);\n'+
+'      BOT.move(kneeRearRight, 80);\n'+
+'      BOT.move(ankleFrontLeft, 0);\n'+
+'      BOT.move(ankleFrontRight, 0);\n'+
+'      BOT.move(ankleRearLeft, 0);\n'+
+'      BOT.move(ankleRearRight, 0);\n'+
+'      BOT.animate(30);\n'+
+'  \n'+
+'      BOT.move(kneeFrontLeft, 110);  \n'+
+'      BOT.move(kneeFrontRight, 110); \n'+
+'      BOT.move(kneeRearLeft, 110);\n'+
+'      BOT.move(kneeRearRight, 110);\n'+
+'      BOT.move(ankleFrontLeft, 20);\n'+
+'      BOT.move(ankleFrontRight, 20);\n'+
+'      BOT.move(ankleRearLeft, 20);\n'+
+'      BOT.move(ankleRearRight, 20);\n'+
+'      BOT.animate(30);\n'+
+'    }\n'+
+'    chirp(beeps, 0);\n'+
+'}'
 }
 
 //  VR612    *******************************************************
 allbotfunctions.VR612 = {
-  chirp: `
-void chirp(int beeps, int speedms){
-
-  for (int i = 0; i < beeps; i++){
-    for (int i = 0; i < 255; i++){
-      digitalWrite(sounderPin, HIGH);
-      delayMicroseconds((355-i)+ (speedms*2));
-      digitalWrite(sounderPin, LOW);
-      delayMicroseconds((355-i)+ (speedms*2));
-    }
-     delay(30);
-  }
-}`,
-  walkbackward: `
-void walkbackward(int steps, int speedms){
-  
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(hipFrontLeft, 15);
-    BOT.move(hipFrontRight, 75);
-    
-    BOT.move(hipFrontLeft, 80);
-    BOT.move(hipRearLeft, 5);
-    BOT.move(hipMiddleRight, 115);
-    BOT.animate(speedms);//
-  
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeFrontLeft, 10);
-    BOT.move(kneeRearLeft, 10);
-    BOT.move(kneeMiddleRight, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);//
-      
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipFrontRight, 80);
-    BOT.move(hipRearRight, 5);
-    BOT.move(hipMiddleLeft, 115);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 10);
-    BOT.move(kneeRearRight, 10);
-    BOT.move(kneeMiddleLeft, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(kneeMiddleRight, 50);
-    BOT.animate(speedms);//
-    
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.move(hipFrontLeft, 80);
-    BOT.move(hipRearLeft, 5);
-    BOT.move(hipMiddleRight, 115);
-    BOT.animate(speedms);
-
-  }
-    BOT.move(kneeFrontLeft, 10);
-    BOT.move(kneeRearLeft, 10);
-    BOT.move(kneeMiddleRight, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);//
-    
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.animate(speedms);//
-}`,
-  walkforward: `
-void walkforward(int steps, int speedms){
-  
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeMiddleRight, 50);
-    BOT.animate(speedms); //
-    
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipFrontLeft, 5);
-    BOT.move(hipMiddleRight, 65);
-    BOT.animate(speedms);//
-  
-  for (int i = 0; i < steps; i++){
-    
-    BOT.move(kneeRearLeft, 10);
-    BOT.move(kneeFrontLeft, 10);
-    BOT.move(kneeMiddleRight, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);//
-      
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipFrontRight, 5);
-    BOT.move(hipMiddleLeft, 65);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 10);
-    BOT.move(kneeFrontRight, 10);
-    BOT.move(kneeMiddleLeft, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeMiddleRight, 50);
-    BOT.animate(speedms);//
-    
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipFrontLeft, 5);
-    BOT.move(hipMiddleRight, 65);
-    BOT.animate(speedms);
-  }
-    BOT.move(kneeRearLeft, 10);
-    BOT.move(kneeFrontLeft, 10);
-    BOT.move(kneeMiddleRight, 10);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);//
-    
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.animate(speedms);//
-}`,
-  walkleft: `
-void walkleft(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontLeft, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontRight, 10);
-    BOT.move(hipRearLeft, 80);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeMiddleRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms/2);
-  
-    BOT.move(hipFrontLeft, 15);
-    BOT.move(hipFrontRight, 75);
-    BOT.move(hipRearLeft, 15);
-    BOT.move(hipRearRight, 75);
-    BOT.animate(speedms); 
-    
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.animate(speedms/2);
-    }
-  }`,
-  walkright: `
-void walkright(int steps, int speedms){
-  for (int i = 0; i < steps; i++){
-    
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontLeft, 10);
-    BOT.move(hipRearRight, 80);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontRight, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeMiddleRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms/2);
-  
-    BOT.move(hipFrontLeft, 75);
-    BOT.move(hipFrontRight, 15);
-    BOT.move(hipRearLeft, 75);
-    BOT.move(hipRearRight, 15);
-    BOT.animate(speedms); 
-    
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.animate(speedms/2);
-    
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.animate(speedms/2);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.animate(speedms);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.animate(speedms/2);
-    }
-  }`,
-  lookright: `
-void lookright(int speedms){
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipRearLeft, 10);
-    BOT.move(hipFrontRight, 10);
-    BOT.move(hipFrontLeft, 80);
-    BOT.move(hipMiddleRight, 65);
-    BOT.move(hipMiddleLeft, 125);    
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.animate(speedms);
-}`,
-  lookleft: `
-void lookleft(int speedms){
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipRearRight, 10);
-    BOT.move(hipFrontLeft, 10);
-    BOT.move(hipFrontRight, 80);
-    BOT.move(hipMiddleRight, 125);
-    BOT.move(hipMiddleLeft, 65);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.animate(speedms);
-}`,
-  leanright: `
-void leanright(int speedms){
-  
-    BOT.move(kneeRearRight, 10);
-    BOT.move(kneeFrontRight, 10);
-    BOT.move(kneeMiddleRight, 0);
-    BOT.move(kneeRearLeft, 90);
-    BOT.move(kneeFrontLeft, 90);
-    BOT.move(kneeMiddleLeft, 90);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    
-    BOT.animate(speedms);
-}`,
-  leanleft: `
-void leanleft(int speedms){
-  
-    BOT.move(kneeRearRight, 90);
-    BOT.move(kneeFrontRight, 90);
-    BOT.move(kneeMiddleRight, 90);
-    BOT.move(kneeRearLeft, 10);
-    BOT.move(kneeFrontLeft, 10);
-    BOT.move(kneeMiddleLeft, 0);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    
-    BOT.animate(speedms);
-}`,
-  leanforward: `
-void leanforward(int speedms){
-  
-    BOT.move(kneeFrontLeft, 90);
-    BOT.move(kneeFrontRight, 90);
-    BOT.move(kneeMiddleRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    
-    BOT.animate(speedms);
-}`,
-  leanbackward: `
-void leanbackward(int speedms){
-  
-    BOT.move(kneeRearLeft, 90);
-    BOT.move(kneeRearRight, 90);
-    BOT.move(kneeMiddleRight, 50);
-    BOT.move(kneeMiddleLeft, 50);
-    BOT.animate(speedms);
-    
-    delay(speedms/2);
-    
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    
-    BOT.animate(speedms);
-}`,
-  turnleft: `
-void turnleft(int steps, int speedms){
-
-  for (int i = 0; i < steps; i++){
-
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(kneeMiddleRight, 50);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 80);
-    BOT.move(hipRearLeft, 5);
-    BOT.move(hipMiddleRight, 65);    
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeMiddleRight, 20);    
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeMiddleLeft, 50);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontRight, 5);
-    BOT.move(hipRearRight, 80);
-    BOT.move(hipMiddleLeft, 115);   
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeMiddleLeft, 20);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleLeft, 90);    
-    BOT.animate(speedms);
-  }
-}`,
-  turnright: `
-void turnright(int steps, int speedms){
-
-  for (int i = 0; i < steps; i++){
-
-    BOT.move(kneeFrontLeft, 50);
-    BOT.move(kneeRearLeft, 50);
-    BOT.move(kneeMiddleRight, 50);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 5);
-    BOT.move(hipRearLeft, 80);
-    BOT.move(hipMiddleRight, 115);    
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeRearLeft, 20);
-    BOT.move(kneeMiddleRight, 20);    
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 50);
-    BOT.move(kneeRearRight, 50);
-    BOT.move(kneeMiddleLeft, 50);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontRight, 80);
-    BOT.move(hipRearRight, 5);
-    BOT.move(hipMiddleLeft, 65);    
-    BOT.animate(speedms);
-
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeMiddleLeft, 20);    
-    BOT.animate(speedms);
-
-    BOT.move(hipFrontLeft, 45);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleLeft, 90);    
-    BOT.animate(speedms);
-  }
-}`,
-  scared: `
-void scared(int shakes, int beeps){
-    BOT.move(kneeFrontRight, 0);
-    BOT.move(kneeMiddleRight, 0);
-    BOT.move(kneeRearRight, 0);
-    BOT.move(kneeFrontLeft, 0);
-    BOT.move(kneeMiddleLeft, 0);
-    BOT.move(kneeRearLeft, 0); 
-    BOT.animate(50);
-    
-    for (int i = 0; i < shakes; i++){
- 
-      BOT.move(hipRearRight, 80);
-      BOT.move(hipMiddleRight, 65);
-      BOT.move(hipRearLeft, 5);
-      BOT.move(hipFrontRight, 5);
-      BOT.move(hipMiddleLeft, 115);
-      BOT.move(hipFrontLeft, 80);
-      BOT.animate(100);
-      
-      BOT.move(hipRearLeft, 80);
-      BOT.move(hipMiddleRight, 115);
-      BOT.move(hipRearRight, 5);
-      BOT.move(hipFrontLeft, 5);
-      BOT.move(hipMiddleLeft, 65);
-      BOT.move(hipFrontRight, 80);
-      BOT.animate(50);
-    }
-    
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipFrontRight, 45);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.move(hipFrontLeft, 45);
-    BOT.animate(200);
-    
-    chirp(beeps, 0);
-    
-    BOT.move(kneeFrontRight, 20);
-    BOT.move(kneeMiddleRight, 20);
-    BOT.move(kneeRearRight, 20);
-    BOT.move(kneeFrontLeft, 20);
-    BOT.move(kneeMiddleLeft, 20);
-    BOT.move(kneeRearLeft, 20); 
-    BOT.animate(75);
-}`
+  chirp: 'void chirp(int beeps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < beeps; i++){\n'+
+'    for (int i = 0; i < 255; i++){\n'+
+'      digitalWrite(sounderPin, HIGH);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'      digitalWrite(sounderPin, LOW);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'    }\n'+
+'     delay(30);\n'+
+'  }\n'+
+'}',
+  walkbackward: 'void walkbackward(int steps, int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(hipFrontLeft, 15);\n'+
+'    BOT.move(hipFrontRight, 75);\n'+
+'    \n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 5);\n'+
+'    BOT.move(hipMiddleRight, 115);\n'+
+'    BOT.animate(speedms);//\n'+
+'  \n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeFrontLeft, 10);\n'+
+'    BOT.move(kneeRearLeft, 10);\n'+
+'    BOT.move(kneeMiddleRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'      \n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.move(hipRearRight, 5);\n'+
+'    BOT.move(hipMiddleLeft, 115);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 10);\n'+
+'    BOT.move(kneeRearRight, 10);\n'+
+'    BOT.move(kneeMiddleLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 5);\n'+
+'    BOT.move(hipMiddleRight, 115);\n'+
+'    BOT.animate(speedms);\n'+
+'\n'+
+'  }\n'+
+'    BOT.move(kneeFrontLeft, 10);\n'+
+'    BOT.move(kneeRearLeft, 10);\n'+
+'    BOT.move(kneeMiddleRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'    \n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.animate(speedms);//\n'+
+'}',
+  walkforward: 'void walkforward(int steps, int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.animate(speedms); //\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 5);\n'+
+'    BOT.move(hipMiddleRight, 65);\n'+
+'    BOT.animate(speedms);//\n'+
+'  \n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 10);\n'+
+'    BOT.move(kneeFrontLeft, 10);\n'+
+'    BOT.move(kneeMiddleRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'      \n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipFrontRight, 5);\n'+
+'    BOT.move(hipMiddleLeft, 65);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 10);\n'+
+'    BOT.move(kneeFrontRight, 10);\n'+
+'    BOT.move(kneeMiddleLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipFrontLeft, 5);\n'+
+'    BOT.move(hipMiddleRight, 65);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'    BOT.move(kneeRearLeft, 10);\n'+
+'    BOT.move(kneeFrontLeft, 10);\n'+
+'    BOT.move(kneeMiddleRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);//\n'+
+'    \n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.animate(speedms);//\n'+
+'}',
+  walkleft: 'void walkleft(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'  \n'+
+'    BOT.move(hipFrontLeft, 15);\n'+
+'    BOT.move(hipFrontRight, 75);\n'+
+'    BOT.move(hipRearLeft, 15);\n'+
+'    BOT.move(hipRearRight, 75);\n'+
+'    BOT.animate(speedms); \n'+
+'    \n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    }\n'+
+'  }',
+  walkright: 'void walkright(int steps, int speedms){\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'  \n'+
+'    BOT.move(hipFrontLeft, 75);\n'+
+'    BOT.move(hipFrontRight, 15);\n'+
+'    BOT.move(hipRearLeft, 75);\n'+
+'    BOT.move(hipRearRight, 15);\n'+
+'    BOT.animate(speedms); \n'+
+'    \n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.animate(speedms);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.animate(speedms/2);\n'+
+'    }\n'+
+'  }',
+  lookright: 'void lookright(int speedms){\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipRearLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.move(hipMiddleRight, 65);\n'+
+'    BOT.move(hipMiddleLeft, 125);    \n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  lookleft: 'void lookleft(int speedms){\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipRearRight, 10);\n'+
+'    BOT.move(hipFrontLeft, 10);\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.move(hipMiddleRight, 125);\n'+
+'    BOT.move(hipMiddleLeft, 65);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanright: 'void leanright(int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeRearRight, 10);\n'+
+'    BOT.move(kneeFrontRight, 10);\n'+
+'    BOT.move(kneeMiddleRight, 0);\n'+
+'    BOT.move(kneeRearLeft, 90);\n'+
+'    BOT.move(kneeFrontLeft, 90);\n'+
+'    BOT.move(kneeMiddleLeft, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanleft: 'void leanleft(int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeRearRight, 90);\n'+
+'    BOT.move(kneeFrontRight, 90);\n'+
+'    BOT.move(kneeMiddleRight, 90);\n'+
+'    BOT.move(kneeRearLeft, 10);\n'+
+'    BOT.move(kneeFrontLeft, 10);\n'+
+'    BOT.move(kneeMiddleLeft, 0);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanforward: 'void leanforward(int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeFrontLeft, 90);\n'+
+'    BOT.move(kneeFrontRight, 90);\n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  leanbackward: 'void leanbackward(int speedms){\n'+
+'  \n'+
+'    BOT.move(kneeRearLeft, 90);\n'+
+'    BOT.move(kneeRearRight, 90);\n'+
+'    BOT.move(kneeMiddleRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    delay(speedms/2);\n'+
+'    \n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    \n'+
+'    BOT.animate(speedms);\n'+
+'}',
+  turnleft: 'void turnleft(int steps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(kneeMiddleRight, 50); \n'+   
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 80);\n'+
+'    BOT.move(hipRearLeft, 5);\n'+
+'    BOT.move(hipMiddleRight, 65);\n'+    
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20); \n'+   
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontRight, 5);\n'+
+'    BOT.move(hipRearRight, 80);\n'+
+'    BOT.move(hipMiddleLeft, 115);  \n'+ 
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  turnright: 'void turnright(int steps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 50);\n'+
+'    BOT.move(kneeRearLeft, 50);\n'+
+'    BOT.move(kneeMiddleRight, 50); \n'+   
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 5);\n'+
+'    BOT.move(hipRearLeft, 80);\n'+
+'    BOT.move(hipMiddleRight, 115);\n'+    
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20); \n'+   
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 50);\n'+
+'    BOT.move(kneeRearRight, 50);\n'+
+'    BOT.move(kneeMiddleLeft, 50);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontRight, 80);\n'+
+'    BOT.move(hipRearRight, 5);\n'+
+'    BOT.move(hipMiddleLeft, 65);  \n'+  
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);   \n'+ 
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  scared: 'void scared(int shakes, int beeps){\n'+
+'  \n'+
+'    BOT.move(kneeFrontRight, 0);\n'+
+'    BOT.move(kneeMiddleRight, 0);\n'+
+'    BOT.move(kneeRearRight, 0);\n'+
+'    BOT.move(kneeFrontLeft, 0);\n'+
+'    BOT.move(kneeMiddleLeft, 0);\n'+
+'    BOT.move(kneeRearLeft, 0); \n'+
+'    BOT.animate(50);\n'+
+'    \n'+
+'    for (int i = 0; i < shakes; i++){\n'+
+' \n'+
+'      BOT.move(hipRearRight, 80);\n'+
+'      BOT.move(hipMiddleRight, 65);\n'+
+'      BOT.move(hipRearLeft, 5);\n'+
+'      BOT.move(hipFrontRight, 5);\n'+
+'      BOT.move(hipMiddleLeft, 115);\n'+
+'      BOT.move(hipFrontLeft, 80);\n'+
+'      BOT.animate(100);\n'+
+'      \n'+
+'      BOT.move(hipRearLeft, 80);\n'+
+'      BOT.move(hipMiddleRight, 115);\n'+
+'      BOT.move(hipRearRight, 5);\n'+
+'      BOT.move(hipFrontLeft, 5);\n'+
+'      BOT.move(hipMiddleLeft, 65);\n'+
+'      BOT.move(hipFrontRight, 80);\n'+
+'      BOT.animate(50);\n'+
+'    }\n'+
+'    \n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipFrontRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.move(hipFrontLeft, 45);\n'+
+'    BOT.animate(200);\n'+
+'    \n'+
+'    chirp(beeps, 0);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 20);\n'+
+'    BOT.move(kneeMiddleRight, 20);\n'+
+'    BOT.move(kneeRearRight, 20);\n'+
+'    BOT.move(kneeFrontLeft, 20);\n'+
+'    BOT.move(kneeMiddleLeft, 20);\n'+
+'    BOT.move(kneeRearLeft, 20); \n'+
+'    BOT.animate(75);\n'+
+'}'
 }
 
 //  VR618    *******************************************************
 allbotfunctions.VR618 = {
-  chirp: `
-void chirp(int beeps, int speedms){
-
-  for (int i = 0; i < beeps; i++){
-    for (int i = 0; i < 255; i++){
-      digitalWrite(sounderPin, HIGH);
-      delayMicroseconds((355-i)+ (speedms*2));
-      digitalWrite(sounderPin, LOW);
-      delayMicroseconds((355-i)+ (speedms*2));
-    }
-     delay(30);
-  }
-}`,
-  standup: `
-void standup ()
-{
-  BOT.move(kneeFrontRight, 100);
-  BOT.move(kneeFrontLeft, 100);
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeRearLeft, 100);
-  BOT.animate(200);
-}`,
-  walkbackward: `
-void walkbackward(int steps, int speedms)
-{
-  BOT.move(kneeFrontRight, 130);    //Lift 3a
-  BOT.move(kneeRearRight, 130);
-  BOT.move(kneeMiddleLeft, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 70);    //Swivel 3a backward
-  BOT.move(hipRearRight, 20);
-  BOT.move(hipMiddleLeft, 115);
-  BOT.animate(speedms);
-  
-  for (int i = 0; i < steps; i++){
-  
-  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
-  BOT.move(kneeRearRight, 70);
-  BOT.move(kneeMiddleLeft, 70);
-  BOT.move(ankleFrontRight, 20);
-  BOT.move(ankleRearRight, 20);
-  BOT.move(ankleMiddleLeft, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
-  BOT.move(hipRearRight, 45);
-  BOT.move(hipMiddleLeft, 90);
-  //
-  BOT.move(kneeFrontLeft, 130);    //Lift 3b
-  BOT.move(kneeRearLeft, 130);
-  BOT.move(kneeMiddleRight, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);    //Normalize 3a
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  //
-  BOT.move(hipFrontLeft, 70);    //Swivel 3b backward
-  BOT.move(hipRearLeft, 20);
-  BOT.move(hipMiddleRight, 115);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement
-  BOT.move(kneeRearLeft, 70);
-  BOT.move(kneeMiddleRight, 70);
-  BOT.move(ankleFrontLeft, 20);
-  BOT.move(ankleRearLeft, 20);
-  BOT.move(ankleMiddleRight, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center
-  BOT.move(hipRearLeft, 45);
-  BOT.move(hipMiddleRight, 90);
-  //
-  BOT.move(kneeFrontRight, 130);    //Lift 3a
-  BOT.move(kneeRearRight, 130);
-  BOT.move(kneeMiddleLeft, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontLeft, 100);    //Normalize 3b
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(ankleFrontLeft, 0);
-  BOT.move(ankleRearLeft, 0);
-  BOT.move(ankleMiddleRight, 0);
-  //
-  BOT.move(hipFrontRight, 70);    //Swivel 3a backward
-  BOT.move(hipRearRight, 20);
-  BOT.move(hipMiddleLeft, 115);
-  BOT.animate(speedms);
-  
-  }
-  
-  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
-  BOT.move(kneeRearRight, 70);
-  BOT.move(kneeMiddleLeft, 70);
-  BOT.move(ankleFrontRight, 20);
-  BOT.move(ankleRearRight, 20);
-  BOT.move(ankleMiddleLeft, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
-  BOT.move(hipRearRight, 45);
-  BOT.move(hipMiddleLeft, 90);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);    //Normalize 3a
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  BOT.animate(speedms);
-}`,
-  walkforward: `
-void walkforward(int steps, int speedms)
-{
-  BOT.move(kneeFrontRight, 130);    //Lift 3a
-  BOT.move(kneeRearRight, 130);
-  BOT.move(kneeMiddleLeft, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 20);    //Swivel 3a forward
-  BOT.move(hipRearRight, 70);
-  BOT.move(hipMiddleLeft, 65);
-  BOT.animate(speedms);
-  
-  for (int i = 0; i < steps; i++){
-  
-  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
-  BOT.move(kneeRearRight, 70);
-  BOT.move(kneeMiddleLeft, 70);
-  BOT.move(ankleFrontRight, 20);
-  BOT.move(ankleRearRight, 20);
-  BOT.move(ankleMiddleLeft, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
-  BOT.move(hipRearRight, 45);
-  BOT.move(hipMiddleLeft, 90);
-  //
-  BOT.move(kneeFrontLeft, 130);    //Lift 3b
-  BOT.move(kneeRearLeft, 130);
-  BOT.move(kneeMiddleRight, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);    //Normalize 3a
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  //
-  BOT.move(hipFrontLeft, 20);    //Swivel 3b forward
-  BOT.move(hipRearLeft, 70);
-  BOT.move(hipMiddleRight, 65);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement
-  BOT.move(kneeRearLeft, 70);
-  BOT.move(kneeMiddleRight, 70);
-  BOT.move(ankleFrontLeft, 20);
-  BOT.move(ankleRearLeft, 20);
-  BOT.move(ankleMiddleRight, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center
-  BOT.move(hipRearLeft, 45);
-  BOT.move(hipMiddleRight, 90);
-  //
-  BOT.move(kneeFrontRight, 130);    //Lift 3a
-  BOT.move(kneeRearRight, 130);
-  BOT.move(kneeMiddleLeft, 130);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontLeft, 100);    //Normalize 3b
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(ankleFrontLeft, 0);
-  BOT.move(ankleRearLeft, 0);
-  BOT.move(ankleMiddleRight, 0);
-  //
-  BOT.move(hipFrontRight, 20);    //Swivel 3a forward
-  BOT.move(hipRearRight, 70);
-  BOT.move(hipMiddleLeft, 65);
-  BOT.animate(speedms);
-  
-  }
-  
-  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement
-  BOT.move(kneeRearRight, 70);
-  BOT.move(kneeMiddleLeft, 70);
-  BOT.move(ankleFrontRight, 20);
-  BOT.move(ankleRearRight, 20);
-  BOT.move(ankleMiddleLeft, 20);
-  BOT.animate(speedms);
-  
-  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center
-  BOT.move(hipRearRight, 45);
-  BOT.move(hipMiddleLeft, 90);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);    //Normalize 3a
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  BOT.animate(speedms);
-}`,
-  walkleft: `
-void walkleft(int steps, int speedms){
-  // TODO - No sequence implemented
-  }`,
-  walkright: `
-void walkright(int steps, int speedms){
-  // TODO - No sequence implemented
-  }`,
-  lookright: `
-void lookright(int speedms){
-    // TODO - No sequence implemented
-}`,
-  lookleft: `
-void lookleft(int speedms){
-    // TODO - No sequence implemented
-}`,
-  leanright: `
-void leanright (int speedms)
-{
-  BOT.move(kneeFrontRight, 50);
-  BOT.move(kneeMiddleRight, 50);
-  BOT.move(kneeRearRight, 50);
-  BOT.move(ankleFrontRight, 50);
-  BOT.move(ankleMiddleRight, 50);
-  BOT.move(ankleRearRight, 50);
-  //
-  BOT.move(kneeFrontLeft, 150);
-  BOT.move(kneeMiddleLeft, 150);
-  BOT.move(kneeRearLeft, 150);
-  BOT.move(ankleFrontLeft, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  BOT.move(ankleRearLeft, 0);
-  BOT.animate(speedms);
-  //
-  BOT.move(kneeFrontRight, 100);
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(kneeRearRight, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleMiddleRight, 0);
-  BOT.move(ankleRearRight, 0);
-  //
-  BOT.move(kneeFrontLeft, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(ankleFrontLeft, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  BOT.move(ankleRearLeft, 0);
-  BOT.animate(speedms);
-}`,
-  leanleft: `
-void leanleft (int speedms)
-{
-  BOT.move(kneeFrontLeft, 50);
-  BOT.move(kneeMiddleLeft, 50);
-  BOT.move(kneeRearLeft, 50);
-  BOT.move(ankleFrontLeft, 50);
-  BOT.move(ankleMiddleLeft, 50);
-  BOT.move(ankleRearLeft, 50);
-  //
-  BOT.move(kneeFrontRight, 150);
-  BOT.move(kneeMiddleRight, 150);
-  BOT.move(kneeRearRight, 150);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleMiddleRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.animate(speedms);
-  //
-  BOT.move(kneeFrontLeft, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(ankleFrontLeft, 0);
-  BOT.move(ankleMiddleLeft, 0);
-  BOT.move(ankleRearLeft, 0);
-  //
-  BOT.move(kneeFrontRight, 100);
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(kneeRearRight, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleMiddleRight, 0);
-  BOT.move(ankleRearRight, 0);
-  BOT.animate(speedms);
-}`,
-  leanforward: `
-void leanforward(int speedms)
-{  
-  BOT.move(kneeRearRight, 50);
-  BOT.move(kneeRearLeft, 50);
-  BOT.move(ankleRearRight, 80);
-  BOT.move(ankleRearLeft, 80);
-  //
-  BOT.move(kneeFrontRight, 135);
-  BOT.move(kneeFrontLeft, 135);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleFrontLeft, 0);
-  //
-  BOT.move(kneeMiddleRight, 110);
-  BOT.move(kneeMiddleLeft, 110);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);
-  BOT.move(kneeFrontLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleFrontLeft, 0);
-  //
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleRearLeft, 0);
-  //
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.animate(speedms);
-}`,
-  leanbackward: `
-void leanbackward(int speedms)
-{  
-  BOT.move(kneeFrontRight, 50);
-  BOT.move(kneeFrontLeft, 50);
-  BOT.move(ankleFrontRight, 80);
-  BOT.move(ankleFrontLeft, 80);
-  //
-  BOT.move(kneeRearRight, 135);
-  BOT.move(kneeRearLeft, 135);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleRearLeft, 0);
-  //
-  BOT.move(kneeMiddleRight, 110);
-  BOT.move(kneeMiddleLeft, 110);
-  BOT.animate(speedms);
-  
-  BOT.move(kneeFrontRight, 100);
-  BOT.move(kneeFrontLeft, 100);
-  BOT.move(ankleFrontRight, 0);
-  BOT.move(ankleFrontLeft, 0);
-  //
-  BOT.move(kneeRearRight, 100);
-  BOT.move(kneeRearLeft, 100);
-  BOT.move(ankleRearRight, 0);
-  BOT.move(ankleRearLeft, 0);
-  //
-  BOT.move(kneeMiddleRight, 100);
-  BOT.move(kneeMiddleLeft, 100);
-  BOT.animate(speedms);
-}`,
-  turnleft: `
-void turnleft (int steps, int speedms)
-{
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeFrontRight, 130);    //Lift 3a
-    BOT.move(kneeRearRight, 130);
-    BOT.move(kneeMiddleLeft, 130);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontRight, 20);    //turn 3a left
-    BOT.move(hipRearRight, 70);
-    BOT.move(hipMiddleLeft, 115);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 100);  //Drop 3a
-    BOT.move(kneeRearRight, 100);
-    BOT.move(kneeMiddleLeft, 100);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 130);    //Lift 3b
-    BOT.move(kneeRearLeft, 130);
-    BOT.move(kneeMiddleRight, 130);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontLeft, 70);    //turn 3b left
-    BOT.move(hipRearLeft, 20);
-    BOT.move(hipMiddleRight, 65);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement
-    BOT.move(kneeRearLeft, 100);
-    BOT.move(kneeMiddleRight, 100);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.move(hipFrontLeft, 45);    //turn 3b right
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.animate(speedms);
-  }
-}`,
-  turnright: `
-void turnright (int steps, int speedms)
-{
-  for (int i = 0; i < steps; i++){
-    BOT.move(kneeFrontRight, 130);    //Lift 3a
-    BOT.move(kneeRearRight, 130);
-    BOT.move(kneeMiddleLeft, 130);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontRight, 70);    //turn 3a right
-    BOT.move(hipRearRight, 20);
-    BOT.move(hipMiddleLeft, 65);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontRight, 100);  //Drop 3a
-    BOT.move(kneeRearRight, 100);
-    BOT.move(kneeMiddleLeft, 100);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 130);    //Lift 3b
-    BOT.move(kneeRearLeft, 130);
-    BOT.move(kneeMiddleRight, 130);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontLeft, 20);    //turn 3b right
-    BOT.move(hipRearLeft, 70);
-    BOT.move(hipMiddleRight, 115);
-    BOT.animate(speedms);
-    
-    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement
-    BOT.move(kneeRearLeft, 100);
-    BOT.move(kneeMiddleRight, 100);
-    BOT.animate(speedms);
-    
-    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center
-    BOT.move(hipRearRight, 45);
-    BOT.move(hipMiddleLeft, 90);
-    BOT.move(hipFrontLeft, 45);    //turn 3b right
-    BOT.move(hipRearLeft, 45);
-    BOT.move(hipMiddleRight, 90);
-    BOT.animate(speedms);
-  }
-}`,
-  scared: `
-void scared(int shakes, int beeps){
-   // TODO - No sequence implemented
-}`
+  chirp: 'void chirp(int beeps, int speedms){\n'+
+'\n'+
+'  for (int i = 0; i < beeps; i++){\n'+
+'    for (int i = 0; i < 255; i++){\n'+
+'      digitalWrite(sounderPin, HIGH);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'      digitalWrite(sounderPin, LOW);\n'+
+'      delayMicroseconds((355-i)+ (speedms*2));\n'+
+'    }\n'+
+'     delay(30);\n'+
+'  }\n'+
+'}',
+  standup: 'void standup ()\n'+
+'{\n'+
+'  BOT.move(kneeFrontRight, 100);\n'+
+'  BOT.move(kneeFrontLeft, 100);\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.animate(200);\n'+
+'}',
+  walkbackward: 'void walkbackward(int steps, int speedms)\n'+
+'{\n'+
+'  BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'  BOT.move(kneeRearRight, 130);\n'+
+'  BOT.move(kneeMiddleLeft, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 70);    //Swivel 3a backward\n'+
+'  BOT.move(hipRearRight, 20);\n'+
+'  BOT.move(hipMiddleLeft, 115);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement\n'+
+'  BOT.move(kneeRearRight, 70);\n'+
+'  BOT.move(kneeMiddleLeft, 70);\n'+
+ ' BOT.move(ankleFrontRight, 20);\n'+
+'  BOT.move(ankleRearRight, 20);\n'+
+'  BOT.move(ankleMiddleLeft, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center\n'+
+'  BOT.move(hipRearRight, 45);\n'+
+'  BOT.move(hipMiddleLeft, 90);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontLeft, 130);    //Lift 3b\n'+
+'  BOT.move(kneeRearLeft, 130);\n'+
+'  BOT.move(kneeMiddleRight, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);    //Normalize 3a\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(hipFrontLeft, 70);    //Swivel 3b backward\n'+
+'  BOT.move(hipRearLeft, 20);\n'+
+'  BOT.move(hipMiddleRight, 115);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement\n'+
+'  BOT.move(kneeRearLeft, 70);\n'+
+'  BOT.move(kneeMiddleRight, 70);\n'+
+'  BOT.move(ankleFrontLeft, 20);\n'+
+'  BOT.move(ankleRearLeft, 20);\n'+
+'  BOT.move(ankleMiddleRight, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center\n'+
+'  BOT.move(hipRearLeft, 45);\n'+
+'  BOT.move(hipMiddleRight, 90);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'  BOT.move(kneeRearRight, 130);\n'+
+'  BOT.move(kneeMiddleLeft, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontLeft, 100);    //Normalize 3b\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  BOT.move(ankleMiddleRight, 0);\n'+
+'  //\n'+
+'  BOT.move(hipFrontRight, 70);    //Swivel 3a backward\n'+
+'  BOT.move(hipRearRight, 20);\n'+
+'  BOT.move(hipMiddleLeft, 115);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  }\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement\n'+
+'  BOT.move(kneeRearRight, 70);\n'+
+'  BOT.move(kneeMiddleLeft, 70);\n'+
+'  BOT.move(ankleFrontRight, 20);\n'+
+'  BOT.move(ankleRearRight, 20);\n'+
+'  BOT.move(ankleMiddleLeft, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center\n'+
+'  BOT.move(hipRearRight, 45);\n'+
+'  BOT.move(hipMiddleLeft, 90);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);    //Normalize 3a\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  walkforward: 'void walkforward(int steps, int speedms)\n'+
+'{\n'+
+'  BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'  BOT.move(kneeRearRight, 130);\n'+
+'  BOT.move(kneeMiddleLeft, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 20);    //Swivel 3a forward\n'+
+'  BOT.move(hipRearRight, 70);\n'+
+'  BOT.move(hipMiddleLeft, 65);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement\n'+
+'  BOT.move(kneeRearRight, 70);\n'+
+'  BOT.move(kneeMiddleLeft, 70);\n'+
+'  BOT.move(ankleFrontRight, 20);\n'+
+'  BOT.move(ankleRearRight, 20);\n'+
+'  BOT.move(ankleMiddleLeft, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center\n'+
+'  BOT.move(hipRearRight, 45);\n'+
+'  BOT.move(hipMiddleLeft, 90);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontLeft, 130);    //Lift 3b\n'+
+'  BOT.move(kneeRearLeft, 130);\n'+
+'  BOT.move(kneeMiddleRight, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);    //Normalize 3a\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(hipFrontLeft, 20);    //Swivel 3b forward\n'+
+'  BOT.move(hipRearLeft, 70);\n'+
+'  BOT.move(hipMiddleRight, 65);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontLeft, 70);      //Drop 3b + small ankle movement\n'+
+'  BOT.move(kneeRearLeft, 70);\n'+
+'  BOT.move(kneeMiddleRight, 70);\n'+
+'  BOT.move(ankleFrontLeft, 20);\n'+
+'  BOT.move(ankleRearLeft, 20);\n'+
+'  BOT.move(ankleMiddleRight, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontLeft, 45);    //Swivel 3b back to center\n'+
+'  BOT.move(hipRearLeft, 45);\n'+
+'  BOT.move(hipMiddleRight, 90);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'  BOT.move(kneeRearRight, 130);\n'+
+'  BOT.move(kneeMiddleLeft, 130);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontLeft, 100);    //Normalize 3b\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  BOT.move(ankleMiddleRight, 0);\n'+
+'  //\n'+
+'  BOT.move(hipFrontRight, 20);    //Swivel 3a forward\n'+
+'  BOT.move(hipRearRight, 70);\n'+
+'  BOT.move(hipMiddleLeft, 65);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  }\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 70);  //Drop 3a + small ankle movement\n'+
+'  BOT.move(kneeRearRight, 70);\n'+
+'  BOT.move(kneeMiddleLeft, 70);\n'+
+'  BOT.move(ankleFrontRight, 20);\n'+
+'  BOT.move(ankleRearRight, 20);\n'+
+'  BOT.move(ankleMiddleLeft, 20);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(hipFrontRight, 45);    //Swivel 3a back to center\n'+
+'  BOT.move(hipRearRight, 45);\n'+
+'  BOT.move(hipMiddleLeft, 90);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);    //Normalize 3a\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  walkleft: 'void walkleft(int steps, int speedms){\n'+
+'  // TODO - No sequence implemented\n'+
+'  }',
+  walkright: 'void walkright(int steps, int speedms){\n'+
+'  // TODO - No sequence implemented\n'+
+'  }',
+  lookright: 'void lookright(int speedms){\n'+
+'    // TODO - No sequence implemented\n'+
+'}',
+  lookleft: 'void lookleft(int speedms){\n'+
+'    // TODO - No sequence implemented\n'+
+'}',
+  leanright: 'void leanright (int speedms)\n'+
+'{\n'+
+'  BOT.move(kneeFrontRight, 50);\n'+
+'  BOT.move(kneeMiddleRight, 50);\n'+
+'  BOT.move(kneeRearRight, 50);\n'+
+'  BOT.move(ankleFrontRight, 50);\n'+
+'  BOT.move(ankleMiddleRight, 50);\n'+
+'  BOT.move(ankleRearRight, 50);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontLeft, 150);\n'+
+'  BOT.move(kneeMiddleLeft, 150);\n'+
+'  BOT.move(kneeRearLeft, 150);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 100);\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleMiddleRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontLeft, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  leanleft: 'void leanleft (int speedms)\n'+
+'{\n'+
+'  BOT.move(kneeFrontLeft, 50);\n'+
+'  BOT.move(kneeMiddleLeft, 50);\n'+
+'  BOT.move(kneeRearLeft, 50);\n'+
+'  BOT.move(ankleFrontLeft, 50);\n'+
+'  BOT.move(ankleMiddleLeft, 50);\n'+
+'  BOT.move(ankleRearLeft, 50);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 150);\n'+
+'  BOT.move(kneeMiddleRight, 150);\n'+
+'  BOT.move(kneeRearRight, 150);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleMiddleRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontLeft, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  BOT.move(ankleMiddleLeft, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 100);\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleMiddleRight, 0);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  leanforward: 'void leanforward(int speedms)\n'+
+'{  \n'+
+'  BOT.move(kneeRearRight, 50);\n'+
+'  BOT.move(kneeRearLeft, 50);\n'+
+'  BOT.move(ankleRearRight, 80);\n'+
+'  BOT.move(ankleRearLeft, 80);\n'+
+'  //\n'+
+'  BOT.move(kneeFrontRight, 135);\n'+
+'  BOT.move(kneeFrontLeft, 135);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeMiddleRight, 110);\n'+
+'  BOT.move(kneeMiddleLeft, 110);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);\n'+
+'  BOT.move(kneeFrontLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  leanbackward: 'void leanbackward(int speedms)\n'+
+'{  \n'+
+'  BOT.move(kneeFrontRight, 50);\n'+
+'  BOT.move(kneeFrontLeft, 50);\n'+
+'  BOT.move(ankleFrontRight, 80);\n'+
+'  BOT.move(ankleFrontLeft, 80);\n'+
+'  //\n'+
+'  BOT.move(kneeRearRight, 135);\n'+
+'  BOT.move(kneeRearLeft, 135);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeMiddleRight, 110);\n'+
+'  BOT.move(kneeMiddleLeft, 110);\n'+
+'  BOT.animate(speedms);\n'+
+'  \n'+
+'  BOT.move(kneeFrontRight, 100);\n'+
+'  BOT.move(kneeFrontLeft, 100);\n'+
+'  BOT.move(ankleFrontRight, 0);\n'+
+'  BOT.move(ankleFrontLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeRearRight, 100);\n'+
+'  BOT.move(kneeRearLeft, 100);\n'+
+'  BOT.move(ankleRearRight, 0);\n'+
+'  BOT.move(ankleRearLeft, 0);\n'+
+'  //\n'+
+'  BOT.move(kneeMiddleRight, 100);\n'+
+'  BOT.move(kneeMiddleLeft, 100);\n'+
+'  BOT.animate(speedms);\n'+
+'}',
+  turnleft: 'void turnleft (int steps, int speedms)\n'+
+'{\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'    BOT.move(kneeRearRight, 130);\n'+
+'    BOT.move(kneeMiddleLeft, 130);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontRight, 20);    //turn 3a left\n'+
+'    BOT.move(hipRearRight, 70);\n'+
+'    BOT.move(hipMiddleLeft, 115);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 100);  //Drop 3a\n'+
+'    BOT.move(kneeRearRight, 100);\n'+
+'    BOT.move(kneeMiddleLeft, 100);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 130);    //Lift 3b\n'+
+'    BOT.move(kneeRearLeft, 130);\n'+
+'    BOT.move(kneeMiddleRight, 130);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontLeft, 70);    //turn 3b left\n'+
+'    BOT.move(hipRearLeft, 20);\n'+
+'    BOT.move(hipMiddleRight, 65);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement\n'+
+'    BOT.move(kneeRearLeft, 100);\n'+
+'    BOT.move(kneeMiddleRight, 100);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.move(hipFrontLeft, 45);    //turn 3b right\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  turnright: 'void turnright (int steps, int speedms)\n'+
+'{\n'+
+'  for (int i = 0; i < steps; i++){\n'+
+'    BOT.move(kneeFrontRight, 130);    //Lift 3a\n'+
+'    BOT.move(kneeRearRight, 130);\n'+
+'    BOT.move(kneeMiddleLeft, 130);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontRight, 70);    //turn 3a right\n'+
+'    BOT.move(hipRearRight, 20);\n'+
+'    BOT.move(hipMiddleLeft, 65);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontRight, 100);  //Drop 3a\n'+
+'    BOT.move(kneeRearRight, 100);\n'+
+'    BOT.move(kneeMiddleLeft, 100);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 130);    //Lift 3b\n'+
+'    BOT.move(kneeRearLeft, 130);\n'+
+'    BOT.move(kneeMiddleRight, 130);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontLeft, 20);    //turn 3b right\n'+
+'    BOT.move(hipRearLeft, 70);\n'+
+'    BOT.move(hipMiddleRight, 115);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(kneeFrontLeft, 100);      //Drop 3b + small ankle movement\n'+
+'    BOT.move(kneeRearLeft, 100);\n'+
+'    BOT.move(kneeMiddleRight, 100);\n'+
+'    BOT.animate(speedms);\n'+
+'    \n'+
+'    BOT.move(hipFrontRight, 45);    //Swivel 3a&b back to center\n'+
+'    BOT.move(hipRearRight, 45);\n'+
+'    BOT.move(hipMiddleLeft, 90);\n'+
+'    BOT.move(hipFrontLeft, 45);    //turn 3b right\n'+
+'    BOT.move(hipRearLeft, 45);\n'+
+'    BOT.move(hipMiddleRight, 90);\n'+
+'    BOT.animate(speedms);\n'+
+'  }\n'+
+'}',
+  scared: 'void scared(int shakes, int beeps){\n'+
+'   // TODO - No sequence implemented\n'+
+'}'
 }
 /**
  * The allbot walk forward block
@@ -2286,20 +2227,20 @@ Blockly.Arduino['allbot_remotecontrol'] = function(block) {
   if (use_serial) {
     Blockly.Arduino.addVariable('ALLBOTreceivelog', 'boolean ALLBOTreceivelog = true; // Set this to false if you do not want to see the serial messages for debugging the IR commands', true);
     
-    Blockly.Arduino.addFunction('ALLBOTresetserial', `
-void ALLBOTresetserial (void)      // This clears any received IR commands that where received in the serial buffer while the robot was execution a command.
-{
-  //resetting all variables
-  ALLBOTrawcommand = "";
-  ALLBOTcommand = "";
-  ALLBOTtimes = 0;
-  ALLBOTspeedms = 0;
-  
-  //flushing the serial buffer (64 byte) so there are no stored movements that need to be handled (annoying)...
-  while (Serial.available()) {
-    Serial.read();
-  }
-}`)
+    Blockly.Arduino.addFunction('ALLBOTresetserial', 
+'void ALLBOTresetserial (void)      // This clears any received IR commands that where received in the serial buffer while the robot was execution a command.\n'+
+'{\n'+
+'  //resetting all variables\n'+
+'  ALLBOTrawcommand = "";\n'+
+'  ALLBOTcommand = "";\n'+
+'  ALLBOTtimes = 0;\n'+
+'  ALLBOTspeedms = 0;\n'+
+'  \n'+
+'  //flushing the serial buffer (64 byte) so there are no stored movements that need to be handled (annoying)...\n'+
+'  while (Serial.available()) {\n'+
+'    Serial.read();\n'+
+'  }\n'+
+'}')
   } else {
     Blockly.Arduino.addVariable('ALLBOTreceivelog', 'boolean ALLBOTreceivelog = false; // Set this to true if you  want to see the serial messages for debugging the IR commands', true);
   }
@@ -2310,91 +2251,89 @@ void ALLBOTresetserial (void)      // This clears any received IR commands that 
   Blockly.Arduino.addVariable('ALLBOTspeedms',      'int ALLBOTspeedms = 100;        // Global variable that stores part the received IR command', true);
   Blockly.Arduino.addVariable('ALLBOT_IRreceive',    'boolean ALLBOT_IRreceive = true; // Set this to false if you do not want to use the IR remote');
 
-  var setupCode_Serial = `
-  // Starting the hardware UART, necessary for receiving IR
-  if (ALLBOT_IRreceive == true) {   // Check if required (when Serial is started servo1 connector will not work!)
-      Serial.begin(2400);
-      Serial.setTimeout(100);
-      Serial.println("serial communication started");
-    }
-`;
+  var setupCode_Serial = '  // Starting the hardware UART, necessary for receiving IR\n';
+  setupCode_Serial += '  if (ALLBOT_IRreceive == true) {   // Check if required (when Serial is started servo1 connector will not work!)\n';
+  setupCode_Serial += '      Serial.begin(2400);\n';
+  setupCode_Serial += '      Serial.setTimeout(100);\n';
+  setupCode_Serial += '      Serial.println("serial communication started");\n';
+  setupCode_Serial += '    }\n';
+
   Blockly.Arduino.addSetup('allbot_RC', setupCode_Serial, true);
   
-  Blockly.Arduino.addFunction('ALLBOT_getcommand', `
-void ALLBOT_getcommand (void)                   // This is the routine that listens and decodes any IR commands. Decodes commands end up in the global vars.
-{ 
-  int space1 = 0;
-  int space2 = 0;
+  Blockly.Arduino.addFunction('ALLBOT_getcommand', 
+'void ALLBOT_getcommand (void)                   // This is the routine that listens and decodes any IR commands. Decodes commands end up in the global vars.\n'+
+'{ \n'+
+'  int space1 = 0;\n'+
+'  int space2 = 0;\n'+
+'  \n'+
+'  if (Serial.available()) {\n'+
+'     ALLBOTrawcommand = Serial.readString();\n'+
+'     if (ALLBOTreceivelog){\n'+
+'        Serial.println("START " + ALLBOTrawcommand + " END" + "\\r\\n" + "Received string length = " + ALLBOTrawcommand.length() + "\\r\\n" + "End character > at index = " + ALLBOTrawcommand.indexOf(\'>\'));\n'+
+'     }\n'+
+'\n'+
+'     //checking and deleting rubbish data at start of received command\n'+
+"     if ((ALLBOTrawcommand.indexOf('<') != 0) && (ALLBOTrawcommand.indexOf('<') != -1))\n"+
+'     {\n'+
+'        //ALLBOTrawcommand.remove(0, ALLBOTrawcommand.indexOf('<'));\n'+
+'        ALLBOTcommand = ALLBOTrawcommand.substring(ALLBOTrawcommand.indexOf('<'));//,ALLBOTrawcommand.length()-1);\n'+
+'     }\n'+
+'\n'+     
+'     //check if received command is correct\n'+
+"     if ((ALLBOTrawcommand.charAt(0) == '<') && (ALLBOTrawcommand.indexOf('>') <= 12) && (ALLBOTrawcommand.indexOf('>') != -1) && (ALLBOTrawcommand.length() > 7))\n"+
+'     {\n'+
+'       if (ALLBOTreceivelog){\n'+
+'         Serial.println("Command is VALID"); \n'+
+'       }\n'+      
+'       //breakdown into chunks\n'+
+'       //ALLBOTcommand\n'+
+'       ALLBOTcommand = ALLBOTrawcommand.substring(1, 3);\n'+
+'       \n'+
+'       //finding the spaces to find the ALLBOTtimes and ALLBOTspeedms\n'+
+'       for (int i=0; i <= ALLBOTrawcommand.length(); i ++)\n'+
+'       {\n'+
+"         if ((ALLBOTrawcommand.charAt(i) == ' ') && (space1 == 0))\n"+
+'         {\n'+
+'            space1 = i;\n'+
+'         }\n'+
+"         else if ((ALLBOTrawcommand.charAt(i) == ' ') && (space2 == 0))\n"+
+'         {\n'+
+'            space2 = i;\n'+
+'         }\n'+
+'       }\n'+
+'\n'+
+'       //Setting the command variables and checking if they are indeed a number (toInt()).\n'+
+'       \n'+
+'       //ALLBOTtimes\n'+
+'       ALLBOTtimes = ALLBOTrawcommand.substring(space1+1, space2).toInt();\n'+
+'       \n'+
+'       //ALLBOTspeedms\n'+
+'       ALLBOTspeedms = ALLBOTrawcommand.substring(space2+1, ALLBOTrawcommand.indexOf('>')).toInt();\n'+
+'\n'+
+'       if (ALLBOTreceivelog){\n'+
+'         Serial.println("decoded commands are:");\n'+
+'         Serial.flush();\n'+
+'         Serial.println("command = " + ALLBOTcommand);\n'+
+'         Serial.flush();\n'+
+'         Serial.print("times = ");Serial.println(ALLBOTtimes);\n'+
+'         Serial.flush();\n'+
+'         Serial.print("speedms = ");Serial.println(ALLBOTspeedms);\n'+
+'         Serial.flush();\n'+
+'       }\n'+
+'       \n'+
+'     }\n'+
+'     else\n'+
+'     {\n'+
+'       if (ALLBOTreceivelog){\n'+
+'          Serial.println("Command is NOT valid");\n'+
+'       }\n'+
+'       ALLBOTresetserial();  \n'+
+'     }\n'+
+'  }\n'+
+'}')
   
-  if (Serial.available()) {
-     ALLBOTrawcommand = Serial.readString();
-     if (ALLBOTreceivelog){
-        Serial.println("START " + ALLBOTrawcommand + " END" + "\\r\\n" + "Received string length = " + ALLBOTrawcommand.length() + "\\r\\n" + "End character > at index = " + ALLBOTrawcommand.indexOf('>'));
-     }
-
-     //checking and deleting rubbish data at start of received command
-     if ((ALLBOTrawcommand.indexOf('<') != 0) && (ALLBOTrawcommand.indexOf('<') != -1))
-     {
-        //ALLBOTrawcommand.remove(0, ALLBOTrawcommand.indexOf('<'));
-        ALLBOTcommand = ALLBOTrawcommand.substring(ALLBOTrawcommand.indexOf('<'));//,ALLBOTrawcommand.length()-1);
-     }
-     
-     //check if received command is correct
-     if ((ALLBOTrawcommand.charAt(0) == '<') && (ALLBOTrawcommand.indexOf('>') <= 12) && (ALLBOTrawcommand.indexOf('>') != -1) && (ALLBOTrawcommand.length() > 7))
-     {
-       if (ALLBOTreceivelog){
-         Serial.println("Command is VALID"); 
-       }      
-       //breakdown into chunks
-       //ALLBOTcommand
-       ALLBOTcommand = ALLBOTrawcommand.substring(1, 3);
-       
-       //finding the spaces to find the ALLBOTtimes and ALLBOTspeedms
-       for (int i=0; i <= ALLBOTrawcommand.length(); i ++)
-       {
-         if ((ALLBOTrawcommand.charAt(i) == ' ') && (space1 == 0))
-         {
-            space1 = i;
-         }
-         else if ((ALLBOTrawcommand.charAt(i) == ' ') && (space2 == 0))
-         {
-            space2 = i;
-         }
-       }
-
-       //Setting the command variables and checking if they are indeed a number (toInt()).
-       
-       //ALLBOTtimes
-       ALLBOTtimes = ALLBOTrawcommand.substring(space1+1, space2).toInt();
-       
-       //ALLBOTspeedms
-       ALLBOTspeedms = ALLBOTrawcommand.substring(space2+1, ALLBOTrawcommand.indexOf('>')).toInt();
-
-       if (ALLBOTreceivelog){
-         Serial.println("decoded commands are:");
-         Serial.flush();
-         Serial.println("command = " + ALLBOTcommand);
-         Serial.flush();
-         Serial.print("times = ");Serial.println(ALLBOTtimes);
-         Serial.flush();
-         Serial.print("speedms = ");Serial.println(ALLBOTspeedms);
-         Serial.flush();
-       }
-       
-     }
-     else
-     {
-       if (ALLBOTreceivelog){
-          Serial.println("Command is NOT valid");
-       }
-       ALLBOTresetserial();  
-     }
-  }
-}`)
-  
-  var code = `
-  if (ALLBOT_IRreceive == true) {                 // Allow to switch off the IR part
-      ALLBOT_getcommand();                       // Listen for IR command\n`;
+  var code = '  if (ALLBOT_IRreceive == true) {                 // Allow to switch off the IR part\n';
+  code += '    ALLBOT_getcommand();                       // Listen for IR command\n';
   code += commandsBranch;  // add the commands given by user to process the IR input
   code += '\n    }\n';
   return code;
