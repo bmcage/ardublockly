@@ -240,7 +240,8 @@ Blockly.FieldInstance.prototype.onItemSelected_ = function(menu, menuItem) {
   } else {
     this.instanceName_ = text;
     //standard behavior
-    Blockly.FieldInstance.superClass_.onItemSelected_.call(this, menuItem);
+    //Blockly.FieldInstance.superClass_.onItemSelected_.call(this, menuItem);
+    this.setValue(menuItem.getValue());
   }
 };
 
