@@ -254,7 +254,7 @@ Blockly.Arduino['neopixel_dim_write'] = function(block) {
 //  var setupCode = NeoName + '.setBrightness(' +Brightness+') ;\n'; 
 //  Blockly.Arduino.addSetup('io_' + NeoName, setupCode, false);
 
-  var code = NeoName + '.setBrightness(constrain(' +Brightness+',0,255)) ;\n';
+  var code = NeoName + '.setBrightness(map(constrain(' +Brightness+', 0, 100), 0, 100, 0, 255));\n';
   code += NeoName + '.show();\n';
 
   return code;
@@ -746,6 +746,6 @@ Blockly.Arduino['neopixel_theaterchase'] = function(block) {
 
 	Blockly.Arduino['neopixel_get_numpixels'] = function(block) {
 		  var LEDName = block.getFieldValue('NEONAME');
-		  var code = 'myNeo_' + LEDName + '.numPixels();\n';
+		  var code = 'myNeo_' + LEDName + '.numPixels()';
 		  return [code, Blockly.Arduino.ORDER_ATOMIC];
 	}
