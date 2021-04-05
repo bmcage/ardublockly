@@ -1,7 +1,7 @@
 
 'use strict';
 
-//goog.provide('Blockly.Blocks.logic');
+goog.provide('Blockly.Blocks.logicswitch');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
@@ -28,8 +28,8 @@ Blockly.Blocks['controls_switch'] = {
     this.appendStatementInput('DO0')
         .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
+    this.setPreviousStatement(true, 'ARD_BLOCK');
+    this.setNextStatement(true, 'ARD_BLOCK');
     this.setMutator(new Blockly.Mutator(['controls_case_break','controls_case_default']));
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;
@@ -92,7 +92,8 @@ Blockly.Blocks['controls_switch'] = {
 		  .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK)
 		  .setAlign(Blockly.ALIGN_RIGHT)
       this.appendStatementInput('DO' + i)
-          .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
+          .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO)
+          .setAlign(Blockly.ALIGN_RIGHT);
     }
     if (this.defaultCount_) {
       this.appendStatementInput('DEFAULT')

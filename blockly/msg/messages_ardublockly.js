@@ -1811,6 +1811,51 @@ Blockly.Msg.ARD_ARRAY_GETLENGTH = 'Length of array';
 Blockly.Msg.ARD_ARRAY_GETLENGTH_TOOLTIP = 'Return the length (=number of elements) of the selected array';
 /** @type {string} */
 /// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_HELPURL = 'https://nl.wikibooks.org/wiki/Programmeren_in_C++/Switch';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_SWITCH_TOOLTIP = 'Add cases, remove them, or change the order of the cases in this switch-block.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_VAR_TITLE = 'Switch condition (';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_VAR_TAIL = ')';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT = 'otherwise';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK = 'case';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_MSG_SWITCHVAR = 'Switch (condition variable)';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_MSG_DO = 'do';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_1 = 'If the condition has the value, then do the statements.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_2 = 'If the condition has the value, then do the first block of statements. Otherwise, do the second block of statements.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = 'If the condition has the first value, then do the first block of statements. Otherwise, if the condition has the second value, do the second block of statements.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = 'If the condition has the first value, then do the first block of statements. Otherwise, if the condition has the second value, do the second block of statements. If none of the values are correct, do the last block of statements.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = 'Drag blocks from left to this region to add them.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = 'Add a new "case"-block to check the condition for a new value.';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = 'Add an optional standard action which will be executed if NONE of the above conditions was satisfied';
+/** @type {string} */
+/// Arduino Blocks
 Blockly.Msg.SAVE_FILE_AS = 'Save script as';
 /** @type {string} */
 /// Arduino Blocks

@@ -70,8 +70,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "name": "DO0"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "logic_blocks",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
     "mutator": "controls_if_mutator",
@@ -102,8 +102,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "name": "ELSE"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "logic_blocks",
     "tooltip": "%{BKYCONTROLS_IF_TOOLTIP_2}",
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",

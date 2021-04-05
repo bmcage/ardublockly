@@ -41,7 +41,7 @@ Blockly.Arduino.addReservedWords(
     'noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,' +
     'min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,' +
     'lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,' +
-    'detachInterrupt,interrupts,noInterrupts');
+    'detachInterrupt,interrupts,noInterrupts,default');
 
 /** Order of operation ENUMs. */
 Blockly.Arduino.ORDER_ATOMIC = 0;         // 0 "" ...
@@ -85,6 +85,12 @@ Blockly.Arduino.PinTypes = {
 Blockly.Arduino.DEF_FUNC_NAME = Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_;
 
 /**
+ * Whether the init method has been called.
+ * @type {?boolean}
+ */
+Blockly.Arduino.isInitialized = false;
+
+/**
  * Initialises the database of global definitions, the setup function, function
  * names, and variable names.
  * @param {Blockly.Workspace} workspace Workspace to generate code from.
@@ -115,6 +121,8 @@ Blockly.Arduino.init = function(workspace) {
     Blockly.Arduino.variableDB_.reset();
   }
 
+  Blockly.Arduino.variableDB_.setVariableMap(workspace.getVariableMap());
+  
   // Iterate through to capture all blocks types and set the function arguments
   var varsWithTypes = Blockly.Arduino.StaticTyping.collectVarsWithTypes(workspace);
   Blockly.Arduino.StaticTyping.setProcedureArgs(workspace, varsWithTypes);
@@ -125,6 +133,7 @@ Blockly.Arduino.init = function(workspace) {
         Blockly.Arduino.getArduinoType_(varsWithTypes[varName]) +' ' +
         Blockly.Arduino.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE) + ';');
   }
+  this.isInitialized = true;
 };
 
 /**

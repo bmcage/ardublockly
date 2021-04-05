@@ -106,8 +106,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
   {
     "type": "text_create_join_item",
     "message0": "%{BKY_TEXT_CREATE_JOIN_ITEM_TITLE_ITEM}",
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "text_blocks",
     "tooltip": "%{BKY_TEXT_CREATE_JOIN_ITEM_TOOLTIP}",
     "enableContextMenu": false
@@ -124,8 +124,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "input_value",
       "name": "TEXT"
     }],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "text_blocks",
     "extensions": [
       "text_append_tooltip"
@@ -400,8 +400,8 @@ Blockly.Blocks['text_print'] = {
           "name": "TEXT"
         }
       ],
-      "previousStatement": null,
-      "nextStatement": null,
+      "previousStatement": "ARD_BLOCK",
+      "nextStatement": "ARD_BLOCK",
       "style": "text_blocks",
       "tooltip": Blockly.Msg['TEXT_PRINT_TOOLTIP'],
       "helpUrl": Blockly.Msg['TEXT_PRINT_HELPURL']

@@ -148,26 +148,25 @@ Blockly.Arduino['logic_ternary'] = function(block) {
 };
 
 Blockly.Arduino['controls_switch'] = function(block) {
-	  // switch/var/case/do/default function
-	  var n = 0;
-	  var switchvar = Blockly.Arduino.variableDB_.getName(block.getFieldValue('SWVAR'),
-	      Blockly.Variables.NAME_TYPE);
-	  var argument = Blockly.Arduino.valueToCode(block, 'CASE' + n,
-	      Blockly.Arduino.ORDER_NONE) || 'false';
-	  var branch = Blockly.Arduino.statementToCode(block, 'DO' + n);
-	  var code = 'switch (' + switchvar + ') {\n'+
-	  'case ' + argument + ': \n' + branch + '  break;\n';
-	  for (n = 1; n <= block.casebreakCount_; n++) {
-	    argument = Blockly.Arduino.valueToCode(block, 'CASE' + n,
-	      Blockly.Arduino.ORDER_NONE) || 'false';
-	    branch = Blockly.Arduino.statementToCode(block, 'DO' + n);
-	    code += ' case ' + argument + ': \n' + branch + '  break;\n';
-	  }
-	  if (block.defaultCount_) {
-	    branch = Blockly.Arduino.statementToCode(block, 'DEFAULT');
-	    code += ' default :\n' + branch + ' ';
-	  }
-	  code += '}'
-	  return code + '\n';
-	};
-	
+  // switch/var/case/do/default function
+  var n = 0;
+  var switchvar = Blockly.Arduino.variableDB_.getName(block.getFieldValue('SWVAR'),
+      Blockly.Variables.NAME_TYPE);
+  var argument = Blockly.Arduino.valueToCode(block, 'CASE' + n,
+      Blockly.Arduino.ORDER_NONE) || 'false';
+  var branch = Blockly.Arduino.statementToCode(block, 'DO' + n);
+  var code = 'switch (' + switchvar + ') {\n'+
+    '  case ' + argument + ': \n' + branch + '    break;\n';
+  for (n = 1; n <= block.casebreakCount_; n++) {
+    argument = Blockly.Arduino.valueToCode(block, 'CASE' + n,
+      Blockly.Arduino.ORDER_NONE) || 'false';
+    branch = Blockly.Arduino.statementToCode(block, 'DO' + n);
+    code += '  case ' + argument + ': \n' + branch + '    break;\n';
+  }
+  if (block.defaultCount_) {
+    branch = Blockly.Arduino.statementToCode(block, 'DEFAULT');
+    code += '  default :\n' + branch + ' ';
+  }
+  code += '}'
+  return code + '\n';
+};

@@ -49,8 +49,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "input_statement",
       "name": "DO"
     }],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "tooltip": "%{BKY_CONTROLS_REPEAT_TOOLTIP}",
     "helpUrl": "%{BKY_CONTROLS_REPEAT_HELPURL}"
@@ -72,8 +72,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "input_statement",
       "name": "DO"
     }],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "tooltip": "%{BKY_CONTROLS_REPEAT_TOOLTIP}",
     "helpUrl": "%{BKY_CONTROLS_REPEAT_HELPURL}"
@@ -102,8 +102,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "input_statement",
       "name": "DO"
     }],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "helpUrl": "%{BKY_CONTROLS_WHILEUNTIL_HELPURL}",
     "extensions": ["controls_whileUntil_tooltip"]
@@ -143,8 +143,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "DO"
     }],
     "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "helpUrl": "%{BKY_CONTROLS_FOR_HELPURL}",
     "extensions": [
@@ -173,8 +173,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "input_statement",
       "name": "DO"
     }],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "helpUrl": "%{BKY_CONTROLS_FOREACH_HELPURL}",
     "extensions": [
@@ -194,7 +194,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         ["%{BKY_CONTROLS_FLOW_STATEMENTS_OPERATOR_CONTINUE}", "CONTINUE"]
       ]
     }],
-    "previousStatement": null,
+    "previousStatement": "ARD_BLOCK",
     "style": "loop_blocks",
     "helpUrl": "%{BKY_CONTROLS_FLOW_STATEMENTS_HELPURL}",
     "extensions": [

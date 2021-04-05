@@ -59,8 +59,8 @@ Blockly.defineBlocksWithJsonArray([ // BEGIN JSON EXTRACT
       "name": "VALUE"
     }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "variable_dynamic_blocks",
     "tooltip": "%{BKY_VARIABLES_SET_TOOLTIP}",
     "helpUrl": "%{BKY_VARIABLES_SET_HELPURL}",

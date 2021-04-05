@@ -215,8 +215,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "check": "Number"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "ARD_BLOCK",
+    "nextStatement": "ARD_BLOCK",
     "style": "variable_blocks",
     "helpUrl": "%{BKY_MATH_CHANGE_HELPURL}",
     "extensions": ["math_change_tooltip"]
