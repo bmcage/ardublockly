@@ -760,6 +760,140 @@
       <block type="DHT_readTemp"></block>
       <block type="DHT_readRH"></block>
       <block type="DHT_readHeatIndex"></block>
+      <block type="DHT_readHeatIndex"></block>
+      <block type="IR_config_hub"></block>
+      <block type="IR_readCode"></block>
+    </category>
+    <category id="BTSensors" name="Bluetooth">
+      <block type="BT_config_hub"></block>
+      <block type="BT_readCodeFromApp"></block>
+      <block type="text_isColour"></block>
+      <block type="text_isBrightness"></block>
+      <block type="colour_RGB_extractor"></block>
+      <block type="effect_extractor"></block>
+      <block type="BT_isAvailable"></block>
+    </category>
+    <category id="NeopixelExtra" name="Neopixels">
+      <block type="neopixel_hue_write">
+        <value name="LEDPIXEL">
+        	<block type="math_number">
+          		<field name="NUM">1</field>
+        	</block>
+      	</value>
+      	<value name="HUE">
+        	<block type="math_number">
+          		<field name="NUM">0</field>
+        	</block>
+      	</value>
+       	<value name="SATURATION">
+        	<block type="math_number">
+          		<field name="NUM">100</field>
+        	</block>
+      	</value>
+       	<value name="VALUE">
+        	<block type="math_number">
+          		<field name="NUM">100</field>
+        	</block>
+      	</value>
+      </block>
+      <block type="neopixel_fill">
+	      <value name="RED">
+	        <block type="math_number">
+	          <field name="NUM">255</field>
+	        </block>
+	      </value>
+	      <value name="GREEN">
+	        <block type="math_number">
+	          <field name="NUM">0</field>
+	        </block>
+	      </value>
+	      <value name="BLUE">
+	        <block type="math_number">
+	          <field name="NUM">0</field>
+	        </block>
+	      </value>
+    </block>
+    <block type="neopixel_clear"></block>
+    <block type="neopixel_rainbow">
+        <value name="delay">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+   </block>
+    <block type="neopixel_theaterchaserainbow">
+        <value name="delay">
+            <block type="math_number">
+                <field name="NUM">10</field>
+            </block>
+        </value>
+   </block>
+   <block type="neopixel_colorwipe">
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="delay">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+    </block>
+    <block type="neopixel_theaterchase">
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+    </block>
+    <block type="neopixel_effects">
+       <value name="delay">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+       <value name="COUNT">
+          <block type="math_number">
+             <field name="NUM">50</field>
+          </block>
+       </value>	      
+       <value name="RED">
+          <block type="math_number">
+             <field name="NUM">255</field>
+          </block>
+       </value>
+       <value name="GREEN">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>
+       <value name="BLUE">
+          <block type="math_number">
+             <field name="NUM">0</field>
+          </block>
+       </value>    
+    </block>      
     </category>
     <category id="catDiorama" name="Diorama">
       <block type="diorama_hub_component">
