@@ -186,7 +186,6 @@ Blockly.Blocks['effect_extractor'] = {
 	   * Block extracting the effect type
 	   */
 	  init: function() {
-        console.log('test trans', Blockly.Msg['ARD_BT_EFFECT2']);
 	    this.setColour(Blockly.Blocks.sensor.HUE);
 	    this.appendValueInput('EFFECT_TO_CHECK')
 	        .setCheck(Blockly.Types.TEXT.getcheckList());

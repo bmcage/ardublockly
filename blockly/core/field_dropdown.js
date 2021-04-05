@@ -502,7 +502,7 @@ Blockly.FieldDropdown.prototype.getOptions = function(opt_useCache) {
  */
 Blockly.FieldDropdown.prototype.doClassValidation_ = function(opt_newValue) {
   var isValueValid = false;
-  var options = this.getOptions(true);
+  var options = this.getOptions(false);
   for (var i = 0, option; (option = options[i]); i++) {
     // Options are tuples of human-readable text and language-neutral values.
     if (option[1] == opt_newValue) {

@@ -13,9 +13,6 @@
 goog.require('Blockly.Blocks');
 
 
-/** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.procedures.HUE = 290;
-
 Blockly.Blocks['arduino_functions'] = {
   /**
    * Block for defining the Arduino setup() and loop() functions.

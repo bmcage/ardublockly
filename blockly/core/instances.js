@@ -122,7 +122,7 @@ Blockly.Instances.renameInstance = function(
  * @return {string} New instance name.
  */
 Blockly.Instances.generateUniqueName = function(workspace) {
-  var combinedList = Blockly.Variables.allVariables(workspace).concat(
+  var combinedList = workspace.getAllVariables().concat(
       Blockly.Instances.allInstances(workspace));
   var newName = '';
   if (combinedList.length) {
@@ -171,7 +171,7 @@ Blockly.Instances.generateUniqueName = function(workspace) {
  * @return {string} Unique instance name based on name input.
  */
 Blockly.Instances.convertToUniqueName = function(instanceName, workspace) {
-  var combinedList = Blockly.Variables.allVariables(workspace).concat(
+  var combinedList = workspace.getAllVariables().concat(
       Blockly.Instances.allInstances(workspace));
   return Blockly.Instances.appendToName_(instanceName, combinedList);
 };
@@ -206,8 +206,7 @@ Blockly.Instances.convertToUniqueNameBlock = function(instanceName, block) {
     instanceList.push(instanceHash[name]);
   }
 
-  var combinedList = Blockly.Variables.allVariables(block.workspace).concat(
-      instanceList);
+  var combinedList = block.workspace.getAllVariables().concat(instanceList);
   return Blockly.Instances.appendToName_(instanceName, combinedList);
 };
 

@@ -37,14 +37,9 @@ Blockly.FieldInstance = function(
     instanceType, instanceName, uniqueName, opt_lockNew, opt_lockRename,
     opt_editDropdownData, opt_validator) {
   
-  // Call parent's constructor.
-  Blockly.FieldInstance.superClass_.constructor.call(this,
-      this.dropdownCreate, opt_validator);
-
-  this.instanceType_ = instanceType;
   
-  //this.setValue(instanceName);
-  Blockly.FieldInstance.superClass_.setValue.call(this, instanceName);
+  this.instanceType_ = instanceType;
+  this.instanceName_ = instanceName;
   
   this.uniqueName_ = (uniqueName === true);
   
@@ -54,6 +49,12 @@ Blockly.FieldInstance = function(
   
   this.editDropdownData = (opt_editDropdownData instanceof Function) ?
       opt_editDropdownData : null;
+  
+  // Call parent's constructor.
+  Blockly.FieldInstance.superClass_.constructor.call(this,
+      this.dropdownCreate, opt_validator);
+  
+  Blockly.FieldInstance.superClass_.setValue.call(this, instanceName);
 };
 Blockly.utils.object.inherits(Blockly.FieldInstance, Blockly.FieldDropdown);
 
@@ -116,13 +117,13 @@ Blockly.FieldInstance.prototype.init = function() {
       if (this.uniqueName_) {
         // Ensure the given name is unique in the workspace, but not in flyout
         if (!this.sourceBlock_.isInFlyout && !document.getElementById('load').value) {
+          Blockly.Instances.convertToUniqueNameBlock(this.getValue(), this.sourceBlock_);
           Blockly.FieldInstance.superClass_.setValue.call(this, 
                Blockly.Instances.convertToUniqueNameBlock(this.getValue(), this.sourceBlock_));
         }
       } else {
         // Pick an existing name from the workspace if needed and any exists
-        var instanceList =
-        Blockly.Instances.allInstancesOf(this.instanceType_,
+        var instanceList = Blockly.Instances.allInstancesOf(this.instanceType_,
                                          this.sourceBlock_.workspace);
         if (instanceList.indexOf(this.getValue()) == -1) {
           var existingName =
@@ -161,8 +162,16 @@ Blockly.FieldInstance.prototype.dropdownCreate = function() {
   }
   // Ensure that the currently selected instance is an option.
   var name = this.getText();
+  // If still undefined, then add instancename 
+  if (name === undefined || name === "undefined") {
+    name = this.instanceName_;
+  }
   if (name && instanceList.indexOf(name) == -1) {
     instanceList.push(name);
+  }
+  // current block must be in the list
+  if (instanceList.indexOf(this.instanceName_) == -1) {
+    instanceList.push(this.instanceName_);
   }
   instanceList.sort(Blockly.utils.string.caseInsensitiveCompare);
   if (!this.lockRename_) {
@@ -181,6 +190,58 @@ Blockly.FieldInstance.prototype.dropdownCreate = function() {
   }
 
   return options;
+};
+
+
+/**
+ * Handle the selection of an item in the dropdown menu.
+ * @param {!Blockly.Menu} menu The Menu component clicked.
+ * @param {!Blockly.MenuItem} menuItem The MenuItem selected within menu.
+ * @protected
+ */
+Blockly.FieldInstance.prototype.onItemSelected_ = function(menu, menuItem) {
+  
+  function promptName(promptText, defaultText, callback) {
+    Blockly.hideChaff();
+    var newVar = Blockly.prompt(promptText, defaultText, function(newVar) {
+      // Merge runs of whitespace.  Strip leading and trailing whitespace.
+      // Beyond this, all names are legal.
+      if (newVar) {
+        newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
+        if (newVar == Blockly.Msg.RENAME_INSTANCE ||
+            newVar == Blockly.Msg.NEW_INSTANCE) {
+          newVar = null;  // Ok, not ALL names are legal...
+        }
+      }
+      callback(newVar);
+    });
+  }
+  var text = menuItem.getValue();
+  var workspace = this.sourceBlock_.workspace;
+  if (text == Blockly.Msg.RENAME_INSTANCE) {
+    var oldInstance = this.instanceName_;
+    var thisFieldInstance = this;
+    var callbackRename = function(text) {
+      if (text) {
+        thisFieldInstance.instanceName_ = text;
+        thisFieldInstance.setValue(text);
+        
+        Blockly.Instances.renameInstance(
+            oldInstance, text, thisFieldInstance.instanceType_, workspace);
+      }
+    };
+    promptName(Blockly.Msg.RENAME_INSTANCE_TITLE.replace('%1', oldInstance),
+               oldInstance, callbackRename);
+    // no return, callback does rename
+  } else if (text == Blockly.Msg.NEW_INSTANCE) {
+    //TODO: this return needs to be replaced with an asynchronous callback
+    this.instanceName_ = Blockly.Instances.generateUniqueName(workspace);
+    this.setValue(text);
+  } else {
+    this.instanceName_ = text;
+    //standard behavior
+    Blockly.FieldInstance.superClass_.onItemSelected_.call(this, menuItem);
+  }
 };
 
 /**
@@ -230,9 +291,49 @@ Blockly.FieldInstance.prototype.dropdownChange = function(text) {
 };
 
 /**
+ * Sets the field's value based on the given XML element. Should only be
+ * called by Blockly.Xml.
+ * @param {!Element} fieldElement The element containing info about the
+ *    field's state.
+ * @package
+ */
+Blockly.FieldInstance.prototype.fromXml = function(fieldElement) {
+  this.instanceName_ = fieldElement.textContent;
+  return Blockly.FieldInstance.superClass_.fromXml.call(this, fieldElement);
+};
+
+/**
  * Subclasses should override doClassValidation_ and doValueUpdate_ rather
  * than setValue
  */
+/**
+ * Ensure that the input value is a valid language-neutral option.
+ * @param {*=} opt_newValue The input value.
+ * @return {?string} A valid language-neutral option, or null if invalid.
+ * @protected
+ */
+Blockly.FieldInstance.prototype.doClassValidation_ = function(opt_newValue) {
+  //Instance fields can always change their value 
+  this.instanceName_ = opt_newValue;
+  //if (this.sourceBlock_ && Blockly.Events.isEnabled()) {
+  //  Blockly.Events.fire(new Blockly.Events.Change(
+  //      this.sourceBlock_, 'field', this.name, this.value_, opt_newValue));
+  //}
+    
+  return Blockly.FieldInstance.superClass_.doClassValidation_.call(this, opt_newValue);
+  
+  //return /** @type {string} */ (opt_newValue);
+};
+
+/**
+ * Update the value of this dropdown field.
+ * @param {*} newValue The value to be saved. The default validator guarantees
+ * that this is one of the valid dropdown options.
+ * @protected
+ */
+Blockly.FieldInstance.prototype.doValueUpdate_ = function(newValue) {
+  Blockly.FieldInstance.superClass_.doValueUpdate_.call(this, newValue);
+};
 
 // Blockly needs to know the JSON name of this field. Usually this is
 // registered at the bottom of the field class.

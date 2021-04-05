@@ -179,8 +179,6 @@ Blockly.Blocks['io_highlow'] = {
    * @this Blockly.Block
    */
   init: function() {
-      console.log('test trans1', Blockly.Msg['ARD_HIGH']);
-      console.log('test trans', Blockly.Msg['ARD_BT_EFFECT2']);
     this.setHelpUrl('http://arduino.cc/en/Reference/Constants');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
