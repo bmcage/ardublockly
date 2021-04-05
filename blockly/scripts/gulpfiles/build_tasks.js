@@ -449,21 +449,21 @@ function buildLangfiles(done) {
   const jsToJsonCmd_ard = `python ./scripts/i18n/js_to_json.py \
 --author carlosperate \
 --input_file ${path.join('msg', 'messages_ardublockly.js')} \
---output_dir ${path.join('msg', 'json')} \
+--output_dir ${path.join('msg', 'json_ardublockly')} \
 --ardublockly \
 --quiet`;
   execSync(jsToJsonCmd_ard, { stdio: 'inherit' });
 
   // Run create_messages.py
-  let json_files_ard = fs.readdirSync(path.join('msg', 'json'));
-  json_files_ard = json_files_ard.filter(file => file.endsWith('_ardublockly.json') &&
-    !(new RegExp(/(keys_ardublockly|synonyms_ardublockly|qqq_ardublockly|constants_ardublockly)\.json$/).test(file)));
-  json_files_ard = json_files_ard.map(file => path.join('msg', 'json', file));
+  let json_files_ard = fs.readdirSync(path.join('msg', 'json_ardublockly'));
+  json_files_ard = json_files_ard.filter(file => file.endsWith('json') &&
+    !(new RegExp(/(keys_ardublockly|synonyms_ardublockly|qqq_ardublockly|constants)\.json$/).test(file)));
+  json_files_ard = json_files_ard.map(file => path.join('msg', 'json_ardublockly', file));
   const createMessagesCmd_ard = `python ./scripts/i18n/create_messages.py \
-  --source_lang_file ${path.join('msg', 'json', 'en_ardublockly.json')} \
-  --source_synonym_file ${path.join('msg', 'json', 'synonyms_ardublockly.json')} \
-  --source_constants_file ${path.join('msg', 'json', 'constants_ardublockly.json')} \
-  --output_dir ${path.join('msg', 'js')} \
+  --source_lang_file ${path.join('msg', 'json_ardublockly', 'en_ardublockly.json')} \
+  --source_synonym_file ${path.join('msg', 'json_ardublockly', 'synonyms_ardublockly.json')} \
+  --source_constants_file ${path.join('msg', 'json_ardublockly', 'constants.json')} \
+  --output_dir ${path.join('msg', 'js_ardublockly')} \
   --ardublockly \
   --quiet ${json_files_ard.join(' ')}`;
     execSync(createMessagesCmd_ard, { stdio: 'inherit' });

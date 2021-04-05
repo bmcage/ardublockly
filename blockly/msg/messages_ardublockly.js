@@ -32,10 +32,13 @@ goog.require('Blockly.Msg');
  * Note the strings have to be surrounded by single quotation marks: ''
  */
 
+/** @type {string} */
+/// {{Notranslate}} Hue value for all loop blocks.
+Blockly.Msg.COMPONENTS_HUE = '#70D65C';
+
 /**
  * Blockly4Arduino Website Messages
  */
-
 /// Message when Chrome is not used
 Blockly.Msg.B4A_NO_CHROME = 'You need to use Google Chrome to use this Upload functionality';
 /// Message when Chrome extension is not available
@@ -1806,3 +1809,12 @@ Blockly.Msg.ARD_ARRAY_GETLENGTH = 'Length of array';
 /** @type {string} */
 /// Arduino Blocks
 Blockly.Msg.ARD_ARRAY_GETLENGTH_TOOLTIP = 'Return the length (=number of elements) of the selected array';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.SAVE_FILE_AS = 'Save script as';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.ARD_TIME_EVERY = 'every';
+/** @type {string} */
+/// Arduino Blocks
+Blockly.Msg.ARD_FILENAME_TIP = 'Save file with the given name':

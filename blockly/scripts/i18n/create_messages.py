@@ -101,7 +101,7 @@ def main():
     (dir_, filename) = os.path.split(arg_file)
     target_lang = filename[:filename.index('.')]
 
-    if target_lang not in ('qqq', 'keys', 'synonyms', 'constants'):
+    if target_lang not in ('qqq', 'keys', 'synonyms', 'constants', 'synonyms_ardublockly', 'constants_ardublockly'):
       target_defs = read_json_file(os.path.join(os.curdir, arg_file))
 
       # Verify that keys are 'ascii'

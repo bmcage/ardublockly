@@ -108,7 +108,7 @@
 
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/nl.js"></script>
-  <script type="text/javascript" src="msg/js/nl_ardublockly.js"></script>
+  <script type="text/javascript" src="msg/js_ardublockly/nl_ardublockly.js"></script>
   <script type="text/javascript" src="blockly4Arduino/msg/nl.js"></script>
   
   <script type="text/javascript" src="blockly4Arduino/Blob.js"></script>
@@ -503,7 +503,13 @@
       </value>
     </block>
 //    <!--block type="text_trim"></block Need to update block -->
-//    <!--block type="text_print"></block Part of the serial comms -->
+    <block type="file_setup">
+      <value name="TEXT">
+        <block type="text">
+          <field name="TEXT">Blockly4Arduino</field>
+        </block>
+      </value>
+    </block>    
   </category>
   <category id="catVariables" name="Variabelen">
     <block type="variables_get"></block>
@@ -760,13 +766,6 @@
   </category>
   <category id="catComms" name="Comms">
     <block type="serial_setup"><field name="SPEED">9600</field></block>
-    <block type="file_setup">
-      <value name="TEXT">
-        <block type="text">
-          <field name="TEXT">mijn project</field>
-        </block>
-      </value>
-    </block>    
     <block type="serial_print"></block>
     <block type="text_prompt_ext">
       <value name="TEXT">

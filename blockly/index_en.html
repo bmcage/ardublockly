@@ -103,7 +103,7 @@
   
   <!-- Default language js files, user selection appended to head on load -->
   <script type="text/javascript" src="msg/js/en.js"></script>
-  <script type="text/javascript" src="msg/js/en_ardublockly.js"></script>
+  <script type="text/javascript" src="msg/js_ardublockly/en_ardublockly.js"></script>
   <script type="text/javascript" src="blockly4Arduino/msg/en.js"></script>
   
   <script type="text/javascript" src="blockly4Arduino/Blob.js"></script>
@@ -496,7 +496,13 @@
       </value>
     </block>
 //    <!--block type="text_trim"></block Need to update block -->
-//    <!--block type="text_print"></block Part of the serial comms -->
+    <block type="file_setup">
+      <value name="TEXT">
+        <block type="text">
+          <field name="TEXT">Blockly4Arduino</field>
+        </block>
+      </value>
+    </block>    
   </category>
   <category id="catVariables" name="Variables">
     <block type="variables_get"></block>

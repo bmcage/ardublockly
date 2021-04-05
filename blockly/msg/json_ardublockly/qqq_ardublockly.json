@@ -573,5 +573,7 @@
 	"ARD_ARRAY_SETINDEX_VALUE": "Arduino Blocks",
 	"ARD_ARRAY_SETINDEX_TOOLTIP": "Arduino Blocks",
 	"ARD_ARRAY_GETLENGTH": "Arduino Blocks",
-	"ARD_ARRAY_GETLENGTH_TOOLTIP": "Arduino Blocks"
+	"ARD_ARRAY_GETLENGTH_TOOLTIP": "Arduino Blocks",
+	"SAVE_FILE_AS": "Arduino Blocks",
+	"ARD_TIME_EVERY": "Arduino Blocks"
 }

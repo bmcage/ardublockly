@@ -5,6 +5,7 @@
 		]
 	},
   
+    "COMPONENTS_HUE": "#70D65C",
 	"B4A_NO_CHROME": "Je moet Google Chrome gebruiken om deze Upload functionaliteit te kunnen gebruiken",
 	"B4A_NO_EXTENSION": "Chrome Extensie is niet  geïnstalleerd",
 	"B4A_VERIFY_FAIL": "Verifieren mislukt. Chrome Extensie is niet  geïnstalleerd",
@@ -596,5 +597,6 @@
 	"CONTROLS_SWITCH_CASEBREAK_TOOLTIP" : "Voeg een \"case\"-blok toe om niewe voorwaarde te maken.",
 	"CONTROLS_SWITCH_DEFAULT_TOOLTIP" : "Voeg een optionele standaard actie toe die wordt uitgevoerd als geen enkele van de bovenstaande voorwaarden vervult is",
 	"SAVE_FILE_AS": "Bestand opslaan als",
-	"ARD_TIME_EVERY": "iedere"	
+	"ARD_TIME_EVERY": "iedere",
+    "ARD_FILENAME_TIP": "Sla bestand op met de gegeven naam"
 }
