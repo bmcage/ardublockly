@@ -330,7 +330,7 @@ function resetClick() {
 var extensionActive = false;
 function checkExtension() {			
     var lblStatus = document.getElementById('lblStatus');
-    if (typeof chrome !== 'undefined') {
+    if (typeof chrome !== 'undefined' && chrome.runtime) {
       chrome.runtime.sendMessage(extensionid, 'check', response => {
           if(!response) {
               console.log("No response received. " + response);
@@ -352,7 +352,7 @@ function checkExtension() {
 function populatePorts() {			
     var lblStatus = document.getElementById('lblStatus');
     var portType = document.getElementById('portType');
-    if (typeof chrome !== 'undefined') {
+    if (typeof chrome !== 'undefined' && chrome.runtime) {
       chrome.runtime.sendMessage(extensionid, 'ports', response => {
           if(!response) {
               lblStatus.innerHTML += Blockly.Msg.B4A_NO_EXTENSION + '\n';
@@ -509,7 +509,7 @@ function setExtensionId(){
         extensionid = newId;
         localStorage['extensionid'] = extensionid;
         console.log('New ExtensionId: ' + extensionid);
-        if (typeof chrome !== 'undefined') {
+        if (typeof chrome !== 'undefined' && chrome.runtime) {
             port = chrome.runtime.connect(extensionid);
             console.log('Connected to ext ', extensionid, ' as Port ', port )
             // log out any responses we get from the chrome app
@@ -537,7 +537,7 @@ var compilerPort = localStorage['compilerPort'] || '7000';
 var extensionid = localStorage['extensionid'] || 'limahhklinobffpljkonpenchljefiag';
 // open long lived connection with extension (it takes time for flash to complete)
 var port;
-if (typeof chrome !== 'undefined') {
+if (typeof chrome !== 'undefined' && chrome.runtime) {
   port = chrome.runtime.connect(extensionid);
   console.log('Connected to ext ', extensionid, ' as Port ', port )
 }

@@ -630,7 +630,31 @@ Blockly.Constants.Logic.LOGIC_TERNARY_ONCHANGE_MIXIN = {
     }
     this.prevParentConnection_ = parentConnection;
   }
-  //TODO: getBlockType that uses the type of the given inputs
+};
+
+/** @return {!string} Return value type from the function definition block. */
+Blockly.Blocks['logic_compare'].getBlockType = function() {
+  return Blockly.Types.BOOLEAN;
+};
+
+/** @return {!string} Return value type from the function definition block. */
+Blockly.Blocks['logic_operation'].getBlockType = function() {
+  return Blockly.Types.BOOLEAN;
+};
+
+/** @return {!string} Return value type from the function definition block. */
+Blockly.Blocks['logic_negate'].getBlockType = function() {
+  return Blockly.Types.BOOLEAN;
+};
+
+/** @return {!string} Return value type from the function definition block. */
+Blockly.Blocks['logic_boolean'].getBlockType = function() {
+  return Blockly.Types.BOOLEAN;
+};
+
+/** @return {!string} Return value type from the function definition block. */
+Blockly.Blocks['logic_null'].getBlockType = function() {
+  return Blockly.Types.NULL;
 };
 
 Blockly.Extensions.registerMixin('logic_ternary',

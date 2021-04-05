@@ -14,6 +14,7 @@
 	"ARD_TYPE_BOOL": "Arduino Types - Boolean type",
 	"ARD_TYPE_SHORT": "Arduino Types - Short number C type char",
 	"ARD_TYPE_NUMBER": "Arduino Types - Number C type integer",
+	"ARD_TYPE_UNSIGNED_NUMBER": "Arduino Types - Number C type integer",
 	"ARD_TYPE_LONG": "Arduino Types - Large number C type long integer",
 	"ARD_TYPE_DECIMAL": "Arduino Types - Decimal number C type floating point",
 	"ARD_TYPE_ARRAY": "Arduino Types - Array",

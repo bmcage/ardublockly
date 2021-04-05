@@ -548,6 +548,7 @@ Blockly.Msg["ARD_TYPE_NUMBER"] = "Nummer";
 Blockly.Msg["ARD_TYPE_SHORT"] = "Kort Nummer";
 Blockly.Msg["ARD_TYPE_TEXT"] = "Tekst";
 Blockly.Msg["ARD_TYPE_UNDEF"] = "Ongedefineerd";
+Blockly.Msg["ARD_TYPE_UNSIGNED_NUMBER"] = "Positief Nummer";
 Blockly.Msg["ARD_UNKNOWN_ALLBOTJOINT"] = "De oude servo waarde %1 is niet langer beschikbaar";
 Blockly.Msg["ARD_VALUE"] = "value";  // untranslated
 Blockly.Msg["ARD_VAR_AS"] = "als";

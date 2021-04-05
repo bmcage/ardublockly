@@ -548,6 +548,7 @@ Blockly.Msg["ARD_TYPE_NUMBER"] = "Число";
 Blockly.Msg["ARD_TYPE_SHORT"] = "Маленькое Число";
 Blockly.Msg["ARD_TYPE_TEXT"] = "Текст";
 Blockly.Msg["ARD_TYPE_UNDEF"] = "Неопределенное";
+Blockly.Msg["ARD_TYPE_UNSIGNED_NUMBER"] = "Positive Number";  // untranslated
 Blockly.Msg["ARD_UNKNOWN_ALLBOTJOINT"] = "The old joint value %1 is no longer available";  // untranslated
 Blockly.Msg["ARD_VALUE"] = "value";  // untranslated
 Blockly.Msg["ARD_VAR_AS"] = "как";

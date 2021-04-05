@@ -156,3 +156,35 @@ Blockly.Constants.Variables.DELETE_OPTION_CALLBACK_FACTORY = function(block) {
 
 Blockly.Extensions.registerMixin('contextMenu_variableSetterGetter',
     Blockly.Constants.Variables.CUSTOM_CONTEXT_MENU_VARIABLE_GETTER_SETTER_MIXIN);
+
+/**
+ * CUSTOM adapt get and set
+ */
+
+/**
+ * @return {!string} Retrieves the type (stored in varType) of this block.
+ * @this Blockly.Block
+ */
+Blockly.Blocks['variables_get'].getBlockType = function() {
+  return [Blockly.Types.UNDEF, this.getFieldValue('VAR')];
+};
+/**
+ * Gets the stored type of the variable indicated in the argument. As only one
+ * variable is stored in this block, no need to check input
+ * @this Blockly.
+ * @param {!string} varName Name of this block variable to check type.
+ * @return {!string} String to indicate the type of this block.
+ */
+Blockly.Blocks['variables_get'].getVarType = function(varName) {
+  return [Blockly.Types.UNDEF, this.getFieldValue('VAR')];
+};
+    
+/**
+ * Searches through the nested blocks to find a variable type.
+ * @this Blockly.Block
+ * @param {!string} varName Name of this block variable to check type.
+ * @return {string} String to indicate the type of this block.
+ */
+Blockly.Blocks['variables_set'].getVarType = function(varName) {
+  return Blockly.Types.getChildBlockType(this);
+};

@@ -570,3 +570,49 @@ Blockly.Constants.Math.LIST_MODES_MUTATOR_EXTENSION = function() {
 Blockly.Extensions.registerMutator('math_modes_of_list_mutator',
     Blockly.Constants.Math.LIST_MODES_MUTATOR_MIXIN,
     Blockly.Constants.Math.LIST_MODES_MUTATOR_EXTENSION);
+
+
+/**
+ * Reads the numerical value from the block and assigns a block type.
+ * @this Blockly.Block
+ */
+Blockly.Blocks['math_number'].getBlockType = function() {
+  var numString = this.getFieldValue('NUM');
+  return Blockly.Types.identifyNumber(numString);
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_single'].getBlockType = function() {
+  return Blockly.Types.DECIMAL;
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_trig'].getBlockType = function() {
+  return Blockly.Types.DECIMAL;
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+// this is done in the mixin
+//Blockly.Blocks['math_number_property'].getBlockType = function() {
+//  return Blockly.Types.BOOLEAN;
+//};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_round'].getBlockType = function() {
+  return Blockly.Types.DECIMAL;
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_modulo'].getBlockType = function() {
+  return Blockly.Types.NUMBER;
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_random_int'].getBlockType = function() {
+  return Blockly.Types.NUMBER;
+};
+
+/** @return {!string} Type of the block, all these operations are floats. */
+Blockly.Blocks['math_random_float'].getBlockType = function() {
+  return Blockly.Types.DECIMAL;
+};

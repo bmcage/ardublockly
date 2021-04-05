@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2021-04-05 19:28:36.793939",
+		"lastupdated": "2021-04-05 19:34:55.751182",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -20,6 +20,7 @@
 	"ARD_TYPE_BOOL": "Boolean",
 	"ARD_TYPE_SHORT": "Short Number",
 	"ARD_TYPE_NUMBER": "Number",
+	"ARD_TYPE_UNSIGNED_NUMBER": "Positive Number",
 	"ARD_TYPE_LONG": "Large Number",
 	"ARD_TYPE_DECIMAL": "Decimal",
 	"ARD_TYPE_ARRAY": "Array",

@@ -548,6 +548,7 @@ Blockly.Msg["ARD_TYPE_NUMBER"] = "Number";
 Blockly.Msg["ARD_TYPE_SHORT"] = "Short Number";
 Blockly.Msg["ARD_TYPE_TEXT"] = "Text";
 Blockly.Msg["ARD_TYPE_UNDEF"] = "Undefined";
+Blockly.Msg["ARD_TYPE_UNSIGNED_NUMBER"] = "Positive Number";
 Blockly.Msg["ARD_UNKNOWN_ALLBOTJOINT"] = "The old joint value %1 is no longer available";
 Blockly.Msg["ARD_VALUE"] = "value";
 Blockly.Msg["ARD_VAR_AS"] = "as";

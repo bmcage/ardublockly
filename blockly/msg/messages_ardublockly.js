@@ -79,6 +79,9 @@ Blockly.Msg.ARD_TYPE_SHORT = 'Short Number';
 /// Arduino Types - Number C type integer
 Blockly.Msg.ARD_TYPE_NUMBER = 'Number';
 /** @type {string} */
+/// Arduino Types - Number C type unsigned integer
+Blockly.Msg.ARD_TYPE_UNSIGNED_NUMBER = 'Positive Number';
+/** @type {string} */
 /// Arduino Types - Large number C type long integer
 Blockly.Msg.ARD_TYPE_LONG = 'Large Number';
 /** @type {string} */

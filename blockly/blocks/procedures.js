@@ -1042,7 +1042,13 @@ Blockly.Blocks['procedures_callreturn'] = {
   onchange: Blockly.Blocks['procedures_callnoreturn'].onchange,
   customContextMenu:
       Blockly.Blocks['procedures_callnoreturn'].customContextMenu,
-  defType_: 'procedures_defreturn'
+  defType_: 'procedures_defreturn',
+  /** @return {!string} Return value type from the function definition block. */
+  getBlockType: function() {
+    var defBlock = Blockly.Procedures.getDefinition(this.getProcedureCall(),
+        this.workspace);
+    return defBlock.getReturnType();
+  }
 };
 
 Blockly.Blocks['procedures_ifreturn'] = {
