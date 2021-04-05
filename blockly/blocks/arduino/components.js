@@ -450,3 +450,25 @@ Blockly.Blocks['core_hub_digdigpin'] = {
     this.contextMenu = false;
   }
 };
+
+Blockly.Blocks['file_setup'] = {
+  /**
+   * Block for predefining a filename.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('');
+    this.setColour(Blockly.Blocks.components.HUE);
+    this.appendValueInput('TEXT')
+        .setCheck(Blockly.Types.TEXT.getcheckList())
+        .appendField(Blockly.Msg.SAVE_FILE_AS);
+    this.setPreviousStatement(true, 'ARD_COMP_BLOCK');
+    this.setNextStatement(true, 'ARD_COMP_BLOCK');
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.ARD_FILENAME);
+  },
+  saveFileName: function() {
+    return this.getFieldValue('TEXT');
+  }
+};
+

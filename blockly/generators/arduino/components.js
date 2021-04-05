@@ -205,3 +205,22 @@ Blockly.Arduino['core_hub_component'] = function(block) {
   }
   return '';
 };
+
+/**
+ * Code generator for block for setting the filename .
+ * Arduino code: nothing 
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code.
+ */
+Blockly.Arduino['file_setup'] = function(block) {
+  var fileName = block.getFieldValue('TEXT');
+  var fileName = Blockly.Arduino.valueToCode(
+	      block, 'TEXT', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  if ( fileName) {
+	  fileName = fileName.replace(/^"|"$/g, '');
+	  var fileSetupCode = '\n\t/**********************\n\t** generated from ardublockly << '+fileName+'.xml >>\n\t**********************/';
+	  Blockly.Arduino.addSetup('fileNameForSave' , fileSetupCode, true);
+  }
+  var code = '';
+  return code;
+};

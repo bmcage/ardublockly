@@ -26,7 +26,7 @@ Blockly.Types.CHARACTER = new Blockly.Type({
 
 /** Text string. */
 Blockly.Types.TEXT = new Blockly.Type({
-  typeId: 'Text',
+  typeId: 'String',
   typeMsgName: 'ARD_TYPE_TEXT',
   compatibleTypes: [Blockly.Types.CHARACTER]
 });

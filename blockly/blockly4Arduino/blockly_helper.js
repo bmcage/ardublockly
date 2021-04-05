@@ -58,9 +58,20 @@ function copyCode() {
 * Save Arduino generated code to local file.
 */
 function saveCode() {
-  var fileName = window.prompt(Blockly.Msg.WHAT_NAME_FOR_FILE, 'Blockly4Arduino')
+    
+  var fileS = "Blockly4Arduino";
+  var blocks = Blockly.mainWorkspace.getAllBlocks();
+  for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].saveFileName;
+      if (func) {
+        fileS = Blockly.Arduino.valueToCode(blocks[x], 'TEXT', Blockly.Arduino.ORDER_NONE) || "Blockly4Arduino";
+        break;
+      }
+  }
+  fileS = fileS.replace(/\"/g, "").split(' ').join('');
+  var fileName = window.prompt(Blockly.Msg.WHAT_NAME_FOR_FILE, fileS)
   //doesn't save if the user quits the save prompt
-  if(fileName){
+  if (fileName){
     var blob = new Blob([Blockly.Arduino.workspaceToCode()], {type: 'text/plain;charset=utf-8'});
     saveAs(blob, fileName + '.ino');
   }
@@ -71,13 +82,18 @@ function saveCode() {
  * better include Blob and FileSaver for browser compatibility
  */
 function save() {
-  var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-  var file_block_iter = document.evaluate( "//block[@type='file_setup']/value/block/field", xml, null, XPathResult.ANY_TYPE, null );
-  var file_block = file_block_iter.iterateNext();
-  var fileS = file_block.textContent;
-  if (!fileS) {
-	  fileS = "Blockly4Arduino";
+  var fileS = "Blockly4Arduino";
+  var blocks = Blockly.mainWorkspace.getAllBlocks();
+  for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].saveFileName;
+      if (func) {
+        fileS = Blockly.Arduino.valueToCode(blocks[x], 'TEXT', Blockly.Arduino.ORDER_NONE) || "Blockly4Arduino";
+        break;
+      }
   }
+  fileS = fileS.replace(/\"/g, "").split(' ').join('');
+  
+  var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var data = Blockly.Xml.domToText(xml);
   var fileName = window.prompt(Blockly.Msg.WHAT_NAME_FOR_FILE, fileS);
   // Store data in blob.

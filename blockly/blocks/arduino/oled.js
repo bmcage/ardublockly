@@ -21,7 +21,7 @@ Blockly.Blocks.oled.HUE = 350;
 /** Initialise OLED Screen */
 Blockly.Blocks['oled_config'] = {
     init: function () {
-        this.setColour(Blockly.Blocks.oled.HUE);
+        this.setColour(Blockly.Msg.COMPONENTS_HUE);
         this.appendDummyInput()
             .appendField(Blockly.Msg.ARD_OLED_INIT)
             .appendField(

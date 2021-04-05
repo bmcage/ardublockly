@@ -25,7 +25,7 @@ Blockly.Blocks['array_create_with'] = {
             'ARRAYNAME')
         .appendField(Blockly.Msg.ARD_ARRAY_CREATE_TITLE2);
     this.setHelpUrl( 'https://www.arduino.cc/reference/en/language/variables/data-types/array/');
-    this.setColour(Blockly.Blocks.array.HUE);
+    this.setColour(Blockly.Msg.COMPONENTS_HUE);
     this.itemCount_=3;
     this.updateShape_();
     this.setPreviousStatement(true, "ARD_COMP_BLOCK");
@@ -149,7 +149,7 @@ Blockly.Blocks['array_create_with_length'] = {
         .setCheck(Blockly.Types.NUMBER.getoutput());
     this.setInputsInline(true);
     this.setHelpUrl( 'https://www.arduino.cc/reference/en/language/variables/data-types/array/');
-    this.setColour(Blockly.Blocks.array.HUE);
+    this.setColour(Blockly.Msg.COMPONENTS_HUE);
     this.setPreviousStatement(true, "ARD_COMP_BLOCK");
     this.setNextStatement(true, 'ARD_COMP_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_ARRAY_CREATE_LENGTH_TOOLTIP);

@@ -41,7 +41,9 @@ Blockly.Blocks['DHT_config_hub'] = {
                                       ]),
            'DHTTYPE');
     this.setOutput(true, "HUB_DIGOUT");
-    this.setColour(Blockly.Blocks.sensor.HUE);
+    this.setColour(Blockly.Msg.COMPONENTS_HUE);
+    this.setNextStatement(true, 'ARD_COMP_BLOCK');
+    this.setPreviousStatement(true, 'ARD_COMP_BLOCK');
     this.setTooltip(Blockly.Msg.ARD_DHTHUB_TIP);
     this.setHelpUrl('https://learn.adafruit.com/dht');
   },

@@ -62,7 +62,7 @@ Blockly.Blocks['segment_config'] = {
           .appendField('DP pin:')
           .appendField(new Blockly.FieldDropdown(
            Blockly.Arduino.Boards.selected.digitalPins), 'SEG_DP');
-      this.setColour(Blockly.Blocks.segment.HUE);
+      this.setColour(Blockly.Msg.COMPONENTS_HUE);
       this.setPreviousStatement(true, "ARD_COMP_BLOCK");
       this.setNextStatement(true, 'ARD_COMP_BLOCK');
       this.setInputsInline(false);

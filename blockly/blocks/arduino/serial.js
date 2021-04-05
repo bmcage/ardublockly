@@ -29,7 +29,7 @@ Blockly.Blocks['serial_setup'] = {
    */
   init: function() {
     this.setHelpUrl('http://arduino.cc/en/Serial/Begin');
-    this.setColour(Blockly.Blocks.serial.HUE);
+    this.setColour(Blockly.Msg.COMPONENTS_HUE);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_SERIAL_SETUP)
         .appendField(
@@ -40,6 +40,8 @@ Blockly.Blocks['serial_setup'] = {
             new Blockly.FieldDropdown(
                 Blockly.Arduino.Boards.selected.serialSpeed), 'SPEED')
         .appendField(Blockly.Msg.ARD_SERIAL_BPS);
+    this.setPreviousStatement(true, 'ARD_COMP_BLOCK');
+    this.setNextStatement(true, 'ARD_COMP_BLOCK');
     this.setInputsInline(true);
     this.setTooltip(Blockly.Msg.ARD_SERIAL_SETUP_TIP);
   },
@@ -127,21 +129,4 @@ Blockly.Blocks['serial_print'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
         this, 'SERIAL_ID', 'serial');
   }
-};
-
-Blockly.Blocks['file_setup'] = {
-	  /**
-	   * Block for predefining a filename.
-	   * @this Blockly.Block
-	   */
-	  init: function() {
-	    this.setHelpUrl('');
-	    this.setColour(Blockly.Blocks.serial.HUE);
-	   // this.appendDummyInput()
-	   //     .appendField("Save script as");
-	    this.appendValueInput('TEXT')
-        	.setCheck(Blockly.Types.TEXT.getcheckList())
-        	.appendField(Blockly.Msg.SAVE_FILE_AS);
-        this.setInputsInline(true);
-	  }
 };
