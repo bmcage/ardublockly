@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "carlosperate",
-		"lastupdated": "2021-04-05 15:38:38.501721",
+		"lastupdated": "2021-04-05 19:28:36.793939",
 		"locale": "en",
 		"messagedocumentation" : "qqq_ardublockly"
 	},
@@ -580,6 +580,21 @@
 	"ARD_ARRAY_SETINDEX_TOOLTIP": "Set an element in the array at given index equal to the given value. Index must be a number from 0 to the length minus 1!",
 	"ARD_ARRAY_GETLENGTH": "Length of array",
 	"ARD_ARRAY_GETLENGTH_TOOLTIP": "Return the length (=number of elements) of the selected array",
+	"CONTROLS_SWITCH_HELPURL": "https://nl.wikibooks.org/wiki/Programmeren_in_C++/Switch",
+	"CONTROLS_SWITCH_SWITCH_TOOLTIP": "Add cases, remove them, or change the order of the cases in this switch-block.",
+	"CONTROLS_SWITCH_VAR_TITLE": "Switch condition (",
+	"CONTROLS_SWITCH_VAR_TAIL": ")",
+	"CONTROLS_SWITCH_MSG_DEFAULT": "otherwise",
+	"CONTROLS_SWITCH_MSG_CASEBREAK": "case",
+	"CONTROLS_SWITCH_MSG_SWITCHVAR": "Switch (condition variable)",
+	"CONTROLS_SWITCH_MSG_DO": "do",
+	"CONTROLS_SWITCH_TOOLTIP_1": "If the condition has the value, then do the statements.",
+	"CONTROLS_SWITCH_TOOLTIP_2": "If the condition has the value, then do the first block of statements. Otherwise, do the second block of statements.",
+	"CONTROLS_SWITCH_TOOLTIP_3": "If the condition has the first value, then do the first block of statements. Otherwise, if the condition has the second value, do the second block of statements.",
+	"CONTROLS_SWITCH_TOOLTIP_4": "If the condition has the first value, then do the first block of statements. Otherwise, if the condition has the second value, do the second block of statements. If none of the values are correct, do the last block of statements.",
+	"CONTROLS_SWITCH_VAR_TOOLTIP": "Drag blocks from left to this region to add them.",
+	"CONTROLS_SWITCH_CASEBREAK_TOOLTIP": "Add a new 'case'-block to check the condition for a new value.",
+	"CONTROLS_SWITCH_DEFAULT_TOOLTIP": "Add an optional standard action which will be executed if NONE of the above conditions was satisfied",
 	"SAVE_FILE_AS": "Save script as",
 	"ARD_TIME_EVERY": "every"
 }
